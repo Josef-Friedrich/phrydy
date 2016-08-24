@@ -1,16 +1,21 @@
-# phrydy
+======
+phrydy
+======
 
 Handles low-level interfacing for files' tags. Wraps Mutagen to
 automatically detect file types and provide a unified interface for a
 useful subset of music files' tags.
 
-Usage:
+Usage
+-----
 
-    >>> f = MediaFile('Lucy.mp3')
-    >>> f.title
-    u'Lucy in the Sky with Diamonds'
-    >>> f.artist = 'The Beatles'
-    >>> f.save()
+::
+
+        >>> f = MediaFile('Lucy.mp3')
+        >>> f.title
+        u'Lucy in the Sky with Diamonds'
+        >>> f.artist = 'The Beatles'
+        >>> f.save()
 
 A field will always return a reasonable value of the correct type, even
 if no tag is present. If no value is available, the value will be false
