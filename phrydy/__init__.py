@@ -13,7 +13,11 @@
 # The above copyright notice and this permission notice shall be
 # included in all copies or substantial portions of the Software.
 
-"""Handles low-level interfacing for files' tags. Wraps Mutagen to
+"""This file originates from the file `beets/mediafile.py
+<https://github.com/beetbox/beets/blob/44e0e441080da8057260cea7a9225e03e93ffca0/beets/mediafile.py>_`
+of the `beets project<http://beets.io>_`.
+
+Handles low-level interfacing for files' tags. Wraps Mutagen to
 automatically detect file types and provide a unified interface for a
 useful subset of music files' tags.
 
