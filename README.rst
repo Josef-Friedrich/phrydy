@@ -1,3 +1,9 @@
+.. image:: http://img.shields.io/pypi/v/phrydy.svg
+    :target: https://pypi.python.org/pypi/phrydy
+
+.. image:: https://travis-ci.org/Josef-Friedrich/phrydy.svg?branch=master
+    :target: https://travis-ci.org/Josef-Friedrich/phrydy
+
 ======
 phrydy
 ======
@@ -10,7 +16,7 @@ Usage
 -----
 
 ::
-
+        >>> from phrydy install MediaFile
         >>> f = MediaFile('Lucy.mp3')
         >>> f.title
         u'Lucy in the Sky with Diamonds'
