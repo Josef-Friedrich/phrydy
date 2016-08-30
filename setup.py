@@ -8,4 +8,5 @@ setup(name='phrydy',
       author_email='josef@friedrich.rocks',
       license='MIT',
       packages=['phrydy'],
+      install_requires=['mutagen','enum','six'],
       zip_safe=False)
