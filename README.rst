@@ -16,6 +16,7 @@ Usage
 -----
 
 ::
+
         >>> from phrydy install MediaFile
         >>> f = MediaFile('Lucy.mp3')
         >>> f.title
