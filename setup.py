@@ -6,7 +6,7 @@ def read(fname):
 
 setup(
 	name='phrydy',
-	version='0.0.1',
+	version='0.0.2',
 	description='A easy wrapper for mutagen',
 	url='https://github.com/Josef-Friedrich/phrydy',
 	author='Josef Friedrich',
@@ -14,6 +14,6 @@ setup(
 	license='MIT',
 	packages=['phrydy'],
 	long_description=read('README.rst'),
-	install_requires=['mutagen','enum','six'],
+	install_requires=['mutagen', 'enum', 'six'],
 	zip_safe=False
 )
