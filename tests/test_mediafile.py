@@ -19,7 +19,6 @@ layer.
 from __future__ import division, absolute_import, print_function
 
 import os
-import sys
 import shutil
 import tempfile
 import datetime
@@ -32,7 +31,7 @@ from phrydy import MediaFile, MediaField, Image, \
     MP3DescStorageStyle, StorageStyle, MP4StorageStyle, \
     ASFStorageStyle, ImageType, CoverArtField, UnreadableFileError
 
-from phrydy.utils import _fsencoding, bytestring_path
+from phrydy.utils import bytestring_path
 import six
 
 

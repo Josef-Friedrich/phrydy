@@ -16,26 +16,21 @@
 """Some common functionality for beets' test cases."""
 from __future__ import division, absolute_import, print_function
 
-import time
 import sys
 import os
 import tempfile
 import shutil
 import six
 import unittest
-from contextlib import contextmanager
 
 
 # Mangle the search path to include the beets sources.
 sys.path.insert(0, '..')
 import beets.library  # noqa: E402
-from beets import importer, logging  # noqa: E402
-from beets.ui import commands  # noqa: E402
+from beets import logging  # noqa: E402
 from beets import util  # noqa: E402
 import beets  # noqa: E402
 
-# Make sure the development versions of the plugins are used
-import beetsplug  # noqa: E402
 
 # Test resources path.
 RSRC = util.bytestring_path(os.path.join(os.path.dirname(__file__), 'rsrc'))

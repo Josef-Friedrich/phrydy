@@ -33,30 +33,14 @@ information or mock the environment.
 
 from __future__ import division, absolute_import, print_function
 
-import sys
-import os
-import os.path
 import shutil
-import subprocess
-from tempfile import mkdtemp, mkstemp
-from contextlib import contextmanager
-from six import StringIO
-from enum import Enum
+from tempfile import mkdtemp
 
 import beets
-from beets import logging
-from beets import config
 import beets.plugins
-from beets.library import Library, Item, Album
+from beets.library import Item, Album
 from beets import importer
-from beets.autotag.hooks import AlbumInfo, TrackInfo
-from beets.mediafile import MediaFile, Image
 from beets import util
-
-# TODO Move AutotagMock here
-from tests import _common
-import six
-
 
 class TestHelper(object):
     """Helper mixin for high-level cli and plugin tests.
