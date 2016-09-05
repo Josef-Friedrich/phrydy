@@ -26,7 +26,7 @@ from tests.helper import TestHelper
 
 
 import phrydy
-from phrydy import bytestring_path
+from phrydy.utils import bytestring_path
 import six
 
 
