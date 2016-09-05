@@ -36,17 +36,12 @@ import beets  # noqa: E402
 
 # Make sure the development versions of the plugins are used
 import beetsplug  # noqa: E402
-beetsplug.__path__ = [os.path.abspath(
-    os.path.join(__file__, '..', '..', 'beetsplug')
-)]
 
 # Test resources path.
 RSRC = util.bytestring_path(os.path.join(os.path.dirname(__file__), 'rsrc'))
-PLUGINPATH = os.path.join(os.path.dirname(__file__), 'rsrc', 'beetsplug')
 
 # Propagate to root loger so nosetest can capture it
 log = logging.getLogger('beets')
-log.propagate = True
 log.setLevel(logging.DEBUG)
 
 # Dummy item creation.
@@ -94,52 +89,8 @@ def item(lib=None):
 
 _album_ident = 0
 
-
-def album(lib=None):
-    global _item_ident
-    _item_ident += 1
-    i = beets.library.Album(
-        artpath=None,
-        albumartist=u'some album artist',
-        albumartist_sort=u'some sort album artist',
-        albumartist_credit=u'some album artist credit',
-        album=u'the album',
-        genre=u'the genre',
-        year=2014,
-        month=2,
-        day=5,
-        tracktotal=0,
-        disctotal=1,
-        comp=False,
-        mb_albumid='someID-1',
-        mb_albumartistid='someID-1'
-    )
-    if lib:
-        lib.add(i)
-    return i
-
-
-# Dummy import session.
-def import_session(lib=None, loghandler=None, paths=[], query=[], cli=False):
-    cls = commands.TerminalImportSession if cli else importer.ImportSession
-    return cls(lib, loghandler, paths, query)
-
-
 class Assertions(object):
     """A mixin with additional unit test assertions."""
-
-    def assertExists(self, path):  # noqa
-        self.assertTrue(os.path.exists(util.syspath(path)),
-                        u'file does not exist: {!r}'.format(path))
-
-    def assertNotExists(self, path):  # noqa
-        self.assertFalse(os.path.exists(util.syspath(path)),
-                         u'file exists: {!r}'.format((path)))
-
-    def assert_equal_path(self, a, b):
-        """Check that two paths are equal."""
-        self.assertEqual(util.normpath(a), util.normpath(b),
-                         u'paths are not equal: {!r} and {!r}'.format(a, b))
 
 
 # A test harness for all beets tests.
@@ -153,7 +104,6 @@ class TestCase(unittest.TestCase, Assertions):
     """
     def setUp(self):
         # A "clean" source list including only the defaults.
-        beets.config.sources = []
         beets.config.read(user=False, defaults=True)
 
         # Direct paths to a temporary directory. Tests can also use this
@@ -185,8 +135,6 @@ class TestCase(unittest.TestCase, Assertions):
         self.io.restore()
 
         beets.config.clear()
-        beets.config._materialized = False
-
 
 class LibTestCase(TestCase):
     """A test case that includes an in-memory library object (`lib`) and
@@ -202,45 +150,7 @@ class LibTestCase(TestCase):
         super(LibTestCase, self).tearDown()
 
 
-# Mock timing.
-
-class Timecop(object):
-    """Mocks the timing system (namely time() and sleep()) for testing.
-    Inspired by the Ruby timecop library.
-    """
-    def __init__(self):
-        self.now = time.time()
-
-    def time(self):
-        return self.now
-
-    def sleep(self, amount):
-        self.now += amount
-
-    def install(self):
-        self.orig = {
-            'time': time.time,
-            'sleep': time.sleep,
-        }
-        time.time = self.time
-        time.sleep = self.sleep
-
-    def restore(self):
-        time.time = self.orig['time']
-        time.sleep = self.orig['sleep']
-
-
 # Mock I/O.
-
-class InputException(Exception):
-    def __init__(self, output=None):
-        self.output = output
-
-    def __str__(self):
-        msg = "Attempt to read with no input provided."
-        if self.output is not None:
-            msg += " Output: {!r}".format(self.output)
-        return msg
 
 
 class DummyOut(object):
@@ -258,9 +168,6 @@ class DummyOut(object):
         else:
             return ''.join(self.buf)
 
-    def flush(self):
-        self.clear()
-
     def clear(self):
         self.buf = []
 
@@ -270,7 +177,6 @@ class DummyIn(object):
 
     def __init__(self, out=None):
         self.buf = []
-        self.reads = 0
         self.out = out
 
     def add(self, s):
@@ -279,98 +185,12 @@ class DummyIn(object):
         else:
             self.buf.append(s + '\n')
 
-    def readline(self):
-        if not self.buf:
-            if self.out:
-                raise InputException(self.out.get())
-            else:
-                raise InputException()
-        self.reads += 1
-        return self.buf.pop(0)
-
-
 class DummyIO(object):
     """Mocks input and output streams for testing UI code."""
     def __init__(self):
         self.stdout = DummyOut()
         self.stdin = DummyIn(self.stdout)
 
-    def addinput(self, s):
-        self.stdin.add(s)
-
-    def getoutput(self):
-        res = self.stdout.get()
-        self.stdout.clear()
-        return res
-
-    def readcount(self):
-        return self.stdin.reads
-
-    def install(self):
-        sys.stdin = self.stdin
-        sys.stdout = self.stdout
-
     def restore(self):
         sys.stdin = sys.__stdin__
         sys.stdout = sys.__stdout__
-
-
-# Utility.
-
-def touch(path):
-    open(path, 'a').close()
-
-
-class Bag(object):
-    """An object that exposes a set of fields given as keyword
-    arguments. Any field not found in the dictionary appears to be None.
-    Used for mocking Album objects and the like.
-    """
-    def __init__(self, **fields):
-        self.fields = fields
-
-    def __getattr__(self, key):
-        return self.fields.get(key)
-
-
-# Platform mocking.
-
-@contextmanager
-def platform_windows():
-    import ntpath
-    old_path = os.path
-    try:
-        os.path = ntpath
-        yield
-    finally:
-        os.path = old_path
-
-
-@contextmanager
-def platform_posix():
-    import posixpath
-    old_path = os.path
-    try:
-        os.path = posixpath
-        yield
-    finally:
-        os.path = old_path
-
-
-@contextmanager
-def system_mock(name):
-    import platform
-    old_system = platform.system
-    platform.system = lambda: name
-    try:
-        yield
-    finally:
-        platform.system = old_system
-
-
-def slow_test(unused=None):
-    def _id(obj):
-        return obj
-    if 'SKIP_SLOW_TESTS' in os.environ:
-        return unittest.skip(u'test is slow')
-    return _id
