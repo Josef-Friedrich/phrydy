@@ -62,13 +62,10 @@ import traceback
 import enum
 import sys
 
-from beets import logging
 import six
 
 
 __all__ = ['UnreadableFileError', 'FileTypeError', 'MediaFile']
-
-log = logging.getLogger('beets')
 
 # Human-readable type names.
 TYPES = {
@@ -241,12 +238,12 @@ def mutagen_call(action, path, func, *args, **kwargs):
     try:
         return func(*args, **kwargs)
     except mutagen.MutagenError as exc:
-        log.debug(u'{} failed: {}', action, six.text_type(exc))
+        #log.debug(u'{} failed: {}', action, six.text_type(exc))
         raise UnreadableFileError(path)
     except Exception as exc:
         # Isolate bugs in Mutagen.
-        log.debug(u'{}', traceback.format_exc())
-        log.error(u'uncaught Mutagen exception in {}: {}', action, exc)
+        #log.debug(u'{}', traceback.format_exc())
+        #log.error(u'uncaught Mutagen exception in {}: {}', action, exc)
         raise MutagenError(path, exc)
 
 
@@ -496,7 +493,7 @@ class Image(object):
             try:
                 type = list(ImageType)[type]
             except IndexError:
-                log.debug(u"ignoring unknown image type index {0}", type)
+                #log.debug(u"ignoring unknown image type index {0}", type)
                 type = ImageType.other
         self.type = type
 
