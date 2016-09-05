@@ -21,7 +21,7 @@ import os
 import shutil
 
 from tests import _common
-from tests._common import unittest
+import unittest
 from tests.helper import TestHelper
 
 

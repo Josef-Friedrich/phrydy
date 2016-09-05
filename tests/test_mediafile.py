@@ -26,7 +26,7 @@ import time
 from six import assertCountEqual
 
 from tests import _common
-from tests._common import unittest
+import unittest
 from phrydy import MediaFile, MediaField, Image, \
     MP3DescStorageStyle, StorageStyle, MP4StorageStyle, \
     ASFStorageStyle, ImageType, CoverArtField, UnreadableFileError
