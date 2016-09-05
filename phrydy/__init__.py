@@ -58,9 +58,7 @@ import math
 import struct
 import imghdr
 import os
-import traceback
 import enum
-import sys
 
 import six
 
