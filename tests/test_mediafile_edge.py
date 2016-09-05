@@ -24,12 +24,13 @@ from tests import _common
 from tests._common import unittest
 from tests.helper import TestHelper
 
-from beets.util import bytestring_path
-import beets.mediafile
+
+import phrydy
+from phrydy import bytestring_path
 import six
 
 
-_sc = beets.mediafile._safe_cast
+_sc = phrydy._safe_cast
 
 
 class EdgeTest(unittest.TestCase):
@@ -37,7 +38,7 @@ class EdgeTest(unittest.TestCase):
         # Some files have an ID3 frame that has a list with no elements.
         # This is very hard to produce, so this is just the first 8192
         # bytes of a file found "in the wild".
-        emptylist = beets.mediafile.MediaFile(
+        emptylist = phrydy.MediaFile(
             os.path.join(_common.RSRC, b'emptylist.mp3')
         )
         genre = emptylist.genre
@@ -46,7 +47,7 @@ class EdgeTest(unittest.TestCase):
     def test_release_time_with_space(self):
         # Ensures that release times delimited by spaces are ignored.
         # Amie Street produces such files.
-        space_time = beets.mediafile.MediaFile(
+        space_time = phrydy.MediaFile(
             os.path.join(_common.RSRC, b'space_time.mp3')
         )
         self.assertEqual(space_time.year, 2009)
@@ -56,7 +57,7 @@ class EdgeTest(unittest.TestCase):
     def test_release_time_with_t(self):
         # Ensures that release times delimited by Ts are ignored.
         # The iTunes Store produces such files.
-        t_time = beets.mediafile.MediaFile(
+        t_time = phrydy.MediaFile(
             os.path.join(_common.RSRC, b't_time.m4a')
         )
         self.assertEqual(t_time.year, 1987)
@@ -66,20 +67,20 @@ class EdgeTest(unittest.TestCase):
     def test_tempo_with_bpm(self):
         # Some files have a string like "128 BPM" in the tempo field
         # rather than just a number.
-        f = beets.mediafile.MediaFile(os.path.join(_common.RSRC, b'bpm.mp3'))
+        f = phrydy.MediaFile(os.path.join(_common.RSRC, b'bpm.mp3'))
         self.assertEqual(f.bpm, 128)
 
     def test_discc_alternate_field(self):
         # Different taggers use different vorbis comments to reflect
         # the disc and disc count fields: ensure that the alternative
         # style works.
-        f = beets.mediafile.MediaFile(os.path.join(_common.RSRC, b'discc.ogg'))
+        f = phrydy.MediaFile(os.path.join(_common.RSRC, b'discc.ogg'))
         self.assertEqual(f.disc, 4)
         self.assertEqual(f.disctotal, 5)
 
     def test_old_ape_version_bitrate(self):
         media_file = os.path.join(_common.RSRC, b'oldape.ape')
-        f = beets.mediafile.MediaFile(media_file)
+        f = phrydy.MediaFile(media_file)
         self.assertEqual(f.bitrate, 0)
 
     def test_only_magic_bytes_jpeg(self):
@@ -91,13 +92,13 @@ class EdgeTest(unittest.TestCase):
         with open(magic_bytes_file, 'rb') as f:
             jpg_data = f.read()
         self.assertEqual(
-            beets.mediafile._image_mime_type(jpg_data),
+            phrydy._image_mime_type(jpg_data),
             'image/jpeg')
 
     def test_soundcheck_non_ascii(self):
         # Make sure we don't crash when the iTunes SoundCheck field contains
         # non-ASCII binary data.
-        f = beets.mediafile.MediaFile(os.path.join(_common.RSRC,
+        f = phrydy.MediaFile(os.path.join(_common.RSRC,
                                                    b'soundcheck-nonascii.m4a'))
         self.assertEqual(f.rg_track_gain, 0.0)
 
@@ -158,35 +159,35 @@ class SafetyTest(unittest.TestCase, TestHelper):
         with open(fn, 'w') as f:
             f.write(data)
         try:
-            self.assertRaises(exc, beets.mediafile.MediaFile, fn)
+            self.assertRaises(exc, phrydy.MediaFile, fn)
         finally:
             os.unlink(fn)  # delete the temporary file
 
     def test_corrupt_mp3_raises_unreadablefileerror(self):
         # Make sure we catch Mutagen reading errors appropriately.
-        self._exccheck(b'corrupt.mp3', beets.mediafile.UnreadableFileError)
+        self._exccheck(b'corrupt.mp3', phrydy.UnreadableFileError)
 
     def test_corrupt_mp4_raises_unreadablefileerror(self):
-        self._exccheck(b'corrupt.m4a', beets.mediafile.UnreadableFileError)
+        self._exccheck(b'corrupt.m4a', phrydy.UnreadableFileError)
 
     def test_corrupt_flac_raises_unreadablefileerror(self):
-        self._exccheck(b'corrupt.flac', beets.mediafile.UnreadableFileError)
+        self._exccheck(b'corrupt.flac', phrydy.UnreadableFileError)
 
     def test_corrupt_ogg_raises_unreadablefileerror(self):
-        self._exccheck(b'corrupt.ogg', beets.mediafile.UnreadableFileError)
+        self._exccheck(b'corrupt.ogg', phrydy.UnreadableFileError)
 
     def test_invalid_ogg_header_raises_unreadablefileerror(self):
-        self._exccheck(b'corrupt.ogg', beets.mediafile.UnreadableFileError,
+        self._exccheck(b'corrupt.ogg', phrydy.UnreadableFileError,
                        'OggS\x01vorbis')
 
     def test_corrupt_monkeys_raises_unreadablefileerror(self):
-        self._exccheck(b'corrupt.ape', beets.mediafile.UnreadableFileError)
+        self._exccheck(b'corrupt.ape', phrydy.UnreadableFileError)
 
     def test_invalid_extension_raises_filetypeerror(self):
-        self._exccheck(b'something.unknown', beets.mediafile.FileTypeError)
+        self._exccheck(b'something.unknown', phrydy.FileTypeError)
 
     def test_magic_xml_raises_unreadablefileerror(self):
-        self._exccheck(b'nothing.xml', beets.mediafile.UnreadableFileError,
+        self._exccheck(b'nothing.xml', phrydy.UnreadableFileError,
                        "ftyp")
 
     @unittest.skipUnless(_common.HAVE_SYMLINK, u'platform lacks symlink')
@@ -194,8 +195,8 @@ class SafetyTest(unittest.TestCase, TestHelper):
         fn = os.path.join(_common.RSRC, b'brokenlink')
         os.symlink('does_not_exist', fn)
         try:
-            self.assertRaises(beets.mediafile.UnreadableFileError,
-                              beets.mediafile.MediaFile, fn)
+            self.assertRaises(phrydy.UnreadableFileError,
+                              phrydy.MediaFile, fn)
         finally:
             os.unlink(fn)
 
@@ -206,7 +207,7 @@ class SideEffectsTest(unittest.TestCase):
 
     def test_opening_tagless_file_leaves_untouched(self):
         old_mtime = os.stat(self.empty).st_mtime
-        beets.mediafile.MediaFile(self.empty)
+        phrydy.MediaFile(self.empty)
         new_mtime = os.stat(self.empty).st_mtime
         self.assertEqual(old_mtime, new_mtime)
 
@@ -218,7 +219,7 @@ class MP4EncodingTest(unittest.TestCase, TestHelper):
         self.path = os.path.join(self.temp_dir, b'test.m4a')
         shutil.copy(src, self.path)
 
-        self.mf = beets.mediafile.MediaFile(self.path)
+        self.mf = phrydy.MediaFile(self.path)
 
     def tearDown(self):
         self.remove_temp_dir()
@@ -226,7 +227,7 @@ class MP4EncodingTest(unittest.TestCase, TestHelper):
     def test_unicode_label_in_m4a(self):
         self.mf.label = u'foo\xe8bar'
         self.mf.save()
-        new_mf = beets.mediafile.MediaFile(self.path)
+        new_mf = phrydy.MediaFile(self.path)
         self.assertEqual(new_mf.label, u'foo\xe8bar')
 
 
@@ -237,7 +238,7 @@ class MP3EncodingTest(unittest.TestCase, TestHelper):
         self.path = os.path.join(self.temp_dir, b'test.mp3')
         shutil.copy(src, self.path)
 
-        self.mf = beets.mediafile.MediaFile(self.path)
+        self.mf = phrydy.MediaFile(self.path)
 
     def test_comment_with_latin1_encoding(self):
         # Set up the test file with a Latin1-encoded COMM frame. The encoding
@@ -250,7 +251,7 @@ class MP3EncodingTest(unittest.TestCase, TestHelper):
         self.mf.save()
 
 
-class ZeroLengthMediaFile(beets.mediafile.MediaFile):
+class ZeroLengthMediaFile(phrydy.MediaFile):
     @property
     def length(self):
         return 0.0
@@ -271,7 +272,7 @@ class TypeTest(unittest.TestCase):
     def setUp(self):
         super(TypeTest, self).setUp()
         path = os.path.join(_common.RSRC, b'full.mp3')
-        self.mf = beets.mediafile.MediaFile(path)
+        self.mf = phrydy.MediaFile(path)
 
     def test_year_integer_in_string(self):
         self.mf.year = u'2009'
@@ -303,32 +304,32 @@ class TypeTest(unittest.TestCase):
 
 class SoundCheckTest(unittest.TestCase):
     def test_round_trip(self):
-        data = beets.mediafile._sc_encode(1.0, 1.0)
-        gain, peak = beets.mediafile._sc_decode(data)
+        data = phrydy._sc_encode(1.0, 1.0)
+        gain, peak = phrydy._sc_decode(data)
         self.assertEqual(gain, 1.0)
         self.assertEqual(peak, 1.0)
 
     def test_decode_zero(self):
         data = b' 80000000 80000000 00000000 00000000 00000000 00000000 ' \
                b'00000000 00000000 00000000 00000000'
-        gain, peak = beets.mediafile._sc_decode(data)
+        gain, peak = phrydy._sc_decode(data)
         self.assertEqual(gain, 0.0)
         self.assertEqual(peak, 0.0)
 
     def test_malformatted(self):
-        gain, peak = beets.mediafile._sc_decode(b'foo')
+        gain, peak = phrydy._sc_decode(b'foo')
         self.assertEqual(gain, 0.0)
         self.assertEqual(peak, 0.0)
 
     def test_special_characters(self):
-        gain, peak = beets.mediafile._sc_decode(u'caf\xe9'.encode('utf8'))
+        gain, peak = phrydy._sc_decode(u'caf\xe9'.encode('utf8'))
         self.assertEqual(gain, 0.0)
         self.assertEqual(peak, 0.0)
 
     def test_decode_handles_unicode(self):
         # Most of the time, we expect to decode the raw bytes. But some formats
         # might give us text strings, which we need to handle.
-        gain, peak = beets.mediafile._sc_decode(u'caf\xe9')
+        gain, peak = phrydy._sc_decode(u'caf\xe9')
         self.assertEqual(gain, 0.0)
         self.assertEqual(peak, 0.0)
 
@@ -341,7 +342,7 @@ class ID3v23Test(unittest.TestCase, TestHelper):
         self.path = os.path.join(self.temp_dir,
                                  bytestring_path('test.{0}'.format(ext)))
         shutil.copy(src, self.path)
-        return beets.mediafile.MediaFile(self.path, id3v23=id3v23)
+        return phrydy.MediaFile(self.path, id3v23=id3v23)
 
     def _delete_test(self):
         self.remove_temp_dir()
@@ -379,7 +380,7 @@ class ID3v23Test(unittest.TestCase, TestHelper):
     def test_v24_image_encoding(self):
         mf = self._make_test(id3v23=False)
         try:
-            mf.images = [beets.mediafile.Image(b'test data')]
+            mf.images = [phrydy.Image(b'test data')]
             mf.save()
             frame = mf.mgfile.tags.getall('APIC')[0]
             self.assertEqual(frame.encoding, 3)
@@ -394,7 +395,7 @@ class ID3v23Test(unittest.TestCase, TestHelper):
         """
         mf = self._make_test(id3v23=True)
         try:
-            mf.images = [beets.mediafile.Image(b'test data')]
+            mf.images = [phrydy.Image(b'test data')]
             mf.save()
             frame = mf.mgfile.tags.getall('APIC')[0]
             self.assertEqual(frame.encoding, 1)

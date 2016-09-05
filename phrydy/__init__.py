@@ -60,11 +60,15 @@ import imghdr
 import os
 import traceback
 import enum
+import sys
 
+from beets import logging
 import six
 
-# Exceptions.
+
 __all__ = ['UnreadableFileError', 'FileTypeError', 'MediaFile']
+
+log = logging.getLogger('beets')
 
 # Human-readable type names.
 TYPES = {
@@ -80,6 +84,7 @@ TYPES = {
     'asf':  'Windows Media',
     'aiff': 'AIFF',
 }
+
 
 def as_string(value):
     """Convert a value to a Unicode object for matching with a query.
@@ -152,6 +157,41 @@ def syspath(path, prefix=True):
 
     return path
 
+def _fsencoding():
+    """Get the system's filesystem encoding. On Windows, this is always
+    UTF-8 (not MBCS).
+    """
+    encoding = sys.getfilesystemencoding() or sys.getdefaultencoding()
+    if encoding == 'mbcs':
+        # On Windows, a broken encoding known to Python as "MBCS" is
+        # used for the filesystem. However, we only use the Unicode API
+        # for Windows paths, so the encoding is actually immaterial so
+        # we can avoid dealing with this nastiness. We arbitrarily
+        # choose UTF-8.
+        encoding = 'utf8'
+    return encoding
+
+def bytestring_path(path):
+    """Given a path, which is either a bytes or a unicode, returns a str
+    path (ensuring that we never deal with Unicode pathnames).
+    """
+    # Pass through bytestrings.
+    if isinstance(path, bytes):
+        return path
+
+    # On Windows, remove the magic prefix added by `syspath`. This makes
+    # ``bytestring_path(syspath(X)) == X``, i.e., we can safely
+    # round-trip through `syspath`.
+    if os.path.__name__ == 'ntpath' and path.startswith(WINDOWS_MAGIC_PREFIX):
+        path = path[len(WINDOWS_MAGIC_PREFIX):]
+
+    # Try to encode with default encodings, but fall back to UTF8.
+    try:
+        return path.encode(_fsencoding())
+    except (UnicodeError, LookupError):
+        return path.encode('utf8')
+
+# Exceptions
 
 class UnreadableFileError(Exception):
     """Mutagen is not able to extract information from the file.
@@ -181,6 +221,33 @@ class MutagenError(UnreadableFileError):
     def __init__(self, path, mutagen_exc):
         msg = u'{0}: {1}'.format(displayable_path(path), mutagen_exc)
         Exception.__init__(self, msg)
+
+
+# Interacting with Mutagen.
+
+def mutagen_call(action, path, func, *args, **kwargs):
+    """Call a Mutagen function with appropriate error handling.
+
+    `action` is a string describing what the function is trying to do,
+    and `path` is the relevant filename. The rest of the arguments
+    describe the callable to invoke.
+
+    We require at least Mutagen 1.33, where `IOError` is *never* used,
+    neither for internal parsing errors *nor* for ordinary IO error
+    conditions such as a bad filename. Mutagen-specific parsing errors and IO
+    errors are reraised as `UnreadableFileError`. Other exceptions
+    raised inside Mutagen---i.e., bugs---are reraised as `MutagenError`.
+    """
+    try:
+        return func(*args, **kwargs)
+    except mutagen.MutagenError as exc:
+        log.debug(u'{} failed: {}', action, six.text_type(exc))
+        raise UnreadableFileError(path)
+    except Exception as exc:
+        # Isolate bugs in Mutagen.
+        log.debug(u'{}', traceback.format_exc())
+        log.error(u'uncaught Mutagen exception in {}: {}', action, exc)
+        raise MutagenError(path, exc)
 
 
 # Utility.
@@ -429,7 +496,7 @@ class Image(object):
             try:
                 type = list(ImageType)[type]
             except IndexError:
-                tpl.new_linedebug(u"ignoring unknown image type index {0}", type)
+                log.debug(u"ignoring unknown image type index {0}", type)
                 type = ImageType.other
         self.type = type
 
@@ -1430,17 +1497,7 @@ class MediaFile(object):
         path = syspath(path)
         self.path = path
 
-        try:
-            self.mgfile = mutagen.File(path)
-        except (mutagen.MutagenError, IOError) as exc:
-            # Mutagen <1.33 could raise IOError
-            #log.debug(u'parsing failed: {0}', six.text_type(exc))
-            raise UnreadableFileError(path)
-        except Exception as exc:
-            # Isolate bugs in Mutagen.
-            #log.debug(u'{}', traceback.format_exc())
-            #log.error(u'uncaught Mutagen exception in open: {0}', exc)
-            raise MutagenError(path, exc)
+        self.mgfile = mutagen_call('open', path, mutagen.File, path)
 
         if self.mgfile is None:
             # Mutagen couldn't guess the type
@@ -1495,34 +1552,13 @@ class MediaFile(object):
             id3.update_to_v23()
             kwargs['v2_version'] = 3
 
-        try:
-            self.mgfile.save(**kwargs)
-        except (mutagen.MutagenError, IOError) as exc:
-            # Mutagen <1.33 could raise IOError
-            #log.debug(u'saving failed: {0}', six.text_type(exc))
-            raise UnreadableFileError(self.path)
-        except Exception as exc:
-            # Isolate bugs in Mutagen.
-            #log.debug(u'{}', traceback.format_exc())
-            #log.error(u'uncaught Mutagen exception in save: {0}', exc)
-            raise MutagenError(self.path, exc)
+        mutagen_call('save', self.path, self.mgfile.save, **kwargs)
 
     def delete(self):
         """Remove the current metadata tag from the file. May
         throw `UnreadableFileError`.
         """
-
-        try:
-            self.mgfile.delete()
-        except (mutagen.MutagenError, IOError) as exc:
-            # Mutagen <1.33 could raise IOError.
-            #log.debug(u'deleting failed: {0}', six.text_type(exc))
-            raise UnreadableFileError(self.path)
-        except Exception as exc:
-            # Isolate bugs in Mutagen.
-            #log.debug(u'{}', traceback.format_exc())
-            #log.error(u'uncaught Mutagen exception in delete: {0}', exc)
-            raise MutagenError(self.path, exc)
+        mutagen_call('delete', self.path, self.mgfile.delete)
 
     # Convenient access to the set of available fields.
 
