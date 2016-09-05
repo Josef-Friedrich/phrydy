@@ -18,43 +18,19 @@ from __future__ import division, absolute_import, print_function
 
 import sys
 import os
-import tempfile
-import shutil
-import six
-import unittest
 
 
 # Mangle the search path to include the beets sources.
 sys.path.insert(0, '..')
-import beets.library  # noqa: E402
-from beets import logging  # noqa: E402
-from beets import util  # noqa: E402
-import beets  # noqa: E402
+from phrydy import utils  # noqa: E402
 
 
 # Test resources path.
-RSRC = util.bytestring_path(os.path.join(os.path.dirname(__file__), 'rsrc'))
+RSRC = utils.bytestring_path(os.path.join(os.path.dirname(__file__), 'rsrc'))
 
-# Propagate to root loger so nosetest can capture it
-log = logging.getLogger('beets')
-log.setLevel(logging.DEBUG)
 
 # Dummy item creation.
 _item_ident = 0
 
 # OS feature test.
 HAVE_SYMLINK = sys.platform != 'win32'
-
-class Assertions(object):
-    """A mixin with additional unit test assertions."""
-
-
-# A test harness for all beets tests.
-# Provides temporary, isolated configuration.
-class TestCase(unittest.TestCase, Assertions):
-    """A unittest.TestCase subclass that saves and restores beets'
-    global configuration. This allows tests to make temporary
-    modifications that will then be automatically removed when the test
-    completes. Also provides some additional assertion methods, a
-    temporary directory, and a DummyIO.
-    """
