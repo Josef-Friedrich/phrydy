@@ -8,7 +8,7 @@ class TestPackageInterface(unittest.TestCase):
         self.media = MediaFile(mp3)
 
     def test_title(self):
-        self.assertEqual(self.media.title, 'full')
+        self.assertEqual(self.media.title, 'fulll')
 
     def test_artitst(self):
         self.assertEqual(self.media.artist, 'the artist')

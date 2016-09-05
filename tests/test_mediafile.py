@@ -30,7 +30,8 @@ from tests import _common
 from tests._common import unittest
 from phrydy import MediaFile, MediaField, Image, \
     MP3DescStorageStyle, StorageStyle, MP4StorageStyle, \
-    ASFStorageStyle, ImageType, CoverArtField, UnreadableFileError, _fsencoding, bytestring_path
+    ASFStorageStyle, ImageType, CoverArtField, UnreadableFileError, \
+    _fsencoding, bytestring_path
 import six
 
 
