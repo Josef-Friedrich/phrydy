@@ -14,6 +14,10 @@ setup(
 	license='MIT',
 	packages=['phrydy'],
 	long_description=read('README.rst'),
-	install_requires=['mutagen', 'enum', 'six'],
+	install_requires=[
+		'mutagen>=1.33',
+		'enum',
+		'six>=1.9'
+	],
 	zip_safe=False
 )

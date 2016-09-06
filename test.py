@@ -115,7 +115,6 @@ class ArtTestMixin(object):
         mediafile.save()
 
         mediafile = MediaFile(mediafile.path)
-        print(mediafile.path)
         self.assertEqual(mediafile.art, self.png_data)
 
     def test_set_jpg_art(self):
