@@ -12,7 +12,6 @@
 #
 # The above copyright notice and this permission notice shall be
 # included in all copies or substantial portions of the Software.
-
 """Automatically-generated blanket testing for the MediaFile metadata
 layer.
 """
@@ -36,14 +35,11 @@ from phrydy.utils import bytestring_path
 
 import unittest
 
-
 # Mangle the search path to include the beets sources.
 sys.path.insert(0, '..')
 
-
 # Test resources path.
 RSRC = bytestring_path(os.path.join(os.path.dirname(__file__), 'testfiles'))
-
 
 # Dummy item creation.
 _item_ident = 0
@@ -54,6 +50,7 @@ HAVE_SYMLINK = sys.platform != 'win32'
 ########################################################################
 # helper.py
 ########################################################################
+
 
 class TestHelper(object):
     """Helper mixin for high-level cli and plugin tests.
@@ -78,6 +75,7 @@ class TestHelper(object):
 # test_mediafile.py
 ########################################################################
 
+
 class ArtTestMixin(object):
     """Test reads and writes of the ``art`` property.
     """
@@ -89,6 +87,7 @@ class ArtTestMixin(object):
             with open(image_file, 'rb') as f:
                 self._png_data = f.read()
         return self._png_data
+
     _png_data = None
 
     @property
@@ -98,6 +97,7 @@ class ArtTestMixin(object):
             with open(image_file, 'rb') as f:
                 self._jpg_data = f.read()
         return self._jpg_data
+
     _jpg_data = None
 
     @property
@@ -107,6 +107,7 @@ class ArtTestMixin(object):
             with open(image_file, 'rb') as f:
                 self._jpg_data = f.read()
         return self._jpg_data
+
     _jpg_data = None
 
     def test_set_png_art(self):
@@ -153,22 +154,21 @@ class ImageStructureTestMixin(ArtTestMixin):
 
         self.assertEqual(len(mediafile.images), 2)
 
-        image = next(i for i in mediafile.images
-                     if i.mime_type == 'image/png')
+        image = next(i for i in mediafile.images if i.mime_type == 'image/png')
         self.assertEqual(image.data, self.png_data)
-        self.assertExtendedImageAttributes(image, desc=u'album cover',
-                                           type=ImageType.front)
+        self.assertExtendedImageAttributes(
+            image, desc=u'album cover', type=ImageType.front)
 
         image = next(i for i in mediafile.images
                      if i.mime_type == 'image/jpeg')
         self.assertEqual(image.data, self.jpg_data)
-        self.assertExtendedImageAttributes(image, desc=u'the artist',
-                                           type=ImageType.artist)
+        self.assertExtendedImageAttributes(
+            image, desc=u'the artist', type=ImageType.artist)
 
     def test_set_image_structure(self):
         mediafile = self._mediafile_fixture('empty')
-        image = Image(data=self.png_data, desc=u'album cover',
-                      type=ImageType.front)
+        image = Image(
+            data=self.png_data, desc=u'album cover', type=ImageType.front)
         mediafile.images = [image]
         mediafile.save()
 
@@ -178,15 +178,15 @@ class ImageStructureTestMixin(ArtTestMixin):
         image = mediafile.images[0]
         self.assertEqual(image.data, self.png_data)
         self.assertEqual(image.mime_type, 'image/png')
-        self.assertExtendedImageAttributes(image, desc=u'album cover',
-                                           type=ImageType.front)
+        self.assertExtendedImageAttributes(
+            image, desc=u'album cover', type=ImageType.front)
 
     def test_add_image_structure(self):
         mediafile = self._mediafile_fixture('image')
         self.assertEqual(len(mediafile.images), 2)
 
-        image = Image(data=self.png_data, desc=u'the composer',
-                      type=ImageType.composer)
+        image = Image(
+            data=self.png_data, desc=u'the composer', type=ImageType.composer)
         mediafile.images += [image]
         mediafile.save()
 
@@ -196,8 +196,7 @@ class ImageStructureTestMixin(ArtTestMixin):
         images = (i for i in mediafile.images if i.desc == u'the composer')
         image = next(images, None)
         self.assertExtendedImageAttributes(
-            image, desc=u'the composer', type=ImageType.composer
-        )
+            image, desc=u'the composer', type=ImageType.composer)
 
     def test_delete_image_structures(self):
         mediafile = self._mediafile_fixture('image')
@@ -225,7 +224,8 @@ class ImageStructureTestMixin(ArtTestMixin):
 class ExtendedImageStructureTestMixin(ImageStructureTestMixin):
     """Checks for additional attributes in the image structure."""
 
-    def assertExtendedImageAttributes(self, image, desc=None, type=None):  # noqa
+    def assertExtendedImageAttributes(self, image, desc=None,
+                                      type=None):  # noqa
         self.assertEqual(image.desc, desc)
         self.assertEqual(image.type, type)
 
@@ -233,8 +233,8 @@ class ExtendedImageStructureTestMixin(ImageStructureTestMixin):
         mediafile = self._mediafile_fixture('image')
         self.assertEqual(len(mediafile.images), 2)
 
-        image = Image(data=self.tiff_data, desc=u'the composer',
-                      type=ImageType.composer)
+        image = Image(
+            data=self.tiff_data, desc=u'the composer', type=ImageType.composer)
         mediafile.images += [image]
         mediafile.save()
 
@@ -242,8 +242,8 @@ class ExtendedImageStructureTestMixin(ImageStructureTestMixin):
         self.assertEqual(len(mediafile.images), 3)
 
         # WMA does not preserve the order, so we have to work around this
-        image = list(filter(lambda i: i.mime_type == 'image/tiff',
-                     mediafile.images))[0]
+        image = list(
+            filter(lambda i: i.mime_type == 'image/tiff', mediafile.images))[0]
         self.assertExtendedImageAttributes(
             image, desc=u'the composer', type=ImageType.composer)
 
@@ -344,12 +344,10 @@ field_extension = MediaField(
     MP3DescStorageStyle(u'customtag'),
     MP4StorageStyle('----:com.apple.iTunes:customtag'),
     StorageStyle('customtag'),
-    ASFStorageStyle('customtag'),
-)
+    ASFStorageStyle('customtag'), )
 
 
 class ExtendedFieldTestMixin(object):
-
     def test_invalid_descriptor(self):
         with self.assertRaises(ValueError) as cm:
             MediaFile.add_field('somekey', True)
@@ -370,29 +368,29 @@ class ReadWriteTestBase(ArtTestMixin, GenreListTestMixin,
     """
 
     full_initial_tags = {
-        'title':       u'full',
-        'artist':      u'the artist',
-        'album':       u'the album',
-        'genre':       u'the genre',
-        'composer':    u'the composer',
-        'grouping':    u'the grouping',
-        'year':        2001,
-        'month':       None,
-        'day':         None,
-        'date':        datetime.date(2001, 1, 1),
-        'track':       2,
-        'tracktotal':  3,
-        'disc':        4,
-        'disctotal':   5,
-        'lyrics':      u'the lyrics',
-        'comments':    u'the comments',
-        'bpm':         6,
-        'comp':        True,
-        'mb_trackid':  '8b882575-08a5-4452-a7a7-cbb8a1531f9e',
-        'mb_albumid':  '9e873859-8aa4-4790-b985-5a953e8ef628',
+        'title': u'full',
+        'artist': u'the artist',
+        'album': u'the album',
+        'genre': u'the genre',
+        'composer': u'the composer',
+        'grouping': u'the grouping',
+        'year': 2001,
+        'month': None,
+        'day': None,
+        'date': datetime.date(2001, 1, 1),
+        'track': 2,
+        'tracktotal': 3,
+        'disc': 4,
+        'disctotal': 5,
+        'lyrics': u'the lyrics',
+        'comments': u'the comments',
+        'bpm': 6,
+        'comp': True,
+        'mb_trackid': '8b882575-08a5-4452-a7a7-cbb8a1531f9e',
+        'mb_albumid': '9e873859-8aa4-4790-b985-5a953e8ef628',
         'mb_artistid': '7cf0ea9d-86b9-4dad-ba9e-2355a64899ea',
-        'art':         None,
-        'label':       u'the label',
+        'art': None,
+        'label': u'the label',
     }
 
     tag_fields = [
@@ -480,8 +478,8 @@ class ReadWriteTestBase(ArtTestMixin, GenreListTestMixin,
         mediafile = self._mediafile_fixture('full')
         for key, value in self.audio_properties.items():
             if isinstance(value, float):
-                self.assertAlmostEqual(getattr(mediafile, key), value,
-                                       delta=0.1)
+                self.assertAlmostEqual(
+                    getattr(mediafile, key), value, delta=0.1)
             else:
                 self.assertEqual(getattr(mediafile, key), value)
 
@@ -743,10 +741,10 @@ class ReadWriteTestBase(ArtTestMixin, GenreListTestMixin,
 
 class PartialTestMixin(object):
     tags_without_total = {
-        'track':      2,
+        'track': 2,
         'tracktotal': 0,
-        'disc':       4,
-        'disctotal':  0,
+        'disc': 4,
+        'disctotal': 0,
     }
 
     def test_read_track_without_total(self):
@@ -758,8 +756,7 @@ class PartialTestMixin(object):
 
 
 class MP3Test(ReadWriteTestBase, PartialTestMixin,
-              ExtendedImageStructureTestMixin,
-              unittest.TestCase):
+              ExtendedImageStructureTestMixin, unittest.TestCase):
     extension = 'mp3'
     audio_properties = {
         'length': 1.0,
@@ -775,8 +772,8 @@ class MP3Test(ReadWriteTestBase, PartialTestMixin,
         self.assertEqual(mediafile.images[0].type, ImageType.other)
 
 
-class MP4Test(ReadWriteTestBase, PartialTestMixin,
-              ImageStructureTestMixin, unittest.TestCase):
+class MP4Test(ReadWriteTestBase, PartialTestMixin, ImageStructureTestMixin,
+              unittest.TestCase):
     extension = 'm4a'
     audio_properties = {
         'length': 1.0,
@@ -893,8 +890,7 @@ class OggTest(ReadWriteTestBase, ExtendedImageStructureTestMixin,
 
 
 class FlacTest(ReadWriteTestBase, PartialTestMixin,
-               ExtendedImageStructureTestMixin,
-               unittest.TestCase):
+               ExtendedImageStructureTestMixin, unittest.TestCase):
     extension = 'flac'
     audio_properties = {
         'length': 1.0,
@@ -956,7 +952,6 @@ class AIFFTest(ReadWriteTestBase, unittest.TestCase):
 
 
 class MediaFieldTest(unittest.TestCase):
-
     def test_properties_from_fields(self):
         path = os.path.join(RSRC, b'full.mp3')
         mediafile = MediaFile(path)
@@ -983,14 +978,13 @@ class MediaFieldTest(unittest.TestCase):
 def suite():
     return unittest.TestLoader().loadTestsFromName(__name__)
 
+
 if __name__ == '__main__':
     unittest.main(defaultTest='suite')
 
 ########################################################################
 # test_mediafile_edge.py
 ########################################################################
-
-
 """Specific, edge-case tests for the MediaFile metadata layer.
 """
 
@@ -1002,18 +996,14 @@ class EdgeTest(unittest.TestCase):
         # Some files have an ID3 frame that has a list with no elements.
         # This is very hard to produce, so this is just the first 8192
         # bytes of a file found "in the wild".
-        emptylist = phrydy.MediaFile(
-            os.path.join(RSRC, b'emptylist.mp3')
-        )
+        emptylist = phrydy.MediaFile(os.path.join(RSRC, b'emptylist.mp3'))
         genre = emptylist.genre
         self.assertEqual(genre, None)
 
     def test_release_time_with_space(self):
         # Ensures that release times delimited by spaces are ignored.
         # Amie Street produces such files.
-        space_time = phrydy.MediaFile(
-            os.path.join(RSRC, b'space_time.mp3')
-        )
+        space_time = phrydy.MediaFile(os.path.join(RSRC, b'space_time.mp3'))
         self.assertEqual(space_time.year, 2009)
         self.assertEqual(space_time.month, 9)
         self.assertEqual(space_time.day, 4)
@@ -1021,9 +1011,7 @@ class EdgeTest(unittest.TestCase):
     def test_release_time_with_t(self):
         # Ensures that release times delimited by Ts are ignored.
         # The iTunes Store produces such files.
-        t_time = phrydy.MediaFile(
-            os.path.join(RSRC, b't_time.m4a')
-        )
+        t_time = phrydy.MediaFile(os.path.join(RSRC, b't_time.m4a'))
         self.assertEqual(t_time.year, 1987)
         self.assertEqual(t_time.month, 3)
         self.assertEqual(t_time.day, 31)
@@ -1055,20 +1043,16 @@ class EdgeTest(unittest.TestCase):
         magic_bytes_file = os.path.join(RSRC, b'only-magic-bytes.jpg')
         with open(magic_bytes_file, 'rb') as f:
             jpg_data = f.read()
-        self.assertEqual(
-            phrydy._image_mime_type(jpg_data),
-            'image/jpeg')
+        self.assertEqual(phrydy._image_mime_type(jpg_data), 'image/jpeg')
 
     def test_soundcheck_non_ascii(self):
         # Make sure we don't crash when the iTunes SoundCheck field contains
         # non-ASCII binary data.
-        f = phrydy.MediaFile(os.path.join(RSRC,
-                                                   b'soundcheck-nonascii.m4a'))
+        f = phrydy.MediaFile(os.path.join(RSRC, b'soundcheck-nonascii.m4a'))
         self.assertEqual(f.rg_track_gain, 0.0)
 
 
 class InvalidValueToleranceTest(unittest.TestCase):
-
     def test_safe_cast_string_to_int(self):
         self.assertEqual(_sc(int, u'something'), 0)
 
@@ -1151,16 +1135,14 @@ class SafetyTest(unittest.TestCase, TestHelper):
         self._exccheck(b'something.unknown', phrydy.FileTypeError)
 
     def test_magic_xml_raises_unreadablefileerror(self):
-        self._exccheck(b'nothing.xml', phrydy.UnreadableFileError,
-                       "ftyp")
+        self._exccheck(b'nothing.xml', phrydy.UnreadableFileError, "ftyp")
 
     @unittest.skipUnless(HAVE_SYMLINK, u'platform lacks symlink')
     def test_broken_symlink(self):
         fn = os.path.join(RSRC, b'brokenlink')
         os.symlink('does_not_exist', fn)
         try:
-            self.assertRaises(phrydy.UnreadableFileError,
-                              phrydy.MediaFile, fn)
+            self.assertRaises(phrydy.UnreadableFileError, phrydy.MediaFile, fn)
         finally:
             os.unlink(fn)
 
@@ -1301,8 +1283,7 @@ class SoundCheckTest(unittest.TestCase):
 class ID3v23Test(unittest.TestCase, TestHelper):
     def _make_test(self, ext='mp3', id3v23=False):
         self.create_temp_dir()
-        src = os.path.join(RSRC,
-                           bytestring_path('full.{0}'.format(ext)))
+        src = os.path.join(RSRC, bytestring_path('full.{0}'.format(ext)))
         self.path = os.path.join(self.temp_dir,
                                  bytestring_path('test.{0}'.format(ext)))
         shutil.copy(src, self.path)
@@ -1365,6 +1346,7 @@ class ID3v23Test(unittest.TestCase, TestHelper):
             self.assertEqual(frame.encoding, 1)
         finally:
             self._delete_test()
+
 
 if __name__ == '__main__':
     unittest.main()

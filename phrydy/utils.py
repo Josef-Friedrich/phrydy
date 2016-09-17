@@ -17,8 +17,10 @@ from __future__ import division, absolute_import, print_function
 
 import os
 import sys
-
 import six
+
+WINDOWS_MAGIC_PREFIX = u'\\\\?\\'
+
 
 def as_string(value):
     """Convert a value to a Unicode object for matching with a query.
@@ -91,6 +93,7 @@ def syspath(path, prefix=True):
 
     return path
 
+
 def _fsencoding():
     """Get the system's filesystem encoding. On Windows, this is always
     UTF-8 (not MBCS).
@@ -104,6 +107,7 @@ def _fsencoding():
         # choose UTF-8.
         encoding = 'utf8'
     return encoding
+
 
 def bytestring_path(path):
     """Given a path, which is either a bytes or a unicode, returns a str
