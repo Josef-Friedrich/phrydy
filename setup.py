@@ -1,4 +1,10 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+from __future__ import division, absolute_import, print_function
+
 import os
+import sys
 from setuptools import setup
 
 

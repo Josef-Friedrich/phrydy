@@ -36,7 +36,6 @@ Internally ``MediaFile`` uses ``MediaField`` descriptors to access the
 data from the tags. In turn ``MediaField`` uses a number of
 ``StorageStyle`` strategies to handle format specific logic.
 """
-from __future__ import division, absolute_import, print_function
 
 import mutagen
 import mutagen.mp3
