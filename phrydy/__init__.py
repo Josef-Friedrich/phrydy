@@ -387,9 +387,7 @@ class Image(object):
         self.desc = desc
         if isinstance(type, int):
             try:
-                print(type)
                 type = list(ImageType)[type]
-                pass
             except IndexError:
                 # log.debug(u"ignoring unknown image type index {0}", type)
                 type = ImageType.other
