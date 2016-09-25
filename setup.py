@@ -14,7 +14,7 @@ def read(fname):
 
 setup(
     name='phrydy',
-    version='0.0.2',
+    version='0.0.3',
     description='A easy wrapper for mutagen',
     url='https://github.com/Josef-Friedrich/phrydy',
     author='Josef Friedrich',
