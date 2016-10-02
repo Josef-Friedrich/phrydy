@@ -1,80 +1,184 @@
 # -*- coding: utf-8 -*-
 
-
-"""
-Metadata fields:
-
-    Ordinary metadata:
-
-    - title
-    - artist
-    - artist_sort:         The “sort name” of the track artist
-                           (e.g., “Beatles, The” or “White, Jack”).
-    - artist_credit:       The track-specific artist credit name,
-                           which may be a variation of the artist’s
-                           “canonical” name.
-    - artistsafe:          The first available value of this metatag
-                           order: “albumartist” -> “artist” ->
-                           “albumartist_credit” -> “artist_credit”
-    - artistsafe_sort:     The first available value of this metatag
-                           order: “albumartist_sort” ->
-                           “artist_sort” -> “artistsafe”
-    - artist_initial:      First character in lowercase of
-                            “artistsafe_sort”
-    - album
-    - albumartist:         The artist for the entire album, which
-                           may be different from the artists for the
-                           individual tracks.
-    - albumartist_sort
-    - albumartist_credit
-    - album_initial:       First character in lowercase of “album”.
-    - genre
-    - composer
-    - grouping
-    - year, month, day:    The release date of the specific release.
-    - original_year, original_month, original_day:
-                           The release date of the original version
-                           of the album.
-    - year_safe
-    - track
-    - tracktotal
-    - disc
-    - disctotal
-    - disctrack:           Combination of disc and track in the
-                           format: disk-track, e.g. 1-01, 3-099
-    - lyrics
-    - comments
-    - bpm
-    - comp:                 Compilation flag.
-    - albumtype:            The MusicBrainz album type; the
-                            MusicBrainz wiki has a list of type
-                            names.
-    - label
-    - asin
-    - catalognum
-    - script
-    - language
-    - country
-    - albumstatus
-    - media
-    - albumdisambig
-    - disctitle
-    - encoder
-
-    Audio information:
-
-    - length                (in seconds)
-    - bitrate               (in kilobits per second, with units:
-                            e.g., “192kbps”)
-    - format                (e.g., “MP3” or “FLAC”)
-    - channels
-    - bitdepth              (only available for some formats)
-    - samplerate            (in kilohertz, with units: e.g.,
-                            “48kHz”)
-    """
-
-
 fields = {
+    # Ordinary metadata:
+    'title': {
+        'title': 'title',
+        'category': 'ordinary',
+    },
+    'artist': {
+        'title': 'artist',
+        'category': 'ordinary',
+    },
+    'artist_sort': {
+        'title': 'The “sort name” of the track artist  (e.g., “Beatles, The” or “White, Jack”)',
+        'category': 'ordinary',
+    },
+    'artist_credit': {
+        'title': 'The track-specific artist credit name,  which may be a variation of the artist’s “canonical” name',
+        'category': 'ordinary',
+    },
+    'album': {
+        'title': 'album',
+        'category': 'ordinary',
+    },
+    'albumartist': {
+        'title': 'The artist for the entire album, which may be different from the artists for the individual tracks',
+        'category': 'ordinary',
+    },
+    'albumartist_sort': {
+        'title': 'albumartist_sort',
+        'category': 'ordinary',
+    },
+    'albumartist_credit': {
+        'title': 'albumartist_credit',
+        'category': 'ordinary',
+    },
+    'genre': {
+        'title': 'genre',
+        'category': 'ordinary',
+    },
+    'composer': {
+        'title': 'composer',
+        'category': 'ordinary',
+    },
+    'grouping': {
+        'title': 'grouping',
+        'category': 'ordinary',
+    },
+    # Separator
+    'year': {
+        'title': 'The release year of the specific release',
+        'category': 'ordinary',
+    },
+    'month': {
+        'title': 'The release month of the specific release',
+        'category': 'ordinary',
+    },
+    'day': {
+        'title': 'The release day of the specific release',
+        'category': 'ordinary',
+    },
+    'original_year': {
+        'title': 'The release year of the original version of the album',
+        'category': 'ordinary',
+    },
+    'original_month': {
+        'title': 'The release month of the original version of the album',
+        'category': 'ordinary',
+    },
+    'original_day': {
+        'title': 'The release day of the original version of the album',
+        'category': 'ordinary',
+    },
+    # Separator
+    'track': {
+        'title': 'track',
+        'category': 'ordinary',
+    },
+    'tracktotal': {
+        'title': 'tracktotal',
+        'category': 'ordinary',
+    },
+    'disc': {
+        'title': 'disc',
+        'category': 'ordinary',
+    },
+    'disctotal': {
+        'title': 'disctotal',
+        'category': 'ordinary',
+    },
+    # Separator
+    'lyrics': {
+        'title': 'lyrics',
+        'category': 'ordinary',
+    },
+    'comments': {
+        'title': 'comments',
+        'category': 'ordinary',
+    },
+    'bpm': {
+        'title': 'bpm',
+        'category': 'ordinary',
+    },
+    'comp': {
+        'title': 'Compilation flag',
+        'category': 'ordinary',
+    },
+    'albumtype': {
+        'title': 'The MusicBrainz album type; the MusicBrainz wiki has a list of type names',
+        'category': 'ordinary',
+    },
+    # Separator
+    'label': {
+        'title': 'label',
+        'category': 'ordinary',
+    },
+    'asin': {
+        'title': 'asin',
+        'category': 'ordinary',
+    },
+    'catalognum': {
+        'title': 'catalognum',
+        'category': 'ordinary',
+    },
+    'script': {
+        'title': 'script',
+        'category': 'ordinary',
+    },
+    'language': {
+        'title': 'language',
+        'category': 'ordinary',
+    },
+    'country': {
+        'title': 'country',
+        'category': 'ordinary',
+    },
+    'albumstatus': {
+        'title': 'albumstatus',
+        'category': 'ordinary',
+    },
+    'media': {
+        'title': 'media',
+        'category': 'ordinary',
+    },
+    'albumdisambig': {
+        'title': 'albumdisambig',
+        'category': 'ordinary',
+    },
+    'disctitle': {
+        'title': 'disctitle',
+        'category': 'ordinary',
+    },
+    'encoder': {
+        'title': 'encoder',
+        'category': 'ordinary',
+    },
+    # Audio information:
+    'length': {
+        'title': 'in seconds',
+        'category': 'audio',
+    },
+    'bitrate': {
+        'title': 'in kilobits per second, with units: e.g., “192kbps”',
+        'category': 'audio',
+    },
+    'format': {
+        'title': 'e.g., “MP3” or “FLAC”',
+        'category': 'audio',
+    },
+    'channels': {
+        'title': 'channels',
+        'category': 'audio',
+    },
+    'bitdepth': {
+        'title': 'only available for some formats',
+        'category': 'audio',
+    },
+    'samplerate': {
+        'title': 'in kilohertz, with units: e.g., “48kHz”',
+        'category': 'audio',
+    },
     # MusicBrainz and fingerprint information:
     'mb_trackid': {
         'title': 'MusicBrainz track ID',
