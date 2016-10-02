@@ -3,6 +3,7 @@
 
 from __future__ import division, absolute_import, print_function
 
+import versioneer
 import os
 from setuptools import setup
 import phrydy
@@ -15,7 +16,8 @@ VERSION = phrydy.__version__
 
 setup(
     name='phrydy',
-    version=VERSION,
+    version=versioneer.get_version(),
+    cmdclass=versioneer.get_cmdclass()
     description='A easy wrapper for mutagen',
     url='https://github.com/Josef-Friedrich/phrydy',
     author='Josef Friedrich',
