@@ -37,7 +37,6 @@ data from the tags. In turn ``MediaField`` uses a number of
 ``StorageStyle`` strategies to handle format specific logic.
 """
 
-__version__ = u'0.0.4'
 
 import mutagen
 import mutagen.mp3
@@ -62,6 +61,10 @@ import enum
 import six
 
 from phrydy.utils import as_string, syspath, displayable_path
+
+from ._version import get_versions
+__version__ = get_versions()['version']
+del get_versions
 
 
 __all__ = ['UnreadableFileError', 'FileTypeError', 'MediaFile']
