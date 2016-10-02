@@ -37,6 +37,8 @@ data from the tags. In turn ``MediaField`` uses a number of
 ``StorageStyle`` strategies to handle format specific logic.
 """
 
+__version__ = u'0.0.4'
+
 import mutagen
 import mutagen.mp3
 import mutagen.id3

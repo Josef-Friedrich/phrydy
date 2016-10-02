@@ -5,15 +5,17 @@ from __future__ import division, absolute_import, print_function
 
 import os
 from setuptools import setup
-
+import phrydy
 
 def read(fname):
     return open(os.path.join(os.path.dirname(__file__), fname)).read()
 
 
+VERSION = phrydy.__version__
+
 setup(
     name='phrydy',
-    version='0.0.3',
+    version=VERSION,
     description='A easy wrapper for mutagen',
     url='https://github.com/Josef-Friedrich/phrydy',
     author='Josef Friedrich',
