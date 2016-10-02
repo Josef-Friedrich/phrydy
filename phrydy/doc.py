@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 
 
-
-
 """
 Metadata fields:
 
@@ -73,10 +71,6 @@ Metadata fields:
     - bitdepth              (only available for some formats)
     - samplerate            (in kilohertz, with units: e.g.,
                             “48kHz”)
-
-
-
-
     """
 
 
@@ -111,6 +105,7 @@ fields = {
         'category': 'music_brainz',
     },
 }
+
 
 def get_max_key_length(fields):
     return max(map(len, fields))

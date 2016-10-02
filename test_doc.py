@@ -5,7 +5,6 @@ layer.
 """
 
 
-import phrydy
 from phrydy import doc
 
 import unittest
@@ -18,7 +17,7 @@ class TestDoc(unittest.TestCase):
         self.fields = doc.fields
         self.output = doc.get_doc()
 
-    def test_fields(self):
+    def test_field(self):
         self.assertTrue(doc.fields)
 
     def test_doc(self):
