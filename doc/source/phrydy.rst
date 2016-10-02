@@ -4,6 +4,17 @@ phrydy package
 Submodules
 ----------
 
+phrydy.doc module
+-------------------
+
+.. automodule:: phrydy.doc
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+.. autodata:: phrydy.doc.fields
+    :annotation: = metadata description
+
 phrydy.utils module
 -------------------
 

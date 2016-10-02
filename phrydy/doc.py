@@ -105,13 +105,31 @@ fields = {
         'category': 'music_brainz',
     },
 }
+"""
+A multidimensional dictionary documenting all metadata fields.
 
+.. code-block:: python
+
+    fields = {
+        'key': {
+            'title': 'Title',
+            'category': 'Category',
+        },
+    }
+"""
 
 def get_max_key_length(fields):
+    """Get the length of the longest key in the dictionary ``fields``.
+
+    :param dict fields: A dictionary to search for the longest key.
+    """
     return max(map(len, fields))
 
 
 def get_doc():
+    """Return a formated string containing documentation about the audio
+    fields.
+    """
     key_length = get_max_key_length(fields)
     output = ''
     for key, value in fields.items():
