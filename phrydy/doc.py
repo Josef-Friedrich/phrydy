@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
 
+
+
+
 """
 Metadata fields:
 
@@ -71,13 +74,53 @@ Metadata fields:
     - samplerate            (in kilohertz, with units: e.g.,
                             “48kHz”)
 
-    MusicBrainz and fingerprint information:
 
-    - mb_trackid
-    - mb_albumid
-    - mb_artistid
-    - mb_albumartistid
-    - mb_releasegroupid
-    - acoustid_fingerprint
-    - acoustid_id
+
+
     """
+
+
+fields = {
+    # MusicBrainz and fingerprint information:
+    'mb_trackid': {
+        'title': 'MusicBrainz track ID',
+        'category': 'music_brainz',
+    },
+    'mb_albumid': {
+        'title': 'MusicBrainz album ID',
+        'category': 'music_brainz',
+    },
+    'mb_artistid': {
+        'title': 'MusicBrainz artist ID',
+        'category': 'music_brainz',
+    },
+    'mb_albumartistid': {
+        'title': 'MusicBrainz album artist ID',
+        'category': 'music_brainz',
+    },
+    'mb_releasegroupid': {
+        'title': 'MusicBrainz releasegroup  ID',
+        'category': 'music_brainz',
+    },
+    'acoustid_fingerprint': {
+        'title': 'Acoustic ID fingerprint',
+        'category': 'music_brainz',
+    },
+    'acoustid_id': {
+        'title': 'Acoustic ID',
+        'category': 'music_brainz',
+    },
+}
+
+def get_max_key_length(fields):
+    return max(map(len, fields))
+
+
+def get_doc():
+    key_length = get_max_key_length(fields)
+    output = ''
+    for key, value in fields.items():
+        key = key + ':'
+        output += key.ljust(key_length + 1 + 2) + value['title'] + '\n'
+
+    return output

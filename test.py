@@ -1347,6 +1347,20 @@ class ID3v23Test(unittest.TestCase, TestHelper):
         finally:
             self._delete_test()
 
+class TestDoc(unittest.TestCase):
+
+    def setUp(self):
+        from phrydy import doc
+        self.doc = doc
+        self.fields = doc.fields
+
+    def test_fields(self):
+        self.assertTrue(self.fields)
+
+
+    def test_fields(self):
+        print('lol')
+        self.doc.get_doc()
 
 if __name__ == '__main__':
     unittest.main()
