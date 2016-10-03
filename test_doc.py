@@ -30,9 +30,11 @@ class TestDoc(unittest.TestCase):
         # Words at the end of a title string
         self.assertTrue('label code' in title)
 
-    def test_doc(self):
-        #print(self.output)
+    def test_doc_string(self):
         self.assertTrue(isinstance(self.output, str))
+
+    def test_doc_length(self):
+        self.assertTrue(len(self.output) > 1000)
 
     def test_get_max_key_lengths(self):
         tmp = self.fields
