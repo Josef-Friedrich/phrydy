@@ -11,11 +11,13 @@ fields = {
         'category': 'ordinary',
     },
     'artist_sort': {
-        'title': 'The “sort name” of the track artist  (e.g., “Beatles, The” or “White, Jack”)',
+        'title': 'The “sort name” of the track artist (e.g., “Beatles, ' +
+                 'The” or “White, Jack”)',
         'category': 'ordinary',
     },
     'artist_credit': {
-        'title': 'The track-specific artist credit name,  which may be a variation of the artist’s “canonical” name',
+        'title': 'The track-specific artist credit name,  which may be a ' +
+                 'variation of the artist’s “canonical” name',
         'category': 'ordinary',
     },
     'album': {
@@ -23,7 +25,8 @@ fields = {
         'category': 'ordinary',
     },
     'albumartist': {
-        'title': 'The artist for the entire album, which may be different from the artists for the individual tracks',
+        'title': 'The artist for the entire album, which may be different ' +
+                 'from the artists for the individual tracks',
         'category': 'ordinary',
     },
     'albumartist_sort': {
@@ -106,36 +109,46 @@ fields = {
         'category': 'ordinary',
     },
     'albumtype': {
-        'title': 'The MusicBrainz album type; the MusicBrainz wiki has a list of type names',
+        'title': 'The MusicBrainz album type; the MusicBrainz wiki has a ' +
+                 'list of type names',
         'category': 'ordinary',
     },
-    # Separator
+    # Release
     'label': {
-        'title': 'label',
+        'title': 'The label which issued the release. There may be more ' +
+                 'than one.',
         'category': 'ordinary',
     },
     'asin': {
-        'title': 'asin',
+        'title': 'Amazon Standard Identification Number',
         'category': 'ordinary',
     },
     'catalognum': {
-        'title': 'catalognum',
+        'title': 'This is a number assigned to the release by the label ' +
+                 'which can often be found on the spine or near the ' +
+                 'barcode. There may be more than one, especially when ' +
+                 'multiple labels are involved. This is not the ASIN — ' +
+                 'there is a relationship for that — nor the label code.',
         'category': 'ordinary',
     },
     'script': {
-        'title': 'script',
+        'title': 'The script used to write the release’s track list. The ' +
+                 'possible values are taken from the ISO 15924 standard.',
         'category': 'ordinary',
     },
     'language': {
-        'title': 'language',
+        'title': 'The language a release’s track list is written in. The ' +
+                 'possible values are taken from the ISO 639-3 standard.',
         'category': 'ordinary',
     },
     'country': {
-        'title': 'country',
+        'title': 'The country the release was issued in.',
         'category': 'ordinary',
     },
     'albumstatus': {
-        'title': 'albumstatus',
+        'title': 'The status describes how "official" a release is. ' +
+                 'Possible values are: official, promotional, bootleg, ' +
+                 'pseudo-release',
         'category': 'ordinary',
     },
     'media': {
@@ -221,6 +234,7 @@ A multidimensional dictionary documenting all metadata fields.
         },
     }
 """
+
 
 def get_max_key_length(fields):
     """Get the length of the longest key in the dictionary ``fields``.
