@@ -36,10 +36,10 @@ class TestDoc(unittest.TestCase):
     def test_doc_length(self):
         self.assertTrue(len(self.output) > 1000)
 
-    def test_get_max_key_lengths(self):
+    def test_get_max_field_lengths(self):
         tmp = self.fields
         tmp['looooooooooooooooooooooooooooooooooooooong'] = 'long'
-        length = self.doc.get_max_key_length(tmp)
+        length = self.doc.get_max_field_length(tmp)
         self.assertEqual(length, 42)
 
 if __name__ == '__main__':

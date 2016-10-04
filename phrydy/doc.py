@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+import textwrap
+
 fields = {
     # Ordinary metadata:
     'title': {
@@ -228,7 +230,7 @@ A multidimensional dictionary documenting all metadata fields.
 .. code-block:: python
 
     fields = {
-        'key': {
+        'field': {
             'title': 'Title',
             'category': 'Category',
         },
@@ -236,22 +238,31 @@ A multidimensional dictionary documenting all metadata fields.
 """
 
 
-def get_max_key_length(fields):
-    """Get the length of the longest key in the dictionary ``fields``.
+def get_max_field_length(fields):
+    """Get the length of the longest field in the dictionary ``fields``.
 
-    :param dict fields: A dictionary to search for the longest key.
+    :param dict fields: A dictionary to search for the longest field.
     """
     return max(map(len, fields))
 
 
-def get_doc():
+def get_doc(field_prefix='$', field_suffix=':', indent=4):
     """Return a formated string containing documentation about the audio
     fields.
     """
-    key_length = get_max_key_length(fields)
+    field_length = get_max_field_length(fields)
+    field_length = field_length + len(field_prefix) + len(field_suffix) + 1
+    description_indent = ' ' * (indent + field_length)
     output = ''
-    for key, value in fields.items():
-        key = key + ':'
-        output += key.ljust(key_length + 1 + 2) + value['title'] + '\n'
+    for field, description in fields.items():
+        description = description['title']
+        field = ' ' * indent + field_prefix + field + ':'
+        output += field.ljust(field_length) + \
+            textwrap.fill(
+                description,
+                width=60,
+                initial_indent=description_indent,
+                subsequent_indent=description_indent
+            )[field_length:] + '\n\n\n'
 
     return output
