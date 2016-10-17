@@ -52,5 +52,9 @@ class TestDoc(unittest.TestCase):
         output = self.doc.get_doc(additional_doc=fields)
         self.assertTrue('loool' in output)
 
+    def test_field_order(self):
+        output = self.output.split('\n')
+        self.assertTrue('acoustid_fingerprint' in output[0])
+
 if __name__ == '__main__':
     unittest.main()

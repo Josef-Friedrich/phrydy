@@ -259,7 +259,7 @@ def get_doc(additional_doc=False, field_prefix='$', field_suffix=':', indent=4):
     field_length = field_length + len(field_prefix) + len(field_suffix) + 1
     description_indent = ' ' * (indent + field_length)
     output = ''
-    for field, description in f.items():
+    for field, description in sorted(f.items()):
         description = description['description']
         field = ' ' * indent + field_prefix + field + ':'
         output += field.ljust(field_length) + \
