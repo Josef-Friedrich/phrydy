@@ -42,5 +42,15 @@ class TestDoc(unittest.TestCase):
         length = self.doc.get_max_field_length(tmp)
         self.assertEqual(length, 42)
 
+    def test_get_additional_docs(self):
+        fields = {
+            'lol': {
+                'title': 'loool',
+                'category': 'ordinary',
+            },
+        }
+        output = self.doc.get_doc(additional_doc=fields)
+        self.assertTrue('loool' in output)
+
 if __name__ == '__main__':
     unittest.main()

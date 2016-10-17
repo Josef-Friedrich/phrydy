@@ -246,15 +246,19 @@ def get_max_field_length(fields):
     return max(map(len, fields))
 
 
-def get_doc(field_prefix='$', field_suffix=':', indent=4):
+def get_doc(additional_doc=False, field_prefix='$', field_suffix=':', indent=4):
     """Return a formated string containing documentation about the audio
     fields.
     """
-    field_length = get_max_field_length(fields)
+    if additional_doc:
+        f = dict(fields.items() + additional_doc.items())
+    else:
+        f = fields
+    field_length = get_max_field_length(f)
     field_length = field_length + len(field_prefix) + len(field_suffix) + 1
     description_indent = ' ' * (indent + field_length)
     output = ''
-    for field, description in fields.items():
+    for field, description in f.items():
         description = description['title']
         field = ' ' * indent + field_prefix + field + ':'
         output += field.ljust(field_length) + \
