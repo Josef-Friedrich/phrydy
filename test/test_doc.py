@@ -19,10 +19,10 @@ class TestDoc(unittest.TestCase):
         self.assertTrue(doc.fields)
 
     def test_field_title(self):
-         self.assertTrue(self.fields['artist']['title'])
+        self.assertTrue(self.fields['artist']['title'])
 
     def test_field_category(self):
-         self.assertTrue(self.fields['artist']['category'])
+        self.assertTrue(self.fields['artist']['category'])
 
     def test_field_long_title(self):
         title = self.fields['catalognum']['title']
