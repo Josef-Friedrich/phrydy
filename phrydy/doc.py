@@ -4,8 +4,8 @@ import textwrap
 
 fields = {
     # Ordinary metadata:
-    'description': {
-        'description': 'description',
+    'title': {
+        'description': 'The title of a audio file.',
         'category': 'ordinary',
     },
     'artist': {
