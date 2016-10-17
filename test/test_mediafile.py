@@ -27,7 +27,6 @@ import sys
 import six
 from six import assertCountEqual
 
-import phrydy
 from phrydy import MediaFile, MediaField, Image, \
     MP3DescStorageStyle, StorageStyle, MP4StorageStyle, \
     ASFStorageStyle, ImageType, CoverArtField, UnreadableFileError

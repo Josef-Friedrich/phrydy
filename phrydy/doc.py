@@ -13,13 +13,13 @@ fields = {
         'category': 'ordinary',
     },
     'artist_sort': {
-        'description': 'The “sort name” of the track artist (e.g., “Beatles, ' +
-                 'The” or “White, Jack”)',
+        'description': 'The “sort name” of the track artist (e.g., ' +
+                       '“Beatles, The” or “White, Jack”)',
         'category': 'ordinary',
     },
     'artist_credit': {
-        'description': 'The track-specific artist credit name,  which may be a ' +
-                 'variation of the artist’s “canonical” name',
+        'description': 'The track-specific artist credit name, which may ' +
+                       'be a variation of the artist’s “canonical” name',
         'category': 'ordinary',
     },
     'album': {
@@ -27,8 +27,8 @@ fields = {
         'category': 'ordinary',
     },
     'albumartist': {
-        'description': 'The artist for the entire album, which may be different ' +
-                 'from the artists for the individual tracks',
+        'description': 'The artist for the entire album, which may be ' +
+                       'different from the artists for the individual tracks',
         'category': 'ordinary',
     },
     'albumartist_sort': {
@@ -69,7 +69,8 @@ fields = {
         'category': 'ordinary',
     },
     'original_month': {
-        'description': 'The release month of the original version of the album',
+        'description': 'The release month of the original version of the ' +
+                       'album',
         'category': 'ordinary',
     },
     'original_day': {
@@ -111,14 +112,14 @@ fields = {
         'category': 'ordinary',
     },
     'albumtype': {
-        'description': 'The MusicBrainz album type; the MusicBrainz wiki has a ' +
-                 'list of type names',
+        'description': 'The MusicBrainz album type; the MusicBrainz wiki ' +
+                       'has a list of type names',
         'category': 'ordinary',
     },
     # Release
     'label': {
-        'description': 'The label which issued the release. There may be more ' +
-                 'than one.',
+        'description': 'The label which issued the release. There may be ' +
+                       'more than one.',
         'category': 'ordinary',
     },
     'asin': {
@@ -126,21 +127,24 @@ fields = {
         'category': 'ordinary',
     },
     'catalognum': {
-        'description': 'This is a number assigned to the release by the label ' +
-                 'which can often be found on the spine or near the ' +
-                 'barcode. There may be more than one, especially when ' +
-                 'multiple labels are involved. This is not the ASIN — ' +
-                 'there is a relationship for that — nor the label code.',
+        'description': 'This is a number assigned to the release by the ' +
+                       'label which can often be found on the spine or near ' +
+                       'the barcode. There may be more than one, especially ' +
+                       'when multiple labels are involved. This is not the ' +
+                       'ASIN — there is a relationship for that — nor the ' +
+                       'label code.',
         'category': 'ordinary',
     },
     'script': {
-        'description': 'The script used to write the release’s track list. The ' +
-                 'possible values are taken from the ISO 15924 standard.',
+        'description': 'The script used to write the release’s track list. ' +
+                       'The possible values are taken from the ISO 15924 ' +
+                       'standard.',
         'category': 'ordinary',
     },
     'language': {
-        'description': 'The language a release’s track list is written in. The ' +
-                 'possible values are taken from the ISO 639-3 standard.',
+        'description': 'The language a release’s track list is written in. ' +
+                       'The possible values are taken from the ISO 639-3 ' +
+                       'standard.',
         'category': 'ordinary',
     },
     'country': {
@@ -149,8 +153,8 @@ fields = {
     },
     'albumstatus': {
         'description': 'The status describes how "official" a release is. ' +
-                 'Possible values are: official, promotional, bootleg, ' +
-                 'pseudo-release',
+                       'Possible values are: official, promotional, ' +
+                       'bootleg, pseudo-release',
         'category': 'ordinary',
     },
     'media': {
@@ -246,7 +250,10 @@ def get_max_field_length(fields):
     return max(map(len, fields))
 
 
-def get_doc(additional_doc=False, field_prefix='$', field_suffix=':', indent=4):
+def get_doc(additional_doc=False,
+            field_prefix='$',
+            field_suffix=':',
+            indent=4):
     """Return a formated string containing documentation about the audio
     fields.
     """
