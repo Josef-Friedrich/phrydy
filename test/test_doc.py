@@ -19,13 +19,13 @@ class TestDoc(unittest.TestCase):
         self.assertTrue(doc.fields)
 
     def test_field_title(self):
-        self.assertTrue(self.fields['artist']['title'])
+        self.assertTrue(self.fields['artist']['description'])
 
     def test_field_category(self):
         self.assertTrue(self.fields['artist']['category'])
 
     def test_field_long_title(self):
-        title = self.fields['catalognum']['title']
+        title = self.fields['catalognum']['description']
         self.assertTrue(len(title) > 200)
         # Words at the end of a title string
         self.assertTrue('label code' in title)
@@ -45,7 +45,7 @@ class TestDoc(unittest.TestCase):
     def test_get_additional_docs(self):
         fields = {
             'lol': {
-                'title': 'loool',
+                'description': 'loool',
                 'category': 'ordinary',
             },
         }

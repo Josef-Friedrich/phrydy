@@ -4,129 +4,129 @@ import textwrap
 
 fields = {
     # Ordinary metadata:
-    'title': {
-        'title': 'title',
+    'description': {
+        'description': 'description',
         'category': 'ordinary',
     },
     'artist': {
-        'title': 'artist',
+        'description': 'artist',
         'category': 'ordinary',
     },
     'artist_sort': {
-        'title': 'The “sort name” of the track artist (e.g., “Beatles, ' +
+        'description': 'The “sort name” of the track artist (e.g., “Beatles, ' +
                  'The” or “White, Jack”)',
         'category': 'ordinary',
     },
     'artist_credit': {
-        'title': 'The track-specific artist credit name,  which may be a ' +
+        'description': 'The track-specific artist credit name,  which may be a ' +
                  'variation of the artist’s “canonical” name',
         'category': 'ordinary',
     },
     'album': {
-        'title': 'album',
+        'description': 'album',
         'category': 'ordinary',
     },
     'albumartist': {
-        'title': 'The artist for the entire album, which may be different ' +
+        'description': 'The artist for the entire album, which may be different ' +
                  'from the artists for the individual tracks',
         'category': 'ordinary',
     },
     'albumartist_sort': {
-        'title': 'albumartist_sort',
+        'description': 'albumartist_sort',
         'category': 'ordinary',
     },
     'albumartist_credit': {
-        'title': 'albumartist_credit',
+        'description': 'albumartist_credit',
         'category': 'ordinary',
     },
     'genre': {
-        'title': 'genre',
+        'description': 'genre',
         'category': 'ordinary',
     },
     'composer': {
-        'title': 'composer',
+        'description': 'composer',
         'category': 'ordinary',
     },
     'grouping': {
-        'title': 'grouping',
+        'description': 'grouping',
         'category': 'ordinary',
     },
     # Separator
     'year': {
-        'title': 'The release year of the specific release',
+        'description': 'The release year of the specific release',
         'category': 'ordinary',
     },
     'month': {
-        'title': 'The release month of the specific release',
+        'description': 'The release month of the specific release',
         'category': 'ordinary',
     },
     'day': {
-        'title': 'The release day of the specific release',
+        'description': 'The release day of the specific release',
         'category': 'ordinary',
     },
     'original_year': {
-        'title': 'The release year of the original version of the album',
+        'description': 'The release year of the original version of the album',
         'category': 'ordinary',
     },
     'original_month': {
-        'title': 'The release month of the original version of the album',
+        'description': 'The release month of the original version of the album',
         'category': 'ordinary',
     },
     'original_day': {
-        'title': 'The release day of the original version of the album',
+        'description': 'The release day of the original version of the album',
         'category': 'ordinary',
     },
     # Separator
     'track': {
-        'title': 'track',
+        'description': 'track',
         'category': 'ordinary',
     },
     'tracktotal': {
-        'title': 'tracktotal',
+        'description': 'tracktotal',
         'category': 'ordinary',
     },
     'disc': {
-        'title': 'disc',
+        'description': 'disc',
         'category': 'ordinary',
     },
     'disctotal': {
-        'title': 'disctotal',
+        'description': 'disctotal',
         'category': 'ordinary',
     },
     # Separator
     'lyrics': {
-        'title': 'lyrics',
+        'description': 'lyrics',
         'category': 'ordinary',
     },
     'comments': {
-        'title': 'comments',
+        'description': 'comments',
         'category': 'ordinary',
     },
     'bpm': {
-        'title': 'bpm',
+        'description': 'bpm',
         'category': 'ordinary',
     },
     'comp': {
-        'title': 'Compilation flag',
+        'description': 'Compilation flag',
         'category': 'ordinary',
     },
     'albumtype': {
-        'title': 'The MusicBrainz album type; the MusicBrainz wiki has a ' +
+        'description': 'The MusicBrainz album type; the MusicBrainz wiki has a ' +
                  'list of type names',
         'category': 'ordinary',
     },
     # Release
     'label': {
-        'title': 'The label which issued the release. There may be more ' +
+        'description': 'The label which issued the release. There may be more ' +
                  'than one.',
         'category': 'ordinary',
     },
     'asin': {
-        'title': 'Amazon Standard Identification Number',
+        'description': 'Amazon Standard Identification Number',
         'category': 'ordinary',
     },
     'catalognum': {
-        'title': 'This is a number assigned to the release by the label ' +
+        'description': 'This is a number assigned to the release by the label ' +
                  'which can often be found on the spine or near the ' +
                  'barcode. There may be more than one, especially when ' +
                  'multiple labels are involved. This is not the ASIN — ' +
@@ -134,93 +134,93 @@ fields = {
         'category': 'ordinary',
     },
     'script': {
-        'title': 'The script used to write the release’s track list. The ' +
+        'description': 'The script used to write the release’s track list. The ' +
                  'possible values are taken from the ISO 15924 standard.',
         'category': 'ordinary',
     },
     'language': {
-        'title': 'The language a release’s track list is written in. The ' +
+        'description': 'The language a release’s track list is written in. The ' +
                  'possible values are taken from the ISO 639-3 standard.',
         'category': 'ordinary',
     },
     'country': {
-        'title': 'The country the release was issued in.',
+        'description': 'The country the release was issued in.',
         'category': 'ordinary',
     },
     'albumstatus': {
-        'title': 'The status describes how "official" a release is. ' +
+        'description': 'The status describes how "official" a release is. ' +
                  'Possible values are: official, promotional, bootleg, ' +
                  'pseudo-release',
         'category': 'ordinary',
     },
     'media': {
-        'title': 'media',
+        'description': 'media',
         'category': 'ordinary',
     },
     'albumdisambig': {
-        'title': 'albumdisambig',
+        'description': 'albumdisambig',
         'category': 'ordinary',
     },
     'disctitle': {
-        'title': 'disctitle',
+        'description': 'disctitle',
         'category': 'ordinary',
     },
     'encoder': {
-        'title': 'encoder',
+        'description': 'encoder',
         'category': 'ordinary',
     },
     # Audio information:
     'length': {
-        'title': 'in seconds',
+        'description': 'in seconds',
         'category': 'audio',
     },
     'bitrate': {
-        'title': 'in kilobits per second, with units: e.g., “192kbps”',
+        'description': 'in kilobits per second, with units: e.g., “192kbps”',
         'category': 'audio',
     },
     'format': {
-        'title': 'e.g., “MP3” or “FLAC”',
+        'description': 'e.g., “MP3” or “FLAC”',
         'category': 'audio',
     },
     'channels': {
-        'title': 'channels',
+        'description': 'channels',
         'category': 'audio',
     },
     'bitdepth': {
-        'title': 'only available for some formats',
+        'description': 'only available for some formats',
         'category': 'audio',
     },
     'samplerate': {
-        'title': 'in kilohertz, with units: e.g., “48kHz”',
+        'description': 'in kilohertz, with units: e.g., “48kHz”',
         'category': 'audio',
     },
     # MusicBrainz and fingerprint information:
     'mb_trackid': {
-        'title': 'MusicBrainz track ID',
+        'description': 'MusicBrainz track ID',
         'category': 'music_brainz',
     },
     'mb_albumid': {
-        'title': 'MusicBrainz album ID',
+        'description': 'MusicBrainz album ID',
         'category': 'music_brainz',
     },
     'mb_artistid': {
-        'title': 'MusicBrainz artist ID',
+        'description': 'MusicBrainz artist ID',
         'category': 'music_brainz',
     },
     'mb_albumartistid': {
-        'title': 'MusicBrainz album artist ID',
+        'description': 'MusicBrainz album artist ID',
         'category': 'music_brainz',
     },
     'mb_releasegroupid': {
-        'title': 'MusicBrainz releasegroup  ID',
+        'description': 'MusicBrainz releasegroup  ID',
         'category': 'music_brainz',
     },
     'acoustid_fingerprint': {
-        'title': 'Acoustic ID fingerprint',
+        'description': 'Acoustic ID fingerprint',
         'category': 'music_brainz',
     },
     'acoustid_id': {
-        'title': 'Acoustic ID',
+        'description': 'Acoustic ID',
         'category': 'music_brainz',
     },
 }
@@ -231,7 +231,7 @@ A multidimensional dictionary documenting all metadata fields.
 
     fields = {
         'field': {
-            'title': 'Title',
+            'description': 'Title',
             'category': 'Category',
         },
     }
@@ -251,7 +251,8 @@ def get_doc(additional_doc=False, field_prefix='$', field_suffix=':', indent=4):
     fields.
     """
     if additional_doc:
-        f = dict(fields.items() + additional_doc.items())
+        f = fields.copy()
+        f.update(additional_doc)
     else:
         f = fields
     field_length = get_max_field_length(f)
@@ -259,7 +260,7 @@ def get_doc(additional_doc=False, field_prefix='$', field_suffix=':', indent=4):
     description_indent = ' ' * (indent + field_length)
     output = ''
     for field, description in f.items():
-        description = description['title']
+        description = description['description']
         field = ' ' * indent + field_prefix + field + ':'
         output += field.ljust(field_length) + \
             textwrap.fill(
