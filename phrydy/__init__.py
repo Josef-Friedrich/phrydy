@@ -1752,7 +1752,8 @@ class MediaFile(object):
         MP3StorageStyle('TDOR'),
         MP4StorageStyle('----:com.apple.iTunes:ORIGINAL YEAR'),
         StorageStyle('ORIGINALDATE'),
-        ASFStorageStyle('WM/OriginalReleaseYear'))
+        ASFStorageStyle('WM/OriginalReleaseYear')
+        )
 
     original_year = original_date.year_field()
     original_month = original_date.month_field()
