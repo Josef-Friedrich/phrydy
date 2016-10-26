@@ -24,6 +24,12 @@ setup(
     packages=['phrydy'],
     long_description=read('README.rst'),
     install_requires=[
-        'mutagen>=1.33', 'enum34', 'six>=1.9'
+        'mutagen>=1.33',
+        'enum34',
+        'six>=1.9',
+    ],
+    classifiers=[
+        'Development Status :: 5 - Production/Stable',
+        'Topic :: Utilities',
     ],
     zip_safe=False)
