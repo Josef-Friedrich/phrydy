@@ -22,5 +22,10 @@ class TestWork(unittest.TestCase):
         media = MediaFile(get_file('work.mp3'))
         self.assertEqual(media.work, u'Concerto for French Horn no. 1 in D major, K. 386b / KV 412: I. Allegro')
 
+    def test_composer_sort(self):
+        media = MediaFile(get_file('work.mp3'))
+        self.assertEqual(media.composer_sort, u'Mozart, Wolfgang Amadeus')
+
+
 if __name__ == '__main__':
     unittest.main()

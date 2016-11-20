@@ -47,6 +47,10 @@ fields = {
         'description': 'composer',
         'category': 'ordinary',
     },
+    'composer_sort': {
+        'description': 'Composer name for sorting.',
+        'category': 'ordinary',
+    },
     'grouping': {
         'description': 'grouping',
         'category': 'ordinary',

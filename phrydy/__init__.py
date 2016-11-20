@@ -1681,6 +1681,12 @@ class MediaFile(object):
         MP4StorageStyle('soaa'),
         StorageStyle('ALBUMARTISTSORT'),
         ASFStorageStyle('WM/AlbumArtistSortOrder'), )
+    composer_sort = MediaField(
+        MP3StorageStyle('TSOC'),
+        MP3DescStorageStyle(u'COMPOSERSORT'),
+        MP4StorageStyle('soco'),
+        StorageStyle('COMPOSERSORT'),
+        ASFStorageStyle('WM/ComposerSortOrder'), )
     asin = MediaField(
         MP3DescStorageStyle(u'ASIN'),
         MP4StorageStyle('----:com.apple.iTunes:ASIN'),
