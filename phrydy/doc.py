@@ -161,6 +161,10 @@ fields = {
         'description': 'media',
         'category': 'ordinary',
     },
+    'work': {
+        'description': 'The Musicbrainzs’ work entity.',
+        'category': 'ordinary',
+    },
     'albumdisambig': {
         'description': 'albumdisambig',
         'category': 'ordinary',
@@ -216,7 +220,11 @@ fields = {
         'category': 'music_brainz',
     },
     'mb_releasegroupid': {
-        'description': 'MusicBrainz releasegroup  ID',
+        'description': 'MusicBrainz releasegroup ID',
+        'category': 'music_brainz',
+    },
+    'mb_workid': {
+        'description': 'MusicBrainz work ID',
         'category': 'music_brainz',
     },
     'acoustid_fingerprint': {

@@ -1770,6 +1770,11 @@ class MediaFile(object):
         MP4StorageStyle('----:com.apple.iTunes:Album Artist Credit'),
         StorageStyle('ALBUMARTIST_CREDIT'),
         ASFStorageStyle('beets/Album Artist Credit'), )
+    work = MediaField(
+        MP3DescStorageStyle(u'Work'),
+        MP4StorageStyle('----:com.apple.iTunes:Work'),
+        StorageStyle('Work'),
+        ASFStorageStyle('MusicBrainz/Work'), )
 
     # Legacy album art field
     art = CoverArtField()
@@ -1803,6 +1808,12 @@ class MediaFile(object):
         MP4StorageStyle('----:com.apple.iTunes:MusicBrainz Release Group Id'),
         StorageStyle('MUSICBRAINZ_RELEASEGROUPID'),
         ASFStorageStyle('MusicBrainz/Release Group Id'), )
+    mb_workid = MediaField(
+        MP3DescStorageStyle(u'MusicBrainz Work Id'),
+        MP4StorageStyle('----:com.apple.iTunes:MusicBrainz Work Id'),
+        StorageStyle('MUSICBRAINZ_WORKID'),
+        ASFStorageStyle('MusicBrainz/MusicBrainz Work Id'), )
+
 
     # Acoustid fields.
     acoustid_fingerprint = MediaField(
