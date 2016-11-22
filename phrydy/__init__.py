@@ -906,7 +906,16 @@ class MP3ImageStorageStyle(ListStorageStyle, MP3StorageStyle):
         frame.data = image.data
         frame.mime = image.mime_type
         frame.desc = image.desc or u''
-        frame.encoding = 3  # UTF-8 encoding of desc
+
+        # For compatibility with OS X/iTunes prefer latin-1 if possible.
+        # See issue #899
+        try:
+            frame.desc.encode("latin-1")
+        except UnicodeEncodeError:
+            frame.encoding = mutagen.id3.Encoding.UTF16
+        else:
+            frame.encoding = mutagen.id3.Encoding.LATIN1
+
         frame.type = image.type_index
         return frame
 
@@ -1673,12 +1682,6 @@ class MediaFile(object):
         StorageStyle('ALBUMARTISTSORT'),
         ASFStorageStyle('WM/AlbumArtistSortOrder'),
     )
-    composer_sort = MediaField(
-        MP3StorageStyle('TSOC'),
-        MP3DescStorageStyle(u'COMPOSERSORT'),
-        MP4StorageStyle('soco'),
-        StorageStyle('COMPOSERSORT'),
-        ASFStorageStyle('WM/ComposerSortOrder'), )
     asin = MediaField(
         MP3DescStorageStyle(u'ASIN'),
         MP4StorageStyle('----:com.apple.iTunes:ASIN'),
@@ -1779,11 +1782,6 @@ class MediaFile(object):
         StorageStyle('ALBUMARTIST_CREDIT'),
         ASFStorageStyle('beets/Album Artist Credit'),
     )
-    work = MediaField(
-        MP3DescStorageStyle(u'Work'),
-        MP4StorageStyle('----:com.apple.iTunes:Work'),
-        StorageStyle('Work'),
-        ASFStorageStyle('MusicBrainz/Work'), )
 
     # Legacy album art field
     art = CoverArtField()
@@ -1822,11 +1820,6 @@ class MediaFile(object):
         StorageStyle('MUSICBRAINZ_RELEASEGROUPID'),
         ASFStorageStyle('MusicBrainz/Release Group Id'),
     )
-    mb_workid = MediaField(
-        MP3DescStorageStyle(u'MusicBrainz Work Id'),
-        MP4StorageStyle('----:com.apple.iTunes:MusicBrainz Work Id'),
-        StorageStyle('MUSICBRAINZ_WORKID'),
-        ASFStorageStyle('MusicBrainz/MusicBrainz Work Id'), )
 
     # Acoustid fields.
     acoustid_fingerprint = MediaField(
@@ -1947,6 +1940,26 @@ class MediaFile(object):
         MP4StorageStyle('----:com.apple.iTunes:initialkey'),
         StorageStyle('INITIALKEY'),
         ASFStorageStyle('INITIALKEY'),
+    )
+
+    composer_sort = MediaField(
+        MP3StorageStyle('TSOC'),
+        MP3DescStorageStyle(u'COMPOSERSORT'),
+        MP4StorageStyle('soco'),
+        StorageStyle('COMPOSERSORT'),
+        ASFStorageStyle('WM/ComposerSortOrder'),
+    )
+    work = MediaField(
+        MP3DescStorageStyle(u'Work'),
+        MP4StorageStyle('----:com.apple.iTunes:Work'),
+        StorageStyle('Work'),
+        ASFStorageStyle('MusicBrainz/Work'),
+    )
+    mb_workid = MediaField(
+        MP3DescStorageStyle(u'MusicBrainz Work Id'),
+        MP4StorageStyle('----:com.apple.iTunes:MusicBrainz Work Id'),
+        StorageStyle('MUSICBRAINZ_WORKID'),
+        ASFStorageStyle('MusicBrainz/MusicBrainz Work Id'),
     )
 
     @property
