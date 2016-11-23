@@ -27,7 +27,7 @@ import sys
 import six
 from six import assertCountEqual
 
-from phrydy import MediaFile, MediaField, Image, \
+from phrydy.mediafile import MediaFile, MediaField, Image, \
     MP3DescStorageStyle, StorageStyle, MP4StorageStyle, \
     ASFStorageStyle, ImageType, CoverArtField, UnreadableFileError
 from phrydy.utils import bytestring_path
