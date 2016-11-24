@@ -12,6 +12,7 @@
 #
 # The above copyright notice and this permission notice shall be
 # included in all copies or substantial portions of the Software.
+
 """Automatically-generated blanket testing for the MediaFile metadata
 layer.
 """
@@ -25,6 +26,7 @@ import time
 from tempfile import mkdtemp
 import sys
 import six
+from test import _common
 from six import assertCountEqual
 
 from phrydy.mediafile import MediaFile, MediaField, Image, \
@@ -82,31 +84,28 @@ class ArtTestMixin(object):
     @property
     def png_data(self):
         if not self._png_data:
-            image_file = os.path.join(RSRC, b'image-2x3.png')
+            image_file = os.path.join(_common.RSRC, b'image-2x3.png')
             with open(image_file, 'rb') as f:
                 self._png_data = f.read()
         return self._png_data
-
     _png_data = None
 
     @property
     def jpg_data(self):
         if not self._jpg_data:
-            image_file = os.path.join(RSRC, b'image-2x3.jpg')
+            image_file = os.path.join(_common.RSRC, b'image-2x3.jpg')
             with open(image_file, 'rb') as f:
                 self._jpg_data = f.read()
         return self._jpg_data
-
     _jpg_data = None
 
     @property
     def tiff_data(self):
         if not self._jpg_data:
-            image_file = os.path.join(RSRC, b'image-2x3.tiff')
+            image_file = os.path.join(_common.RSRC, b'image-2x3.tiff')
             with open(image_file, 'rb') as f:
                 self._jpg_data = f.read()
         return self._jpg_data
-
     _jpg_data = None
 
     def test_set_png_art(self):
@@ -153,21 +152,22 @@ class ImageStructureTestMixin(ArtTestMixin):
 
         self.assertEqual(len(mediafile.images), 2)
 
-        image = next(i for i in mediafile.images if i.mime_type == 'image/png')
+        image = next(i for i in mediafile.images
+                     if i.mime_type == 'image/png')
         self.assertEqual(image.data, self.png_data)
-        self.assertExtendedImageAttributes(
-            image, desc=u'album cover', type=ImageType.front)
+        self.assertExtendedImageAttributes(image, desc=u'album cover',
+                                           type=ImageType.front)
 
         image = next(i for i in mediafile.images
                      if i.mime_type == 'image/jpeg')
         self.assertEqual(image.data, self.jpg_data)
-        self.assertExtendedImageAttributes(
-            image, desc=u'the artist', type=ImageType.artist)
+        self.assertExtendedImageAttributes(image, desc=u'the artist',
+                                           type=ImageType.artist)
 
     def test_set_image_structure(self):
         mediafile = self._mediafile_fixture('empty')
-        image = Image(
-            data=self.png_data, desc=u'album cover', type=ImageType.front)
+        image = Image(data=self.png_data, desc=u'album cover',
+                      type=ImageType.front)
         mediafile.images = [image]
         mediafile.save()
 
@@ -177,15 +177,15 @@ class ImageStructureTestMixin(ArtTestMixin):
         image = mediafile.images[0]
         self.assertEqual(image.data, self.png_data)
         self.assertEqual(image.mime_type, 'image/png')
-        self.assertExtendedImageAttributes(
-            image, desc=u'album cover', type=ImageType.front)
+        self.assertExtendedImageAttributes(image, desc=u'album cover',
+                                           type=ImageType.front)
 
     def test_add_image_structure(self):
         mediafile = self._mediafile_fixture('image')
         self.assertEqual(len(mediafile.images), 2)
 
-        image = Image(
-            data=self.png_data, desc=u'the composer', type=ImageType.composer)
+        image = Image(data=self.png_data, desc=u'the composer',
+                      type=ImageType.composer)
         mediafile.images += [image]
         mediafile.save()
 
@@ -195,7 +195,8 @@ class ImageStructureTestMixin(ArtTestMixin):
         images = (i for i in mediafile.images if i.desc == u'the composer')
         image = next(images, None)
         self.assertExtendedImageAttributes(
-            image, desc=u'the composer', type=ImageType.composer)
+            image, desc=u'the composer', type=ImageType.composer
+        )
 
     def test_delete_image_structures(self):
         mediafile = self._mediafile_fixture('image')
@@ -223,8 +224,7 @@ class ImageStructureTestMixin(ArtTestMixin):
 class ExtendedImageStructureTestMixin(ImageStructureTestMixin):
     """Checks for additional attributes in the image structure."""
 
-    def assertExtendedImageAttributes(self, image, desc=None,
-                                      type=None):  # noqa
+    def assertExtendedImageAttributes(self, image, desc=None, type=None):  # noqa
         self.assertEqual(image.desc, desc)
         self.assertEqual(image.type, type)
 
@@ -232,8 +232,8 @@ class ExtendedImageStructureTestMixin(ImageStructureTestMixin):
         mediafile = self._mediafile_fixture('image')
         self.assertEqual(len(mediafile.images), 2)
 
-        image = Image(
-            data=self.tiff_data, desc=u'the composer', type=ImageType.composer)
+        image = Image(data=self.tiff_data, desc=u'the composer',
+                      type=ImageType.composer)
         mediafile.images += [image]
         mediafile.save()
 
@@ -241,8 +241,8 @@ class ExtendedImageStructureTestMixin(ImageStructureTestMixin):
         self.assertEqual(len(mediafile.images), 3)
 
         # WMA does not preserve the order, so we have to work around this
-        image = list(
-            filter(lambda i: i.mime_type == 'image/tiff', mediafile.images))[0]
+        image = list(filter(lambda i: i.mime_type == 'image/tiff',
+                     mediafile.images))[0]
         self.assertExtendedImageAttributes(
             image, desc=u'the composer', type=ImageType.composer)
 
@@ -343,7 +343,8 @@ field_extension = MediaField(
     MP3DescStorageStyle(u'customtag'),
     MP4StorageStyle('----:com.apple.iTunes:customtag'),
     StorageStyle('customtag'),
-    ASFStorageStyle('customtag'), )
+    ASFStorageStyle('customtag'),
+)
 
 
 class ExtendedFieldTestMixin(object):
@@ -954,6 +955,7 @@ class AIFFTest(ReadWriteTestBase, unittest.TestCase):
 
 
 class MediaFieldTest(unittest.TestCase):
+
     def test_properties_from_fields(self):
         path = os.path.join(RSRC, b'full.mp3')
         mediafile = MediaFile(path)
@@ -980,6 +982,5 @@ class MediaFieldTest(unittest.TestCase):
 def suite():
     return unittest.TestLoader().loadTestsFromName(__name__)
 
-
 if __name__ == '__main__':
-    unittest.main()
+    unittest.main(defaultTest='suite')

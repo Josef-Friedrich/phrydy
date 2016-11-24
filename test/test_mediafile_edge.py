@@ -24,11 +24,8 @@ import sys
 import six
 from tempfile import mkdtemp
 from test import _common
-
-
 import phrydy
 from phrydy.utils import bytestring_path
-
 import unittest
 
 beets = phrydy
