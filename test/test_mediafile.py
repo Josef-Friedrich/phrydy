@@ -39,15 +39,6 @@ import unittest
 # Mangle the search path to include the beets sources.
 sys.path.insert(0, '..')
 
-# Test resources path.
-RSRC = bytestring_path(os.path.join(os.path.dirname(__file__), 'files'))
-
-# Dummy item creation.
-_item_ident = 0
-
-# OS feature test.
-HAVE_SYMLINK = sys.platform != 'win32'
-
 ########################################################################
 # helper.py
 ########################################################################
@@ -368,29 +359,29 @@ class ReadWriteTestBase(ArtTestMixin, GenreListTestMixin,
     """
 
     full_initial_tags = {
-        'title': u'full',
-        'artist': u'the artist',
-        'album': u'the album',
-        'genre': u'the genre',
-        'composer': u'the composer',
-        'grouping': u'the grouping',
-        'year': 2001,
-        'month': None,
-        'day': None,
-        'date': datetime.date(2001, 1, 1),
-        'track': 2,
-        'tracktotal': 3,
-        'disc': 4,
-        'disctotal': 5,
-        'lyrics': u'the lyrics',
-        'comments': u'the comments',
-        'bpm': 6,
-        'comp': True,
-        'mb_trackid': '8b882575-08a5-4452-a7a7-cbb8a1531f9e',
-        'mb_albumid': '9e873859-8aa4-4790-b985-5a953e8ef628',
+        'title':       u'full',
+        'artist':      u'the artist',
+        'album':       u'the album',
+        'genre':       u'the genre',
+        'composer':    u'the composer',
+        'grouping':    u'the grouping',
+        'year':        2001,
+        'month':       None,
+        'day':         None,
+        'date':        datetime.date(2001, 1, 1),
+        'track':       2,
+        'tracktotal':  3,
+        'disc':        4,
+        'disctotal':   5,
+        'lyrics':      u'the lyrics',
+        'comments':    u'the comments',
+        'bpm':         6,
+        'comp':        True,
+        'mb_trackid':  '8b882575-08a5-4452-a7a7-cbb8a1531f9e',
+        'mb_albumid':  '9e873859-8aa4-4790-b985-5a953e8ef628',
         'mb_artistid': '7cf0ea9d-86b9-4dad-ba9e-2355a64899ea',
-        'art': None,
-        'label': u'the label',
+        'art':         None,
+        'label':       u'the label',
     }
 
     tag_fields = [
@@ -415,8 +406,6 @@ class ReadWriteTestBase(ArtTestMixin, GenreListTestMixin,
         'mb_trackid',
         'mb_albumid',
         'mb_artistid',
-        'mb_workid',
-        'work',
         'art',
         'label',
         'rg_track_peak',
@@ -427,7 +416,6 @@ class ReadWriteTestBase(ArtTestMixin, GenreListTestMixin,
         'mb_albumartistid',
         'artist_sort',
         'albumartist_sort',
-        'composer_sort',
         'acoustid_fingerprint',
         'acoustid_id',
         'mb_releasegroupid',
@@ -447,6 +435,9 @@ class ReadWriteTestBase(ArtTestMixin, GenreListTestMixin,
         'original_day',
         'original_date',
         'initial_key',
+        'mb_workid',
+        'work',
+        'composer_sort',
     ]
 
     def setUp(self):
@@ -481,8 +472,8 @@ class ReadWriteTestBase(ArtTestMixin, GenreListTestMixin,
         mediafile = self._mediafile_fixture('full')
         for key, value in self.audio_properties.items():
             if isinstance(value, float):
-                self.assertAlmostEqual(
-                    getattr(mediafile, key), value, delta=0.1)
+                self.assertAlmostEqual(getattr(mediafile, key), value,
+                                       delta=0.1)
             else:
                 self.assertEqual(getattr(mediafile, key), value)
 
@@ -704,7 +695,7 @@ class ReadWriteTestBase(ArtTestMixin, GenreListTestMixin,
 
     def _mediafile_fixture(self, name):
         name = bytestring_path(name + '.' + self.extension)
-        src = os.path.join(RSRC, name)
+        src = os.path.join(_common.RSRC, name)
         target = os.path.join(self.temp_dir, name)
         shutil.copy(src, target)
         return MediaFile(target)
@@ -744,10 +735,10 @@ class ReadWriteTestBase(ArtTestMixin, GenreListTestMixin,
 
 class PartialTestMixin(object):
     tags_without_total = {
-        'track': 2,
+        'track':      2,
         'tracktotal': 0,
-        'disc': 4,
-        'disctotal': 0,
+        'disc':       4,
+        'disctotal':  0,
     }
 
     def test_read_track_without_total(self):
@@ -759,7 +750,8 @@ class PartialTestMixin(object):
 
 
 class MP3Test(ReadWriteTestBase, PartialTestMixin,
-              ExtendedImageStructureTestMixin, unittest.TestCase):
+              ExtendedImageStructureTestMixin,
+              unittest.TestCase):
     extension = 'mp3'
     audio_properties = {
         'length': 1.0,
@@ -775,8 +767,8 @@ class MP3Test(ReadWriteTestBase, PartialTestMixin,
         self.assertEqual(mediafile.images[0].type, ImageType.other)
 
 
-class MP4Test(ReadWriteTestBase, PartialTestMixin, ImageStructureTestMixin,
-              unittest.TestCase):
+class MP4Test(ReadWriteTestBase, PartialTestMixin,
+              ImageStructureTestMixin, unittest.TestCase):
     extension = 'm4a'
     audio_properties = {
         'length': 1.0,
@@ -893,7 +885,8 @@ class OggTest(ReadWriteTestBase, ExtendedImageStructureTestMixin,
 
 
 class FlacTest(ReadWriteTestBase, PartialTestMixin,
-               ExtendedImageStructureTestMixin, unittest.TestCase):
+               ExtendedImageStructureTestMixin,
+               unittest.TestCase):
     extension = 'flac'
     audio_properties = {
         'length': 1.0,
@@ -957,13 +950,13 @@ class AIFFTest(ReadWriteTestBase, unittest.TestCase):
 class MediaFieldTest(unittest.TestCase):
 
     def test_properties_from_fields(self):
-        path = os.path.join(RSRC, b'full.mp3')
+        path = os.path.join(_common.RSRC, b'full.mp3')
         mediafile = MediaFile(path)
         for field in MediaFile.fields():
             self.assertTrue(hasattr(mediafile, field))
 
     def test_properties_from_readable_fields(self):
-        path = os.path.join(RSRC, b'full.mp3')
+        path = os.path.join(_common.RSRC, b'full.mp3')
         mediafile = MediaFile(path)
         for field in MediaFile.readable_fields():
             self.assertTrue(hasattr(mediafile, field))
