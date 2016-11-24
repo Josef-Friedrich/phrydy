@@ -113,7 +113,6 @@ class EdgeTest(unittest.TestCase):
         f = beets.mediafile.MediaFile(media_file)
         self.assertEqual(f.bitrate, 0)
 
-    @unittest.skip(u'not yet implementet')
     def test_only_magic_bytes_jpeg(self):
         # Some jpeg files can only be recognized by their magic bytes and as
         # such aren't recognized by imghdr. Ensure that this still works thanks

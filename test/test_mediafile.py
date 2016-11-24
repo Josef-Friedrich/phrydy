@@ -339,6 +339,56 @@ field_extension = MediaField(
 
 
 class ExtendedFieldTestMixin(object):
+    #
+    # def test_extended_field_write(self):
+    #     plugin = BeetsPlugin()
+    #     plugin.add_media_field('customtag', field_extension)
+    #
+    #     try:
+    #         mediafile = self._mediafile_fixture('empty')
+    #         mediafile.customtag = u'F#'
+    #         mediafile.save()
+    #
+    #         mediafile = MediaFile(mediafile.path)
+    #         self.assertEqual(mediafile.customtag, u'F#')
+    #
+    #     finally:
+    #         delattr(MediaFile, 'customtag')
+    #         Item._media_fields.remove('customtag')
+    #
+    # def test_write_extended_tag_from_item(self):
+    #     plugin = BeetsPlugin()
+    #     plugin.add_media_field('customtag', field_extension)
+    #
+    #     try:
+    #         mediafile = self._mediafile_fixture('empty')
+    #         self.assertIsNone(mediafile.customtag)
+    #
+    #         item = Item(path=mediafile.path, customtag=u'Gb')
+    #         item.write()
+    #         mediafile = MediaFile(mediafile.path)
+    #         self.assertEqual(mediafile.customtag, u'Gb')
+    #
+    #     finally:
+    #         delattr(MediaFile, 'customtag')
+    #         Item._media_fields.remove('customtag')
+    #
+    # def test_read_flexible_attribute_from_file(self):
+    #     plugin = BeetsPlugin()
+    #     plugin.add_media_field('customtag', field_extension)
+    #
+    #     try:
+    #         mediafile = self._mediafile_fixture('empty')
+    #         mediafile.update({'customtag': u'F#'})
+    #         mediafile.save()
+    #
+    #         item = Item.from_path(mediafile.path)
+    #         self.assertEqual(item['customtag'], u'F#')
+    #
+    #     finally:
+    #         delattr(MediaFile, 'customtag')
+    #         Item._media_fields.remove('customtag')
+
     def test_invalid_descriptor(self):
         with self.assertRaises(ValueError) as cm:
             MediaFile.add_field('somekey', True)
