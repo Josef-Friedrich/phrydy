@@ -39,7 +39,7 @@ class TestMusicBrainz(unittest.TestCase):
             'mpc',
             'ogg',
             'opus',
-            #'wma',
+            'wma',
             'wv'
         ]:
             media = MediaFile(get_file('mb.' + extension))
