@@ -27,5 +27,38 @@ class TestWork(unittest.TestCase):
         self.assertEqual(media.composer_sort, u'Mozart, Wolfgang Amadeus')
 
 
+class TestMusicBrainz(unittest.TestCase):
+
+    def test_work(self):
+        for extension in [
+            'aiff',
+            'alac.m4a',
+            'flac',
+            'm4a',
+            'mp3',
+            'mpc',
+            'ogg',
+            'opus',
+            #'wma',
+            'wv'
+        ]:
+            media = MediaFile(get_file('mb.' + extension))
+            self.assertEqual(
+                media.work,
+                u'Estampes, L. 100: I. Pagodes. Mod\xe9r\xe9ment anim\xe9',
+                msg='work: ' + extension
+            )
+            self.assertEqual(
+                media.composer_sort,
+                u'Debussy, Claude',
+                msg='composer_sort: ' + extension
+            )
+            self.assertEqual(
+                media.mb_workid,
+                u'71d55229-3dd9-3f62-b82e-d5c1444b8e04',
+                msg='mb_workid: ' + extension
+            )
+
+
 if __name__ == '__main__':
     unittest.main()

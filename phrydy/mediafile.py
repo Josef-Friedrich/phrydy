@@ -1957,21 +1957,21 @@ class MediaFile(object):
 
     composer_sort = MediaField(
         MP3StorageStyle('TSOC'),
-        MP3DescStorageStyle(u'COMPOSERSORT'),
+        MP3DescStorageStyle(u'composersortorder'),
         MP4StorageStyle('soco'),
-        StorageStyle('COMPOSERSORT'),
+        StorageStyle('composersortorder'),
         ASFStorageStyle('WM/ComposerSortOrder'),
     )
     work = MediaField(
         MP3DescStorageStyle(u'Work'),
-        MP4StorageStyle('----:com.apple.iTunes:Work'),
+        MP4StorageStyle('----:com.apple.iTunes:WORK'),
         StorageStyle('Work'),
         ASFStorageStyle('MusicBrainz/Work'),
     )
     mb_workid = MediaField(
         MP3DescStorageStyle(u'MusicBrainz Work Id'),
         MP4StorageStyle('----:com.apple.iTunes:MusicBrainz Work Id'),
-        StorageStyle('MUSICBRAINZ_WORKID'),
+        StorageStyle('musicbrainz work id'),
         ASFStorageStyle('MusicBrainz/MusicBrainz Work Id'),
     )
 
