@@ -1974,10 +1974,13 @@ class MediaFile(object):
         StorageStyle('musicbrainz work id'),
         ASFStorageStyle('MusicBrainz/Work Id'),
     )
-    # musician_credit = MediaField(
-    #     MP3StorageStyle('TMCL'),
-    #     MP4StorageStyle('soca'),
-    # )
+    # TIPL (the "involved people list")
+    # TMCL (the "musician credits list")
+    #performers = MediaField(
+    #    MP3StorageStyle('TMCL'),
+    #    MP3StorageStyle('TIPL'),
+    #    MP4StorageStyle('soca'),
+    #)
 
     @property
     def length(self):

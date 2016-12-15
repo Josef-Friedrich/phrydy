@@ -488,6 +488,7 @@ class ReadWriteTestBase(ArtTestMixin, GenreListTestMixin,
         'mb_workid',
         'work',
         'composer_sort',
+        #'performers',
     ]
 
     def setUp(self):
