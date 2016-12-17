@@ -15,12 +15,7 @@ args = parser.parse_args()
 if args.audio:
     f = MediaFile(args.audio)
 
-    print(f.mb_workid)
-
-
     fields = sorted(MediaFile.readable_fields())
-    print(fields)
-
     for key in sorted(MediaFile.readable_fields()):
         value = getattr(f, key)
         if key != 'art':
