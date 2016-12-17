@@ -1977,9 +1977,10 @@ class MediaFile(object):
     # TIPL (the "involved people list")
     # TMCL (the "musician credits list")
     #performers = MediaField(
-    #    MP3StorageStyle('TMCL'),
-    #    MP3StorageStyle('TIPL'),
+        #MP3StorageStyle('TMCL'),
+        #MP3StorageStyle('TIPL'),
     #    MP4StorageStyle('soca'),
+    #    StorageStyle('PERFORMER'),
     #)
 
     @property
