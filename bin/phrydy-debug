@@ -1,0 +1,29 @@
+#! /usr/bin/env python
+
+from phrydy import MediaFile
+from phrydy.utils import as_string
+from ansicolor import green
+from ansicolor import red
+
+import argparse
+
+parser = argparse.ArgumentParser(description='Process some integers.')
+parser.add_argument('audio', type=file, help='A audio file')
+
+args = parser.parse_args()
+
+if args.audio:
+    f = MediaFile(args.audio)
+
+    print(f.mb_workid)
+
+
+    fields = sorted(MediaFile.readable_fields())
+    print(fields)
+
+    for key in sorted(MediaFile.readable_fields()):
+        value = getattr(f, key)
+        if key != 'art':
+            if value:
+              print(green(as_string(key)) + ':')
+              print('  ' + red(as_string(value)) + '\n')
