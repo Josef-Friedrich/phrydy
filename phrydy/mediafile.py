@@ -1978,8 +1978,8 @@ class MediaFile(object):
     # TIPL (the "involved people list")
     # TMCL (the "musician credits list")
     #performers = MediaField(
-        #MP3StorageStyle('TMCL'),
         #MP3StorageStyle('TIPL'),
+        #ListStorageStyle('TMCL'),
     #    MP4StorageStyle('soca'),
     #    StorageStyle('PERFORMER'),
     #)

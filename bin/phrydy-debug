@@ -9,16 +9,23 @@ import argparse
 
 parser = argparse.ArgumentParser(description='Process some integers.')
 parser.add_argument('audio', type=file, help='A audio file')
+parser.add_argument('-m', '--mutagen', action='store_true', help='print raw mutagen object')
+parser.add_argument('-f', '--fields', action='store_true', help='print all fields')
 
 args = parser.parse_args()
 
 if args.audio:
     f = MediaFile(args.audio.name)
 
-    fields = sorted(MediaFile.readable_fields())
-    for key in sorted(MediaFile.readable_fields()):
-        value = getattr(f, key)
-        if key != 'art':
-            if value:
-              print(green(as_string(key)) + ':')
-              print('  ' + red(as_string(value)) + '\n')
+    if args.mutagen:
+        print(f.mgfile)
+    if args.fields:
+        print(sorted(MediaFile.readable_fields()))
+    else:
+        fields = sorted(MediaFile.readable_fields())
+        for key in sorted(MediaFile.readable_fields()):
+            value = getattr(f, key)
+            if key != 'art':
+                if value:
+                  print(green(as_string(key)) + ':')
+                  print('  ' + red(as_string(value)) + '\n')
