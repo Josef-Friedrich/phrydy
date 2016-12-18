@@ -19,7 +19,7 @@ if args.audio:
 
     if args.mutagen:
         print(f.mgfile)
-    if args.fields:
+    elif args.fields:
         print(sorted(MediaFile.readable_fields()))
     else:
         fields = sorted(MediaFile.readable_fields())

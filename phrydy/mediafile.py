@@ -1959,6 +1959,7 @@ class MediaFile(object):
         MP3StorageStyle('TSOC'),
         MP3DescStorageStyle(u'composersortorder'),
         MP4StorageStyle('soco'),
+        StorageStyle('composersort'),
         StorageStyle('composersortorder'),
         ASFStorageStyle('WM/ComposerSortOrder'),
     )
