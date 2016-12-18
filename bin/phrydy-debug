@@ -13,7 +13,7 @@ parser.add_argument('audio', type=file, help='A audio file')
 args = parser.parse_args()
 
 if args.audio:
-    f = MediaFile(args.audio)
+    f = MediaFile(args.audio.name)
 
     fields = sorted(MediaFile.readable_fields())
     for key in sorted(MediaFile.readable_fields()):
