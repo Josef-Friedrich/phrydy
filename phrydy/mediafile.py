@@ -57,7 +57,6 @@ import math
 import struct
 import imghdr
 import os
-import traceback
 import enum
 import six
 
@@ -1978,12 +1977,12 @@ class MediaFile(object):
     )
     # TIPL (the "involved people list")
     # TMCL (the "musician credits list")
-    #performers = MediaField(
-        #MP3StorageStyle('TIPL'),
-        #ListStorageStyle('TMCL'),
-    #    MP4StorageStyle('soca'),
-    #    StorageStyle('PERFORMER'),
-    #)
+    # performers = MediaField(
+    #     MP3StorageStyle('TIPL'),
+    #     ListStorageStyle('TMCL'),
+    #     MP4StorageStyle('soca'),
+    #     StorageStyle('PERFORMER'),
+    # )
 
     @property
     def length(self):

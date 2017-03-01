@@ -56,5 +56,6 @@ class TestDoc(unittest.TestCase):
         output = self.output.split('\n')
         self.assertTrue('acoustid_fingerprint' in output[0])
 
+
 if __name__ == '__main__':
     unittest.main()

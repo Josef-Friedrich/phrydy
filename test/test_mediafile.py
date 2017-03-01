@@ -488,7 +488,7 @@ class ReadWriteTestBase(ArtTestMixin, GenreListTestMixin,
         'mb_workid',
         'work',
         'composer_sort',
-        #'performers',
+        # 'performers',
     ]
 
     def setUp(self):
@@ -1025,6 +1025,7 @@ class MediaFieldTest(unittest.TestCase):
 
 def suite():
     return unittest.TestLoader().loadTestsFromName(__name__)
+
 
 if __name__ == '__main__':
     unittest.main(defaultTest='suite')
