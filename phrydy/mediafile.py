@@ -39,15 +39,11 @@ data from the tags. In turn ``MediaField`` uses a number of
 from __future__ import division, absolute_import, print_function
 
 import mutagen
-import mutagen.mp3
 import mutagen.id3
-import mutagen.oggopus
-import mutagen.oggvorbis
 import mutagen.mp4
 import mutagen.flac
-import mutagen.monkeysaudio
 import mutagen.asf
-import mutagen.aiff
+
 import codecs
 import datetime
 import re
@@ -57,12 +53,16 @@ import math
 import struct
 import imghdr
 import os
+import traceback
 import enum
+import logging
 import six
 
 from phrydy.utils import as_string, syspath, displayable_path
 
 __all__ = ['UnreadableFileError', 'FileTypeError', 'MediaFile']
+
+log = logging.getLogger(__name__)
 
 # Human-readable type names.
 TYPES = {
@@ -77,6 +77,7 @@ TYPES = {
     'mpc':  'Musepack',
     'asf':  'Windows Media',
     'aiff': 'AIFF',
+    'dsf':  'DSD Stream File',
 }
 
 PREFERRED_IMAGE_EXTENSIONS = {'jpeg': 'jpg'}
@@ -87,8 +88,8 @@ PREFERRED_IMAGE_EXTENSIONS = {'jpeg': 'jpg'}
 class UnreadableFileError(Exception):
     """Mutagen is not able to extract information from the file.
     """
-    def __init__(self, path):
-        Exception.__init__(self, displayable_path(path))
+    def __init__(self, path, msg):
+        Exception.__init__(self, msg if msg else repr(path))
 
 
 class FileTypeError(UnreadableFileError):
@@ -98,11 +99,10 @@ class FileTypeError(UnreadableFileError):
     mutagen type is not supported by `Mediafile`.
     """
     def __init__(self, path, mutagen_type=None):
-        path = displayable_path(path)
         if mutagen_type is None:
-            msg = path
+            msg = repr(path)
         else:
-            msg = u'{0}: of mutagen type {1}'.format(path, mutagen_type)
+            msg = u'{0}: of mutagen type {1}'.format(repr(path), mutagen_type)
         Exception.__init__(self, msg)
 
 
@@ -110,7 +110,7 @@ class MutagenError(UnreadableFileError):
     """Raised when Mutagen fails unexpectedly---probably due to a bug.
     """
     def __init__(self, path, mutagen_exc):
-        msg = u'{0}: {1}'.format(displayable_path(path), mutagen_exc)
+        msg = u'{0}: {1}'.format(repr(path), mutagen_exc)
         Exception.__init__(self, msg)
 
 
@@ -132,12 +132,12 @@ def mutagen_call(action, path, func, *args, **kwargs):
     try:
         return func(*args, **kwargs)
     except mutagen.MutagenError as exc:
-        # log.debug(u'{} failed: {}', action, six.text_type(exc))
-        raise UnreadableFileError(path)
+        log.debug(u'%s failed: %s', action, six.text_type(exc))
+        raise UnreadableFileError(path, six.text_type(exc))
     except Exception as exc:
         # Isolate bugs in Mutagen.
-        # log.debug(u'{}', traceback.format_exc())
-        # log.error(u'uncaught Mutagen exception in {}: {}', action, exc)
+        log.debug(u'%s', traceback.format_exc())
+        log.error(u'uncaught Mutagen exception in %s: %s', action, exc)
         raise MutagenError(path, exc)
 
 
@@ -403,7 +403,7 @@ class Image(object):
             try:
                 type = list(ImageType)[type]
             except IndexError:
-                # log.debug(u"ignoring unknown image type index {0}", type)
+                log.debug(u"ignoring unknown image type index %s", type)
                 type = ImageType.other
         self.type = type
 
@@ -733,7 +733,7 @@ class MP4ImageStorageStyle(MP4ListStorageStyle):
 class MP3StorageStyle(StorageStyle):
     """Store data in ID3 frames.
     """
-    formats = ['MP3', 'AIFF']
+    formats = ['MP3', 'AIFF', 'DSF']
 
     def __init__(self, key, id3_lang=None, **kwargs):
         """Create a new ID3 storage style. `id3_lang` is the value for
@@ -751,6 +751,43 @@ class MP3StorageStyle(StorageStyle):
     def store(self, mutagen_file, value):
         frame = mutagen.id3.Frames[self.key](encoding=3, text=[value])
         mutagen_file.tags.setall(self.key, [frame])
+
+
+class MP3PeopleStorageStyle(MP3StorageStyle):
+    """Store list of people in ID3 frames.
+    """
+    def __init__(self, key, involvement='', **kwargs):
+        self.involvement = involvement
+        super(MP3PeopleStorageStyle, self).__init__(key, **kwargs)
+
+    def store(self, mutagen_file, value):
+        frames = mutagen_file.tags.getall(self.key)
+
+        # Try modifying in place.
+        found = False
+        for frame in frames:
+            if frame.encoding == mutagen.id3.Encoding.UTF8:
+                for pair in frame.people:
+                    if pair[0].lower() == self.involvement.lower():
+                        pair[1] = value
+                        found = True
+
+        # Try creating a new frame.
+        if not found:
+            frame = mutagen.id3.Frames[self.key](
+                encoding=mutagen.id3.Encoding.UTF8,
+                people=[[self.involvement, value]]
+            )
+            mutagen_file.tags.add(frame)
+
+    def fetch(self, mutagen_file):
+        for frame in mutagen_file.tags.getall(self.key):
+            for pair in frame.people:
+                if pair[0].lower() == self.involvement.lower():
+                    try:
+                        return pair[1]
+                    except IndexError:
+                        return None
 
 
 class MP3ListStorageStyle(ListStorageStyle, MP3StorageStyle):
@@ -1410,7 +1447,6 @@ class MediaFile(object):
         By default, MP3 files are saved with ID3v2.4 tags. You can use
         the older ID3v2.3 standard by specifying the `id3v23` option.
         """
-        path = syspath(path)
         self.path = path
 
         self.mgfile = mutagen_call('open', path, mutagen.File, path)
@@ -1444,6 +1480,8 @@ class MediaFile(object):
             self.type = 'asf'
         elif type(self.mgfile).__name__ == 'AIFF':
             self.type = 'aiff'
+        elif type(self.mgfile).__name__ == 'DSF':
+            self.type = 'dsf'
         else:
             raise FileTypeError(path, type(self.mgfile).__name__)
 
@@ -1486,7 +1524,12 @@ class MediaFile(object):
         """
         for property, descriptor in cls.__dict__.items():
             if isinstance(descriptor, MediaField):
-                yield as_string(property)
+                if isinstance(property, bytes):
+                    # On Python 2, class field names are bytes. This method
+                    # produces text strings.
+                    yield property.decode('utf8', 'ignore')
+                else:
+                    yield property
 
     @classmethod
     def _field_sort_name(cls, name):
@@ -1587,12 +1630,25 @@ class MediaFile(object):
     )
     genre = genres.single_field()
 
+    lyricist = MediaField(
+        MP3StorageStyle('TEXT'),
+        MP4StorageStyle('----:com.apple.iTunes:LYRICIST'),
+        StorageStyle('LYRICIST'),
+        ASFStorageStyle('WM/Writer'),
+    )
     composer = MediaField(
         MP3StorageStyle('TCOM'),
         MP4StorageStyle('\xa9wrt'),
         StorageStyle('COMPOSER'),
         ASFStorageStyle('WM/Composer'),
     )
+    arranger = MediaField(
+        MP3PeopleStorageStyle('TIPL', involvement='arranger'),
+        MP4StorageStyle('----:com.apple.iTunes:Arranger'),
+        StorageStyle('ARRANGER'),
+        ASFStorageStyle('beets/Arranger'),
+    )
+
     grouping = MediaField(
         MP3StorageStyle('TIT1'),
         MP4StorageStyle('\xa9grp'),
@@ -1889,9 +1945,9 @@ class MediaFile(object):
             u'replaygain_album_gain',
             float_places=2, suffix=u' dB'
         ),
-        MP4SoundCheckStorageStyle(
-            '----:com.apple.iTunes:iTunNORM',
-            index=1
+        MP4StorageStyle(
+            '----:com.apple.iTunes:replaygain_album_gain',
+            float_places=2, suffix=' dB'
         ),
         StorageStyle(
             u'REPLAYGAIN_ALBUM_GAIN',

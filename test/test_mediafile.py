@@ -20,52 +20,14 @@ from __future__ import division, absolute_import, print_function
 
 import os
 import shutil
-import tempfile
 import datetime
 import time
-from tempfile import mkdtemp
-import sys
-import six
-from test import _common
+import unittest
 from six import assertCountEqual
 
-from phrydy.mediafile import MediaFile, MediaField, Image, \
-    MP3DescStorageStyle, StorageStyle, MP4StorageStyle, \
-    ASFStorageStyle, ImageType, CoverArtField, UnreadableFileError
-from phrydy.utils import bytestring_path
-
-import unittest
-
-# Mangle the search path to include the beets sources.
-sys.path.insert(0, '..')
-
-########################################################################
-# helper.py
-########################################################################
-
-
-class TestHelper(object):
-    """Helper mixin for high-level cli and plugin tests.
-
-    This mixin provides methods to isolate beets' global state provide
-    fixtures.
-    """
-
-    def create_temp_dir(self):
-        """Create a temporary directory and assign it into
-        `self.temp_dir`. Call `remove_temp_dir` later to delete it.
-        """
-        temp_dir = mkdtemp()
-        self.temp_dir = bytestring_path(temp_dir)
-
-    def remove_temp_dir(self):
-        """Delete the temporary directory created by `create_temp_dir`.
-        """
-        shutil.rmtree(self.temp_dir)
-
-########################################################################
-# test_mediafile.py
-########################################################################
+from test import _common
+from phrydy.mediafile import MediaFile, Image, \
+    ImageType, CoverArtField, UnreadableFileError
 
 
 class ArtTestMixin(object):
@@ -213,7 +175,11 @@ class ImageStructureTestMixin(ArtTestMixin):
 
 
 class ExtendedImageStructureTestMixin(ImageStructureTestMixin):
-    """Checks for additional attributes in the image structure."""
+    """Checks for additional attributes in the image structure.
+
+    Like the base `ImageStructureTestMixin`, per-format test classes
+    should include this mixin to add image-related tests.
+    """
 
     def assertExtendedImageAttributes(self, image, desc=None, type=None):  # noqa
         self.assertEqual(image.desc, desc)
@@ -330,82 +296,25 @@ class GenreListTestMixin(object):
         assertCountEqual(self, mediafile.genres, [u'the genre', u'another'])
 
 
-field_extension = MediaField(
-    MP3DescStorageStyle(u'customtag'),
-    MP4StorageStyle('----:com.apple.iTunes:customtag'),
-    StorageStyle('customtag'),
-    ASFStorageStyle('customtag'),
-)
-
-
-class ExtendedFieldTestMixin(object):
-    #
-    # def test_extended_field_write(self):
-    #     plugin = BeetsPlugin()
-    #     plugin.add_media_field('customtag', field_extension)
-    #
-    #     try:
-    #         mediafile = self._mediafile_fixture('empty')
-    #         mediafile.customtag = u'F#'
-    #         mediafile.save()
-    #
-    #         mediafile = MediaFile(mediafile.path)
-    #         self.assertEqual(mediafile.customtag, u'F#')
-    #
-    #     finally:
-    #         delattr(MediaFile, 'customtag')
-    #         Item._media_fields.remove('customtag')
-    #
-    # def test_write_extended_tag_from_item(self):
-    #     plugin = BeetsPlugin()
-    #     plugin.add_media_field('customtag', field_extension)
-    #
-    #     try:
-    #         mediafile = self._mediafile_fixture('empty')
-    #         self.assertIsNone(mediafile.customtag)
-    #
-    #         item = Item(path=mediafile.path, customtag=u'Gb')
-    #         item.write()
-    #         mediafile = MediaFile(mediafile.path)
-    #         self.assertEqual(mediafile.customtag, u'Gb')
-    #
-    #     finally:
-    #         delattr(MediaFile, 'customtag')
-    #         Item._media_fields.remove('customtag')
-    #
-    # def test_read_flexible_attribute_from_file(self):
-    #     plugin = BeetsPlugin()
-    #     plugin.add_media_field('customtag', field_extension)
-    #
-    #     try:
-    #         mediafile = self._mediafile_fixture('empty')
-    #         mediafile.update({'customtag': u'F#'})
-    #         mediafile.save()
-    #
-    #         item = Item.from_path(mediafile.path)
-    #         self.assertEqual(item['customtag'], u'F#')
-    #
-    #     finally:
-    #         delattr(MediaFile, 'customtag')
-    #         Item._media_fields.remove('customtag')
-
-    def test_invalid_descriptor(self):
-        with self.assertRaises(ValueError) as cm:
-            MediaFile.add_field('somekey', True)
-        self.assertIn(u'must be an instance of MediaField',
-                      six.text_type(cm.exception))
-
-    def test_overwrite_property(self):
-        with self.assertRaises(ValueError) as cm:
-            MediaFile.add_field('artist', MediaField())
-        self.assertIn(u'property "artist" already exists',
-                      six.text_type(cm.exception))
-
-
 class ReadWriteTestBase(ArtTestMixin, GenreListTestMixin,
-                        ExtendedFieldTestMixin):
-    """Test writing and reading tags. Subclasses must set ``extension`` and
-    ``audio_properties``.
+                        _common.TempDirMixin):
+    """Test writing and reading tags. Subclasses must set ``extension``
+    and ``audio_properties``.
+
+    The basic tests for all audio formats encompass three files provided
+    in our `rsrc` folder: `full.*`, `empty.*`, and `unparseable.*`.
+    Respectively, they should contain a full slate of common fields
+    listed in `full_initial_tags` below; no fields contents at all; and
+    an unparseable release date field.
+
+    To add support for a new file format to MediaFile, add these three
+    files and then create a `ReadWriteTestBase` subclass by copying n'
+    pasting one of the existing subclasses below. You will want to
+    update the `format` field in that subclass, and you will probably
+    need to fiddle with the `bitrate` and other format-specific fields.
+
+    You can also add image tests (using an additional `image.*` fixture
+    file) by including one of the image-related mixins.
     """
 
     full_initial_tags = {
@@ -439,7 +348,9 @@ class ReadWriteTestBase(ArtTestMixin, GenreListTestMixin,
         'artist',
         'album',
         'genre',
+        'lyricist',
         'composer',
+        'arranger',
         'grouping',
         'year',
         'month',
@@ -492,11 +403,10 @@ class ReadWriteTestBase(ArtTestMixin, GenreListTestMixin,
     ]
 
     def setUp(self):
-        self.temp_dir = bytestring_path(tempfile.mkdtemp())
+        self.create_temp_dir()
 
     def tearDown(self):
-        if os.path.isdir(self.temp_dir):
-            shutil.rmtree(self.temp_dir)
+        self.remove_temp_dir()
 
     def test_read_nonexisting(self):
         mediafile = self._mediafile_fixture('full')
@@ -667,6 +577,9 @@ class ReadWriteTestBase(ArtTestMixin, GenreListTestMixin,
         self.assertEqual(mediafile.disctotal, None)
 
     def test_unparseable_date(self):
+        """The `unparseable.*` fixture should not crash but should return None
+        for all parts of the release date.
+        """
         mediafile = self._mediafile_fixture('unparseable')
 
         self.assertIsNone(mediafile.date)
@@ -745,7 +658,9 @@ class ReadWriteTestBase(ArtTestMixin, GenreListTestMixin,
             self.fail('\n  '.join(errors))
 
     def _mediafile_fixture(self, name):
-        name = bytestring_path(name + '.' + self.extension)
+        name = name + '.' + self.extension
+        if not isinstance(name, bytes):
+            name = name.encode('utf8')
         src = os.path.join(_common.RSRC, name)
         target = os.path.join(self.temp_dir, name)
         shutil.copy(src, target)
@@ -941,7 +856,7 @@ class FlacTest(ReadWriteTestBase, PartialTestMixin,
     extension = 'flac'
     audio_properties = {
         'length': 1.0,
-        'bitrate': 175120,
+        'bitrate': 108688,
         'format': u'FLAC',
         'samplerate': 44100,
         'bitdepth': 16,
@@ -995,6 +910,29 @@ class AIFFTest(ReadWriteTestBase, unittest.TestCase):
         'samplerate': 44100,
         'bitdepth': 0,
         'channels': 1,
+    }
+
+
+# Check whether we have a Mutagen version with DSF support. We can
+# remove this once we require a version that includes the feature.
+try:
+    import mutagen.dsf  # noqa
+except:
+    HAVE_DSF = False
+else:
+    HAVE_DSF = True
+
+
+@unittest.skipIf(not HAVE_DSF, "Mutagen does not have DSF support")
+class DSFTest(ReadWriteTestBase, unittest.TestCase):
+    extension = 'dsf'
+    audio_properties = {
+        'length': 0.01,
+        'bitrate': 11289600,
+        'format': u'DSD Stream File',
+        'samplerate': 5644800,
+        'bitdepth': 1,
+        'channels': 2,
     }
 
 
