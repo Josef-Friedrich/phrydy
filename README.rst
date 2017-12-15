@@ -8,9 +8,13 @@
 phrydy
 ======
 
-Handles low-level interfacing for files' tags. Wraps Mutagen to
+This package originates from the file `beets/mediafile.py
+<mediafile.py https://github.com/beetbox/beets/blob/master/beets/mediafile.py>`_
+of the `beets project <http://beets.io>`_.
+
+Handles low-level interfacing for files’ tags. Wraps Mutagen to
 automatically detect file types and provide a unified interface for a
-useful subset of music files' tags.
+useful subset of music files’ tags.
 
 Usage
 -----
