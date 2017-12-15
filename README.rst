@@ -34,3 +34,19 @@ if no tag is present. If no value is available, the value will be false
 Internally `MediaFile` uses `MediaField` descriptors to access the
 data from the tags. In turn `MediaField` uses a number of
 `StorageStyle` strategies to handle format specific logic.
+
+Test
+----
+
+::
+
+        tox
+
+
+Publish new version
+-------------------
+
+::
+        git tag 1.1.1
+        git push --tags
+        python setup.py sdist upload
