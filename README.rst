@@ -8,7 +8,7 @@
 phrydy
 ======
 
-This package originates from the file `beets/mediafile.py  <https://github.com/beetbox/beets/blob/master/beets/mediafile.py>`_
+This package originates from the file `beets/mediafile.py <https://github.com/beetbox/beets/blob/master/beets/mediafile.py>`_
 of the `beets project <http://beets.io>`_.
 
 Handles low-level interfacing for files’ tags. Wraps Mutagen to
@@ -43,7 +43,7 @@ Test
         tox
 
 
-Publish new version
+Publish a new version
 -------------------
 
 ::
@@ -53,7 +53,13 @@ Publish new version
         python setup.py sdist upload
 
 
-Generate documentation
+Package documentation
+------------------------------
+
+The package documentation is hosted on
+`readthedocs <http://phrydy.readthedocs.io>`_.
+
+Generate the package documentation:
 
 ::
 
