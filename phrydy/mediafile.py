@@ -100,7 +100,7 @@ class FileTypeError(UnreadableFileError):
     """
     def __init__(self, path, mutagen_type=None):
         if mutagen_type is None:
-            msg = repr(path)
+            msg = u'{0!r}: not in a recognized format'.format(path)
         else:
             msg = u'{0}: of mutagen type {1}'.format(repr(path), mutagen_type)
         Exception.__init__(self, msg)
@@ -158,14 +158,13 @@ def _safe_cast(out_type, val):
             return int(val)
         else:
             # Process any other type as a string.
-            if not isinstance(val, six.string_types):
+            if isinstance(val, bytes):
+                val = val.decode('utf-8', 'ignore')
+            elif not isinstance(val, six.string_types):
                 val = six.text_type(val)
             # Get a number from the front of the string.
-            val = re.match(r'[0-9]*', val.strip()).group(0)
-            if not val:
-                return 0
-            else:
-                return int(val)
+            match = re.match(r'[\+-]?[0-9]+', val.strip())
+            return int(match.group(0)) if match else 0
 
     elif out_type == bool:
         try:
@@ -1321,7 +1320,7 @@ class DateField(MediaField):
         for item in items:
             try:
                 items_.append(int(item))
-            except:
+            except (TypeError, ValueError):
                 items_.append(None)
         return items_
 
@@ -1641,6 +1640,14 @@ class MediaFile(object):
         MP4StorageStyle('\xa9wrt'),
         StorageStyle('COMPOSER'),
         ASFStorageStyle('WM/Composer'),
+    )
+    composer_sort = MediaField(
+        MP3StorageStyle('TSOC'),
+        MP3DescStorageStyle(u'composersortorder'),
+        MP4StorageStyle('soco'),
+        StorageStyle('composersort'),
+        StorageStyle('composersortorder'),
+        ASFStorageStyle('WM/ComposerSortOrder'),
     )
     arranger = MediaField(
         MP3PeopleStorageStyle('TIPL', involvement='arranger'),
@@ -2003,6 +2010,38 @@ class MediaFile(object):
         out_type=float,
     )
 
+    # EBU R128 fields.
+    r128_track_gain = MediaField(
+        MP3DescStorageStyle(
+            u'R128_TRACK_GAIN'
+        ),
+        MP4StorageStyle(
+            '----:com.apple.iTunes:R128_TRACK_GAIN'
+        ),
+        StorageStyle(
+            u'R128_TRACK_GAIN'
+        ),
+        ASFStorageStyle(
+            u'R128_TRACK_GAIN'
+        ),
+        out_type=int,
+    )
+    r128_album_gain = MediaField(
+        MP3DescStorageStyle(
+            u'R128_ALBUM_GAIN'
+        ),
+        MP4StorageStyle(
+            '----:com.apple.iTunes:R128_ALBUM_GAIN'
+        ),
+        StorageStyle(
+            u'R128_ALBUM_GAIN'
+        ),
+        ASFStorageStyle(
+            u'R128_ALBUM_GAIN'
+        ),
+        out_type=int,
+    )
+
     initial_key = MediaField(
         MP3StorageStyle('TKEY'),
         MP4StorageStyle('----:com.apple.iTunes:initialkey'),
@@ -2010,14 +2049,6 @@ class MediaFile(object):
         ASFStorageStyle('INITIALKEY'),
     )
 
-    composer_sort = MediaField(
-        MP3StorageStyle('TSOC'),
-        MP3DescStorageStyle(u'composersortorder'),
-        MP4StorageStyle('soco'),
-        StorageStyle('composersort'),
-        StorageStyle('composersortorder'),
-        ASFStorageStyle('WM/ComposerSortOrder'),
-    )
     work = MediaField(
         MP3DescStorageStyle(u'Work'),
         MP4StorageStyle('----:com.apple.iTunes:WORK'),
