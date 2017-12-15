@@ -24,7 +24,7 @@ setup(
     packages=['phrydy'],
     long_description=read('README.rst'),
     install_requires=[
-        'mutagen>=1.39', 'enum34', 'six>=1.11.0', 'ansicolor'
+        'mutagen>=1.39', 'enum34', 'six>=1.10.0', 'ansicolor'
     ],
     scripts=['bin/phrydy-debug'],
     zip_safe=False)
