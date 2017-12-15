@@ -8,7 +8,7 @@
 phrydy
 ======
 
-This package originates from the file `beets/mediafile.py <mediafile.py https://github.com/beetbox/beets/blob/master/beets/mediafile.py>`_
+This package originates from the file `beets/mediafile.py < https://github.com/beetbox/beets/blob/master/beets/mediafile.py>`_
 of the `beets project <http://beets.io>`_.
 
 Handles low-level interfacing for files’ tags. Wraps Mutagen to
