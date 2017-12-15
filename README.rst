@@ -51,4 +51,10 @@ Publish new version
         git tag 1.1.1
         git push --tags
         python setup.py sdist upload
-        python setup.py build_sphinx upload_sphinx
+
+
+Generate documentation
+
+::
+
+        python setup.py build_sphinx
