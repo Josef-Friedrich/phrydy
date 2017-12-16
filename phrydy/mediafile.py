@@ -58,8 +58,6 @@ import enum
 import logging
 import six
 
-from phrydy.utils import as_string, syspath, displayable_path
-
 __all__ = ['UnreadableFileError', 'FileTypeError', 'MediaFile']
 
 log = logging.getLogger(__name__)
