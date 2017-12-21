@@ -1252,7 +1252,7 @@ class DateField(MediaField):
     and setter serializes such an instance into a string.
 
     For granular access to year, month, and day, use the ``*_field``
-    methods to create corresponding `DateItemField`s.
+    methods to create corresponding `DateItemField` s.
     """
     def __init__(self, *date_styles, **kwargs):
         """``date_styles`` is a list of ``StorageStyle``s to store and

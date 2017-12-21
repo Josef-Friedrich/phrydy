@@ -5,7 +5,7 @@ Submodules
 ----------
 
 phrydy.doc module
--------------------
+-----------------
 
 .. automodule:: phrydy.doc
     :members:
@@ -14,6 +14,14 @@ phrydy.doc module
 
 .. autodata:: phrydy.doc.fields
     :annotation: = metadata description
+
+phrydy.mediafile module
+-----------------------
+
+.. automodule:: phrydy.mediafile
+    :members:
+    :undoc-members:
+    :show-inheritance:
 
 phrydy.utils module
 -------------------
