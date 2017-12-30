@@ -310,6 +310,15 @@ A multidimensional dictionary documenting all metadata fields.
 """
 
 
+def merge_fields(*fields):
+    arguments = locals()
+    out = {}
+    for fields in arguments['fields']:
+        out.update(fields)
+
+    return out
+
+
 def get_max_field_length(fields):
     """Get the length of the longest field in the dictionary ``fields``.
 

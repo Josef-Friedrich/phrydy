@@ -61,6 +61,24 @@ class TestDoc(unittest.TestCase):
         for field in MediaFile.fields():
             self.assertTrue(doc.fields.get(field), field)
 
+    def test_function_merge_fields(self):
+        field1 = {
+            'title': {
+                'description': 'The title of a audio file.',
+                'category': 'ordinary',
+            },
+        }
+        field2 = {
+            'arranger': {
+                'description': 'arranger',
+                'category': 'ordinary',
+            },
+        }
+        out = doc.merge_fields(field1, field2)
+        self.assertEqual(out['arranger']['description'], 'arranger')
+        self.assertEqual(out['title']['description'],
+                         'The title of a audio file.')
+
 
 if __name__ == '__main__':
     unittest.main()
