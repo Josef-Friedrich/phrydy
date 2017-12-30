@@ -37,11 +37,11 @@ fields = {
         'category': 'ordinary',
     },
     'r128_track_gain': {
-        'description': 'r128_track_gain',
+        'description': 'An optional gain for track normalization',
         'category': 'ordinary',
     },
     'r128_album_gain': {
-        'description': 'rg_album_gain',
+        'description': 'An optional gain for album normalization',
         'category': 'ordinary',
     },
     'rg_album_gain': {
