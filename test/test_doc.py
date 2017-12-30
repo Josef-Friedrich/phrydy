@@ -56,6 +56,11 @@ class TestDoc(unittest.TestCase):
         output = self.output.split('\n')
         self.assertTrue('acoustid_fingerprint' in output[0])
 
+    def test_all_fields_are_documented(self):
+        from phrydy.mediafile import MediaFile
+        for field in MediaFile.fields():
+            self.assertTrue(doc.fields.get(field), field)
+
 
 if __name__ == '__main__':
     unittest.main()

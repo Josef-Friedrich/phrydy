@@ -8,6 +8,54 @@ fields = {
         'description': 'The title of a audio file.',
         'category': 'ordinary',
     },
+    'arranger': {
+        'description': 'arranger',
+        'category': 'ordinary',
+    },
+    'art': {
+        'description': 'art',
+        'category': 'ordinary',
+    },
+    'date': {
+        'description': 'date',
+        'category': 'ordinary',
+    },
+    'original_date': {
+        'description': 'original_date',
+        'category': 'ordinary',
+    },
+    'initial_key': {
+        'description': 'initial_key',
+        'category': 'ordinary',
+    },
+    'images': {
+        'description': 'images',
+        'category': 'ordinary',
+    },
+    'rg_track_peak': {
+        'description': 'rg_track_peak',
+        'category': 'ordinary',
+    },
+    'r128_track_gain': {
+        'description': 'r128_track_gain',
+        'category': 'ordinary',
+    },
+    'r128_album_gain': {
+        'description': 'rg_album_gain',
+        'category': 'ordinary',
+    },
+    'rg_album_gain': {
+        'description': 'rg_album_gain',
+        'category': 'ordinary',
+    },
+    'rg_album_peak': {
+        'description': 'rg_album_peak',
+        'category': 'ordinary',
+    },
+    'rg_track_gain': {
+        'description': 'rg_track_gain',
+        'category': 'ordinary',
+    },
     'artist': {
         'description': 'artist',
         'category': 'ordinary',
@@ -41,6 +89,10 @@ fields = {
     },
     'genre': {
         'description': 'genre',
+        'category': 'ordinary',
+    },
+    'genres': {
+        'description': 'genres',
         'category': 'ordinary',
     },
     'composer': {
@@ -101,6 +153,10 @@ fields = {
     # Separator
     'lyrics': {
         'description': 'lyrics',
+        'category': 'ordinary',
+    },
+    'lyricist': {
+        'description': 'lyricist',
         'category': 'ordinary',
     },
     'comments': {
