@@ -16,44 +16,12 @@ fields = {
         'description': 'art',
         'category': 'ordinary',
     },
-    'date': {
-        'description': 'date',
-        'category': 'ordinary',
-    },
-    'original_date': {
-        'description': 'original_date',
-        'category': 'ordinary',
-    },
     'initial_key': {
         'description': 'initial_key',
         'category': 'ordinary',
     },
     'images': {
         'description': 'images',
-        'category': 'ordinary',
-    },
-    'rg_track_peak': {
-        'description': 'rg_track_peak',
-        'category': 'ordinary',
-    },
-    'r128_track_gain': {
-        'description': 'An optional gain for track normalization',
-        'category': 'ordinary',
-    },
-    'r128_album_gain': {
-        'description': 'An optional gain for album normalization',
-        'category': 'ordinary',
-    },
-    'rg_album_gain': {
-        'description': 'rg_album_gain',
-        'category': 'ordinary',
-    },
-    'rg_album_peak': {
-        'description': 'rg_album_peak',
-        'category': 'ordinary',
-    },
-    'rg_track_gain': {
-        'description': 'rg_track_gain',
         'category': 'ordinary',
     },
     'artist': {
@@ -107,31 +75,39 @@ fields = {
         'description': 'grouping',
         'category': 'ordinary',
     },
-    # Separator
+    # Date
+    'date': {
+        'description': 'date',
+        'category': 'date',
+    },
     'year': {
         'description': 'The release year of the specific release',
-        'category': 'ordinary',
+        'category': 'date',
     },
     'month': {
         'description': 'The release month of the specific release',
-        'category': 'ordinary',
+        'category': 'date',
     },
     'day': {
         'description': 'The release day of the specific release',
-        'category': 'ordinary',
+        'category': 'date',
+    },
+    'original_date': {
+        'description': 'original_date',
+        'category': 'date',
     },
     'original_year': {
         'description': 'The release year of the original version of the album',
-        'category': 'ordinary',
+        'category': 'date',
     },
     'original_month': {
         'description': 'The release month of the original version of the ' +
                        'album',
-        'category': 'ordinary',
+        'category': 'date',
     },
     'original_day': {
         'description': 'The release day of the original version of the album',
-        'category': 'ordinary',
+        'category': 'date',
     },
     # Separator
     'track': {
@@ -261,6 +237,31 @@ fields = {
     'samplerate': {
         'description': 'in kilohertz, with units: e.g., “48kHz”',
         'category': 'audio',
+    },
+    # rg?
+    'rg_track_peak': {
+        'description': 'rg_track_peak',
+        'category': 'rg',
+    },
+    'r128_track_gain': {
+        'description': 'An optional gain for track normalization',
+        'category': 'rg',
+    },
+    'r128_album_gain': {
+        'description': 'An optional gain for album normalization',
+        'category': 'rg',
+    },
+    'rg_album_gain': {
+        'description': 'rg_album_gain',
+        'category': 'rg',
+    },
+    'rg_album_peak': {
+        'description': 'rg_album_peak',
+        'category': 'rg',
+    },
+    'rg_track_gain': {
+        'description': 'rg_track_gain',
+        'category': 'rg',
     },
     # MusicBrainz and fingerprint information:
     'mb_trackid': {
