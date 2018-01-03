@@ -18,6 +18,7 @@ HAVE_SYMLINK = sys.platform != 'win32'
 # Convenience methods for setting up a temporary sandbox directory for tests
 # that need to interact with the filesystem.
 
+
 class TempDirMixin(object):
     """Text mixin for creating and deleting a temporary directory.
     """

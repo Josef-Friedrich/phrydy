@@ -56,6 +56,29 @@ class TestDoc(unittest.TestCase):
         output = self.output.split('\n')
         self.assertTrue('acoustid_fingerprint' in output[0])
 
+    def test_all_fields_are_documented(self):
+        from phrydy.mediafile import MediaFile
+        for field in MediaFile.fields():
+            self.assertTrue(doc.fields.get(field), field)
+
+    def test_function_merge_fields(self):
+        field1 = {
+            'title': {
+                'description': 'The title of a audio file.',
+                'category': 'ordinary',
+            },
+        }
+        field2 = {
+            'arranger': {
+                'description': 'arranger',
+                'category': 'ordinary',
+            },
+        }
+        out = doc.merge_fields(field1, field2)
+        self.assertEqual(out['arranger']['description'], 'arranger')
+        self.assertEqual(out['title']['description'],
+                         'The title of a audio file.')
+
 
 if __name__ == '__main__':
     unittest.main()

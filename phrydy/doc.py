@@ -8,6 +8,22 @@ fields = {
         'description': 'The title of a audio file.',
         'category': 'ordinary',
     },
+    'arranger': {
+        'description': 'arranger',
+        'category': 'ordinary',
+    },
+    'art': {
+        'description': 'art',
+        'category': 'ordinary',
+    },
+    'initial_key': {
+        'description': 'initial_key',
+        'category': 'ordinary',
+    },
+    'images': {
+        'description': 'images',
+        'category': 'ordinary',
+    },
     'artist': {
         'description': 'artist',
         'category': 'ordinary',
@@ -43,6 +59,10 @@ fields = {
         'description': 'genre',
         'category': 'ordinary',
     },
+    'genres': {
+        'description': 'genres',
+        'category': 'ordinary',
+    },
     'composer': {
         'description': 'composer',
         'category': 'ordinary',
@@ -55,31 +75,39 @@ fields = {
         'description': 'grouping',
         'category': 'ordinary',
     },
-    # Separator
+    # Date
+    'date': {
+        'description': 'date',
+        'category': 'date',
+    },
     'year': {
         'description': 'The release year of the specific release',
-        'category': 'ordinary',
+        'category': 'date',
     },
     'month': {
         'description': 'The release month of the specific release',
-        'category': 'ordinary',
+        'category': 'date',
     },
     'day': {
         'description': 'The release day of the specific release',
-        'category': 'ordinary',
+        'category': 'date',
+    },
+    'original_date': {
+        'description': 'original_date',
+        'category': 'date',
     },
     'original_year': {
         'description': 'The release year of the original version of the album',
-        'category': 'ordinary',
+        'category': 'date',
     },
     'original_month': {
         'description': 'The release month of the original version of the ' +
                        'album',
-        'category': 'ordinary',
+        'category': 'date',
     },
     'original_day': {
         'description': 'The release day of the original version of the album',
-        'category': 'ordinary',
+        'category': 'date',
     },
     # Separator
     'track': {
@@ -101,6 +129,10 @@ fields = {
     # Separator
     'lyrics': {
         'description': 'lyrics',
+        'category': 'ordinary',
+    },
+    'lyricist': {
+        'description': 'lyricist',
         'category': 'ordinary',
     },
     'comments': {
@@ -206,6 +238,31 @@ fields = {
         'description': 'in kilohertz, with units: e.g., “48kHz”',
         'category': 'audio',
     },
+    # rg?
+    'rg_track_peak': {
+        'description': 'rg_track_peak',
+        'category': 'rg',
+    },
+    'r128_track_gain': {
+        'description': 'An optional gain for track normalization',
+        'category': 'rg',
+    },
+    'r128_album_gain': {
+        'description': 'An optional gain for album normalization',
+        'category': 'rg',
+    },
+    'rg_album_gain': {
+        'description': 'rg_album_gain',
+        'category': 'rg',
+    },
+    'rg_album_peak': {
+        'description': 'rg_album_peak',
+        'category': 'rg',
+    },
+    'rg_track_gain': {
+        'description': 'rg_track_gain',
+        'category': 'rg',
+    },
     # MusicBrainz and fingerprint information:
     'mb_trackid': {
         'description': 'MusicBrainz track ID',
@@ -252,6 +309,15 @@ A multidimensional dictionary documenting all metadata fields.
         },
     }
 """
+
+
+def merge_fields(*fields):
+    arguments = locals()
+    out = {}
+    for fields in arguments['fields']:
+        out.update(fields)
+
+    return out
 
 
 def get_max_field_length(fields):
