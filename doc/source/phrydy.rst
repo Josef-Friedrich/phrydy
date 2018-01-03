@@ -1,11 +1,19 @@
 phrydy package
 ==============
 
+Module contents
+---------------
+
+.. automodule:: phrydy
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 Submodules
 ----------
 
 phrydy.doc module
------------------
+^^^^^^^^^^^^^^^^^
 
 .. automodule:: phrydy.doc
     :members:
@@ -16,7 +24,7 @@ phrydy.doc module
     :annotation: = metadata description
 
 phrydy.mediafile module
------------------------
+^^^^^^^^^^^^^^^^^^^^^^^
 
 .. automodule:: phrydy.mediafile
     :members:
@@ -24,18 +32,9 @@ phrydy.mediafile module
     :show-inheritance:
 
 phrydy.utils module
--------------------
+^^^^^^^^^^^^^^^^^^^
 
 .. automodule:: phrydy.utils
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-
-Module contents
----------------
-
-.. automodule:: phrydy
     :members:
     :undoc-members:
     :show-inheritance:
