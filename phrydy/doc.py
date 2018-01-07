@@ -152,6 +152,14 @@ fields = {
                        'has a list of type names',
         'category': 'ordinary',
     },
+    'releasegroup_types': {
+        'description': 'This field collects all items in the MusicBrainz’ API '
+                       ' related to type: `type`, `primary-type and '
+                       '`secondary-type-list`. Main usage of this field is to '
+                       'determine in a secure manner if the release is a '
+                       'soundtrack.',
+        'category': 'music_brainz',
+    },
     # Release
     'label': {
         'description': 'The label which issued the release. There may be ' +
@@ -200,6 +208,14 @@ fields = {
     'work': {
         'description': 'The Musicbrainzs’ work entity.',
         'category': 'ordinary',
+    },
+    'work_hierarchy': {
+        'description': 'The hierarchy of works: The top level work appears '
+                       'first. As separator is this string used: -->. '
+                       'Example: Die Zauberflöte, K. 620 --> Die Zauberflöte, '
+                       'K. 620: Akt I --> Die Zauberflöte, K. 620: Act I, '
+                       'Scene II. No. 2 Aria "Was hör ...',
+        'category': 'music_brainz',
     },
     'albumdisambig': {
         'description': 'albumdisambig',
@@ -286,6 +302,15 @@ fields = {
     },
     'mb_workid': {
         'description': 'MusicBrainz work ID',
+        'category': 'music_brainz',
+    },
+    'mb_workhierarchy_ids': {
+        'description': 'All IDs in the work hierarchy. This field corresponds '
+                       'to the field `work_hierarchy`. The top level work ID '
+                       'appears first. As separator a slash (/) is used.'
+                       'Example: e208c5f5-5d37-3dfc-ac0b-999f207c9e46 / '
+                       '5adc213f-700a-4435-9e95-831ed720f348 / '
+                       'eafec51f-47c5-3c66-8c36-a524246c85f8',
         'category': 'music_brainz',
     },
     'acoustid_fingerprint': {

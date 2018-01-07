@@ -399,9 +399,12 @@ class ReadWriteTestBase(ArtTestMixin, GenreListTestMixin,
         'original_day',
         'original_date',
         'initial_key',
+        # Fields that are not in beets’ mediafile.py
+        'mb_workhierarchy_ids',
         'mb_workid',
+        'releasegroup_types',
+        'work_hierarchy',
         'work',
-
         # 'performers',
     ]
 
