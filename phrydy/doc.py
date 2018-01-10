@@ -338,55 +338,58 @@ A multidimensional dictionary documenting all metadata fields.
 """
 
 
-def print_dict_sorted(dictionary, color, align='right'):
-    max_field_length = get_max_field_length(dictionary)
+class Debug(object):
 
-    for key, value in sorted(dictionary.items()):
-        if align == 'right':
-            key = key.rjust(max_field_length, ' ')
-        elif align == 'left':
-            key = key.ljust(max_field_length, ' ')
-        key = key + ':'
-        if color:
-            key = ansicolor.green(key)
-            value = ansicolor.red(value)
-        print(key + ' ' + value)
+    def __init__(self, media_file, MediaClass, field_generator, color=False):
+        self._color = color
 
+        self._fields = MediaClass(media_file)
 
-def print_section(text, color=False):
-    if color:
-        text = ansicolor.blue(text.ljust(60, ' '), reverse=True)
-        line = ''
-    else:
-        line = '\n' + ''.ljust(60, '-')
+        self._fields_mutagen = {}
+        for key, value in self._fields.mgfile.items():
+            self._fields_mutagen[str(key)] = str(value)
 
-    print('\n' + text + line)
+        self._fields_class = {}
+        for key in field_generator():
+            value = getattr(self._fields, key)
+            if key != 'art' and value:
+                value = as_string(value)
+                self._fields_class[key] = value
 
+    def _dict_sorted(self, dictionary, align='right'):
+        max_field_length = get_max_field_length(dictionary)
+        out = []
+        for key, value in sorted(dictionary.items()):
+            if align == 'right':
+                key = key.rjust(max_field_length, ' ')
+            elif align == 'left':
+                key = key.ljust(max_field_length, ' ')
+            key = key + ':'
+            if self._color:
+                key = ansicolor.green(key)
+                value = ansicolor.red(value)
+            out.append(key + ' ' + value)
 
-def print_debug(media_file, MediaClass, field_generator, color=False):
+        return '\n'.join(out)
 
-    fields = MediaClass(media_file)
+    def _section(self, text):
+        if self._color:
+            text = ansicolor.blue(text.ljust(60, ' '), reverse=True)
+            line = ''
+        else:
+            line = '\n' + ''.ljust(60, '-')
 
-    # Raw mutagen values
-    print_section('Raw mutagen values', color)
+        return '\n' + text + line
 
-    mutagen_fields = {}
-    for key, value in fields.mgfile.items():
-        mutagen_fields[str(key)] = str(value)
-    print_dict_sorted(mutagen_fields, color, align='left')
-
-    # Class values
-    print_section('Values provided by the class: ' + MediaClass.__name__,
-                  color)
-
-    class_fields = {}
-    for key in field_generator():
-        value = getattr(fields, key)
-        if key != 'art' and value:
-            value = as_string(value)
-            class_fields[key] = value
-
-    print_dict_sorted(class_fields, color)
+    def output(self):
+        out = [
+            self._section('Raw mutagen values'),
+            self._dict_sorted(self._fields_mutagen, align='left'),
+            self._section('Values provided by the class: ' +
+                          self._fields.__class__.__name__),
+            self._dict_sorted(self._fields_class),
+        ]
+        print('\n'.join(out))
 
 
 def merge_fields(*fields):

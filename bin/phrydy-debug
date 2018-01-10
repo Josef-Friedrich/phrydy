@@ -2,7 +2,7 @@
 
 import phrydy
 from phrydy import MediaFile
-from phrydy.doc import print_debug, print_dict_sorted
+from phrydy.doc import Debug
 import argparse
 
 parser = argparse.ArgumentParser(
@@ -28,9 +28,9 @@ args = parser.parse_args()
 if args.audio:
     print('phrydy version ' + phrydy.__version__)
 
-    print_debug(
+    Debug(
         media_file=args.audio.name,
         MediaClass=MediaFile,
         field_generator=MediaFile.readable_fields,
         color=args.color,
-    )
+    ).output()

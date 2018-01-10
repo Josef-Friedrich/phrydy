@@ -15,12 +15,12 @@ class TestPrintDebug(unittest.TestCase):
 
     def test_print_debug(self):
         with Capturing() as output:
-            doc.print_debug(
+            doc.Debug(
                 os.path.join(os.path.dirname(__file__), 'files', 'full.mp3'),
                 MediaFile,
                 MediaFile.readable_fields,
                 False
-            )
+            ).output()
 
         self.assertEqual(output[-1], '         year: 2001')
 
