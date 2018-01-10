@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 
 import textwrap
+from phrydy.utils import as_string
+import ansicolor
 
 fields = {
     # Ordinary metadata:
@@ -334,6 +336,19 @@ A multidimensional dictionary documenting all metadata fields.
         },
     }
 """
+
+
+def print_debug(media_file, MediaClass, field_generator, color=False):
+    fields = MediaClass(media_file)
+    for key in sorted(field_generator()):
+        value = getattr(fields, key)
+        if key != 'art' and value:
+            key = key + u':'
+            value = as_string(value)
+            if color:
+                key = ansicolor.green(key)
+                value = ansicolor.red(value)
+            print(key + ' ' + value)
 
 
 def merge_fields(*fields):
