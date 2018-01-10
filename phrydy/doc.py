@@ -353,16 +353,40 @@ def print_dict_sorted(dictionary, color, align='right'):
         print(key + ' ' + value)
 
 
+def print_section(text, color=False):
+    if color:
+        text = ansicolor.blue(text.ljust(60, ' '), reverse=True)
+        line = ''
+    else:
+        line = '\n' + ''.ljust(60, '-')
+
+    print('\n' + text + line)
+
+
 def print_debug(media_file, MediaClass, field_generator, color=False):
+
     fields = MediaClass(media_file)
-    orderd_fields = {}
+
+    # Raw mutagen values
+    print_section('Raw mutagen values', color)
+
+    mutagen_fields = {}
+    for key, value in fields.mgfile.items():
+        mutagen_fields[str(key)] = str(value)
+    print_dict_sorted(mutagen_fields, color, align='left')
+
+    # Class values
+    print_section('Values provided by the class: ' + MediaClass.__name__,
+                  color)
+
+    class_fields = {}
     for key in field_generator():
         value = getattr(fields, key)
         if key != 'art' and value:
             value = as_string(value)
-            orderd_fields[key] = value
+            class_fields[key] = value
 
-    print_dict_sorted(orderd_fields, color)
+    print_dict_sorted(class_fields, color)
 
 
 def merge_fields(*fields):

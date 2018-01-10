@@ -1,25 +1,36 @@
 #! /usr/bin/env python
 
+import phrydy
 from phrydy import MediaFile
 from phrydy.doc import print_debug, print_dict_sorted
 import argparse
 
-parser = argparse.ArgumentParser(description='Process some integers.')
-parser.add_argument('audio', type=file, help='A audio file')
-parser.add_argument('-m', '--mutagen', action='store_true', help='print raw mutagen object')
-parser.add_argument('-f', '--fields', action='store_true', help='print all fields', default=True)
+parser = argparse.ArgumentParser(
+    description='Debugging tool of the Python package “phrydy”, an easy \
+    wrapper around the “mutagen” library.'
+)
+
+parser.add_argument(
+    'audio',
+    help='A audio file',
+    type=file,
+)
+
+parser.add_argument(
+    '-c',
+    '--color',
+    help='Colorize the output',
+    action='store_true',
+)
 
 args = parser.parse_args()
 
 if args.audio:
+    print('phrydy version ' + phrydy.__version__)
 
-    if args.mutagen:
-        f = MediaFile(args.audio.name)
-        fields = {}
-        for key, value in f.mgfile.items():
-            fields[str(key)] = str(value)
-        print_dict_sorted(fields, True, 'left')
-
-    if args.fields:
-        print_debug(args.audio.name, MediaFile, MediaFile.readable_fields,
-                    True)
+    print_debug(
+        media_file=args.audio.name,
+        MediaClass=MediaFile,
+        field_generator=MediaFile.readable_fields,
+        color=args.color,
+    )
