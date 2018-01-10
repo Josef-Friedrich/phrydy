@@ -1,31 +1,25 @@
 #! /usr/bin/env python
 
 from phrydy import MediaFile
-from phrydy.utils import as_string
-from ansicolor import green
-from ansicolor import red
-
+from phrydy.doc import print_debug, print_dict_sorted
 import argparse
 
 parser = argparse.ArgumentParser(description='Process some integers.')
 parser.add_argument('audio', type=file, help='A audio file')
 parser.add_argument('-m', '--mutagen', action='store_true', help='print raw mutagen object')
-parser.add_argument('-f', '--fields', action='store_true', help='print all fields')
+parser.add_argument('-f', '--fields', action='store_true', help='print all fields', default=True)
 
 args = parser.parse_args()
 
 if args.audio:
-    f = MediaFile(args.audio.name)
 
     if args.mutagen:
-        print(f.mgfile)
-    elif args.fields:
-        print(sorted(MediaFile.readable_fields()))
-    else:
-        fields = sorted(MediaFile.readable_fields())
-        for key in sorted(MediaFile.readable_fields()):
-            value = getattr(f, key)
-            if key != 'art':
-                if value:
-                  print(green(as_string(key)) + ':')
-                  print('  ' + red(as_string(value)) + '\n')
+        f = MediaFile(args.audio.name)
+        fields = {}
+        for key, value in f.mgfile.items():
+            fields[str(key)] = str(value)
+        print_dict_sorted(fields, True, 'left')
+
+    if args.fields:
+        print_debug(args.audio.name, MediaFile, MediaFile.readable_fields,
+                    True)

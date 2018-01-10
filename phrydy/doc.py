@@ -338,17 +338,31 @@ A multidimensional dictionary documenting all metadata fields.
 """
 
 
+def print_dict_sorted(dictionary, color, align='right'):
+    max_field_length = get_max_field_length(dictionary)
+
+    for key, value in sorted(dictionary.items()):
+        if align == 'right':
+            key = key.rjust(max_field_length, ' ')
+        elif align == 'left':
+            key = key.ljust(max_field_length, ' ')
+        key = key + ':'
+        if color:
+            key = ansicolor.green(key)
+            value = ansicolor.red(value)
+        print(key + ' ' + value)
+
+
 def print_debug(media_file, MediaClass, field_generator, color=False):
     fields = MediaClass(media_file)
-    for key in sorted(field_generator()):
+    orderd_fields = {}
+    for key in field_generator():
         value = getattr(fields, key)
         if key != 'art' and value:
-            key = key + u':'
             value = as_string(value)
-            if color:
-                key = ansicolor.green(key)
-                value = ansicolor.red(value)
-            print(key + ' ' + value)
+            orderd_fields[key] = value
+
+    print_dict_sorted(orderd_fields, color)
 
 
 def merge_fields(*fields):

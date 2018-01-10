@@ -8,17 +8,21 @@ import unittest
 from phrydy import doc
 from phrydy import MediaFile
 import os
+from ._common import Capturing
 
 
 class TestPrintDebug(unittest.TestCase):
 
     def test_print_debug(self):
-        doc.print_debug(
-            os.path.join(os.path.dirname(__file__), 'files', 'full.mp3'),
-            MediaFile,
-            MediaFile.readable_fields,
-            True
-        )
+        with Capturing() as output:
+            doc.print_debug(
+                os.path.join(os.path.dirname(__file__), 'files', 'full.mp3'),
+                MediaFile,
+                MediaFile.readable_fields,
+                False
+            )
+
+        self.assertEqual(output[0], '        album: the album')
 
 
 class TestDoc(unittest.TestCase):

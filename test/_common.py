@@ -5,6 +5,11 @@ import os
 import sys
 import tempfile
 import shutil
+import six
+if six.PY2:
+    from cStringIO import StringIO
+else:
+    from io import StringIO
 
 # Test resources path.
 RSRC = bytestring_path(os.path.join(os.path.dirname(__file__), 'files'))
@@ -37,3 +42,25 @@ class TempDirMixin(object):
         """
         if os.path.isdir(self.temp_dir):
             shutil.rmtree(self.temp_dir)
+
+
+class Capturing(list):
+
+    def __init__(self, channel='out'):
+        self.channel = channel
+
+    def __enter__(self):
+        if self.channel == 'out':
+            self._pipe = sys.stdout
+            sys.stdout = self._stringio = StringIO()
+        elif self.channel == 'err':
+            self._pipe = sys.stderr
+            sys.stderr = self._stringio = StringIO()
+        return self
+
+    def __exit__(self, *args):
+        self.extend(self._stringio.getvalue().splitlines())
+        if self.channel == 'out':
+            sys.stdout = self._pipe
+        elif self.channel == 'err':
+            sys.stderr = self._pipe
