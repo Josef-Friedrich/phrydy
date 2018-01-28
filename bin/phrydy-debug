@@ -2,12 +2,22 @@
 
 import phrydy
 from phrydy import MediaFile
-from phrydy.doc import print_debug, print_dict_sorted
+from phrydy.doc import print_debug, print_dict_sorted, get_doc
 import argparse
+from phrydy._version import get_versions
+
+
+
+def description():
+    """Build the description string."""
+    return '''\
+    Debugging tool of the Python package “phrydy”, an easy \
+    wrapper around the “mutagen” library.
+    ''' + get_doc()
 
 parser = argparse.ArgumentParser(
-    description='Debugging tool of the Python package “phrydy”, an easy \
-    wrapper around the “mutagen” library.'
+    formatter_class=argparse.RawDescriptionHelpFormatter,
+    description=description()
 )
 
 parser.add_argument(
@@ -21,6 +31,13 @@ parser.add_argument(
     '--color',
     help='Colorize the output',
     action='store_true',
+)
+
+parser.add_argument(
+    '-v',
+    '--version',
+    action='version',
+    version='%(prog)s {version}'.format(version=get_versions()['version'])
 )
 
 args = parser.parse_args()

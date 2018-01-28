@@ -419,7 +419,7 @@ def get_doc(additional_doc=False,
     else:
         f = fields
     field_length = get_max_field_length(f)
-    field_length = field_length + len(field_prefix) + len(field_suffix) + 1
+    field_length = field_length + len(field_prefix) + len(field_suffix) + 4
     description_indent = ' ' * (indent + field_length)
     output = ''
     for field, description in sorted(f.items()):
@@ -428,7 +428,7 @@ def get_doc(additional_doc=False,
         output += field.ljust(field_length) + \
             textwrap.fill(
                 description,
-                width=60,
+                width=78,
                 initial_indent=description_indent,
                 subsequent_indent=description_indent
             )[field_length:] + '\n\n\n'
