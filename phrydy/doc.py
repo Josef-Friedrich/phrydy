@@ -386,7 +386,7 @@ def print_debug(media_file, MediaClass, field_generator, color=False):
             value = as_string(value)
             class_fields[key] = value
 
-    print_dict_sorted(class_fields, color)
+    print_dict_sorted(class_fields, color, align='left')
 
 
 def merge_fields(*fields):
