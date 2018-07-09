@@ -1,0 +1,1 @@
+Handles low-level interfacing for files' tags. Wraps Mutagen to automatically detect file types and provide a unified interface for a useful subset of music files’ tags. 
