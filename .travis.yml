@@ -1,23 +1,19 @@
 dist: trusty
 sudo: required
 language: python
-
 matrix:
-    include:
-        - python: 2.7
-          env: TOXENV=py27
-        - python: 3.6
-          env: TOXENV=py36
-        - python: 3.6
-          env: TOXENV=docs
-        - python: 3.6
-          env: TOXENV=flake8
-
+  include:
+  - python: 2.7
+    env: TOXENV=py27
+  - python: 3.6
+    env: TOXENV=py36
+  - python: 3.6
+    env: TOXENV=docs
+  - python: 3.6
+    env: TOXENV=flake8
 install:
-    - pip install tox
-
+- pip install tox
 script: tox
-
 jobs:
   include:
   - stage: deploy
@@ -28,6 +24,6 @@ jobs:
       provider: pypi
       user: JosefFriedrich
       password:
-        secure:  OI0HoufAHISk92HXqaoiOpCg9kpTV0QJD59Hm4y8ngCIZhzJDcwSsT8lyuMJa2Rz5LI+wPl4Rq0dwnDT+TeJ3EbyWDIqjL3Siuzc7+lp46iVQin1j2iCRrPPStLRTeFgLqXAWz36fk1w8r43UF2R8CV8LvRZVk/YhtcOC6QWAqRgHkwlgFdbioJsEX1g6Ju7ljq/OaPY3yJxKaGhmCMfoWibu8WBp2rmurlAeTZcu2S0KoDmEajL7QsC8hTleynJUYGBkhUECsWSy33ypsvaSAGOW4NQmyYGTTohZEF6VWrlhIV5tDHYuXGU/HmA76y1gEWS9zLZ0411gO0nQICCBg2bIFxzaRkd/sj5AfMRYuvfrd9S5355VxiKYAvHGyRsCxg3kneltBDSicuooSq3mpNyNmTjPyLzNgnhezeKj1XDCTVAsPhICFHbSLaHSvNCqRIggVftDHsJhC8fS0vI9yTOr93fhdfcIDWdvcZXo0L95ZKmahpRxIloP3XRmcqw/w7zQjx8sSFYAtWS5gP4P6vBkzsjM9AMbHRIkcnZCq9/5h4iD/hXDaHLUC68T6sPW/DpAEbwUiD4HS1UCh8MhaBcF0uweqjplEVVwEE1CMAdXz44+H6PG+E89kfWcX6KulebAHuxrqV3vx6DkajI4gy4l/Ntyl/OO18feX6BuzY=
+        secure: NKHkjM6Igr6ZtR5zphI5IuFQjSE8DApgoU64mFFNCjpwQ2g0KufWNSx28R6dpBx5YXtScKJ4Dos5IRgs5pxJuuKmbQ2t13dKruxHmZOWC2/VcLIQcHnvlYOvAwVMWHkxuGrRSv7uAw1XFqu5AncKl2dJDr6wG+qKToq/dDBynl8sf1LIq3R5/oH4zSK0ejg2wZVK3u6ubTd6e8vg/0ahwgYGXc3Shlvf5L62VHQAvePtjPQjMYowGuo1S1VVcwpvT+BcroI6tNc1DPb/gjOVNB2tEh/epjufgBWE8Vv/SFYL6JjGpx7l1aRhzM9RCoBiBiixOzbVGwWQ+AaV5SapTBZdaGA/01UzrLjEc7CNKVlXbjbYzBalyyJMw+Xi+hG/M3nKdqJMPkfKwQOOvL3n7QDCvjnrC6J1E60utEVok38lUbQUR18Uk9yLZY+Nuitf3rclfxQkLJQ67ahs7SrGH/ux85z2PX/vlTlZk4LH9lhdaRIZFwCOChd3s6G9FbzMr4gaNTf0pDg6GTxkzD8Zl9RrGzgs0fs7bPMEGVJgBq1gvanw9PZl2lKpkHpMO7+QCNnOTlz5gsgA4zoUS6Ha/gcRi0SWObgoMpIws/71GSIb1wzm2aSaIFVDevgldlHUb32wWFJUXzN8fHJ9azjHhky8pj2A/JKSUgp0voa9l3g=
       on:
         tags: true
