@@ -17,3 +17,17 @@ install:
     - pip install tox
 
 script: tox
+
+jobs:
+  include:
+  - stage: deploy
+    script: echo "Deploying on PyPi ..."
+    env:
+    install:
+    deploy:
+      provider: pypi
+      user: JosefFriedrich
+      password:
+        secure:  OI0HoufAHISk92HXqaoiOpCg9kpTV0QJD59Hm4y8ngCIZhzJDcwSsT8lyuMJa2Rz5LI+wPl4Rq0dwnDT+TeJ3EbyWDIqjL3Siuzc7+lp46iVQin1j2iCRrPPStLRTeFgLqXAWz36fk1w8r43UF2R8CV8LvRZVk/YhtcOC6QWAqRgHkwlgFdbioJsEX1g6Ju7ljq/OaPY3yJxKaGhmCMfoWibu8WBp2rmurlAeTZcu2S0KoDmEajL7QsC8hTleynJUYGBkhUECsWSy33ypsvaSAGOW4NQmyYGTTohZEF6VWrlhIV5tDHYuXGU/HmA76y1gEWS9zLZ0411gO0nQICCBg2bIFxzaRkd/sj5AfMRYuvfrd9S5355VxiKYAvHGyRsCxg3kneltBDSicuooSq3mpNyNmTjPyLzNgnhezeKj1XDCTVAsPhICFHbSLaHSvNCqRIggVftDHsJhC8fS0vI9yTOr93fhdfcIDWdvcZXo0L95ZKmahpRxIloP3XRmcqw/w7zQjx8sSFYAtWS5gP4P6vBkzsjM9AMbHRIkcnZCq9/5h4iD/hXDaHLUC68T6sPW/DpAEbwUiD4HS1UCh8MhaBcF0uweqjplEVVwEE1CMAdXz44+H6PG+E89kfWcX6KulebAHuxrqV3vx6DkajI4gy4l/Ntyl/OO18feX6BuzY=
+      on:
+        tags: true
