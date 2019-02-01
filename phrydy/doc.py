@@ -286,6 +286,10 @@ fields = {
         'description': 'MusicBrainz track ID',
         'category': 'music_brainz',
     },
+    'mb_releasetrackid': {
+        'description': 'MusicBrainz release track ID',
+        'category': 'music_brainz',
+    },
     'mb_albumid': {
         'description': 'MusicBrainz album ID',
         'category': 'music_brainz',

@@ -22,7 +22,7 @@ class TestPrintDebug(unittest.TestCase):
                 False
             )
 
-        self.assertEqual(output[-1], 'year         : 2001')
+        self.assertEqual(output[-1], 'year             : 2001')
 
 
 class TestDoc(unittest.TestCase):
