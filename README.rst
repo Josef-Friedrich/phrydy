@@ -41,7 +41,7 @@ Usage
 
 ::
 
-    >>> from phrydy install MediaFile
+    >>> from phrydy import MediaFile
     >>> f = MediaFile('Lucy.mp3')
     >>> f.title
     u'Lucy in the Sky with Diamonds'
