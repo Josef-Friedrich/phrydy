@@ -10,11 +10,12 @@ matrix:
   - python: 3.6
     env: TOXENV=flake8
 
+install:
+- pip install tox
+script: tox
+
 jobs:
   include:
-  - state: test
-    install: pip install tox
-    script: tox
   - stage: deploy
     script: echo "Deploying on PyPi ..."
     python: 3.6
