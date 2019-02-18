@@ -1,4 +1,5 @@
 #! /usr/bin/env python
+# -*- coding: utf-8 -*-
 
 import phrydy
 from phrydy import MediaFile
@@ -21,9 +22,8 @@ parser = argparse.ArgumentParser(
 )
 
 parser.add_argument(
-    'audio',
+    'audio_file',
     help='A audio file',
-    type=file,
 )
 
 parser.add_argument(
@@ -46,7 +46,7 @@ if args.audio:
     print('phrydy version ' + phrydy.__version__)
 
     print_debug(
-        media_file=args.audio.name,
+        media_file=args.audio_file,
         MediaClass=MediaFile,
         field_generator=MediaFile.readable_fields,
         color=args.color,
