@@ -39,6 +39,8 @@ From PyPI
 Usage
 =====
 
+Basic usage:
+
 ::
 
     >>> from phrydy import MediaFile
@@ -47,6 +49,20 @@ Usage
     u'Lucy in the Sky with Diamonds'
     >>> f.artist = 'The Beatles'
     >>> f.save()
+
+List all available fields of a media file:
+
+.. code:: Python
+
+    from phrydy import MediaFile
+
+    media_file = MediaFile('test/files/full.mp3')
+
+    for key in MediaFile.readable_fields():
+        value = getattr(media_file, key)
+        if key != 'art' and value:
+            print('{}: {}'.format(key, value))
+
 
 A field will always return a reasonable value of the correct type, even
 if no tag is present. If no value is available, the value will be false
