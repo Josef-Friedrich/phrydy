@@ -14,17 +14,17 @@ install:
 - pip install tox
 script: tox
 
-jobs:
-  include:
-  - stage: deploy
-    script: echo "Deploying on PyPi ..."
-    python: 3.6
-    env:
-    install:
-    deploy:
-      provider: pypi
-      user: JosefFriedrich
-      password:
-        secure: NKHkjM6Igr6ZtR5zphI5IuFQjSE8DApgoU64mFFNCjpwQ2g0KufWNSx28R6dpBx5YXtScKJ4Dos5IRgs5pxJuuKmbQ2t13dKruxHmZOWC2/VcLIQcHnvlYOvAwVMWHkxuGrRSv7uAw1XFqu5AncKl2dJDr6wG+qKToq/dDBynl8sf1LIq3R5/oH4zSK0ejg2wZVK3u6ubTd6e8vg/0ahwgYGXc3Shlvf5L62VHQAvePtjPQjMYowGuo1S1VVcwpvT+BcroI6tNc1DPb/gjOVNB2tEh/epjufgBWE8Vv/SFYL6JjGpx7l1aRhzM9RCoBiBiixOzbVGwWQ+AaV5SapTBZdaGA/01UzrLjEc7CNKVlXbjbYzBalyyJMw+Xi+hG/M3nKdqJMPkfKwQOOvL3n7QDCvjnrC6J1E60utEVok38lUbQUR18Uk9yLZY+Nuitf3rclfxQkLJQ67ahs7SrGH/ux85z2PX/vlTlZk4LH9lhdaRIZFwCOChd3s6G9FbzMr4gaNTf0pDg6GTxkzD8Zl9RrGzgs0fs7bPMEGVJgBq1gvanw9PZl2lKpkHpMO7+QCNnOTlz5gsgA4zoUS6Ha/gcRi0SWObgoMpIws/71GSIb1wzm2aSaIFVDevgldlHUb32wWFJUXzN8fHJ9azjHhky8pj2A/JKSUgp0voa9l3g=
-      on:
-        tags: true
+# jobs:
+#   include:
+#   - stage: deploy
+#     script: echo "Deploying on PyPi ..."
+#     python: 3.6
+#     env:
+#     install:
+#     deploy:
+#       provider: pypi
+#       user: JosefFriedrich
+#       password:
+#         secure: NKHkjM6Igr6ZtR5zphI5IuFQjSE8DApgoU64mFFNCjpwQ2g0KufWNSx28R6dpBx5YXtScKJ4Dos5IRgs5pxJuuKmbQ2t13dKruxHmZOWC2/VcLIQcHnvlYOvAwVMWHkxuGrRSv7uAw1XFqu5AncKl2dJDr6wG+qKToq/dDBynl8sf1LIq3R5/oH4zSK0ejg2wZVK3u6ubTd6e8vg/0ahwgYGXc3Shlvf5L62VHQAvePtjPQjMYowGuo1S1VVcwpvT+BcroI6tNc1DPb/gjOVNB2tEh/epjufgBWE8Vv/SFYL6JjGpx7l1aRhzM9RCoBiBiixOzbVGwWQ+AaV5SapTBZdaGA/01UzrLjEc7CNKVlXbjbYzBalyyJMw+Xi+hG/M3nKdqJMPkfKwQOOvL3n7QDCvjnrC6J1E60utEVok38lUbQUR18Uk9yLZY+Nuitf3rclfxQkLJQ67ahs7SrGH/ux85z2PX/vlTlZk4LH9lhdaRIZFwCOChd3s6G9FbzMr4gaNTf0pDg6GTxkzD8Zl9RrGzgs0fs7bPMEGVJgBq1gvanw9PZl2lKpkHpMO7+QCNnOTlz5gsgA4zoUS6Ha/gcRi0SWObgoMpIws/71GSIb1wzm2aSaIFVDevgldlHUb32wWFJUXzN8fHJ9azjHhky8pj2A/JKSUgp0voa9l3g=
+#       on:
+#         tags: true
