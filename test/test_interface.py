@@ -16,7 +16,9 @@ class TestInterface(unittest.TestCase):
         self.assertEqual(mediafile.title, u'full')
 
     def test_module_import_mediafile(self):
-        mediafile = phrydy.mediafile.MediaFile(os.path.join(_common.RSRC, b'full.mp3'))
+        mediafile = phrydy.mediafile.MediaFile(
+            os.path.join(_common.RSRC, b'full.mp3')
+        )
         self.assertEqual(mediafile.title, u'full')
 
     def test_module_import_doc(self):

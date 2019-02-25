@@ -42,7 +42,7 @@ parser.add_argument(
 
 args = parser.parse_args()
 
-if args.audio:
+if args.audio_file:
     print('phrydy version ' + phrydy.__version__)
 
     print_debug(
