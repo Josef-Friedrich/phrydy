@@ -1,8 +1,14 @@
 .. image:: http://img.shields.io/pypi/v/phrydy.svg
     :target: https://pypi.python.org/pypi/phrydy
+    :alt: This package on the Python Package Index
 
 .. image:: https://travis-ci.org/Josef-Friedrich/phrydy.svg?branch=master
     :target: https://travis-ci.org/Josef-Friedrich/phrydy
+    :alt: Continuous integration
+
+.. image:: https://readthedocs.org/projects/phrydy/badge/?version=latest
+    :target: https://phrydy.readthedocs.io/en/latest/?badge=latest
+    :alt: Documentation Status
 
 ======
 phrydy
