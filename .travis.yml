@@ -17,7 +17,7 @@ jobs:
   include:
   - stage: deploy
     script: echo "Deploying on PyPi ..."
-    env:
+    env: TOXENV=none
     install:
     python: 3.6
     deploy:
