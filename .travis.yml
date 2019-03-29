@@ -9,22 +9,21 @@ matrix:
     env: TOXENV=docs
   - python: 3.6
     env: TOXENV=flake8
-
 install:
 - pip install tox
 script: tox
 
-# jobs:
-#   include:
-#   - stage: deploy
-#     script: echo "Deploying on PyPi ..."
-#     python: 3.6
-#     env:
-#     install:
-#     deploy:
-#       provider: pypi
-#       user: JosefFriedrich
-#       password:
-#         secure: NKHkjM6Igr6ZtR5zphI5IuFQjSE8DApgoU64mFFNCjpwQ2g0KufWNSx28R6dpBx5YXtScKJ4Dos5IRgs5pxJuuKmbQ2t13dKruxHmZOWC2/VcLIQcHnvlYOvAwVMWHkxuGrRSv7uAw1XFqu5AncKl2dJDr6wG+qKToq/dDBynl8sf1LIq3R5/oH4zSK0ejg2wZVK3u6ubTd6e8vg/0ahwgYGXc3Shlvf5L62VHQAvePtjPQjMYowGuo1S1VVcwpvT+BcroI6tNc1DPb/gjOVNB2tEh/epjufgBWE8Vv/SFYL6JjGpx7l1aRhzM9RCoBiBiixOzbVGwWQ+AaV5SapTBZdaGA/01UzrLjEc7CNKVlXbjbYzBalyyJMw+Xi+hG/M3nKdqJMPkfKwQOOvL3n7QDCvjnrC6J1E60utEVok38lUbQUR18Uk9yLZY+Nuitf3rclfxQkLJQ67ahs7SrGH/ux85z2PX/vlTlZk4LH9lhdaRIZFwCOChd3s6G9FbzMr4gaNTf0pDg6GTxkzD8Zl9RrGzgs0fs7bPMEGVJgBq1gvanw9PZl2lKpkHpMO7+QCNnOTlz5gsgA4zoUS6Ha/gcRi0SWObgoMpIws/71GSIb1wzm2aSaIFVDevgldlHUb32wWFJUXzN8fHJ9azjHhky8pj2A/JKSUgp0voa9l3g=
-#       on:
-#         tags: true
+jobs:
+  include:
+  - stage: deploy
+    script: echo "Deploying on PyPi ..."
+    env:
+    install:
+    python: 3.6
+    deploy:
+      provider: pypi
+      user: JosefFriedrich
+      password:
+        secure: iVFjzTEEOl2vTRApxaJ94ki6z1x1dOxLJ+PamXyNjcNMwS9Xnh6QT91zuirEpSfembASb3N7p8D6qPSgCFm1QhkMBKVzeq+PybN4k+y1ZnvOzArQYxsxKEbIVvCg9uknYVspL2c2DL6S1J7la05ofhBcngHe4jTFJNAO/XvGdcBHR/sGoFQrnIgC1ESU2epQqGBm2BJk9gwjw09tSpRlqocA9ysWiC/qkjYbXPm2jigU0EqFU56GdmqG79mfHZ5Kvtp986EJuhDAtJNxPdAAGGvAlVh3aU9oas5LM5YdiXM0U7DZZhnwtxeChFgXv9c55zyBOTE4tjUgqSfegAQDS6lvgCq4Gq8qe1BiP5whquh8BKGqaoMn7lCk16r8BXD8zZgFBeX95DIM4GXX64zzXoGOae0NhrrP7RR9iQ7S5KPEWysjlDP/cuhk2toA9mPdfoMOMfw5HNKKUwaAUytNcytv4xryXaH62LOcbAEzD3W5LN9VTlp3/6lEa+YSvXQ/Be6sj/MUVRPtp0YlckAUeFjKEvELBK+4UKEX+YFtNFyf6nOtLQh5woFvf+XelwwNN8TyXQ2YB0xdzzPg9NrlXofHa2CzQNs9D1H9sbsSImoxVqZ4ikwHDfsMn99eGkhXqX1Q9eSSOzfeLyYeiujXVoCfLL9RDQk3YWTAdU6UC3w=
+      on:
+        tags: true
