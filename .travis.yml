@@ -1,22 +1,36 @@
 language: python
 
-matrix:
-  include:
-  - python: 2.7
-    env: TOXENV=py27
-  - python: 3.6
-    env: TOXENV=py36
-  - python: 3.6
-    env: TOXENV=docs
-  - python: 3.6
-    env: TOXENV=flake8
-
 jobs:
   include:
+
   - state: test
+    python: 2.7
+    env: TOXENV=py27
     install:
     - pip install tox
     script: tox
+
+  - state: test
+    python: 3.6
+    env: TOXENV=py36
+    install:
+    - pip install tox
+    script: tox
+
+  - state: test
+    python: 3.6
+    env: TOXENV=docs
+    install:
+    - pip install tox
+    script: tox
+
+  - state: test
+    python: 3.6
+    env: TOXENV=flake8
+    install:
+    - pip install tox
+    script: tox
+
   - stage: deploy
     script: echo "Deploying on PyPi ..."
     env: TOXENV=none
