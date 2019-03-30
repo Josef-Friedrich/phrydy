@@ -1,15 +1,15 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
-
-from __future__ import division, absolute_import, print_function
 
 import versioneer
 import os
 from setuptools import setup
 
 
-def read(fname):
-    return open(os.path.join(os.path.dirname(__file__), fname)).read()
+def read(file_name):
+    return open(
+        os.path.join(os.path.dirname(__file__), file_name),
+        encoding='utf-8'
+    ).read()
 
 
 setup(

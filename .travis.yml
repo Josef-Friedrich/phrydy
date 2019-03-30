@@ -1,18 +1,22 @@
+# Support Matrix expansion per-stage in Build Stages feature
+# See https://github.com/travis-ci/travis-ci/issues/8295
+
+dist: xenial   # required for Python >= 3.7
 language: python
 
 jobs:
   include:
 
   - state: test
-    python: 2.7
-    env: TOXENV=py27
+    python: 3.6
+    env: TOXENV=py36
     install:
     - pip install tox
     script: tox
 
   - state: test
-    python: 3.6
-    env: TOXENV=py36
+    python: 3.7
+    env: TOXENV=py37
     install:
     - pip install tox
     script: tox
