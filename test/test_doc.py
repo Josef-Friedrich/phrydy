@@ -8,7 +8,7 @@ import unittest
 from phrydy import doc
 from phrydy import MediaFile
 import os
-from ._common import Capturing
+from jflib import Capturing
 
 
 class TestPrintDebug(unittest.TestCase):
