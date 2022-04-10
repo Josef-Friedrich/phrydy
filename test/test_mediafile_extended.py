@@ -18,6 +18,11 @@ def copy_to_tmp(name):
 
 class TestMediafileExtended(unittest.TestCase):
 
+    def test_common_fields(self):
+        tmp = copy_to_tmp('full.mp3')
+        media_file = MediaFileExtended(tmp)
+        self.assertEqual(media_file.title, 'full')
+
     def test_new_fields(self):
         value = 'ef8e0ef9-491e-42df-bff9-f13981da30a7'
 
