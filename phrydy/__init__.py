@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 from phrydy import doc  # noqa: F401
 from phrydy import mediafile  # noqa: F401
 from phrydy import utils  # noqa: F401

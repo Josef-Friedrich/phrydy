@@ -30,7 +30,7 @@ setup(
     packages=find_packages(),
     long_description=read('README.rst'),
     install_requires=[
-        'mutagen>=1.39',
+        'mutagen==1.39',
         'enum34',
         'six>=1.10.0',
         'ansicolor',
