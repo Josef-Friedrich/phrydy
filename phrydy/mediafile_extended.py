@@ -3,6 +3,7 @@ from mediafile import \
     MediaField, \
     MediaFile, \
     MP3DescStorageStyle, \
+    MP3StorageStyle, \
     MP4StorageStyle, \
     StorageStyle
 
@@ -34,9 +35,17 @@ class MediaFileExtended(MediaFile):
                          'encoder_settings', 'format'):
             yield property
 
+    composer_sort = MediaField(
+        MP3StorageStyle('TSOC'),
+        MP3DescStorageStyle('composersortorder'),
+        MP4StorageStyle('soco'),
+        StorageStyle('composersort'),
+        StorageStyle('composersortorder'),
+        ASFStorageStyle('WM/ComposerSortOrder'),
+    )
 
     mb_workid = MediaField(
-        MP3DescStorageStyle(u'MusicBrainz Work Id'),
+        MP3DescStorageStyle('MusicBrainz Work Id'),
         MP4StorageStyle('----:com.apple.iTunes:MusicBrainz Work Id'),
         StorageStyle('MUSICBRAINZ_WORKID'),
         StorageStyle('musicbrainz work id'),
@@ -45,7 +54,7 @@ class MediaFileExtended(MediaFile):
     """The MusicBrainz’ Work ID"""
 
     mb_workhierarchy_ids = MediaField(
-        MP3DescStorageStyle(u'MusicBrainz Work Hierarchy Ids'),
+        MP3DescStorageStyle('MusicBrainz Work Hierarchy Ids'),
         MP4StorageStyle('----:com.apple.iTunes:'
                         'MusicBrainz Work Hierarchy Ids'),
         StorageStyle('MUSICBRAINZ_WORKHIERARCHY_IDS'),
@@ -66,7 +75,7 @@ class MediaFileExtended(MediaFile):
     """
 
     work = MediaField(
-        MP3DescStorageStyle(u'Work'),
+        MP3DescStorageStyle('Work'),
         MP4StorageStyle('----:com.apple.iTunes:WORK'),
         StorageStyle('Work'),
         ASFStorageStyle('WM/Work'),
@@ -74,7 +83,7 @@ class MediaFileExtended(MediaFile):
     """The last work in the work hierarchy."""
 
     work_hierarchy = MediaField(
-        MP3DescStorageStyle(u'MusicBrainz Work Hierarchy'),
+        MP3DescStorageStyle('MusicBrainz Work Hierarchy'),
         MP4StorageStyle('----:com.apple.iTunes:MusicBrainz Work Hierarchy'),
         StorageStyle('MUSICBRAINZ_WORKHIERARCHY'),
         ASFStorageStyle('MusicBrainz/Work Hierarchy'),
@@ -94,7 +103,7 @@ class MediaFileExtended(MediaFile):
     """
 
     releasegroup_types = MediaField(
-        MP3DescStorageStyle(u'MusicBrainz Release Group Types'),
+        MP3DescStorageStyle('MusicBrainz Release Group Types'),
         MP4StorageStyle('----:com.apple.iTunes:'
                         'MusicBrainz Release Group Types'),
         StorageStyle('MUSICBRAINZ_RELEASEGROUPTYPES'),
