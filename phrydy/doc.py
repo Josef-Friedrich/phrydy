@@ -28,6 +28,10 @@ fields = {
         'description': 'artist',
         'category': 'ordinary',
     },
+    'artists': {
+        'description': 'artists',
+        'category': 'ordinary',
+    },
     'artist_sort': {
         'description': 'The “sort name” of the track artist (e.g., ' +
                        '“Beatles, The” or “White, Jack”)',
@@ -45,6 +49,10 @@ fields = {
     'albumartist': {
         'description': 'The artist for the entire album, which may be ' +
                        'different from the artists for the individual tracks',
+        'category': 'ordinary',
+    },
+    'albumartists': {
+        'description': 'albumartists',
         'category': 'ordinary',
     },
     'albumartist_sort': {
@@ -254,11 +262,39 @@ fields = {
         'description': 'in kilohertz, with units: e.g., “48kHz”',
         'category': 'audio',
     },
-    # rg?
-    'rg_track_peak': {
-        'description': 'rg_track_peak',
-        'category': 'rg',
+    'barcode': {
+        'description': 'barcode',
+        'category': 'ordinary',
     },
+    'bitdepth': {
+        'description': 'bitdepth',
+        'category': 'ordinary',
+    },
+    'bitrate_mode': {
+        'description': 'bitrate_mode',
+        'category': 'ordinary',
+    },
+    'copyright': {
+        'description': 'copyright',
+        'category': 'ordinary',
+    },
+    'encoder_info': {
+        'description': 'encoder_info',
+        'category': 'ordinary',
+    },
+    'isrc': {
+        'description': 'isrc',
+        'category': 'ordinary',
+    },
+    'encoder_settings': {
+        'description': 'encoder_settings',
+        'category': 'ordinary',
+    },
+    # rg?
+    # 'rg_track_peak': {
+    #     'description': 'rg_track_peak',
+    #     'category': 'rg',
+    # },
     'r128_track_gain': {
         'description': 'An optional gain for track normalization',
         'category': 'rg',
@@ -296,8 +332,16 @@ fields = {
         'description': 'MusicBrainz artist ID',
         'category': 'music_brainz',
     },
+    'mb_artistids': {
+        'description': 'mb_artistids',
+        'category': 'music_brainz',
+    },
     'mb_albumartistid': {
         'description': 'MusicBrainz album artist ID',
+        'category': 'music_brainz',
+    },
+    'mb_albumartistids': {
+        'description': 'mb_albumartistids',
         'category': 'music_brainz',
     },
     'mb_releasegroupid': {

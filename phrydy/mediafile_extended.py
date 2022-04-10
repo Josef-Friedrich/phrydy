@@ -9,6 +9,32 @@ from mediafile import \
 
 class MediaFileExtended(MediaFile):
 
+    @classmethod
+    def fields(cls):
+        """Get the names of all writable properties that reflect
+        metadata tags (i.e., those that are instances of
+        :class:`MediaField`).
+        """
+        for property, descriptor in MediaFile.__dict__.items():
+            if isinstance(descriptor, MediaField):
+                yield property
+        for property, descriptor in cls.__dict__.items():
+            if isinstance(descriptor, MediaField):
+                yield property
+
+    @classmethod
+    def readable_fields(cls):
+        """Get all metadata fields: the writable ones from
+        :meth:`fields` and also other audio properties.
+        """
+        for property in cls.fields():
+            yield property
+        for property in ('length', 'samplerate', 'bitdepth', 'bitrate',
+                         'bitrate_mode', 'channels', 'encoder_info',
+                         'encoder_settings', 'format'):
+            yield property
+
+
     mb_workid = MediaField(
         MP3DescStorageStyle(u'MusicBrainz Work Id'),
         MP4StorageStyle('----:com.apple.iTunes:MusicBrainz Work Id'),
