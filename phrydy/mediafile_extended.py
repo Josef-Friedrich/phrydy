@@ -35,6 +35,14 @@ class MediaFileExtended(MediaFile):
                          'encoder_settings', 'format'):
             yield property
 
+    albumartist_sort = MediaField(
+        MP3StorageStyle('TSO2'),
+        MP3DescStorageStyle('ALBUMARTISTSORT'),
+        MP4StorageStyle('soaa'),
+        StorageStyle('ALBUMARTISTSORT'),
+        ASFStorageStyle('WM/AlbumArtistSortOrder'),
+    )
+
     composer_sort = MediaField(
         MP3StorageStyle('TSOC'),
         MP3DescStorageStyle('composersortorder'),
