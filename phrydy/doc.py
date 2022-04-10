@@ -246,6 +246,10 @@ fields = {
         'description': 'in kilobits per second, with units: e.g., “192kbps”',
         'category': 'audio',
     },
+    'bitrate_mode': {
+        'description': 'bitrate_mode',
+        'category': 'ordinary',
+    },
     'format': {
         'description': 'e.g., “MP3” or “FLAC”',
         'category': 'audio',
@@ -264,14 +268,6 @@ fields = {
     },
     'barcode': {
         'description': 'barcode',
-        'category': 'ordinary',
-    },
-    'bitdepth': {
-        'description': 'bitdepth',
-        'category': 'ordinary',
-    },
-    'bitrate_mode': {
-        'description': 'bitrate_mode',
         'category': 'ordinary',
     },
     'copyright': {

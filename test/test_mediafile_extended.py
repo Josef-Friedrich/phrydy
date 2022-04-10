@@ -5,6 +5,7 @@ import tempfile
 import shutil
 import phrydy
 
+
 def get_file(name):
     return os.path.join(os.path.dirname(__file__), 'files', name)
 
@@ -30,7 +31,6 @@ class TestMediafileExtended(unittest.TestCase):
         d = list(phrydy.doc.fields.keys())
         d.sort()
         self.assertEqual(f, d)
-
 
     def test_new_fields(self):
         value = 'ef8e0ef9-491e-42df-bff9-f13981da30a7'
