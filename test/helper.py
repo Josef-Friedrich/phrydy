@@ -1,6 +1,3 @@
-# -*- coding: utf-8 -*-
-
-from phrydy.utils import bytestring_path
 import os
 import sys
 import tempfile
@@ -8,10 +5,7 @@ import shutil
 
 
 # Test resources path.
-RSRC = bytestring_path(os.path.join(os.path.dirname(__file__), 'files'))
-
-# Dummy item creation.
-_item_ident = 0
+TEST_RESOURCES_PATH = os.path.join(os.path.dirname(__file__), 'files')
 
 # OS feature test.
 HAVE_SYMLINK = sys.platform != 'win32'

@@ -1,8 +1,18 @@
 import textwrap
-from phrydy.utils import as_string
 import ansicolor
+import typing
 
-fields = {
+from phrydy.mediafile_extended import MediaFileExtended
+
+
+class FieldDoc(typing.TypedDict):
+    description: str
+    category: typing.Literal['ordinary', 'date', 'audio', 'music_brainz', 'rg']
+
+
+FieldDocCollection = typing.Dict[str, FieldDoc]
+
+fields: FieldDocCollection = {
     # Ordinary metadata:
     'title': {
         'description': 'The title of a audio file.',
@@ -380,7 +390,10 @@ A multidimensional dictionary documenting all metadata fields.
 """
 
 
-def print_dict_sorted(dictionary, color, align='right'):
+def print_dict_sorted(dictionary: typing.Dict[str, typing.Any],
+                      color: bool,
+                      align: typing.Literal['left', 'right'] = 'right'
+                      ) -> None:
     max_field_length = get_max_field_length(dictionary)
 
     for key, value in sorted(dictionary.items()):
@@ -395,7 +408,7 @@ def print_dict_sorted(dictionary, color, align='right'):
         print(key + ' ' + value)
 
 
-def print_section(text, color=False):
+def print_section(text: str, color: bool = False) -> None:
     if color:
         text = ansicolor.blue(text.ljust(60, ' '), reverse=True)
         line = ''
@@ -405,8 +418,12 @@ def print_section(text, color=False):
     print('\n' + text + line)
 
 
-def print_debug(media_file, MediaClass, field_generator, color=False):
-
+def print_debug(media_file: str,
+                MediaClass: typing.Callable[[str], MediaFileExtended],
+                field_generator: typing.Callable[
+                    [], typing.Generator[str, None, None]
+                ],
+                color: bool = False) -> None:
     fields = MediaClass(media_file)
 
     # Raw mutagen values
@@ -425,13 +442,13 @@ def print_debug(media_file, MediaClass, field_generator, color=False):
     for key in field_generator():
         value = getattr(fields, key)
         if key != 'art' and value:
-            value = as_string(value)
-            class_fields[key] = value
+            class_fields[key] = str(value)
 
     print_dict_sorted(class_fields, color, align='left')
 
 
 def merge_fields(*fields):
+    """Used in audiorename/args.py"""
     arguments = locals()
     out = {}
     for fields in arguments['fields']:
@@ -440,7 +457,7 @@ def merge_fields(*fields):
     return out
 
 
-def get_max_field_length(fields):
+def get_max_field_length(fields) -> int:
     """Get the length of the longest field in the dictionary ``fields``.
 
     :param dict fields: A dictionary to search for the longest field.
@@ -448,10 +465,10 @@ def get_max_field_length(fields):
     return max(map(len, fields))
 
 
-def get_doc(additional_doc=False,
-            field_prefix='$',
-            field_suffix=':',
-            indent=4):
+def get_doc(additional_doc: typing.Optional[FieldDocCollection] = None,
+            field_prefix: str = '$',
+            field_suffix: str = ':',
+            indent: int = 4):
     """Return a formated string containing documentation about the audio
     fields.
     """

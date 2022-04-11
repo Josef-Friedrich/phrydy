@@ -5,7 +5,7 @@ layer.
 """
 
 import unittest
-from phrydy import doc
+import phrydy
 from phrydy.mediafile_extended import MediaFileExtended
 import os
 from jflib import Capturing
@@ -15,7 +15,7 @@ class TestPrintDebug(unittest.TestCase):
 
     def test_print_debug(self):
         with Capturing() as output:
-            doc.print_debug(
+            phrydy.doc.print_debug(
                 os.path.join(os.path.dirname(__file__), 'files', 'full.mp3'),
                 MediaFileExtended,
                 MediaFileExtended.readable_fields,
@@ -27,55 +27,50 @@ class TestPrintDebug(unittest.TestCase):
 
 class TestDoc(unittest.TestCase):
 
-    def setUp(self):
-        self.doc = doc
-        self.fields = doc.fields
-        self.output = doc.get_doc()
-
     def test_field(self):
-        self.assertTrue(doc.fields)
+        self.assertTrue(phrydy.doc.fields)
 
     def test_field_title(self):
-        self.assertTrue(self.fields['artist']['description'])
+        self.assertTrue(phrydy.doc.fields['artist']['description'])
 
     def test_field_category(self):
-        self.assertTrue(self.fields['artist']['category'])
+        self.assertTrue(phrydy.doc.fields['artist']['category'])
 
     def test_field_long_title(self):
-        title = self.fields['catalognum']['description']
+        title = phrydy.doc.fields['catalognum']['description']
         self.assertTrue(len(title) > 200)
         # Words at the end of a title string
         self.assertTrue('label code' in title)
 
     def test_doc_string(self):
-        self.assertTrue(isinstance(self.output, str))
+        self.assertTrue(isinstance(phrydy.doc.get_doc(), str))
 
     def test_doc_length(self):
-        self.assertTrue(len(self.output) > 1000)
+        self.assertTrue(len(phrydy.doc.get_doc()) > 1000)
 
     def test_get_max_field_lengths(self):
-        tmp = self.fields
+        tmp = phrydy.doc.fields
         tmp['looooooooooooooooooooooooooooooooooooooong'] = 'long'
-        length = self.doc.get_max_field_length(tmp)
+        length = phrydy.doc.get_max_field_length(tmp)
         self.assertEqual(length, 42)
 
     def test_get_additional_docs(self):
-        fields = {
+        fields: phrydy.doc.FieldDocCollection = {
             'lol': {
                 'description': 'loool',
                 'category': 'ordinary',
             },
         }
-        output = self.doc.get_doc(additional_doc=fields)
+        output = phrydy.doc.get_doc(additional_doc=fields)
         self.assertTrue('loool' in output)
 
     def test_field_order(self):
-        output = self.output.split('\n')
+        output = phrydy.doc.get_doc().split('\n')
         self.assertTrue('acoustid_fingerprint' in output[0])
 
     def test_all_fields_are_documented(self):
         for field in MediaFileExtended.fields():
-            self.assertTrue(doc.fields.get(field), field)
+            self.assertTrue(phrydy.doc.fields.get(field), field)
 
     def test_function_merge_fields(self):
         field1 = {
@@ -90,7 +85,7 @@ class TestDoc(unittest.TestCase):
                 'category': 'ordinary',
             },
         }
-        out = doc.merge_fields(field1, field2)
+        out = phrydy.doc.merge_fields(field1, field2)
         self.assertEqual(out['arranger']['description'], 'arranger')
         self.assertEqual(out['title']['description'],
                          'The title of a audio file.')

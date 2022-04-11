@@ -21,9 +21,3 @@ phrydy.mediafile_extended module
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. automodule:: phrydy.mediafile_extended
-
-
-phrydy.utils module
-^^^^^^^^^^^^^^^^^^^
-
-.. automodule:: phrydy.utils
