@@ -11,9 +11,9 @@ phrydy
 ======
 
 This is a extended version of the
-`mediafile https://github.com/beetbox/mediafile>`_ library.
+`mediafile <https://github.com/beetbox/mediafile>`_ library.
 It is used by
-`audiorename https://github.com/Josef-Friedrich/audiorename>`_.
+`audiorename <https://github.com/Josef-Friedrich/audiorename>`_.
 
 Installation
 ============

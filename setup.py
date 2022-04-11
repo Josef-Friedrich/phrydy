@@ -29,6 +29,7 @@ setup(
     license='MIT',
     packages=find_packages(),
     long_description=read('README.rst'),
+    long_description_content_type='text/x-rst',
     install_requires=[
         'mutagen==1.45',
         'enum34',
