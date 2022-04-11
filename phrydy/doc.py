@@ -47,17 +47,20 @@ fields: FieldDocCollection = {
         'description': 'Acoustic ID',
         'category': 'music_brainz',
         'data_type': 'str',
+        'examples': '86e217b7-d3ad-4493-a9f2-cf71256ace07'
     },
     'album': {
         'description': 'album',
         'category': 'ordinary',
         'data_type': 'str',
+        'examples': 'Help!',
     },
     'albumartist': {
         'description': 'The artist for the entire album, which may be ' +
                        'different from the artists for the individual tracks',
         'category': 'ordinary',
         'data_type': 'str',
+        'examples': 'The Beatles',
     },
     'albumartist_credit': {
         'description': 'albumartist_credit',
@@ -68,6 +71,7 @@ fields: FieldDocCollection = {
         'description': 'albumartist_sort',
         'category': 'ordinary',
         'data_type': 'str',
+        'examples': 'Beatles, The',
     },
     'albumartists': {
         'description': 'albumartists',
@@ -79,17 +83,17 @@ fields: FieldDocCollection = {
         'category': 'ordinary',
     },
     'albumstatus': {
-        'description': 'The status describes how "official" a release is. ' +
-                       'Possible values are: official, promotional, ' +
-                       'bootleg, pseudo-release',
+        'description': 'The status describes how "official" a release is.',
         'category': 'ordinary',
         'data_type': 'str',
+        'examples': ['official', 'promotional', 'bootleg', 'pseudo-release'],
     },
     'albumtype': {
         'description': 'The MusicBrainz album type; the MusicBrainz wiki ' +
                        'has a list of type names',
         'category': 'ordinary',
         'data_type': 'str',
+        'examples': 'album/soundtrack',
     },
     'arranger': {
         'description': 'arranger',
@@ -104,6 +108,7 @@ fields: FieldDocCollection = {
         'description': 'artist',
         'category': 'ordinary',
         'data_type': 'str',
+        'examples': 'The Beatles',
     },
     'artist_credit': {
         'description': 'The track-specific artist credit name, which may ' +
@@ -112,10 +117,10 @@ fields: FieldDocCollection = {
         'data_type': 'str',
     },
     'artist_sort': {
-        'description': 'The “sort name” of the track artist (e.g., ' +
-                       '“Beatles, The” or “White, Jack”)',
+        'description': 'The “sort name” of the track artist.',
         'category': 'ordinary',
         'data_type': 'str',
+        'examples': ['Beatles, The', 'White, Jack'],
     },
     'artists': {
         'description': 'artists',
@@ -124,6 +129,7 @@ fields: FieldDocCollection = {
     'asin': {
         'description': 'Amazon Standard Identification Number',
         'category': 'ordinary',
+        'examples': 'B000002UAL',
     },
     # barcode             : None
     # bitdepth            : 0
@@ -133,14 +139,17 @@ fields: FieldDocCollection = {
     'barcode': {
         'description': 'barcode',
         'category': 'ordinary',
+        'examples': 5028421931838,
     },
     'bitdepth': {
         'description': 'only available for some formats',
         'category': 'audio',
+        'examples': 16,
     },
     'bitrate': {
         'description': 'in kilobits per second, with units: e.g., “192kbps”',
         'category': 'audio',
+        'examples': 436523,
     },
     'bitrate_mode': {
         'description': 'bitrate_mode',
@@ -166,6 +175,7 @@ fields: FieldDocCollection = {
                        'ASIN — there is a relationship for that — nor the ' +
                        'label code.',
         'category': 'ordinary',
+        'examples': 'CDP 7 46439 2',
     },
     'channels': {
         'description': 'channels',
@@ -287,16 +297,20 @@ fields: FieldDocCollection = {
         'description': 'The label which issued the release. There may be ' +
                        'more than one.',
         'category': 'ordinary',
+        'examples': 'Brilliant Classics',
     },
     'language': {
         'description': 'The language a release’s track list is written in. ' +
                        'The possible values are taken from the ISO 639-3 ' +
                        'standard.',
         'category': 'ordinary',
+        'examples': 'zxx',
+
     },
     'length': {
         'description': 'in seconds',
         'category': 'audio',
+        'examples': 674.4666666666667,
     },
     'lyricist': {
         'description': 'lyricist',
@@ -318,31 +332,12 @@ fields: FieldDocCollection = {
     # mb_trackid          : 8b882575-08a5-4452-a7a7-cbb8a1531f9e
     # mb_workhierarchy_ids: None
     # mb_workid           : None
-    'mb_trackid': {
-        'description': 'MusicBrainz track ID',
-        'category': 'music_brainz',
-    },
-    'mb_releasetrackid': {
-        'description': 'MusicBrainz release track ID',
-        'category': 'music_brainz',
-    },
-    'mb_albumid': {
-        'description': 'MusicBrainz album ID',
-        'category': 'music_brainz',
-    },
-    'mb_artistid': {
-        'description': 'MusicBrainz artist ID',
-        'category': 'music_brainz',
-    },
-    'mb_artistids': {
-        'description': 'mb_artistids',
-        'category': 'music_brainz',
-    },
     'mb_albumartistid': {
         'description': 'MusicBrainz album artist ID',
         'category': 'music_brainz',
-        'examples': 'b972f589-fb0e-474e-b64a-803b0364fa75',
         'data_type': 'str',
+        'examples': ['1f9df192-a621-4f54-8850-2c5373b7eac9',
+                     'b972f589-fb0e-474e-b64a-803b0364fa75'],
     },
     'mb_albumartistids': {
         'description': 'mb_albumartistids',
@@ -354,13 +349,40 @@ fields: FieldDocCollection = {
         ],
         'data_type': 'list',
     },
+    'mb_albumid': {
+        'description': 'MusicBrainz album ID',
+        'category': 'music_brainz',
+        'examples': 'fd6adc77-1489-4a13-9aa0-32951061d92b',
+    },
+    'mb_artistid': {
+        'description': 'MusicBrainz artist ID',
+        'category': 'music_brainz',
+        'examples': '1f9df192-a621-4f54-8850-2c5373b7eac9',
+    },
+    'mb_artistids': {
+        'description': 'mb_artistids',
+        'category': 'music_brainz',
+        'examples': [['1f9df192-a621-4f54-8850-2c5373b7eac9']],
+    },
     'mb_releasegroupid': {
         'description': 'MusicBrainz releasegroup ID',
         'category': 'music_brainz',
+        'examples': 'f714fd70-aaca-4863-9d0d-2768a53acaeb',
+    },
+    'mb_releasetrackid': {
+        'description': 'MusicBrainz release track ID',
+        'category': 'music_brainz',
+        'examples': '38c8c114-5e3b-484f-8af0-79c47ef9c169',
+    },
+    'mb_trackid': {
+        'description': 'MusicBrainz track ID',
+        'category': 'music_brainz',
+        'examples': 'c390b132-4a44-4e16-bec3-bffbbcaa19aa',
     },
     'mb_workid': {
         'description': 'MusicBrainz work ID',
         'category': 'music_brainz',
+        'examples': '508ec4b1-9549-38cd-a61e-1f0d120a6118',
     },
     'mb_workhierarchy_ids': {
         'description': 'All IDs in the work hierarchy. This field corresponds '
@@ -374,6 +396,7 @@ fields: FieldDocCollection = {
     'media': {
         'description': 'media',
         'category': 'ordinary',
+        'examples': 'CD',
     },
     'month': {
         'description': 'The release month of the specific release',
@@ -446,12 +469,14 @@ fields: FieldDocCollection = {
     'samplerate': {
         'description': 'in kilohertz, with units: e.g., “48kHz”',
         'category': 'audio',
+        'examples': 44100,
     },
     'script': {
         'description': 'The script used to write the release’s track list. ' +
                        'The possible values are taken from the ISO 15924 ' +
                        'standard.',
         'category': 'ordinary',
+        'examples': 'Latn',
     },
     # title               : full
     # track               : 2
@@ -459,6 +484,8 @@ fields: FieldDocCollection = {
     'title': {
         'description': 'The title of a audio file.',
         'category': 'ordinary',
+        'examples': '32 Variations for Piano in C minor on an Original Theme, '
+                    'WoO 80',
     },
     'track': {
         'description': 'track',
@@ -480,6 +507,8 @@ fields: FieldDocCollection = {
     'work': {
         'description': 'The Musicbrainzs’ work entity.',
         'category': 'ordinary',
+        'examples': '32 Variations for Piano in C minor on an Original Theme, '
+                    'WoO 80'
     },
     'work_hierarchy': {
         'description': 'The hierarchy of works: The top level work appears '
@@ -528,7 +557,7 @@ def print_dict_sorted(dictionary: typing.Dict[str, typing.Any],
         key = key + ':'
         if color:
             key = ansicolor.green(key)
-            value = ansicolor.red(value)
+            value = value
         print(key + ' ' + value)
 
 
@@ -600,6 +629,36 @@ def get_max_field_length(fields) -> int:
     return max(map(len, fields))
 
 
+def format_field(field_name: str,
+                 field_doc: FieldDoc,
+                 field_length: int,
+                 description_indent: str,
+                 field_prefix: str = '$',
+                 indent: int = 4) -> str:
+    output = ''
+
+    field_name_length = len(field_prefix + field_name) + indent + 1
+
+    field_name = ' ' * indent + ansicolor.cyan(field_prefix + field_name) + ':'
+
+    description = field_doc['description']
+    output += field_name + (' ' * (field_length - field_name_length)) + \
+        textwrap.fill(
+            description,
+            width=78,
+            initial_indent=description_indent,
+            subsequent_indent=description_indent
+        )[field_length:] + '\n'
+
+    if 'examples' in field_doc:
+        output += description_indent + \
+            ansicolor.yellow('Examples:') + ' ' + \
+            str(field_doc['examples']) + '\n'
+    output += '\n\n'
+
+    return output
+
+
 def get_doc(additional_doc: typing.Optional[FieldDocCollection] = None,
             field_prefix: str = '$',
             field_suffix: str = ':',
@@ -612,19 +671,11 @@ def get_doc(additional_doc: typing.Optional[FieldDocCollection] = None,
         f.update(additional_doc)
     else:
         f = fields
-    field_length = get_max_field_length(f)
-    field_length = field_length + len(field_prefix) + len(field_suffix) + 4
+    field_length = get_max_field_length(f) + len(field_prefix) + \
+        len(field_suffix) + 4
     description_indent = ' ' * (indent + field_length)
     output = ''
-    for field, description in sorted(f.items()):
-        description = description['description']
-        field = ' ' * indent + field_prefix + field + ':'
-        output += field.ljust(field_length) + \
-            textwrap.fill(
-                description,
-                width=78,
-                initial_indent=description_indent,
-                subsequent_indent=description_indent
-            )[field_length:] + '\n\n\n'
-
+    for field_name, field_doc in sorted(f.items()):
+        output += format_field(field_name, field_doc, field_length,
+                               description_indent, field_prefix, indent)
     return output
