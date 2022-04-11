@@ -35,6 +35,7 @@ setup(
         'six>=1.10.0',
         'ansicolor',
         'mediafile==0.9.0',
+        'typing-extensions==4.1.1',
     ],
     scripts=['bin/phrydy-debug'],
     zip_safe=False)

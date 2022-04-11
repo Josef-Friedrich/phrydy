@@ -25,6 +25,7 @@ class TestMediafileExtended(unittest.TestCase):
         self.assertEqual(media_file.title, 'full')
 
     def test_method_readable_fields(self):
+        self.maxDiff = None
         fields = MediaFileExtended.readable_fields()
         f = list(fields)
         f.sort()

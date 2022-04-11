@@ -49,7 +49,7 @@ class TestDoc(unittest.TestCase):
         self.assertTrue(len(phrydy.doc.get_doc()) > 1000)
 
     def test_get_max_field_lengths(self):
-        tmp = phrydy.doc.fields
+        tmp = phrydy.doc.fields.copy()
         tmp['looooooooooooooooooooooooooooooooooooooong'] = 'long'
         length = phrydy.doc.get_max_field_length(tmp)
         self.assertEqual(length, 42)

@@ -6,6 +6,7 @@ from mediafile import \
     MP3StorageStyle, \
     MP4StorageStyle, \
     StorageStyle
+from typing import Any, Dict
 
 
 class MediaFileExtended(MediaFile):
@@ -16,24 +17,32 @@ class MediaFileExtended(MediaFile):
         metadata tags (i.e., those that are instances of
         :class:`MediaField`).
         """
-        for property, descriptor in MediaFile.__dict__.items():
-            if isinstance(descriptor, MediaField):
-                yield property
-        for property, descriptor in cls.__dict__.items():
-            if isinstance(descriptor, MediaField):
-                yield property
+        seen = set()
+
+        # Same fields are duplicate because they are overwritten in this
+        # class.
+        f: Dict[str, Any] = {}
+        for field, descriptor in MediaFile.__dict__.items():
+            f[field] = descriptor
+        for field, descriptor in cls.__dict__.items():
+            f[field] = descriptor
+
+        for field, descriptor in f.items():
+            if isinstance(descriptor, MediaField) and field not in seen:
+                seen.add(field)
+                yield field
 
     @classmethod
     def readable_fields(cls):
         """Get all metadata fields: the writable ones from
         :meth:`fields` and also other audio properties.
         """
-        for property in cls.fields():
-            yield property
-        for property in ('length', 'samplerate', 'bitdepth', 'bitrate',
-                         'bitrate_mode', 'channels', 'encoder_info',
-                         'encoder_settings', 'format'):
-            yield property
+        for field in cls.fields():
+            yield field
+        for field in ('length', 'samplerate', 'bitdepth', 'bitrate',
+                      'bitrate_mode', 'channels', 'encoder_info',
+                      'encoder_settings', 'format'):
+            yield field
 
     albumartist_sort = MediaField(
         MP3StorageStyle('TSO2'),
