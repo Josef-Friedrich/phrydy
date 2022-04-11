@@ -341,10 +341,18 @@ fields: FieldDocCollection = {
     'mb_albumartistid': {
         'description': 'MusicBrainz album artist ID',
         'category': 'music_brainz',
+        'examples': 'b972f589-fb0e-474e-b64a-803b0364fa75',
+        'data_type': 'str',
     },
     'mb_albumartistids': {
         'description': 'mb_albumartistids',
         'category': 'music_brainz',
+        'examples': [
+            ['b972f589-fb0e-474e-b64a-803b0364fa75',
+             'dea28aa9-1086-4ffa-8739-0ccc759de1ce',
+             'd2ced2f1-6b58-47cf-ae87-5943e2ab6d99']
+        ],
+        'data_type': 'list',
     },
     'mb_releasegroupid': {
         'description': 'MusicBrainz releasegroup ID',

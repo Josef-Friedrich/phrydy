@@ -32,9 +32,7 @@ setup(
     long_description_content_type='text/x-rst',
     install_requires=[
         'mutagen==1.45',
-        'enum34',
-        'six>=1.10.0',
-        'ansicolor',
+        'ansicolor==0.3.2',
         'mediafile==0.9.0',
         'typing-extensions==4.1.1',
     ],

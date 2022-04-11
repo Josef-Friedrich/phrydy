@@ -5,7 +5,8 @@ from mediafile import \
     MP3DescStorageStyle, \
     MP3StorageStyle, \
     MP4StorageStyle, \
-    StorageStyle
+    StorageStyle, \
+    Image  # noqa: F401
 from typing import Any, Dict
 
 
