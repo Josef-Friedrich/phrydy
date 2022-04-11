@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 
-"""Test additional meta fields not included in beets MediaFile.
+"""Test additional meta fields not included in beets MediaFileExtended.
 """
 from __future__ import division, absolute_import, print_function
 
 import os
-from phrydy import MediaFile
+from phrydy import MediaFileExtended
 import unittest
 import tempfile
 import shutil
@@ -49,12 +49,12 @@ class TestPhrydyNewFields(unittest.TestCase):
                 'work_hierarchy',
             ]:
                 tmp = copy_to_tmp('mb.' + extension)
-                orig = MediaFile(tmp)
+                orig = MediaFileExtended(tmp)
                 setattr(orig, field, value)
                 self.assertEqual(getattr(orig, field), value)
                 orig.save()
 
-                modified = MediaFile(tmp)
+                modified = MediaFileExtended(tmp)
                 self.assertEqual(getattr(modified, field), value,
                                  msg='field: ' + field +
                                  ', extension: ' + extension)

@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 
-"""Automatically-generated blanket testing for the MediaFile metadata
+"""Automatically-generated blanket testing for the MediaFileExtended metadata
 layer.
 """
 
 import unittest
 from phrydy import doc
-from phrydy import MediaFile
+from phrydy.mediafile_extended import MediaFileExtended
 import os
 from jflib import Capturing
 
@@ -17,8 +17,8 @@ class TestPrintDebug(unittest.TestCase):
         with Capturing() as output:
             doc.print_debug(
                 os.path.join(os.path.dirname(__file__), 'files', 'full.mp3'),
-                MediaFile,
-                MediaFile.readable_fields,
+                MediaFileExtended,
+                MediaFileExtended.readable_fields,
                 False
             )
 
@@ -74,8 +74,7 @@ class TestDoc(unittest.TestCase):
         self.assertTrue('acoustid_fingerprint' in output[0])
 
     def test_all_fields_are_documented(self):
-        from phrydy.mediafile import MediaFile
-        for field in MediaFile.fields():
+        for field in MediaFileExtended.fields():
             self.assertTrue(doc.fields.get(field), field)
 
     def test_function_merge_fields(self):

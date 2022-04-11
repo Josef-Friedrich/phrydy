@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import phrydy
-from phrydy import MediaFile
+from phrydy.mediafile_extended import MediaFileExtended
 from phrydy.doc import print_debug, print_dict_sorted, get_doc
 import argparse
 from phrydy._version import get_versions
@@ -47,7 +47,7 @@ if args.audio_file:
 
     print_debug(
         media_file=args.audio_file,
-        MediaClass=MediaFile,
-        field_generator=MediaFile.readable_fields,
+        MediaClass=MediaFileExtended,
+        field_generator=MediaFileExtended.readable_fields,
         color=args.color,
     )

@@ -17,10 +17,10 @@ phrydy.doc module
 .. autodata:: phrydy.doc.fields
     :annotation: = metadata description
 
-phrydy.mediafile module
-^^^^^^^^^^^^^^^^^^^^^^^
+phrydy.mediafile_extended module
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. automodule:: phrydy.mediafile
+.. automodule:: phrydy.mediafile_extended
 
 
 phrydy.utils module

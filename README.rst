@@ -2,10 +2,6 @@
     :target: https://pypi.python.org/pypi/phrydy
     :alt: This package on the Python Package Index
 
-.. image:: https://travis-ci.org/Josef-Friedrich/phrydy.svg?branch=master
-    :target: https://travis-ci.org/Josef-Friedrich/phrydy
-    :alt: Continuous integration
-
 .. image:: https://readthedocs.org/projects/phrydy/badge/?version=latest
     :target: https://phrydy.readthedocs.io/en/latest/?badge=latest
     :alt: Documentation Status
@@ -14,13 +10,10 @@
 phrydy
 ======
 
-This package originates from the file
-`beets/mediafile.py <https://github.com/beetbox/beets/blob/master/beets/mediafile.py>`_
-of the `beets project <http://beets.io>`_.
-
-Handles low-level interfacing for files’ tags. Wraps Mutagen to
-automatically detect file types and provide a unified interface for a
-useful subset of music files’ tags.
+This is a extended version of the
+`mediafile https://github.com/beetbox/mediafile>`_ library.
+It is used by
+`audiorename https://github.com/Josef-Friedrich/audiorename>`_.
 
 Installation
 ============
@@ -49,8 +42,8 @@ Basic usage:
 
 ::
 
-    >>> from phrydy import MediaFile
-    >>> f = MediaFile('Lucy.mp3')
+    >>> from phrydy import MediaFileExtended
+    >>> f = MediaFileExtended('Lucy.mp3')
     >>> f.title
     u'Lucy in the Sky with Diamonds'
     >>> f.artist = 'The Beatles'
@@ -60,23 +53,15 @@ List all available fields of a media file:
 
 .. code:: Python
 
-    from phrydy import MediaFile
+    from phrydy import MediaFileExtended
 
-    media_file = MediaFile('test/files/full.mp3')
+    media_file = MediaFileExtended('test/files/full.mp3')
 
-    for key in MediaFile.readable_fields():
+    for key in MediaFileExtended.readable_fields():
         value = getattr(media_file, key)
         if key != 'art' and value:
             print('{}: {}'.format(key, value))
 
-
-A field will always return a reasonable value of the correct type, even
-if no tag is present. If no value is available, the value will be false
-(e.g., zero or the empty string).
-
-Internally `MediaFile` uses `MediaField` descriptors to access the
-data from the tags. In turn `MediaField` uses a number of
-`StorageStyle` strategies to handle format specific logic.
 
 Development
 ===========

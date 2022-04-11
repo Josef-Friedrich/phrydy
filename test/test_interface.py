@@ -1,10 +1,9 @@
-# -*- coding: utf-8 -*-
-
 """Test public api / interface
 """
 
 import unittest
 import phrydy
+from phrydy import MediaFileExtended
 import os
 from test import _common
 
@@ -12,11 +11,12 @@ from test import _common
 class TestInterface(unittest.TestCase):
 
     def test_mediafile_class_in_init(self):
-        mediafile = phrydy.MediaFile(os.path.join(_common.RSRC, b'full.mp3'))
+        mediafile = MediaFileExtended(os.path.join(_common.RSRC,
+                                             b'full.mp3'))
         self.assertEqual(mediafile.title, u'full')
 
     def test_module_import_mediafile(self):
-        mediafile = phrydy.mediafile.MediaFile(
+        mediafile = MediaFileExtended(
             os.path.join(_common.RSRC, b'full.mp3')
         )
         self.assertEqual(mediafile.title, u'full')
