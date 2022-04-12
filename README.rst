@@ -411,6 +411,9 @@ Test
 
 ::
 
+    pyenv install 3.9.12 3.10.4
+    pyenv local 3.9.12 3.10.4
+    pip3 install tox tox-pyenv
     tox
 
 
