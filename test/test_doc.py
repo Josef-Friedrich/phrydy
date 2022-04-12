@@ -67,7 +67,7 @@ class TestDoc(unittest.TestCase):
             },
         }
         output = phrydy.doc_generator.format_fields_as_txt(
-            additional_doc=fields)
+            additional_fields=fields)
         self.assertTrue('loool' in output)
 
     def test_field_order(self):

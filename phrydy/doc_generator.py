@@ -127,10 +127,10 @@ FIELD_SUFFIX = ':'
 INDENT = 4
 
 
-def format_field(field_name: str,
-                 field_doc: FieldDoc,
-                 field_length: int,
-                 description_indent: str) -> str:
+def format_field_as_txt(field_name: str,
+                        field_doc: FieldDoc,
+                        field_length: int,
+                        description_indent: str) -> str:
     output = ''
 
     field_name_length = len(FIELD_PREFIX + field_name) + INDENT + 1
@@ -155,14 +155,15 @@ def format_field(field_name: str,
     return output
 
 
-def format_fields_as_txt(additional_doc: Optional[FieldDocCollection] = None,
-                         color: bool = False) -> str:
+def format_fields_as_txt(
+        additional_fields: Optional[FieldDocCollection] = None,
+        color: bool = False) -> str:
     """Return a formated string containing the documentation about the audio
     fields.
     """
-    if additional_doc:
+    if additional_fields:
         f = fields.copy()
-        f.update(additional_doc)
+        f.update(additional_fields)
     else:
         f = fields
     field_length = get_max_field_length(f) + len(FIELD_PREFIX) + \
@@ -170,8 +171,49 @@ def format_fields_as_txt(additional_doc: Optional[FieldDocCollection] = None,
     description_indent = ' ' * (INDENT + field_length)
     output = ''
     for field_name, field_doc in sorted(f.items()):
-        output += format_field(field_name, field_doc, field_length,
-                               description_indent)
+        output += format_field_as_txt(field_name, field_doc, field_length,
+                                      description_indent)
     if not color:
         output = remove_color(output)
+    return output
+
+
+FIRST_RST_CELL_PREFIX = '   * - '
+RST_CELL_PREFIX = '     - '
+
+
+def format_field_as_rst_table(field_name: str,
+                              field_doc: FieldDoc) -> str:
+    output = FIRST_RST_CELL_PREFIX + field_name + '\n'
+    output += RST_CELL_PREFIX + field_doc['category'] + '\n'
+    output += RST_CELL_PREFIX + field_doc['description'] + '\n'
+    if 'examples' in field_doc:
+        output += RST_CELL_PREFIX + str(field_doc['examples']) + '\n'
+    else:
+        output += RST_CELL_PREFIX + '\n'
+    return output
+
+
+def format_fields_as_rst_table(
+        additional_fields: Optional[FieldDocCollection] = None) -> str:
+    if additional_fields:
+        f = fields.copy()
+        f.update(additional_fields)
+    else:
+        f = fields
+
+    header = '''
+.. list-table:: Fields documentation
+   :widths: 20 10 50 20
+   :header-rows: 1
+
+   * - Field name
+     - Category
+     - Description
+     - Examples
+'''
+
+    output = header
+    for field_name, field_doc in sorted(f.items()):
+        output += format_field_as_rst_table(field_name, field_doc)
     return output
