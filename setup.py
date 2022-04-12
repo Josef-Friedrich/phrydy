@@ -3,7 +3,7 @@ import os
 from setuptools import setup, find_packages
 import versioneer
 
-def read(file_name):
+def read(file_name: str) -> str:
     """
     Read the contents of a text file and return its content.
 

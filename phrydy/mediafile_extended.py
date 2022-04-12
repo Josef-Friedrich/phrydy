@@ -7,13 +7,13 @@ from mediafile import \
     MP4StorageStyle, \
     StorageStyle, \
     Image  # noqa: F401
-from typing import Any, Dict
+from typing import Any, Dict, Generator
 
 
 class MediaFileExtended(MediaFile):
 
     @classmethod
-    def fields(cls):
+    def fields(cls) -> Generator[str, None, None]:
         """Get the names of all writable properties that reflect
         metadata tags (i.e., those that are instances of
         :class:`MediaField`).
@@ -34,7 +34,7 @@ class MediaFileExtended(MediaFile):
                 yield field
 
     @classmethod
-    def readable_fields(cls):
+    def readable_fields(cls) -> Generator[str, None, None]:
         """Get all metadata fields: the writable ones from
         :meth:`fields` and also other audio properties.
         """
