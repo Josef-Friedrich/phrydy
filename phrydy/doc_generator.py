@@ -188,7 +188,10 @@ def format_field_as_rst_table(field_name: str,
     output += RST_CELL_PREFIX + field_doc['category'] + '\n'
     output += RST_CELL_PREFIX + field_doc['description'] + '\n'
     if 'examples' in field_doc:
-        output += RST_CELL_PREFIX + str(field_doc['examples']) + '\n'
+        examples = field_doc['examples'].copy()
+        examples_joined = ', '.join(
+            list(map(lambda n: '``' + str(n) + '``', examples)))
+        output += RST_CELL_PREFIX + examples_joined + '\n'
     else:
         output += RST_CELL_PREFIX + '\n'
     return output

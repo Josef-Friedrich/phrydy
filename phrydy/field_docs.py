@@ -1,10 +1,10 @@
 import typing
-from typing import Union, Literal, List, Any
+from typing import Literal, List, Any
 from typing_extensions import NotRequired
 
 
 categories = {
-    'ordinary': 'Ordinary metadata',
+    'common': 'Common metadata fields',
     'music_brainz': 'MusicBrainz and fingerprint information',
     'audio': 'Audio information',
     'date': 'Date related',
@@ -14,9 +14,9 @@ categories = {
 
 class FieldDoc(typing.TypedDict):
     description: str
-    category: Literal['ordinary', 'date', 'audio', 'music_brainz', 'rg']
+    category: Literal['common', 'date', 'audio', 'music_brainz', 'rg']
     data_type: NotRequired[Literal['int', 'str', 'float', 'list', 'bool']]
-    examples: NotRequired[Union[Any, List[Any]]]
+    examples: NotRequired[List[Any]]
 
 
 FieldDocCollection = typing.Dict[str, FieldDoc]
@@ -48,89 +48,89 @@ fields: FieldDocCollection = {
         'description': 'Acoustic ID',
         'category': 'music_brainz',
         'data_type': 'str',
-        'examples': '86e217b7-d3ad-4493-a9f2-cf71256ace07'
+        'examples': ['86e217b7-d3ad-4493-a9f2-cf71256ace07'],
     },
     'album': {
         'description': 'album',
-        'category': 'ordinary',
+        'category': 'common',
         'data_type': 'str',
-        'examples': 'Help!',
+        'examples': ['Help!'],
     },
     'albumartist': {
         'description': 'The artist for the entire album, which may be ' +
                        'different from the artists for the individual tracks',
-        'category': 'ordinary',
+        'category': 'common',
         'data_type': 'str',
-        'examples': 'The Beatles',
+        'examples': ['The Beatles'],
     },
     'albumartist_credit': {
         'description': 'albumartist_credit',
-        'category': 'ordinary',
+        'category': 'common',
         'data_type': 'str',
     },
     'albumartist_sort': {
         'description': 'albumartist_sort',
-        'category': 'ordinary',
+        'category': 'common',
         'data_type': 'str',
-        'examples': 'Beatles, The',
+        'examples': ['Beatles, The'],
     },
     'albumartists': {
         'description': 'albumartists',
-        'category': 'ordinary',
+        'category': 'common',
         'data_type': 'list',
     },
     'albumdisambig': {
         'description': 'albumdisambig',
-        'category': 'ordinary',
+        'category': 'common',
     },
     'albumstatus': {
         'description': 'The status describes how "official" a release is.',
-        'category': 'ordinary',
+        'category': 'common',
         'data_type': 'str',
         'examples': ['official', 'promotional', 'bootleg', 'pseudo-release'],
     },
     'albumtype': {
         'description': 'The MusicBrainz album type; the MusicBrainz wiki ' +
                        'has a list of type names',
-        'category': 'ordinary',
+        'category': 'common',
         'data_type': 'str',
-        'examples': 'album/soundtrack',
+        'examples': ['album/soundtrack'],
     },
     'arranger': {
         'description': 'arranger',
-        'category': 'ordinary',
+        'category': 'common',
         'data_type': 'str',
     },
     'art': {
         'description': 'art',
-        'category': 'ordinary',
+        'category': 'common',
     },
     'artist': {
         'description': 'artist',
-        'category': 'ordinary',
+        'category': 'common',
         'data_type': 'str',
-        'examples': 'The Beatles',
+        'examples': ['The Beatles'],
     },
     'artist_credit': {
         'description': 'The track-specific artist credit name, which may ' +
                        'be a variation of the artist’s “canonical” name',
-        'category': 'ordinary',
+        'category': 'common',
         'data_type': 'str',
     },
     'artist_sort': {
         'description': 'The “sort name” of the track artist.',
-        'category': 'ordinary',
+        'category': 'common',
         'data_type': 'str',
         'examples': ['Beatles, The', 'White, Jack'],
     },
     'artists': {
         'description': 'artists',
-        'category': 'ordinary',
+        'category': 'common',
     },
     'asin': {
         'description': 'Amazon Standard Identification Number',
-        'category': 'ordinary',
-        'examples': 'B000002UAL',
+        'category': 'common',
+        'examples': ['B000002UAL'],
     },
     # barcode             : None
     # bitdepth            : 0
@@ -143,27 +143,27 @@ fields: FieldDocCollection = {
                        '1. Universal Product Code (UPC), which is the '
                        'original barcode used in North America. '
                        '2. European Article Number (EAN)',
-        'category': 'ordinary',
+        'category': 'common',
         'data_type': 'str',
         'examples': ['5028421931838', '036000291452'],
     },
     'bitdepth': {
         'description': 'only available for some formats',
         'category': 'audio',
-        'examples': 16,
+        'examples': [16],
     },
     'bitrate': {
         'description': 'in kilobits per second, with units: e.g., “192kbps”',
         'category': 'audio',
-        'examples': 436523,
+        'examples': [436523],
     },
     'bitrate_mode': {
         'description': 'bitrate_mode',
-        'category': 'ordinary',
+        'category': 'common',
     },
     'bpm': {
         'description': 'Beats per Minute',
-        'category': 'ordinary',
+        'category': 'common',
     },
     # catalognum          : None
     # channels            : 1
@@ -180,42 +180,42 @@ fields: FieldDocCollection = {
                        'when multiple labels are involved. This is not the ' +
                        'ASIN — there is a relationship for that — nor the ' +
                        'label code.',
-        'category': 'ordinary',
-        'examples': 'CDP 7 46439 2',
+        'category': 'common',
+        'examples': ['CDP 7 46439 2'],
     },
     'channels': {
         'description': 'channels',
         'category': 'audio',
         'data_type': 'int',
-        'examples': 1,
+        'examples': [1],
     },
     'comments': {
         'description': 'comments',
-        'category': 'ordinary',
+        'category': 'common',
     },
     'comp': {
         'description': 'Compilation flag',
-        'category': 'ordinary',
+        'category': 'common',
         'data_type': 'bool',
         'examples': [True, False],
     },
     'composer': {
         'description': 'composer',
-        'category': 'ordinary',
+        'category': 'common',
         'data_type': 'str',
     },
     'composer_sort': {
         'description': 'Composer name for sorting.',
-        'category': 'ordinary',
+        'category': 'common',
         'data_type': 'str',
     },
     'copyright': {
         'description': 'copyright',
-        'category': 'ordinary',
+        'category': 'common',
     },
     'country': {
         'description': 'The country the release was issued in.',
-        'category': 'ordinary',
+        'category': 'common',
     },
     # date                : 2001-01-01
     # day                 : None
@@ -232,31 +232,31 @@ fields: FieldDocCollection = {
     },
     'disc': {
         'description': 'disc',
-        'category': 'ordinary',
+        'category': 'common',
     },
     'disctitle': {
         'description': 'disctitle',
-        'category': 'ordinary',
+        'category': 'common',
     },
     'disctotal': {
         'description': 'disctotal',
-        'category': 'ordinary',
+        'category': 'common',
     },
     # encoder             : iTunes v7.6.2
     # encoder_info        :
     # encoder_settings    :
     'encoder': {
         'description': 'encoder',
-        'category': 'ordinary',
-        'examples': 'iTunes v7.6.2',
+        'category': 'common',
+        'examples': ['iTunes v7.6.2'],
     },
     'encoder_info': {
         'description': 'encoder_info',
-        'category': 'ordinary',
+        'category': 'common',
     },
     'encoder_settings': {
         'description': 'encoder_settings',
-        'category': 'ordinary',
+        'category': 'common',
     },
     # format              : MP3
     'format': {
@@ -269,32 +269,32 @@ fields: FieldDocCollection = {
     # grouping            : the grouping
     'genre': {
         'description': 'genre',
-        'category': 'ordinary',
+        'category': 'common',
     },
     'genres': {
         'description': 'genres',
-        'category': 'ordinary',
+        'category': 'common',
     },
     'grouping': {
         'description': 'grouping',
-        'category': 'ordinary',
+        'category': 'common',
     },
     # images              : []
     # initial_key         : None
     # isrc                : None
     'images': {
         'description': 'images',
-        'category': 'ordinary',
+        'category': 'common',
     },
     'initial_key': {
         'description': 'initial_key',
-        'category': 'ordinary',
+        'category': 'common',
     },
     'isrc': {
         'description': 'The International Standard Recording Code, '
                        'abbreviated to ISRC, is a system of codes that '
                        'identify audio and music video recordings.',
-        'category': 'ordinary',
+        'category': 'common',
     },
     # label               : the label
     # language            : None
@@ -304,29 +304,29 @@ fields: FieldDocCollection = {
     'label': {
         'description': 'The label which issued the release. There may be ' +
                        'more than one.',
-        'category': 'ordinary',
-        'examples': 'Brilliant Classics',
+        'category': 'common',
+        'examples': ['Brilliant Classics'],
     },
     'language': {
         'description': 'The language a release’s track list is written in. ' +
                        'The possible values are taken from the ISO 639-3 ' +
                        'standard.',
-        'category': 'ordinary',
-        'examples': 'zxx',
+        'category': 'common',
+        'examples': ['zxx'],
 
     },
     'length': {
         'description': 'in seconds',
         'category': 'audio',
-        'examples': 674.4666666666667,
+        'examples': [674.4666666666667],
     },
     'lyricist': {
         'description': 'lyricist',
-        'category': 'ordinary',
+        'category': 'common',
     },
     'lyrics': {
         'description': 'lyrics',
-        'category': 'ordinary',
+        'category': 'common',
     },
     # media               : None
     # month               : None
@@ -360,12 +360,12 @@ fields: FieldDocCollection = {
     'mb_albumid': {
         'description': 'MusicBrainz album ID',
         'category': 'music_brainz',
-        'examples': 'fd6adc77-1489-4a13-9aa0-32951061d92b',
+        'examples': ['fd6adc77-1489-4a13-9aa0-32951061d92b'],
     },
     'mb_artistid': {
         'description': 'MusicBrainz artist ID',
         'category': 'music_brainz',
-        'examples': '1f9df192-a621-4f54-8850-2c5373b7eac9',
+        'examples': ['1f9df192-a621-4f54-8850-2c5373b7eac9'],
     },
     'mb_artistids': {
         'description': 'mb_artistids',
@@ -375,36 +375,36 @@ fields: FieldDocCollection = {
     'mb_releasegroupid': {
         'description': 'MusicBrainz releasegroup ID',
         'category': 'music_brainz',
-        'examples': 'f714fd70-aaca-4863-9d0d-2768a53acaeb',
+        'examples': ['f714fd70-aaca-4863-9d0d-2768a53acaeb'],
     },
     'mb_releasetrackid': {
         'description': 'MusicBrainz release track ID',
         'category': 'music_brainz',
-        'examples': '38c8c114-5e3b-484f-8af0-79c47ef9c169',
+        'examples': ['38c8c114-5e3b-484f-8af0-79c47ef9c169'],
     },
     'mb_trackid': {
         'description': 'MusicBrainz track ID',
         'category': 'music_brainz',
-        'examples': 'c390b132-4a44-4e16-bec3-bffbbcaa19aa',
+        'examples': ['c390b132-4a44-4e16-bec3-bffbbcaa19aa'],
     },
     'mb_workid': {
         'description': 'MusicBrainz work ID',
         'category': 'music_brainz',
-        'examples': '508ec4b1-9549-38cd-a61e-1f0d120a6118',
+        'examples': ['508ec4b1-9549-38cd-a61e-1f0d120a6118'],
     },
     'mb_workhierarchy_ids': {
         'description': 'All IDs in the work hierarchy. This field corresponds '
                        'to the field `work_hierarchy`. The top level work ID '
                        'appears first. A slash (/) is used as separator.',
         'category': 'music_brainz',
-        'examples': 'e208c5f5-5d37-3dfc-ac0b-999f207c9e46 / '
-                    '5adc213f-700a-4435-9e95-831ed720f348 / '
-                    'eafec51f-47c5-3c66-8c36-a524246c85f8'
+        'examples': ['e208c5f5-5d37-3dfc-ac0b-999f207c9e46 / '
+                     '5adc213f-700a-4435-9e95-831ed720f348 / '
+                     'eafec51f-47c5-3c66-8c36-a524246c85f8']
     },
     'media': {
         'description': 'media',
-        'category': 'ordinary',
-        'examples': 'CD',
+        'category': 'common',
+        'examples': ['CD'],
     },
     'month': {
         'description': 'The release month of the specific release',
@@ -468,75 +468,75 @@ fields: FieldDocCollection = {
         'description': 'ReplayGain Track Gain, '
                        'see https://en.wikipedia.org/wiki/ReplayGain.',
         'category': 'rg',
-        'examples': 0.0,
+        'examples': [0.0],
     },
     'rg_track_peak': {
         'description': 'ReplayGain Track Peak, '
                        'see https://en.wikipedia.org/wiki/ReplayGain.',
         'category': 'rg',
-        'examples': 0.000244,
+        'examples': [0.000244],
     },
     # samplerate          : 44100
     # script              : None
     'samplerate': {
         'description': 'in kilohertz, with units: e.g., “48kHz”',
         'category': 'audio',
-        'examples': 44100,
+        'examples': [44100],
     },
     'script': {
         'description': 'The script used to write the release’s track list. ' +
                        'The possible values are taken from the ISO 15924 ' +
                        'standard.',
-        'category': 'ordinary',
-        'examples': 'Latn',
+        'category': 'common',
+        'examples': ['Latn'],
     },
     # title               : full
     # track               : 2
     # tracktotal          : 3
     'title': {
         'description': 'The title of a audio file.',
-        'category': 'ordinary',
-        'examples': '32 Variations for Piano in C minor on an Original Theme, '
-                    'WoO 80',
+        'category': 'common',
+        'examples': ['32 Variations for Piano in C minor on an Original '
+                     'Theme, WoO 80'],
     },
     'track': {
         'description': 'The track number.',
-        'category': 'ordinary',
+        'category': 'common',
         'data_type': 'int',
-        'examples': 1,
+        'examples': [1],
     },
     'tracktotal': {
         'description': 'The total track number.',
-        'category': 'ordinary',
+        'category': 'common',
         'data_type': 'int',
-        'examples': 12,
+        'examples': [12],
     },
     # url                 : None
     'url': {
         'description': 'Uniform Resource Locator.',
-        'category': 'ordinary',
+        'category': 'common',
     },
     # work                : None
     # work_hierarchy      : None
     'work': {
         'description': 'The Musicbrainzs’ work entity.',
-        'category': 'ordinary',
-        'examples': '32 Variations for Piano in C minor on an Original Theme, '
-                    'WoO 80'
+        'category': 'common',
+        'examples': ['32 Variations for Piano in C minor on an Original '
+                     'Theme, WoO 80']
     },
     'work_hierarchy': {
         'description': 'The hierarchy of works: The top level work appears '
                        'first. As separator is this string used: -->.',
         'category': 'music_brainz',
-        'examples': 'Die Zauberflöte, K. 620 --> Die Zauberflöte, '
-                    'K. 620: Akt I --> Die Zauberflöte, K. 620: Act I, '
-                    'Scene II. No. 2 Aria "Was hör ...'
+        'examples': ['Die Zauberflöte, K. 620 --> Die Zauberflöte, '
+                     'K. 620: Akt I --> Die Zauberflöte, K. 620: Act I, '
+                     'Scene II. No. 2 Aria "Was hör ...']
     },
     # year                : 2001
     'year': {
         'description': 'The release year of the specific release',
         'category': 'date',
-        'examples': 2001,
+        'examples': [2001],
     },
 }
 """

@@ -79,117 +79,117 @@ List all available fields of a media file:
    * - acoustid_id
      - music_brainz
      - Acoustic ID
-     - 86e217b7-d3ad-4493-a9f2-cf71256ace07
+     - ``86e217b7-d3ad-4493-a9f2-cf71256ace07``
    * - album
-     - ordinary
+     - common
      - album
-     - Help!
+     - ``Help!``
    * - albumartist
-     - ordinary
+     - common
      - The artist for the entire album, which may be different from the artists for the individual tracks
-     - The Beatles
+     - ``The Beatles``
    * - albumartist_credit
-     - ordinary
+     - common
      - albumartist_credit
      - 
    * - albumartist_sort
-     - ordinary
+     - common
      - albumartist_sort
-     - Beatles, The
+     - ``Beatles, The``
    * - albumartists
-     - ordinary
+     - common
      - albumartists
      - 
    * - albumdisambig
-     - ordinary
+     - common
      - albumdisambig
      - 
    * - albumstatus
-     - ordinary
+     - common
      - The status describes how "official" a release is.
-     - ['official', 'promotional', 'bootleg', 'pseudo-release']
+     - ``official``, ``promotional``, ``bootleg``, ``pseudo-release``
    * - albumtype
-     - ordinary
+     - common
      - The MusicBrainz album type; the MusicBrainz wiki has a list of type names
-     - album/soundtrack
+     - ``album/soundtrack``
    * - arranger
-     - ordinary
+     - common
      - arranger
      - 
    * - art
-     - ordinary
+     - common
      - art
      - 
    * - artist
-     - ordinary
+     - common
      - artist
-     - The Beatles
+     - ``The Beatles``
    * - artist_credit
-     - ordinary
+     - common
      - The track-specific artist credit name, which may be a variation of the artist’s “canonical” name
      - 
    * - artist_sort
-     - ordinary
+     - common
      - The “sort name” of the track artist.
-     - ['Beatles, The', 'White, Jack']
+     - ``Beatles, The``, ``White, Jack``
    * - artists
-     - ordinary
+     - common
      - artists
      - 
    * - asin
-     - ordinary
+     - common
      - Amazon Standard Identification Number
-     - B000002UAL
+     - ``B000002UAL``
    * - barcode
-     - ordinary
+     - common
      - There are many different types of barcode, but the ones usually found on music releases are two: 1. Universal Product Code (UPC), which is the original barcode used in North America. 2. European Article Number (EAN)
-     - ['5028421931838', '036000291452']
+     - ``5028421931838``, ``036000291452``
    * - bitdepth
      - audio
      - only available for some formats
-     - 16
+     - ``16``
    * - bitrate
      - audio
      - in kilobits per second, with units: e.g., “192kbps”
-     - 436523
+     - ``436523``
    * - bitrate_mode
-     - ordinary
+     - common
      - bitrate_mode
      - 
    * - bpm
-     - ordinary
+     - common
      - Beats per Minute
      - 
    * - catalognum
-     - ordinary
+     - common
      - This is a number assigned to the release by the label which can often be found on the spine or near the barcode. There may be more than one, especially when multiple labels are involved. This is not the ASIN — there is a relationship for that — nor the label code.
-     - CDP 7 46439 2
+     - ``CDP 7 46439 2``
    * - channels
      - audio
      - channels
-     - 1
+     - ``1``
    * - comments
-     - ordinary
+     - common
      - comments
      - 
    * - comp
-     - ordinary
+     - common
      - Compilation flag
-     - [True, False]
+     - ``True``, ``False``
    * - composer
-     - ordinary
+     - common
      - composer
      - 
    * - composer_sort
-     - ordinary
+     - common
      - Composer name for sorting.
      - 
    * - copyright
-     - ordinary
+     - common
      - copyright
      - 
    * - country
-     - ordinary
+     - common
      - The country the release was issued in.
      - 
    * - date
@@ -201,121 +201,121 @@ List all available fields of a media file:
      - The release day of the specific release
      - 
    * - disc
-     - ordinary
+     - common
      - disc
      - 
    * - disctitle
-     - ordinary
+     - common
      - disctitle
      - 
    * - disctotal
-     - ordinary
+     - common
      - disctotal
      - 
    * - encoder
-     - ordinary
+     - common
      - encoder
-     - iTunes v7.6.2
+     - ``iTunes v7.6.2``
    * - encoder_info
-     - ordinary
+     - common
      - encoder_info
      - 
    * - encoder_settings
-     - ordinary
+     - common
      - encoder_settings
      - 
    * - format
      - audio
      - e.g., “MP3” or “FLAC”
-     - ['MP3', 'FLAC']
+     - ``MP3``, ``FLAC``
    * - genre
-     - ordinary
+     - common
      - genre
      - 
    * - genres
-     - ordinary
+     - common
      - genres
      - 
    * - grouping
-     - ordinary
+     - common
      - grouping
      - 
    * - images
-     - ordinary
+     - common
      - images
      - 
    * - initial_key
-     - ordinary
+     - common
      - initial_key
      - 
    * - isrc
-     - ordinary
+     - common
      - The International Standard Recording Code, abbreviated to ISRC, is a system of codes that identify audio and music video recordings.
      - 
    * - label
-     - ordinary
+     - common
      - The label which issued the release. There may be more than one.
-     - Brilliant Classics
+     - ``Brilliant Classics``
    * - language
-     - ordinary
+     - common
      - The language a release’s track list is written in. The possible values are taken from the ISO 639-3 standard.
-     - zxx
+     - ``zxx``
    * - length
      - audio
      - in seconds
-     - 674.4666666666667
+     - ``674.4666666666667``
    * - lyricist
-     - ordinary
+     - common
      - lyricist
      - 
    * - lyrics
-     - ordinary
+     - common
      - lyrics
      - 
    * - mb_albumartistid
      - music_brainz
      - MusicBrainz album artist ID
-     - ['1f9df192-a621-4f54-8850-2c5373b7eac9', 'b972f589-fb0e-474e-b64a-803b0364fa75']
+     - ``1f9df192-a621-4f54-8850-2c5373b7eac9``, ``b972f589-fb0e-474e-b64a-803b0364fa75``
    * - mb_albumartistids
      - music_brainz
      - mb_albumartistids
-     - [['b972f589-fb0e-474e-b64a-803b0364fa75', 'dea28aa9-1086-4ffa-8739-0ccc759de1ce', 'd2ced2f1-6b58-47cf-ae87-5943e2ab6d99']]
+     - ``['b972f589-fb0e-474e-b64a-803b0364fa75', 'dea28aa9-1086-4ffa-8739-0ccc759de1ce', 'd2ced2f1-6b58-47cf-ae87-5943e2ab6d99']``
    * - mb_albumid
      - music_brainz
      - MusicBrainz album ID
-     - fd6adc77-1489-4a13-9aa0-32951061d92b
+     - ``fd6adc77-1489-4a13-9aa0-32951061d92b``
    * - mb_artistid
      - music_brainz
      - MusicBrainz artist ID
-     - 1f9df192-a621-4f54-8850-2c5373b7eac9
+     - ``1f9df192-a621-4f54-8850-2c5373b7eac9``
    * - mb_artistids
      - music_brainz
      - mb_artistids
-     - [['1f9df192-a621-4f54-8850-2c5373b7eac9']]
+     - ``['1f9df192-a621-4f54-8850-2c5373b7eac9']``
    * - mb_releasegroupid
      - music_brainz
      - MusicBrainz releasegroup ID
-     - f714fd70-aaca-4863-9d0d-2768a53acaeb
+     - ``f714fd70-aaca-4863-9d0d-2768a53acaeb``
    * - mb_releasetrackid
      - music_brainz
      - MusicBrainz release track ID
-     - 38c8c114-5e3b-484f-8af0-79c47ef9c169
+     - ``38c8c114-5e3b-484f-8af0-79c47ef9c169``
    * - mb_trackid
      - music_brainz
      - MusicBrainz track ID
-     - c390b132-4a44-4e16-bec3-bffbbcaa19aa
+     - ``c390b132-4a44-4e16-bec3-bffbbcaa19aa``
    * - mb_workhierarchy_ids
      - music_brainz
      - All IDs in the work hierarchy. This field corresponds to the field `work_hierarchy`. The top level work ID appears first. A slash (/) is used as separator.
-     - e208c5f5-5d37-3dfc-ac0b-999f207c9e46 / 5adc213f-700a-4435-9e95-831ed720f348 / eafec51f-47c5-3c66-8c36-a524246c85f8
+     - ``e208c5f5-5d37-3dfc-ac0b-999f207c9e46 / 5adc213f-700a-4435-9e95-831ed720f348 / eafec51f-47c5-3c66-8c36-a524246c85f8``
    * - mb_workid
      - music_brainz
      - MusicBrainz work ID
-     - 508ec4b1-9549-38cd-a61e-1f0d120a6118
+     - ``508ec4b1-9549-38cd-a61e-1f0d120a6118``
    * - media
-     - ordinary
+     - common
      - media
-     - CD
+     - ``CD``
    * - month
      - date
      - The release month of the specific release
@@ -359,47 +359,47 @@ List all available fields of a media file:
    * - rg_track_gain
      - rg
      - ReplayGain Track Gain, see https://en.wikipedia.org/wiki/ReplayGain.
-     - 0.0
+     - ``0.0``
    * - rg_track_peak
      - rg
      - ReplayGain Track Peak, see https://en.wikipedia.org/wiki/ReplayGain.
-     - 0.000244
+     - ``0.000244``
    * - samplerate
      - audio
      - in kilohertz, with units: e.g., “48kHz”
-     - 44100
+     - ``44100``
    * - script
-     - ordinary
+     - common
      - The script used to write the release’s track list. The possible values are taken from the ISO 15924 standard.
-     - Latn
+     - ``Latn``
    * - title
-     - ordinary
+     - common
      - The title of a audio file.
-     - 32 Variations for Piano in C minor on an Original Theme, WoO 80
+     - ``32 Variations for Piano in C minor on an Original Theme, WoO 80``
    * - track
-     - ordinary
+     - common
      - The track number.
-     - 1
+     - ``1``
    * - tracktotal
-     - ordinary
+     - common
      - The total track number.
-     - 12
+     - ``12``
    * - url
-     - ordinary
+     - common
      - Uniform Resource Locator.
      - 
    * - work
-     - ordinary
+     - common
      - The Musicbrainzs’ work entity.
-     - 32 Variations for Piano in C minor on an Original Theme, WoO 80
+     - ``32 Variations for Piano in C minor on an Original Theme, WoO 80``
    * - work_hierarchy
      - music_brainz
      - The hierarchy of works: The top level work appears first. As separator is this string used: -->.
-     - Die Zauberflöte, K. 620 --> Die Zauberflöte, K. 620: Akt I --> Die Zauberflöte, K. 620: Act I, Scene II. No. 2 Aria "Was hör ...
+     - ``Die Zauberflöte, K. 620 --> Die Zauberflöte, K. 620: Akt I --> Die Zauberflöte, K. 620: Act I, Scene II. No. 2 Aria "Was hör ...``
    * - year
      - date
      - The release year of the specific release
-     - 2001
+     - ``2001``
 
 
 
