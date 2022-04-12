@@ -185,7 +185,8 @@ def format_fields_as_txt(
 
     output = ''
     for field_name, field_doc in sorted(f.items()):
-        output += format_field_as_txt(field_name, field_doc, second_column)
+        output += format_field_as_txt(field_name, field_doc, second_column,
+                                      field_prefix)
     if not color:
         output = remove_color(output)
     return output

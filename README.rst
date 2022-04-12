@@ -262,7 +262,7 @@ List all available fields of a media file:
      - ``zxx``
    * - length
      - audio
-     - in seconds
+     - The length of a recording in seconds.
      - ``674.4666666666667``
    * - lyricist
      - common
@@ -278,31 +278,31 @@ List all available fields of a media file:
      - ``1f9df192-a621-4f54-8850-2c5373b7eac9``, ``b972f589-fb0e-474e-b64a-803b0364fa75``
    * - mb_albumartistids
      - music_brainz
-     - mb_albumartistids
+     - MusicBrainz album artist IDs as a list.
      - ``['b972f589-fb0e-474e-b64a-803b0364fa75', 'dea28aa9-1086-4ffa-8739-0ccc759de1ce', 'd2ced2f1-6b58-47cf-ae87-5943e2ab6d99']``
    * - mb_albumid
      - music_brainz
-     - MusicBrainz album ID
+     - MusicBrainz album ID.
      - ``fd6adc77-1489-4a13-9aa0-32951061d92b``
    * - mb_artistid
      - music_brainz
-     - MusicBrainz artist ID
+     - MusicBrainz artist ID.
      - ``1f9df192-a621-4f54-8850-2c5373b7eac9``
    * - mb_artistids
      - music_brainz
-     - mb_artistids
+     - MusicBrainz artist IDs as a list.
      - ``['1f9df192-a621-4f54-8850-2c5373b7eac9']``
    * - mb_releasegroupid
      - music_brainz
-     - MusicBrainz releasegroup ID
+     - MusicBrainz releasegroup ID.
      - ``f714fd70-aaca-4863-9d0d-2768a53acaeb``
    * - mb_releasetrackid
      - music_brainz
-     - MusicBrainz release track ID
+     - MusicBrainz release track ID.
      - ``38c8c114-5e3b-484f-8af0-79c47ef9c169``
    * - mb_trackid
      - music_brainz
-     - MusicBrainz track ID
+     - MusicBrainz track ID.
      - ``c390b132-4a44-4e16-bec3-bffbbcaa19aa``
    * - mb_workhierarchy_ids
      - music_brainz
@@ -310,31 +310,31 @@ List all available fields of a media file:
      - ``e208c5f5-5d37-3dfc-ac0b-999f207c9e46 / 5adc213f-700a-4435-9e95-831ed720f348 / eafec51f-47c5-3c66-8c36-a524246c85f8``
    * - mb_workid
      - music_brainz
-     - MusicBrainz work ID
+     - MusicBrainz work ID.
      - ``508ec4b1-9549-38cd-a61e-1f0d120a6118``
    * - media
      - common
-     - media
+     - A prototypical medium is one of the physical, separate things you would get when you buy something in a record store.
      - ``CD``
    * - month
      - date
-     - The release month of the specific release
+     - The release month of the specific release.
      - 
    * - original_date
      - date
-     - original_date
+     - The release date of the original version of the album.
      - 
    * - original_day
      - date
-     - The release day of the original version of the album
+     - The release day of the original version of the album.
      - 
    * - original_month
      - date
-     - The release month of the original version of the album
+     - The release month of the original version of the album.
      - 
    * - original_year
      - date
-     - The release year of the original version of the album
+     - The release year of the original version of the album.
      - 
    * - r128_album_gain
      - rg
@@ -366,7 +366,7 @@ List all available fields of a media file:
      - ``0.000244``
    * - samplerate
      - audio
-     - in kilohertz, with units: e.g., “48kHz”
+     - The sample rate as an integer number.
      - ``44100``
    * - script
      - common

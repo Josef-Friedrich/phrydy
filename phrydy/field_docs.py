@@ -331,7 +331,7 @@ fields: FieldDocCollection = {
 
     },
     'length': {
-        'description': 'in seconds',
+        'description': 'The length of a recording in seconds.',
         'category': 'audio',
         'examples': [674.4666666666667],
     },
@@ -363,7 +363,7 @@ fields: FieldDocCollection = {
                      'b972f589-fb0e-474e-b64a-803b0364fa75'],
     },
     'mb_albumartistids': {
-        'description': 'mb_albumartistids',
+        'description': 'MusicBrainz album artist IDs as a list.',
         'category': 'music_brainz',
         'examples': [
             ['b972f589-fb0e-474e-b64a-803b0364fa75',
@@ -373,37 +373,37 @@ fields: FieldDocCollection = {
         'data_type': 'list',
     },
     'mb_albumid': {
-        'description': 'MusicBrainz album ID',
+        'description': 'MusicBrainz album ID.',
         'category': 'music_brainz',
         'examples': ['fd6adc77-1489-4a13-9aa0-32951061d92b'],
     },
     'mb_artistid': {
-        'description': 'MusicBrainz artist ID',
+        'description': 'MusicBrainz artist ID.',
         'category': 'music_brainz',
         'examples': ['1f9df192-a621-4f54-8850-2c5373b7eac9'],
     },
     'mb_artistids': {
-        'description': 'mb_artistids',
+        'description': 'MusicBrainz artist IDs as a list.',
         'category': 'music_brainz',
         'examples': [['1f9df192-a621-4f54-8850-2c5373b7eac9']],
     },
     'mb_releasegroupid': {
-        'description': 'MusicBrainz releasegroup ID',
+        'description': 'MusicBrainz releasegroup ID.',
         'category': 'music_brainz',
         'examples': ['f714fd70-aaca-4863-9d0d-2768a53acaeb'],
     },
     'mb_releasetrackid': {
-        'description': 'MusicBrainz release track ID',
+        'description': 'MusicBrainz release track ID.',
         'category': 'music_brainz',
         'examples': ['38c8c114-5e3b-484f-8af0-79c47ef9c169'],
     },
     'mb_trackid': {
-        'description': 'MusicBrainz track ID',
+        'description': 'MusicBrainz track ID.',
         'category': 'music_brainz',
         'examples': ['c390b132-4a44-4e16-bec3-bffbbcaa19aa'],
     },
     'mb_workid': {
-        'description': 'MusicBrainz work ID',
+        'description': 'MusicBrainz work ID.',
         'category': 'music_brainz',
         'examples': ['508ec4b1-9549-38cd-a61e-1f0d120a6118'],
     },
@@ -417,12 +417,14 @@ fields: FieldDocCollection = {
                      'eafec51f-47c5-3c66-8c36-a524246c85f8']
     },
     'media': {
-        'description': 'media',
+        'description':
+            'A prototypical medium is one of the physical, separate things '
+            'you would get when you buy something in a record store.',
         'category': 'common',
         'examples': ['CD'],
     },
     'month': {
-        'description': 'The release month of the specific release',
+        'description': 'The release month of the specific release.',
         'category': 'date',
     },
     # original_date       : None
@@ -430,20 +432,22 @@ fields: FieldDocCollection = {
     # original_month      : None
     # original_year       : None
     'original_date': {
-        'description': 'original_date',
+        'description': 'The release date of the original version of the '
+                       'album.',
         'category': 'date',
     },
     'original_day': {
-        'description': 'The release day of the original version of the album',
+        'description': 'The release day of the original version of the album.',
         'category': 'date',
     },
     'original_month': {
         'description': 'The release month of the original version of the ' +
-                       'album',
+                       'album.',
         'category': 'date',
     },
     'original_year': {
-        'description': 'The release year of the original version of the album',
+        'description': 'The release year of the original version of the '
+                       'album.',
         'category': 'date',
     },
     # r128_album_gain     : None
@@ -494,7 +498,7 @@ fields: FieldDocCollection = {
     # samplerate          : 44100
     # script              : None
     'samplerate': {
-        'description': 'in kilohertz, with units: e.g., “48kHz”',
+        'description': 'The sample rate as an integer number.',
         'category': 'audio',
         'examples': [44100],
     },
