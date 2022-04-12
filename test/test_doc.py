@@ -53,7 +53,7 @@ class TestDoc(unittest.TestCase):
         tmp = phrydy.doc_generator.fields.copy()
         field_doc: FieldDoc = {
             'description': 'Description',
-            'category': 'ordinary'
+            'category': 'common'
         }
         tmp['looooooooooooooooooooooooooooooooooooooong'] = field_doc
         length = phrydy.doc_generator.get_max_field_length(tmp)
@@ -63,7 +63,7 @@ class TestDoc(unittest.TestCase):
         fields: phrydy.doc_generator.FieldDocCollection = {
             'lol': {
                 'description': 'loool',
-                'category': 'ordinary',
+                'category': 'common',
             },
         }
         output = phrydy.doc_generator.format_fields_as_txt(

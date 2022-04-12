@@ -12,7 +12,7 @@ phrydy
 
 This is a extended version of the
 `mediafile <https://github.com/beetbox/mediafile>`_ library.
-It is used by
+It is used by Python command line tool
 `audiorename <https://github.com/Josef-Friedrich/audiorename>`_.
 
 Installation
@@ -178,12 +178,12 @@ List all available fields of a media file:
      - ``True``, ``False``
    * - composer
      - common
-     - composer
-     - 
+     - The name of the composer.
+     - ``Ludwig van Beethoven``
    * - composer_sort
      - common
-     - Composer name for sorting.
-     - 
+     - The composer name for sorting.
+     - ``Beethoven, Ludwig van``
    * - copyright
      - common
      - copyright
@@ -214,7 +214,7 @@ List all available fields of a media file:
      - 
    * - encoder
      - common
-     - encoder
+     - the name of the person or organisation that encoded the audio file. This field may contain a copyright message, if the audio file also is copyrighted by the encoder.
      - ``iTunes v7.6.2``
    * - encoder_info
      - common
@@ -246,12 +246,12 @@ List all available fields of a media file:
      - 
    * - initial_key
      - common
-     - initial_key
-     - 
+     - The Initial key frame contains the musical key in which the sound starts. It is represented as a string with a maximum length of three characters. The ground keys are represented with "A","B","C","D","E", "F" and "G" and halfkeys represented with "b" and "#". Minor is represented as "m".
+     - ``Dbm``
    * - isrc
      - common
      - The International Standard Recording Code, abbreviated to ISRC, is a system of codes that identify audio and music video recordings.
-     - 
+     - ``CAC118989003``, ``ITO101117740``
    * - label
      - common
      - The label which issued the release. There may be more than one.

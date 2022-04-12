@@ -20,6 +20,5 @@ readme = open_file('README.rst')
 template = template.replace('<< fields documentation table >>',
                              phrydy.doc_generator.format_fields_as_rst_table())
 
-print(template)
 readme.write(template)
 readme.close()
