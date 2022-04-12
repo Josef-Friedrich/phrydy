@@ -3,6 +3,7 @@ from . import doc_generator  # noqa: F401
 from . import mediafile_extended  # noqa: F401
 
 from ._version import get_versions
+
 from .mediafile_extended import \
     MediaFile, \
     MediaFileExtended  # noqa: F401
@@ -12,6 +13,7 @@ from .field_docs import \
     FieldDocCollection  # noqa: F401
 
 from .doc_generator import \
+    get_max_field_length, \
     format_fields_as_txt, \
     merge_fields, \
     print_debug  # noqa: F401

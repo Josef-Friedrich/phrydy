@@ -129,22 +129,29 @@ INDENT = 4
 
 def format_field_as_txt(field_name: str,
                         field_doc: FieldDoc,
-                        field_length: int,
-                        description_indent: str) -> str:
+                        second_column: int, field_prefix: str = '') -> str:
     output = ''
 
-    field_name_length = len(FIELD_PREFIX + field_name) + INDENT + 1
+    field_name_length = \
+        INDENT + \
+        len(field_prefix + field_name + FIELD_SUFFIX) + \
+        INDENT
 
-    field_name = ' ' * INDENT + ansicolor.cyan(FIELD_PREFIX + field_name) + ':'
+    field_name = \
+        ' ' * INDENT + \
+        ansicolor.cyan(field_prefix + field_name) + FIELD_SUFFIX + \
+        ' ' * INDENT
+
+    description_indent = ' ' * second_column
 
     description = field_doc['description']
-    output += field_name + (' ' * (field_length - field_name_length)) + \
+    output += field_name + \
         textwrap.fill(
             description,
             width=78,
             initial_indent=description_indent,
             subsequent_indent=description_indent
-        )[field_length:] + '\n'
+        )[field_name_length:] + '\n'
 
     if 'examples' in field_doc:
         output += description_indent + \
@@ -157,6 +164,7 @@ def format_field_as_txt(field_name: str,
 
 def format_fields_as_txt(
         additional_fields: Optional[FieldDocCollection] = None,
+        field_prefix: str = '',
         color: bool = False) -> str:
     """Return a formated string containing the documentation about the audio
     fields.
@@ -166,13 +174,18 @@ def format_fields_as_txt(
         f.update(additional_fields)
     else:
         f = fields
-    field_length = get_max_field_length(f) + len(FIELD_PREFIX) + \
-        len(FIELD_SUFFIX) + 4
-    description_indent = ' ' * (INDENT + field_length)
+
+    # The beginning of the second column
+    second_column = \
+        INDENT + \
+        len(field_prefix) + \
+        get_max_field_length(f) + \
+        len(FIELD_SUFFIX) + \
+        INDENT
+
     output = ''
     for field_name, field_doc in sorted(f.items()):
-        output += format_field_as_txt(field_name, field_doc, field_length,
-                                      description_indent)
+        output += format_field_as_txt(field_name, field_doc, second_column)
     if not color:
         output = remove_color(output)
     return output
