@@ -63,6 +63,20 @@ List all available fields of a media file:
             print('{}: {}'.format(key, value))
 
 
+.. list-table:: Fields documentation
+   :widths: 20 10 50 20
+   :header-rows: 1
+
+   * - Field name
+     - Category
+     - Description
+     - Examples
+   * - artist_sort
+     - ordinary
+     - The “sort name” of the track artist.
+     - ``Beatles, The``, ``White, Jack``
+
+
 Development
 ===========
 
