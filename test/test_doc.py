@@ -57,7 +57,7 @@ class TestDoc(unittest.TestCase):
         }
         tmp['looooooooooooooooooooooooooooooooooooooong'] = field_doc
         length = phrydy.doc_generator.get_max_field_length(tmp)
-        self.assertEqual(length, 42)
+        self.assertEqual(length, 43)
 
     def test_get_additional_docs(self):
         fields: phrydy.doc_generator.FieldDocCollection = {
