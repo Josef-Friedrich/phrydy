@@ -44,10 +44,10 @@ class TestDoc(unittest.TestCase):
         self.assertTrue('label code' in title)
 
     def test_doc_string(self):
-        self.assertTrue(isinstance(phrydy.doc_generator.get_doc(), str))
+        self.assertTrue(isinstance(phrydy.format_fields_as_txt(), str))
 
     def test_doc_length(self):
-        self.assertTrue(len(phrydy.doc_generator.get_doc()) > 1000)
+        self.assertTrue(len(phrydy.format_fields_as_txt()) > 1000)
 
     def test_get_max_field_lengths(self):
         tmp = phrydy.doc_generator.fields.copy()
@@ -66,11 +66,12 @@ class TestDoc(unittest.TestCase):
                 'category': 'ordinary',
             },
         }
-        output = phrydy.doc_generator.get_doc(additional_doc=fields)
+        output = phrydy.doc_generator.format_fields_as_txt(
+            additional_doc=fields)
         self.assertTrue('loool' in output)
 
     def test_field_order(self):
-        output = phrydy.doc_generator.get_doc().split('\n')
+        output = phrydy.doc_generator.format_fields_as_txt().split('\n')
         self.assertTrue('acoustid_fingerprint' in output[0])
 
     def test_all_fields_are_documented(self):

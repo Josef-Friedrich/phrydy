@@ -155,8 +155,8 @@ def format_field(field_name: str,
     return output
 
 
-def get_doc(additional_doc: Optional[FieldDocCollection] = None,
-            color: bool = False) -> str:
+def format_fields_as_txt(additional_doc: Optional[FieldDocCollection] = None,
+                         color: bool = False) -> str:
     """Return a formated string containing the documentation about the audio
     fields.
     """
