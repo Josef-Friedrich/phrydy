@@ -1,18 +1,19 @@
 #! /usr/bin/env python
 
-import phrydy
-from phrydy import MediaFileExtended
-from phrydy.doc import print_debug, get_doc
 import argparse
-from phrydy._version import get_versions
 
+import phrydy
+from phrydy._version import get_versions
+from phrydy import MediaFileExtended
+from phrydy.doc_generator import print_debug, get_doc
 
 def description():
     """Build the description string."""
     return '''\
-    Debugging tool of the Python package “phrydy”, an easy \
-    wrapper around the “mutagen” library.
-    ''' + get_doc()
+Debugging tool of the Python package “phrydy”, an easy \
+wrapper around the “mutagen” library.
+    ''' + '\n' + get_doc(color=True)
+
 
 parser = argparse.ArgumentParser(
     formatter_class=argparse.RawDescriptionHelpFormatter,
@@ -39,6 +40,7 @@ parser.add_argument(
 )
 
 args = parser.parse_args()
+
 
 if args.audio_file:
     print('phrydy version ' + phrydy.__version__)

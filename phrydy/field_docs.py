@@ -1,18 +1,19 @@
-import textwrap
-import ansicolor
 import typing
 from typing import Union, Literal, List, Any
 from typing_extensions import NotRequired
 
-from phrydy.mediafile_extended import MediaFileExtended
+
+categories = {
+    'ordinary': 'Ordinary metadata',
+    'music_brainz': 'MusicBrainz and fingerprint information',
+    'audio': 'Audio information',
+    'date': 'Date related',
+    'rg': 'ReplayGain',
+}
 
 
 class FieldDoc(typing.TypedDict):
     description: str
-    # ordinary: Ordinary metadata
-    # music_brainz: MusicBrainz and fingerprint information
-    # audio: Audio information
-    # date: Date related
     category: Literal['ordinary', 'date', 'audio', 'music_brainz', 'rg']
     data_type: NotRequired[Literal['int', 'str', 'float', 'list', 'bool']]
     examples: NotRequired[Union[Any, List[Any]]]
@@ -137,9 +138,14 @@ fields: FieldDocCollection = {
     # bitrate_mode        :
     # bpm                 : 6
     'barcode': {
-        'description': 'barcode',
+        'description': 'There are many different types of barcode, but the '
+                       'ones usually found on music releases are two: '
+                       '1. Universal Product Code (UPC), which is the '
+                       'original barcode used in North America. '
+                       '2. European Article Number (EAN)',
         'category': 'ordinary',
-        'examples': 5028421931838,
+        'data_type': 'str',
+        'examples': ['5028421931838', '036000291452'],
     },
     'bitdepth': {
         'description': 'only available for some formats',
@@ -285,7 +291,9 @@ fields: FieldDocCollection = {
         'category': 'ordinary',
     },
     'isrc': {
-        'description': 'isrc',
+        'description': 'The International Standard Recording Code, '
+                       'abbreviated to ISRC, is a system of codes that '
+                       'identify audio and music video recordings.',
         'category': 'ordinary',
     },
     # label               : the label
@@ -387,11 +395,11 @@ fields: FieldDocCollection = {
     'mb_workhierarchy_ids': {
         'description': 'All IDs in the work hierarchy. This field corresponds '
                        'to the field `work_hierarchy`. The top level work ID '
-                       'appears first. A slash (/) is used as separator.'
-                       'Example: e208c5f5-5d37-3dfc-ac0b-999f207c9e46 / '
-                       '5adc213f-700a-4435-9e95-831ed720f348 / '
-                       'eafec51f-47c5-3c66-8c36-a524246c85f8',
+                       'appears first. A slash (/) is used as separator.',
         'category': 'music_brainz',
+        'examples': 'e208c5f5-5d37-3dfc-ac0b-999f207c9e46 / '
+                    '5adc213f-700a-4435-9e95-831ed720f348 / '
+                    'eafec51f-47c5-3c66-8c36-a524246c85f8'
     },
     'media': {
         'description': 'media',
@@ -447,20 +455,24 @@ fields: FieldDocCollection = {
         'category': 'music_brainz',
     },
     'rg_album_gain': {
-        'description': 'rg_album_gain',
+        'description': 'ReplayGain Album Gain, '
+                       'see https://en.wikipedia.org/wiki/ReplayGain.',
         'category': 'rg',
     },
     'rg_album_peak': {
-        'description': 'rg_album_peak',
+        'description': 'ReplayGain Album Peak, '
+                       'see https://en.wikipedia.org/wiki/ReplayGain.',
         'category': 'rg',
     },
     'rg_track_gain': {
-        'description': 'rg_track_gain',
+        'description': 'ReplayGain Track Gain, '
+                       'see https://en.wikipedia.org/wiki/ReplayGain.',
         'category': 'rg',
         'examples': 0.0,
     },
     'rg_track_peak': {
-        'description': 'rg_track_peak',
+        'description': 'ReplayGain Track Peak, '
+                       'see https://en.wikipedia.org/wiki/ReplayGain.',
         'category': 'rg',
         'examples': 0.000244,
     },
@@ -488,13 +500,15 @@ fields: FieldDocCollection = {
                     'WoO 80',
     },
     'track': {
-        'description': 'track',
+        'description': 'The track number.',
         'category': 'ordinary',
+        'data_type': 'int',
         'examples': 1,
     },
     'tracktotal': {
-        'description': 'tracktotal',
+        'description': 'The total track number.',
         'category': 'ordinary',
+        'data_type': 'int',
         'examples': 12,
     },
     # url                 : None
@@ -512,11 +526,11 @@ fields: FieldDocCollection = {
     },
     'work_hierarchy': {
         'description': 'The hierarchy of works: The top level work appears '
-                       'first. As separator is this string used: -->. '
-                       'Example: Die Zauberflöte, K. 620 --> Die Zauberflöte, '
-                       'K. 620: Akt I --> Die Zauberflöte, K. 620: Act I, '
-                       'Scene II. No. 2 Aria "Was hör ...',
+                       'first. As separator is this string used: -->.',
         'category': 'music_brainz',
+        'examples': 'Die Zauberflöte, K. 620 --> Die Zauberflöte, '
+                    'K. 620: Akt I --> Die Zauberflöte, K. 620: Act I, '
+                    'Scene II. No. 2 Aria "Was hör ...'
     },
     # year                : 2001
     'year': {
@@ -537,145 +551,3 @@ A multidimensional dictionary documenting all metadata fields.
         },
     }
 """
-
-
-def get_type_name(t: typing.Any) -> str:
-    return type(t).__name__
-
-
-def print_dict_sorted(dictionary: typing.Dict[str, typing.Any],
-                      color: bool,
-                      align: typing.Literal['left', 'right'] = 'right'
-                      ) -> None:
-    max_field_length = get_max_field_length(dictionary)
-
-    for key, value in sorted(dictionary.items()):
-        if align == 'right':
-            key = key.rjust(max_field_length, ' ')
-        elif align == 'left':
-            key = key.ljust(max_field_length, ' ')
-        key = key + ':'
-        if color:
-            key = ansicolor.green(key)
-            value = value
-        print(key + ' ' + value)
-
-
-def print_section(text: str, color: bool = False) -> None:
-    if color:
-        text = ansicolor.blue(text.ljust(60, ' '), reverse=True)
-        line = ''
-    else:
-        line = '\n' + ''.ljust(60, '-')
-
-    print('\n' + text + line)
-
-
-def print_debug(media_file: str,
-                MediaClass: typing.Callable[[str], MediaFileExtended],
-                field_generator: typing.Callable[
-                    [], typing.Generator[str, None, None]
-                ],
-                color: bool = False) -> None:
-    fields = MediaClass(media_file)
-
-    # All class values
-    print_section('All values provided by the class: ' + MediaClass.__name__,
-                  color)
-
-    class_fields = {}
-    for key in field_generator():
-        value = getattr(fields, key)
-        class_fields[key] = str(value)
-
-    print_dict_sorted(class_fields, color, align='left')
-
-    # Raw mutagen values
-    print_section('Raw mutagen values', color)
-
-    mutagen_fields = {}
-    for key, value in fields.mgfile.items():
-        mutagen_fields[str(key)] = str(value)
-    print_dict_sorted(mutagen_fields, color, align='left')
-
-    # Class values
-    print_section('Values provided by the class: ' + MediaClass.__name__,
-                  color)
-
-    class_fields = {}
-    for key in field_generator():
-        value = getattr(fields, key)
-        if key != 'art' and value:
-            class_fields[key] = str(value)
-
-    print_dict_sorted(class_fields, color, align='left')
-
-
-def merge_fields(*fields):
-    """Used in audiorename/args.py"""
-    arguments = locals()
-    out = {}
-    for fields in arguments['fields']:
-        out.update(fields)
-
-    return out
-
-
-def get_max_field_length(fields) -> int:
-    """Get the length of the longest field in the dictionary ``fields``.
-
-    :param dict fields: A dictionary to search for the longest field.
-    """
-    return max(map(len, fields))
-
-
-def format_field(field_name: str,
-                 field_doc: FieldDoc,
-                 field_length: int,
-                 description_indent: str,
-                 field_prefix: str = '$',
-                 indent: int = 4) -> str:
-    output = ''
-
-    field_name_length = len(field_prefix + field_name) + indent + 1
-
-    field_name = ' ' * indent + ansicolor.cyan(field_prefix + field_name) + ':'
-
-    description = field_doc['description']
-    output += field_name + (' ' * (field_length - field_name_length)) + \
-        textwrap.fill(
-            description,
-            width=78,
-            initial_indent=description_indent,
-            subsequent_indent=description_indent
-        )[field_length:] + '\n'
-
-    if 'examples' in field_doc:
-        output += description_indent + \
-            ansicolor.yellow('Examples:') + ' ' + \
-            str(field_doc['examples']) + '\n'
-    output += '\n\n'
-
-    return output
-
-
-def get_doc(additional_doc: typing.Optional[FieldDocCollection] = None,
-            field_prefix: str = '$',
-            field_suffix: str = ':',
-            indent: int = 4):
-    """Return a formated string containing the documentation about the audio
-    fields.
-    """
-    if additional_doc:
-        f = fields.copy()
-        f.update(additional_doc)
-    else:
-        f = fields
-    field_length = get_max_field_length(f) + len(field_prefix) + \
-        len(field_suffix) + 4
-    description_indent = ' ' * (indent + field_length)
-    output = ''
-    for field_name, field_doc in sorted(f.items()):
-        output += format_field(field_name, field_doc, field_length,
-                               description_indent, field_prefix, indent)
-    return output

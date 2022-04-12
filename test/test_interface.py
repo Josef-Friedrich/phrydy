@@ -2,10 +2,12 @@
 """
 
 import unittest
+import os
+
+from test import helper
+
 import phrydy
 from phrydy import MediaFileExtended
-import os
-from test import helper
 
 
 class TestInterface(unittest.TestCase):
@@ -22,5 +24,5 @@ class TestInterface(unittest.TestCase):
         self.assertEqual(mediafile.title, 'full')
 
     def test_module_import_doc(self):
-        fields = phrydy.doc.fields
+        fields = phrydy.doc_generator.fields
         self.assertTrue(fields)

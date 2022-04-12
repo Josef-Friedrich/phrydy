@@ -9,12 +9,17 @@ Module contents
 Submodules
 ----------
 
-phrydy.doc module
-^^^^^^^^^^^^^^^^^
+phrydy.doc_generator module
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. automodule:: phrydy.doc
+.. automodule:: phrydy.doc_generator
 
-.. autodata:: phrydy.doc.fields
+phrydy.field_docs module
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. automodule:: phrydy.field_docs
+
+.. autodata:: phrydy.field_docs.fields
     :annotation: = metadata description
 
 phrydy.mediafile_extended module

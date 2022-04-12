@@ -1,9 +1,10 @@
 import os
-from phrydy import MediaFileExtended
 import unittest
 import tempfile
 import shutil
+
 import phrydy
+from phrydy import MediaFileExtended
 
 
 def get_file(name):
@@ -29,7 +30,7 @@ class TestMediafileExtended(unittest.TestCase):
         fields = MediaFileExtended.readable_fields()
         f = list(fields)
         f.sort()
-        d = list(phrydy.doc.fields.keys())
+        d = list(phrydy.doc_generator.fields.keys())
         d.sort()
         self.assertEqual(f, d)
 

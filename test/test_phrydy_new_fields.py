@@ -1,8 +1,5 @@
-# -*- coding: utf-8 -*-
-
 """Test additional meta fields not included in beets MediaFileExtended.
 """
-from __future__ import division, absolute_import, print_function
 
 import os
 from phrydy import MediaFileExtended
