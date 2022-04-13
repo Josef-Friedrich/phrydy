@@ -20,6 +20,16 @@ This is an extended version of the
 It is used by Python command line tool
 `audiorename <https://github.com/Josef-Friedrich/audiorename>`_.
 
+In the previous versions the ``phrydy`` library offers a standalone
+version of the ``mediafile.py`` included in the ``beets`` project. Now
+``beets`` has its own separate library called ``mediafile``. It might be
+better to use the upstream library directly.
+
+``phrydy`` offeres two media file classes: ``MediaFile`` is the
+looped through and unmodified version that comes directly from the beets
+project. ``MediaFileExtended`` is the slightly modified and extended
+version:
+
 Changed fields:
 ---------------
 
@@ -80,7 +90,6 @@ List all available fields of a media file:
         value = getattr(media_file, key)
         if key != 'art' and value:
             print('{}: {}'.format(key, value))
-
 
 
 .. list-table:: Fields documentation
@@ -421,6 +430,291 @@ List all available fields of a media file:
      - ``2001``
 
 
+phrydy-debug
+============
+
+.. code-block:: text
+
+    usage: phrydy-debug [-h] [-c] [-v] audio_file
+    
+    Debugging tool of the Python package “phrydy”, an easy wrapper around the “mutagen” library.
+        
+        acoustid_fingerprint:    Acoustic ID fingerprint
+    
+        acoustid_id:             Acoustic ID
+                                 Examples: ['86e217b7-d3ad-4493-a9f2-cf71256ace07']
+    
+        album:                   album
+                                 Examples: ['Help!']
+    
+        albumartist:             The artist for the entire album, which may be
+                                 different from the artists for the individual
+                                 tracks
+                                 Examples: ['The Beatles']
+    
+        albumartist_credit:      albumartist_credit
+    
+        albumartist_sort:        albumartist_sort
+                                 Examples: ['Beatles, The']
+    
+        albumartists:            albumartists
+    
+        albumdisambig:           The disambiguation album field helps to
+                                 distinguish between identically named albums. The
+                                 album “Weezer” for example has the disambiguation
+                                 comments “Red Album” and “Green Album”.
+    
+        albumstatus:             The status describes how "official" a release is.
+                                 Examples: ['official', 'promotional', 'bootleg', 'pseudo-release']
+    
+        albumtype:               The MusicBrainz album type; the MusicBrainz wiki
+                                 has a list of type names
+                                 Examples: ['album/soundtrack']
+    
+        arranger:                A musician who creates arrangements.
+    
+        art:                     Legacy album art field.
+    
+        artist:                  artist
+                                 Examples: ['The Beatles']
+    
+        artist_credit:           The track-specific artist credit name, which may
+                                 be a variation of the artist’s “canonical” name
+    
+        artist_sort:             The “sort name” of the track artist.
+                                 Examples: ['Beatles, The', 'White, Jack']
+    
+        artists:                 artists
+    
+        asin:                    Amazon Standard Identification Number
+                                 Examples: ['B000002UAL']
+    
+        barcode:                 There are many different types of barcode, but
+                                 the ones usually found on music releases are two:
+                                 1. Universal Product Code (UPC), which is the
+                                 original barcode used in North America. 2.
+                                 European Article Number (EAN)
+                                 Examples: ['5028421931838', '036000291452']
+    
+        bitdepth:                only available for some formats
+                                 Examples: [16]
+    
+        bitrate:                 in kilobits per second, with units: e.g.,
+                                 “192kbps”
+                                 Examples: [436523]
+    
+        bitrate_mode:            bitrate_mode
+    
+        bpm:                     Beats per Minute
+    
+        catalognum:              This is a number assigned to the release by the
+                                 label which can often be found on the spine or
+                                 near the barcode. There may be more than one,
+                                 especially when multiple labels are involved.
+                                 This is not the ASIN — there is a relationship
+                                 for that — nor the label code.
+                                 Examples: ['CDP 7 46439 2']
+    
+        channels:                channels
+                                 Examples: [1]
+    
+        comments:                comments
+    
+        comp:                    Compilation flag
+                                 Examples: [True, False]
+    
+        composer:                The name of the composer.
+                                 Examples: ['Ludwig van Beethoven']
+    
+        composer_sort:           The composer name for sorting.
+                                 Examples: ['Beethoven, Ludwig van']
+    
+        copyright:               copyright
+    
+        country:                 The country the release was issued in.
+    
+        date:                    The release data of the specific release.
+    
+        day:                     The release day of the specific release.
+    
+        disc:                    disc
+    
+        disctitle:               disctitle
+    
+        disctotal:               disctotal
+    
+        encoder:                 the name of the person or organisation that
+                                 encoded the audio file. This field may contain a
+                                 copyright message, if the audio file also is
+                                 copyrighted by the encoder.
+                                 Examples: ['iTunes v7.6.2']
+    
+        encoder_info:            encoder_info
+    
+        encoder_settings:        encoder_settings
+    
+        format:                  e.g., “MP3” or “FLAC”
+                                 Examples: ['MP3', 'FLAC']
+    
+        genre:                   genre
+    
+        genres:                  genres
+    
+        grouping:                A content group, which is a collection of media
+                                 items such as a CD boxed set.
+    
+        images:                  images
+    
+        initial_key:             The Initial key frame contains the musical key in
+                                 which the sound starts. It is represented as a
+                                 string with a maximum length of three characters.
+                                 The ground keys are represented with
+                                 "A","B","C","D","E", "F" and "G" and halfkeys
+                                 represented with "b" and "#". Minor is
+                                 represented as "m".
+                                 Examples: ['Dbm']
+    
+        isrc:                    The International Standard Recording Code,
+                                 abbreviated to ISRC, is a system of codes that
+                                 identify audio and music video recordings.
+                                 Examples: ['CAC118989003', 'ITO101117740']
+    
+        label:                   The label which issued the release. There may be
+                                 more than one.
+                                 Examples: ['Brilliant Classics']
+    
+        language:                The language a release’s track list is written
+                                 in. The possible values are taken from the ISO
+                                 639-3 standard.
+                                 Examples: ['zxx']
+    
+        length:                  The length of a recording in seconds.
+                                 Examples: [674.4666666666667]
+    
+        lyricist:                The writer of the text or lyrics in the
+                                 recording.
+    
+        lyrics:                  The lyrics of the song or a text transcription of
+                                 other vocal activities.
+    
+        mb_albumartistid:        MusicBrainz album artist ID.
+                                 Examples: ['1f9df192-a621-4f54-8850-2c5373b7eac9', 'b972f589-fb0e-474e-b64a-803b0364fa75']
+    
+        mb_albumartistids:       MusicBrainz album artist IDs as a list.
+                                 Examples: [['b972f589-fb0e-474e-b64a-803b0364fa75', 'dea28aa9-1086-4ffa-8739-0ccc759de1ce', 'd2ced2f1-6b58-47cf-ae87-5943e2ab6d99']]
+    
+        mb_albumid:              MusicBrainz album ID.
+                                 Examples: ['fd6adc77-1489-4a13-9aa0-32951061d92b']
+    
+        mb_artistid:             MusicBrainz artist ID.
+                                 Examples: ['1f9df192-a621-4f54-8850-2c5373b7eac9']
+    
+        mb_artistids:            MusicBrainz artist IDs as a list.
+                                 Examples: [['1f9df192-a621-4f54-8850-2c5373b7eac9']]
+    
+        mb_releasegroupid:       MusicBrainz releasegroup ID.
+                                 Examples: ['f714fd70-aaca-4863-9d0d-2768a53acaeb']
+    
+        mb_releasetrackid:       MusicBrainz release track ID.
+                                 Examples: ['38c8c114-5e3b-484f-8af0-79c47ef9c169']
+    
+        mb_trackid:              MusicBrainz track ID.
+                                 Examples: ['c390b132-4a44-4e16-bec3-bffbbcaa19aa']
+    
+        mb_workhierarchy_ids:    All IDs in the work hierarchy. This field
+                                 corresponds to the field `work_hierarchy`. The
+                                 top level work ID appears first. A slash (/) is
+                                 used as separator.
+                                 Examples: ['e208c5f5-5d37-3dfc-ac0b-999f207c9e46 / 5adc213f-700a-4435-9e95-831ed720f348 / eafec51f-47c5-3c66-8c36-a524246c85f8']
+    
+        mb_workid:               MusicBrainz work ID.
+                                 Examples: ['508ec4b1-9549-38cd-a61e-1f0d120a6118']
+    
+        media:                   A prototypical medium is one of the physical,
+                                 separate things you would get when you buy
+                                 something in a record store.
+                                 Examples: ['CD']
+    
+        month:                   The release month of the specific release.
+    
+        original_date:           The release date of the original version of the
+                                 album.
+    
+        original_day:            The release day of the original version of the
+                                 album.
+    
+        original_month:          The release month of the original version of the
+                                 album.
+    
+        original_year:           The release year of the original version of the
+                                 album.
+    
+        r128_album_gain:         An optional gain for album normalization. EBU R
+                                 128 is a recommendation for loudness
+                                 normalisation and maximum level of audio signals.
+    
+        r128_track_gain:         An optional gain for track normalization. EBU R
+                                 128 is a recommendation for loudness
+                                 normalisation and maximum level of audio signals.
+    
+        releasegroup_types:      This field collects all items in the MusicBrainz’
+                                 API  related to type: `type`, `primary-type and
+                                 `secondary-type-list`. Main usage of this field
+                                 is to determine in a secure manner if the release
+                                 is a soundtrack.
+    
+        rg_album_gain:           ReplayGain Album Gain, see
+                                 https://en.wikipedia.org/wiki/ReplayGain.
+    
+        rg_album_peak:           ReplayGain Album Peak, see
+                                 https://en.wikipedia.org/wiki/ReplayGain.
+    
+        rg_track_gain:           ReplayGain Track Gain, see
+                                 https://en.wikipedia.org/wiki/ReplayGain.
+                                 Examples: [0.0]
+    
+        rg_track_peak:           ReplayGain Track Peak, see
+                                 https://en.wikipedia.org/wiki/ReplayGain.
+                                 Examples: [0.000244]
+    
+        samplerate:              The sample rate as an integer number.
+                                 Examples: [44100]
+    
+        script:                  The script used to write the release’s track
+                                 list. The possible values are taken from the ISO
+                                 15924 standard.
+                                 Examples: ['Latn']
+    
+        title:                   The title of a audio file.
+                                 Examples: ['32 Variations for Piano in C minor on an Original Theme, WoO 80']
+    
+        track:                   The track number.
+                                 Examples: [1]
+    
+        tracktotal:              The total track number.
+                                 Examples: [12]
+    
+        url:                     Uniform Resource Locator.
+    
+        work:                    The Musicbrainzs’ work entity.
+                                 Examples: ['32 Variations for Piano in C minor on an Original Theme, WoO 80']
+    
+        work_hierarchy:          The hierarchy of works: The top level work
+                                 appears first. As separator is this string used:
+                                 -->.
+                                 Examples: ['Die Zauberflöte, K. 620 --> Die Zauberflöte, K. 620: Akt I --> Die Zauberflöte, K. 620: Act I, Scene II. No. 2 Aria "Was hör ...']
+    
+        year:                    The release year of the specific release.
+                                 Examples: [2001]
+    
+    positional arguments:
+      audio_file     A audio file
+    
+    optional arguments:
+      -h, --help     show this help message and exit
+      -c, --color    Colorize the output
+      -v, --version  show program's version number and exit
+    
 
 Development
 ===========

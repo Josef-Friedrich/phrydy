@@ -20,6 +20,16 @@ This is an extended version of the
 It is used by Python command line tool
 `audiorename <https://github.com/Josef-Friedrich/audiorename>`_.
 
+In the previous versions the ``phrydy`` library offers a standalone
+version of the ``mediafile.py`` included in the ``beets`` project. Now
+``beets`` has its own separate library called ``mediafile``. It might be
+better to use the upstream library directly.
+
+``phrydy`` offeres two media file classes: ``MediaFile`` is the
+looped through and unmodified version that comes directly from the beets
+project. ``MediaFileExtended`` is the slightly modified and extended
+version:
+
 Changed fields:
 ---------------
 
@@ -81,9 +91,14 @@ List all available fields of a media file:
         if key != 'art' and value:
             print('{}: {}'.format(key, value))
 
-
 << fields documentation table >>
 
+phrydy-debug
+============
+
+.. code-block:: text
+
+<< cli help >>
 
 Development
 ===========

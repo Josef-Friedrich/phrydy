@@ -1,6 +1,8 @@
 #! /usr/bin/env python
 
 import os
+import subprocess
+import re
 import phrydy
 
 
@@ -19,6 +21,13 @@ readme = open_file('README.rst')
 
 template = template.replace('<< fields documentation table >>',
                              phrydy.doc_generator.format_fields_as_rst_table())
+
+process = subprocess.run('phrydy-debug --help', capture_output=True,
+                         shell=True)
+stdout = process.stdout.decode('utf-8')
+stdout = '    ' + re.sub(r'\n', '\n    ', stdout)
+stdout = phrydy.doc_generator.remove_color(stdout)
+template = template.replace('<< cli help >>', stdout)
 
 readme.write(template)
 readme.close()
