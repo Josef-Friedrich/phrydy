@@ -9,12 +9,13 @@ categories = {
     'audio': 'Audio information',
     'date': 'Date related',
     'rg': 'ReplayGain',
+    'r128': 'EBU R 128',
 }
 
 
 class FieldDoc(typing.TypedDict):
     description: str
-    category: Literal['common', 'date', 'audio', 'music_brainz', 'rg']
+    category: Literal['common', 'date', 'audio', 'music_brainz', 'rg', 'r128']
     data_type: NotRequired[Literal['int', 'str', 'float', 'list', 'bool']]
     examples: NotRequired[List[Any]]
 
@@ -79,8 +80,12 @@ fields: FieldDocCollection = {
         'category': 'common',
         'data_type': 'list',
     },
+    # https://musicbrainz.org/doc/Disambiguation_Comment
     'albumdisambig': {
-        'description': 'albumdisambig',
+        'description':
+            'The disambiguation album field helps to distinguish between '
+            'identically named albums. The album “Weezer” for example has the '
+            'disambiguation comments “Red Album” and “Green Album”.',
         'category': 'common',
     },
     'albumstatus': {
@@ -97,12 +102,12 @@ fields: FieldDocCollection = {
         'examples': ['album/soundtrack'],
     },
     'arranger': {
-        'description': 'arranger',
+        'description': 'A musician who creates arrangements.',
         'category': 'common',
         'data_type': 'str',
     },
     'art': {
-        'description': 'art',
+        'description': 'Legacy album art field.',
         'category': 'common',
     },
     'artist': {
@@ -225,11 +230,11 @@ fields: FieldDocCollection = {
     # disctitle           : None
     # disctotal           : 5
     'date': {
-        'description': 'date',
+        'description': 'The release data of the specific release.',
         'category': 'date',
     },
     'day': {
-        'description': 'The release day of the specific release',
+        'description': 'The release day of the specific release.',
         'category': 'date',
     },
     'disc': {
@@ -282,7 +287,9 @@ fields: FieldDocCollection = {
         'category': 'common',
     },
     'grouping': {
-        'description': 'grouping',
+        # https://docs.microsoft.com/en-us/windows/win32/wmp/wm-contentgroupdescription-attribute
+        'description': 'A content group, which is a collection of media items '
+                       'such as a CD boxed set.',
         'category': 'common',
     },
     # images              : []
@@ -336,11 +343,16 @@ fields: FieldDocCollection = {
         'examples': [674.4666666666667],
     },
     'lyricist': {
-        'description': 'lyricist',
+        # https://id3.org/id3v2.4.0-frames
+        'description': 'The writer of the text or lyrics in the recording.',
+        'data_type': 'str',
         'category': 'common',
     },
     'lyrics': {
-        'description': 'lyrics',
+        # https://id3.org/id3v2.4.0-frames
+        'description': 'The lyrics of the song or a text transcription of '
+                       'other vocal activities.',
+        'data_type': 'str',
         'category': 'common',
     },
     # media               : None
@@ -356,7 +368,7 @@ fields: FieldDocCollection = {
     # mb_workhierarchy_ids: None
     # mb_workid           : None
     'mb_albumartistid': {
-        'description': 'MusicBrainz album artist ID',
+        'description': 'MusicBrainz album artist ID.',
         'category': 'music_brainz',
         'data_type': 'str',
         'examples': ['1f9df192-a621-4f54-8850-2c5373b7eac9',
@@ -458,12 +470,20 @@ fields: FieldDocCollection = {
     # rg_track_gain       : 0.0
     # rg_track_peak       : 0.000244
     'r128_album_gain': {
-        'description': 'An optional gain for album normalization',
-        'category': 'rg',
+        # https://en.wikipedia.org/wiki/EBU_R_128
+        'description':
+            'An optional gain for album normalization. EBU R 128 is a '
+            'recommendation for loudness normalisation and maximum level of '
+            'audio signals.',
+        'category': 'r128',
     },
     'r128_track_gain': {
-        'description': 'An optional gain for track normalization',
-        'category': 'rg',
+        # https://en.wikipedia.org/wiki/EBU_R_128
+        'description':
+            'An optional gain for track normalization. EBU R 128 is a '
+            'recommendation for loudness normalisation and maximum level of '
+            'audio signals.',
+        'category': 'r128',
     },
     'releasegroup_types': {
         'description': 'This field collects all items in the MusicBrainz’ API '
@@ -553,7 +573,7 @@ fields: FieldDocCollection = {
     },
     # year                : 2001
     'year': {
-        'description': 'The release year of the specific release',
+        'description': 'The release year of the specific release.',
         'category': 'date',
         'examples': [2001],
     },

@@ -62,5 +62,6 @@
     ".tox/docs/**/*": true,
     ".tox/py38/**/*": true,
     ".tox/flake8/**/*": true
-  }
+  },
+  "esbonio.sphinx.confDir": ""
 }

@@ -14,10 +14,25 @@
 phrydy
 ======
 
-This is a extended version of the
-`mediafile <https://github.com/beetbox/mediafile>`_ library.
+This is an extended version of the
+`mediafile <https://github.com/beetbox/mediafile>`_ library of the
+`beets <https://beets.io>`_ project.
 It is used by Python command line tool
 `audiorename <https://github.com/Josef-Friedrich/audiorename>`_.
+
+Changed fields:
+---------------
+
+- ``albumartist_sort``
+- ``composer_sort``
+- ``mb_workid``
+
+New fields:
+-----------
+
+- ``work``
+- ``work_hierarchy``
+- ``releasegroup_types``
 
 Installation
 ============
@@ -106,7 +121,7 @@ List all available fields of a media file:
      - 
    * - albumdisambig
      - common
-     - albumdisambig
+     - The disambiguation album field helps to distinguish between identically named albums. The album “Weezer” for example has the disambiguation comments “Red Album” and “Green Album”.
      - 
    * - albumstatus
      - common
@@ -118,11 +133,11 @@ List all available fields of a media file:
      - ``album/soundtrack``
    * - arranger
      - common
-     - arranger
+     - A musician who creates arrangements.
      - 
    * - art
      - common
-     - art
+     - Legacy album art field.
      - 
    * - artist
      - common
@@ -198,11 +213,11 @@ List all available fields of a media file:
      - 
    * - date
      - date
-     - date
+     - The release data of the specific release.
      - 
    * - day
      - date
-     - The release day of the specific release
+     - The release day of the specific release.
      - 
    * - disc
      - common
@@ -242,7 +257,7 @@ List all available fields of a media file:
      - 
    * - grouping
      - common
-     - grouping
+     - A content group, which is a collection of media items such as a CD boxed set.
      - 
    * - images
      - common
@@ -270,15 +285,15 @@ List all available fields of a media file:
      - ``674.4666666666667``
    * - lyricist
      - common
-     - lyricist
+     - The writer of the text or lyrics in the recording.
      - 
    * - lyrics
      - common
-     - lyrics
+     - The lyrics of the song or a text transcription of other vocal activities.
      - 
    * - mb_albumartistid
      - music_brainz
-     - MusicBrainz album artist ID
+     - MusicBrainz album artist ID.
      - ``1f9df192-a621-4f54-8850-2c5373b7eac9``, ``b972f589-fb0e-474e-b64a-803b0364fa75``
    * - mb_albumartistids
      - music_brainz
@@ -341,12 +356,12 @@ List all available fields of a media file:
      - The release year of the original version of the album.
      - 
    * - r128_album_gain
-     - rg
-     - An optional gain for album normalization
+     - r128
+     - An optional gain for album normalization. EBU R 128 is a recommendation for loudness normalisation and maximum level of audio signals.
      - 
    * - r128_track_gain
-     - rg
-     - An optional gain for track normalization
+     - r128
+     - An optional gain for track normalization. EBU R 128 is a recommendation for loudness normalisation and maximum level of audio signals.
      - 
    * - releasegroup_types
      - music_brainz
@@ -402,7 +417,7 @@ List all available fields of a media file:
      - ``Die Zauberflöte, K. 620 --> Die Zauberflöte, K. 620: Akt I --> Die Zauberflöte, K. 620: Act I, Scene II. No. 2 Aria "Was hör ...``
    * - year
      - date
-     - The release year of the specific release
+     - The release year of the specific release.
      - ``2001``
 
 

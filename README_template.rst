@@ -14,10 +14,25 @@
 phrydy
 ======
 
-This is a extended version of the
-`mediafile <https://github.com/beetbox/mediafile>`_ library.
+This is an extended version of the
+`mediafile <https://github.com/beetbox/mediafile>`_ library of the
+`beets <https://beets.io>`_ project.
 It is used by Python command line tool
 `audiorename <https://github.com/Josef-Friedrich/audiorename>`_.
+
+Changed fields:
+---------------
+
+- ``albumartist_sort``
+- ``composer_sort``
+- ``mb_workid``
+
+New fields:
+-----------
+
+- ``work``
+- ``work_hierarchy``
+- ``releasegroup_types``
 
 Installation
 ============

@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """Automatically-generated blanket testing for the MediaFileExtended metadata
 layer.
 """

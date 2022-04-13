@@ -45,6 +45,12 @@ class MediaFileExtended(MediaFile):
                       'encoder_settings', 'format'):
             yield field
 
+    # albumartist_sort = MediaField(
+    #     MP3DescStorageStyle(u'ALBUMARTISTSORT'),
+    #     MP4StorageStyle('soaa'),
+    #     StorageStyle('ALBUMARTISTSORT'),
+    #     ASFStorageStyle('WM/AlbumArtistSortOrder'),
+    # )
     albumartist_sort = MediaField(
         MP3StorageStyle('TSO2'),
         MP3DescStorageStyle('ALBUMARTISTSORT'),
@@ -52,7 +58,14 @@ class MediaFileExtended(MediaFile):
         StorageStyle('ALBUMARTISTSORT'),
         ASFStorageStyle('WM/AlbumArtistSortOrder'),
     )
+    """Changed field. Uses TSO2"""
 
+    # composer_sort = MediaField(
+    #     MP3StorageStyle('TSOC'),
+    #     MP4StorageStyle('soco'),
+    #     StorageStyle('COMPOSERSORT'),
+    #     ASFStorageStyle('WM/Composersortorder'),
+    # )
     composer_sort = MediaField(
         MP3StorageStyle('TSOC'),
         MP3DescStorageStyle('composersortorder'),
@@ -61,7 +74,14 @@ class MediaFileExtended(MediaFile):
         StorageStyle('composersortorder'),
         ASFStorageStyle('WM/ComposerSortOrder'),
     )
+    """Changed field. Uses MP3 description storage style composersortorder."""
 
+    # mb_workid = MediaField(
+    #     MP3DescStorageStyle(u'MusicBrainz Work Id'),
+    #     MP4StorageStyle('----:com.apple.iTunes:MusicBrainz Work Id'),
+    #     StorageStyle('MUSICBRAINZ_WORKID'),
+    #     ASFStorageStyle('MusicBrainz/Work Id'),
+    # )
     mb_workid = MediaField(
         MP3DescStorageStyle('MusicBrainz Work Id'),
         MP4StorageStyle('----:com.apple.iTunes:MusicBrainz Work Id'),
@@ -69,7 +89,7 @@ class MediaFileExtended(MediaFile):
         StorageStyle('musicbrainz work id'),
         ASFStorageStyle('MusicBrainz/Work Id'),
     )
-    """The MusicBrainz’ Work ID"""
+    """Changed Field: The MusicBrainz’ Work ID"""
 
     mb_workhierarchy_ids = MediaField(
         MP3DescStorageStyle('MusicBrainz Work Hierarchy Ids'),
