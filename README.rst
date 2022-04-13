@@ -158,7 +158,7 @@ List all available fields of a media file:
    * - art
      - common
      - Legacy album art field.
-     - 
+     - ``b'\xff\xd8\xff\xe0\x00'``
    * - artist
      - common
      - artist
@@ -174,7 +174,7 @@ List all available fields of a media file:
    * - artists
      - common
      - artists
-     - 
+     - ``['a-ha']``
    * - asin
      - common
      - Amazon Standard Identification Number
@@ -190,11 +190,11 @@ List all available fields of a media file:
    * - bitrate
      - audio
      - in kilobits per second, with units: e.g., “192kbps”
-     - ``436523``
+     - ``436523``, ``256000``
    * - bitrate_mode
      - common
      - bitrate_mode
-     - 
+     - ``CBR``
    * - bpm
      - common
      - Beats per Minute
@@ -206,7 +206,7 @@ List all available fields of a media file:
    * - channels
      - audio
      - channels
-     - ``1``
+     - ``1``, ``2``
    * - comments
      - common
      - comments
@@ -234,7 +234,7 @@ List all available fields of a media file:
    * - date
      - date
      - The release data of the specific release.
-     - 
+     - ``1996-01-01``
    * - day
      - date
      - The release day of the specific release.
@@ -242,7 +242,7 @@ List all available fields of a media file:
    * - disc
      - common
      - disc
-     - 
+     - ``1``
    * - disctitle
      - common
      - disctitle
@@ -250,7 +250,7 @@ List all available fields of a media file:
    * - disctotal
      - common
      - disctotal
-     - 
+     - ``1``
    * - encoder
      - common
      - the name of the person or organisation that encoded the audio file. This field may contain a copyright message, if the audio file also is copyrighted by the encoder.
@@ -258,11 +258,11 @@ List all available fields of a media file:
    * - encoder_info
      - common
      - encoder_info
-     - 
+     - ``LAME 3.92.0+``
    * - encoder_settings
      - common
      - encoder_settings
-     - 
+     - ``-b 255+``
    * - format
      - audio
      - e.g., “MP3” or “FLAC”
@@ -282,7 +282,7 @@ List all available fields of a media file:
    * - images
      - common
      - images
-     - 
+     - ``['<mediafile.Image object at 0x7f51fce26b20>']``
    * - initial_key
      - common
      - The Initial key frame contains the musical key in which the sound starts. It is represented as a string with a maximum length of three characters. The ground keys are represented with "A","B","C","D","E", "F" and "G" and halfkeys represented with "b" and "#". Minor is represented as "m".
@@ -294,11 +294,11 @@ List all available fields of a media file:
    * - label
      - common
      - The label which issued the release. There may be more than one.
-     - ``Brilliant Classics``
+     - ``Brilliant Classics``, ``wea``
    * - language
      - common
      - The language a release’s track list is written in. The possible values are taken from the ISO 639-3 standard.
-     - ``zxx``
+     - ``zxx``, ``eng``
    * - length
      - audio
      - The length of a recording in seconds.
@@ -358,23 +358,23 @@ List all available fields of a media file:
    * - month
      - date
      - The release month of the specific release.
-     - 
+     - ``11``
    * - original_date
      - date
      - The release date of the original version of the album.
-     - 
+     - ``1991-11-04``
    * - original_day
      - date
      - The release day of the original version of the album.
-     - 
+     - ``4``
    * - original_month
      - date
      - The release month of the original version of the album.
-     - 
+     - ``11``
    * - original_year
      - date
      - The release year of the original version of the album.
-     - 
+     - ``1991``
    * - r128_album_gain
      - r128
      - An optional gain for album normalization. EBU R 128 is a recommendation for loudness normalisation and maximum level of audio signals.
@@ -485,6 +485,7 @@ phrydy-debug
         arranger:                A musician who creates arrangements.
     
         art:                     Legacy album art field.
+                                 Examples: [b'\xff\xd8\xff\xe0\x00']
     
         artist:                  artist
                                  Examples: ['The Beatles']
@@ -496,6 +497,7 @@ phrydy-debug
                                  Examples: ['Beatles, The', 'White, Jack']
     
         artists:                 artists
+                                 Examples: [['a-ha']]
     
         asin:                    Amazon Standard Identification Number
                                  Examples: ['B000002UAL']
@@ -512,9 +514,10 @@ phrydy-debug
     
         bitrate:                 in kilobits per second, with units: e.g.,
                                  “192kbps”
-                                 Examples: [436523]
+                                 Examples: [436523, 256000]
     
         bitrate_mode:            bitrate_mode
+                                 Examples: ['CBR']
     
         bpm:                     Beats per Minute
     
@@ -527,7 +530,7 @@ phrydy-debug
                                  Examples: ['CDP 7 46439 2']
     
         channels:                channels
-                                 Examples: [1]
+                                 Examples: [1, 2]
     
         comments:                comments
     
@@ -545,14 +548,17 @@ phrydy-debug
         country:                 The country the release was issued in.
     
         date:                    The release data of the specific release.
+                                 Examples: ['1996-01-01']
     
         day:                     The release day of the specific release.
     
         disc:                    disc
+                                 Examples: [1]
     
         disctitle:               disctitle
     
         disctotal:               disctotal
+                                 Examples: [1]
     
         encoder:                 the name of the person or organisation that
                                  encoded the audio file. This field may contain a
@@ -561,8 +567,10 @@ phrydy-debug
                                  Examples: ['iTunes v7.6.2']
     
         encoder_info:            encoder_info
+                                 Examples: ['LAME 3.92.0+']
     
         encoder_settings:        encoder_settings
+                                 Examples: ['-b 255+']
     
         format:                  e.g., “MP3” or “FLAC”
                                  Examples: ['MP3', 'FLAC']
@@ -575,6 +583,7 @@ phrydy-debug
                                  items such as a CD boxed set.
     
         images:                  images
+                                 Examples: [['<mediafile.Image object at 0x7f51fce26b20>']]
     
         initial_key:             The Initial key frame contains the musical key in
                                  which the sound starts. It is represented as a
@@ -592,12 +601,12 @@ phrydy-debug
     
         label:                   The label which issued the release. There may be
                                  more than one.
-                                 Examples: ['Brilliant Classics']
+                                 Examples: ['Brilliant Classics', 'wea']
     
         language:                The language a release’s track list is written
                                  in. The possible values are taken from the ISO
                                  639-3 standard.
-                                 Examples: ['zxx']
+                                 Examples: ['zxx', 'eng']
     
         length:                  The length of a recording in seconds.
                                  Examples: [674.4666666666667]
@@ -647,18 +656,23 @@ phrydy-debug
                                  Examples: ['CD']
     
         month:                   The release month of the specific release.
+                                 Examples: [11]
     
         original_date:           The release date of the original version of the
                                  album.
+                                 Examples: ['1991-11-04']
     
         original_day:            The release day of the original version of the
                                  album.
+                                 Examples: [4]
     
         original_month:          The release month of the original version of the
                                  album.
+                                 Examples: [11]
     
         original_year:           The release year of the original version of the
                                  album.
+                                 Examples: [1991]
     
         r128_album_gain:         An optional gain for album normalization. EBU R
                                  128 is a recommendation for loudness

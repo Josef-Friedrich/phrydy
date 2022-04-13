@@ -16,7 +16,8 @@ categories = {
 class FieldDoc(typing.TypedDict):
     description: str
     category: Literal['common', 'date', 'audio', 'music_brainz', 'rg', 'r128']
-    data_type: NotRequired[Literal['int', 'str', 'float', 'list', 'bool']]
+    data_type: NotRequired[Literal['int', 'str', 'float', 'list', 'bool',
+                                   'bytes']]
     examples: NotRequired[List[Any]]
 
 
@@ -109,6 +110,7 @@ fields: FieldDocCollection = {
     'art': {
         'description': 'Legacy album art field.',
         'category': 'common',
+        'examples': [b'\xff\xd8\xff\xe0\x00']
     },
     'artist': {
         'description': 'artist',
@@ -131,6 +133,7 @@ fields: FieldDocCollection = {
     'artists': {
         'description': 'artists',
         'category': 'common',
+        'examples': [['a-ha']]
     },
     'asin': {
         'description': 'Amazon Standard Identification Number',
@@ -160,11 +163,12 @@ fields: FieldDocCollection = {
     'bitrate': {
         'description': 'in kilobits per second, with units: e.g., “192kbps”',
         'category': 'audio',
-        'examples': [436523],
+        'examples': [436523, 256000],
     },
     'bitrate_mode': {
         'description': 'bitrate_mode',
         'category': 'common',
+        'examples': ['CBR']
     },
     'bpm': {
         'description': 'Beats per Minute',
@@ -192,7 +196,7 @@ fields: FieldDocCollection = {
         'description': 'channels',
         'category': 'audio',
         'data_type': 'int',
-        'examples': [1],
+        'examples': [1, 2],
     },
     'comments': {
         'description': 'comments',
@@ -232,6 +236,7 @@ fields: FieldDocCollection = {
     'date': {
         'description': 'The release data of the specific release.',
         'category': 'date',
+        'examples': ['1996-01-01'],
     },
     'day': {
         'description': 'The release day of the specific release.',
@@ -240,6 +245,7 @@ fields: FieldDocCollection = {
     'disc': {
         'description': 'disc',
         'category': 'common',
+        'examples': [1],
     },
     'disctitle': {
         'description': 'disctitle',
@@ -248,6 +254,7 @@ fields: FieldDocCollection = {
     'disctotal': {
         'description': 'disctotal',
         'category': 'common',
+        'examples': [1],
     },
     # encoder             : iTunes v7.6.2
     # encoder_info        :
@@ -264,10 +271,12 @@ fields: FieldDocCollection = {
     'encoder_info': {
         'description': 'encoder_info',
         'category': 'common',
+        'examples': ['LAME 3.92.0+'],
     },
     'encoder_settings': {
         'description': 'encoder_settings',
         'category': 'common',
+        'examples': ['-b 255+'],
     },
     # format              : MP3
     'format': {
@@ -298,6 +307,7 @@ fields: FieldDocCollection = {
     'images': {
         'description': 'images',
         'category': 'common',
+        'examples': [['<mediafile.Image object at 0x7f51fce26b20>']],
     },
     'initial_key': {
         # https://id3.org/id3v2.4.0-frames
@@ -327,14 +337,14 @@ fields: FieldDocCollection = {
         'description': 'The label which issued the release. There may be ' +
                        'more than one.',
         'category': 'common',
-        'examples': ['Brilliant Classics'],
+        'examples': ['Brilliant Classics', 'wea'],
     },
     'language': {
         'description': 'The language a release’s track list is written in. ' +
                        'The possible values are taken from the ISO 639-3 ' +
                        'standard.',
         'category': 'common',
-        'examples': ['zxx'],
+        'examples': ['zxx', 'eng'],
 
     },
     'length': {
@@ -388,36 +398,43 @@ fields: FieldDocCollection = {
         'description': 'MusicBrainz album ID.',
         'category': 'music_brainz',
         'examples': ['fd6adc77-1489-4a13-9aa0-32951061d92b'],
+        'data_type': 'str',
     },
     'mb_artistid': {
         'description': 'MusicBrainz artist ID.',
         'category': 'music_brainz',
         'examples': ['1f9df192-a621-4f54-8850-2c5373b7eac9'],
+        'data_type': 'str',
     },
     'mb_artistids': {
         'description': 'MusicBrainz artist IDs as a list.',
         'category': 'music_brainz',
         'examples': [['1f9df192-a621-4f54-8850-2c5373b7eac9']],
+        'data_type': 'list',
     },
     'mb_releasegroupid': {
         'description': 'MusicBrainz releasegroup ID.',
         'category': 'music_brainz',
         'examples': ['f714fd70-aaca-4863-9d0d-2768a53acaeb'],
+        'data_type': 'str',
     },
     'mb_releasetrackid': {
         'description': 'MusicBrainz release track ID.',
         'category': 'music_brainz',
         'examples': ['38c8c114-5e3b-484f-8af0-79c47ef9c169'],
+        'data_type': 'str',
     },
     'mb_trackid': {
         'description': 'MusicBrainz track ID.',
         'category': 'music_brainz',
         'examples': ['c390b132-4a44-4e16-bec3-bffbbcaa19aa'],
+        'data_type': 'str',
     },
     'mb_workid': {
         'description': 'MusicBrainz work ID.',
         'category': 'music_brainz',
         'examples': ['508ec4b1-9549-38cd-a61e-1f0d120a6118'],
+        'data_type': 'str',
     },
     'mb_workhierarchy_ids': {
         'description': 'All IDs in the work hierarchy. This field corresponds '
@@ -426,7 +443,8 @@ fields: FieldDocCollection = {
         'category': 'music_brainz',
         'examples': ['e208c5f5-5d37-3dfc-ac0b-999f207c9e46 / '
                      '5adc213f-700a-4435-9e95-831ed720f348 / '
-                     'eafec51f-47c5-3c66-8c36-a524246c85f8']
+                     'eafec51f-47c5-3c66-8c36-a524246c85f8'],
+        'data_type': 'str',
     },
     'media': {
         'description':
@@ -434,10 +452,13 @@ fields: FieldDocCollection = {
             'you would get when you buy something in a record store.',
         'category': 'common',
         'examples': ['CD'],
+        'data_type': 'str',
     },
     'month': {
         'description': 'The release month of the specific release.',
         'category': 'date',
+        'examples': [11],
+        'data_type': 'int',
     },
     # original_date       : None
     # original_day        : None
@@ -447,20 +468,28 @@ fields: FieldDocCollection = {
         'description': 'The release date of the original version of the '
                        'album.',
         'category': 'date',
+        'examples': ['1991-11-04'],
+        'data_type': 'str',
     },
     'original_day': {
         'description': 'The release day of the original version of the album.',
         'category': 'date',
+        'examples': [4],
+        'data_type': 'int',
     },
     'original_month': {
         'description': 'The release month of the original version of the ' +
                        'album.',
         'category': 'date',
+        'examples': [11],
+        'data_type': 'int',
     },
     'original_year': {
         'description': 'The release year of the original version of the '
                        'album.',
         'category': 'date',
+        'examples': [1991],
+        'data_type': 'int',
     },
     # r128_album_gain     : None
     # r128_track_gain     : None
@@ -521,6 +550,7 @@ fields: FieldDocCollection = {
         'description': 'The sample rate as an integer number.',
         'category': 'audio',
         'examples': [44100],
+        'data_type': 'int',
     },
     'script': {
         'description': 'The script used to write the release’s track list. ' +
@@ -528,6 +558,7 @@ fields: FieldDocCollection = {
                        'standard.',
         'category': 'common',
         'examples': ['Latn'],
+        'data_type': 'str',
     },
     # title               : full
     # track               : 2
@@ -537,23 +568,27 @@ fields: FieldDocCollection = {
         'category': 'common',
         'examples': ['32 Variations for Piano in C minor on an Original '
                      'Theme, WoO 80'],
+        'data_type': 'str',
     },
     'track': {
         'description': 'The track number.',
         'category': 'common',
         'data_type': 'int',
         'examples': [1],
+        'data_type': 'int',
     },
     'tracktotal': {
         'description': 'The total track number.',
         'category': 'common',
         'data_type': 'int',
         'examples': [12],
+        'data_type': 'int',
     },
     # url                 : None
     'url': {
         'description': 'Uniform Resource Locator.',
         'category': 'common',
+        'data_type': 'str',
     },
     # work                : None
     # work_hierarchy      : None
@@ -561,7 +596,8 @@ fields: FieldDocCollection = {
         'description': 'The Musicbrainzs’ work entity.',
         'category': 'common',
         'examples': ['32 Variations for Piano in C minor on an Original '
-                     'Theme, WoO 80']
+                     'Theme, WoO 80'],
+        'data_type': 'str',
     },
     'work_hierarchy': {
         'description': 'The hierarchy of works: The top level work appears '
@@ -569,13 +605,15 @@ fields: FieldDocCollection = {
         'category': 'music_brainz',
         'examples': ['Die Zauberflöte, K. 620 --> Die Zauberflöte, '
                      'K. 620: Akt I --> Die Zauberflöte, K. 620: Act I, '
-                     'Scene II. No. 2 Aria "Was hör ...']
+                     'Scene II. No. 2 Aria "Was hör ...'],
+        'data_type': 'str',
     },
     # year                : 2001
     'year': {
         'description': 'The release year of the specific release.',
         'category': 'date',
         'examples': [2001],
+        'data_type': 'int',
     },
 }
 """
