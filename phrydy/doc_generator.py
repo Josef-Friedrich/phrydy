@@ -64,13 +64,13 @@ def print_section(text: str, color: bool = False) -> None:
     print('\n' + text + line)
 
 
-def print_debug(media_file: str,
+def print_debug(file_path: str,
                 MediaClass: typing.Callable[[str], MediaFileExtended],
                 field_generator: typing.Callable[
                     [], typing.Generator[str, None, None]
                 ],
                 color: bool = False) -> None:
-    fields = MediaClass(media_file)
+    fields = MediaClass(file_path)
 
     # All class values
     print_section('All values provided by the class: ' + MediaClass.__name__,
@@ -79,7 +79,10 @@ def print_debug(media_file: str,
     class_fields = {}
     for key in field_generator():
         value = getattr(fields, key)
-        class_fields[key] = str(value)
+        if key == 'art' and value:
+            class_fields[key] = str(value[:95])
+        else:
+            class_fields[key] = str(value)
 
     print_dict_sorted(class_fields, color, align='left')
 

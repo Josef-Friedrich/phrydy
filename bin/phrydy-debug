@@ -47,7 +47,7 @@ if args.audio_file:
     print('phrydy version ' + phrydy.__version__)
 
     print_debug(
-        media_file=args.audio_file,
+        file_path=args.audio_file,
         MediaClass=MediaFileExtended,
         field_generator=MediaFileExtended.readable_fields,
         color=args.color,
