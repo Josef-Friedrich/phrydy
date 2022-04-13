@@ -17,8 +17,10 @@ phrydy
 This is an extended version of the
 `mediafile <https://github.com/beetbox/mediafile>`_ library of the
 `beets <https://beets.io>`_ project.
-It is used by Python command line tool
+It is used by the Python audio renaming command line tool
 `audiorename <https://github.com/Josef-Friedrich/audiorename>`_.
+
+The name ``phrydy`` is pronounced like the German word ``Friedi``.
 
 In the previous versions the ``phrydy`` library offers a standalone
 version of the ``mediafile.py`` included in the ``beets`` project. Now
@@ -43,6 +45,15 @@ New fields:
 - ``work``
 - ``work_hierarchy``
 - ``releasegroup_types``
+
+Other additions:
+----------------
+
+- A little command line debug utility named ``phrydy-debug``.
+- A dictionary containing documentation about the various meta data
+  fields.
+- Some code to generate documentation from the field documentation
+  dictionary.
 
 Installation
 ============
