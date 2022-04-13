@@ -31,7 +31,6 @@ setup(
     long_description=read('README.rst'),
     long_description_content_type='text/x-rst',
     install_requires=[
-        'mutagen==1.45',
         'ansicolor==0.3.2',
         'mediafile==0.9.0',
         'typing-extensions==4.1.1',
