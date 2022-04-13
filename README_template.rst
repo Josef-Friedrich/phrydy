@@ -2,6 +2,10 @@
     :target: https://pypi.python.org/pypi/phrydy
     :alt: This package on the Python Package Index
 
+.. image:: https://github.com/Josef-Friedrich/phrydy/actions/workflows/tests.yml/badge.svg
+    :target: https://github.com/Josef-Friedrich/phrydy/actions/workflows/tests.yml
+    :alt: tests
+
 .. image:: https://readthedocs.org/projects/phrydy/badge/?version=latest
     :target: https://phrydy.readthedocs.io/en/latest/?badge=latest
     :alt: Documentation Status
