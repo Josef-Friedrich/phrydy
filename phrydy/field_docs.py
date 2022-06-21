@@ -133,7 +133,7 @@ fields: FieldDocCollection = {
     'artists': {
         'description': 'artists',
         'category': 'common',
-        'examples': [['a-ha']]
+        'examples': [['a-ha'], ['Anouk', 'Remon Stotijn']]
     },
     'asin': {
         'description': 'Amazon Standard Identification Number',
@@ -227,6 +227,7 @@ fields: FieldDocCollection = {
     'country': {
         'description': 'The country the release was issued in.',
         'category': 'common',
+        'examples': ['NL'],
     },
     # date                : 2001-01-01
     # day                 : None
@@ -290,10 +291,12 @@ fields: FieldDocCollection = {
     'genre': {
         'description': 'genre',
         'category': 'common',
+        'examples': ['Rock']
     },
     'genres': {
         'description': 'genres',
         'category': 'common',
+        'examples': [['Rock']]
     },
     'grouping': {
         # https://docs.microsoft.com/en-us/windows/win32/wmp/wm-contentgroupdescription-attribute
