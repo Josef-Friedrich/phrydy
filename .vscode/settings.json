@@ -63,5 +63,6 @@
     ".tox/py38/**/*": true,
     ".tox/flake8/**/*": true
   },
-  "esbonio.sphinx.confDir": ""
+  "esbonio.sphinx.confDir": "",
+  "restructuredtext.syntaxHighlighting.disabled": true
 }

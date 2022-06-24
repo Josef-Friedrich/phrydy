@@ -3,6 +3,7 @@ import os
 from setuptools import setup, find_packages
 import versioneer
 
+
 def read(file_name: str) -> str:
     """
     Read the contents of a text file and return its content.
@@ -36,4 +37,6 @@ setup(
         'typing-extensions==4.1.1',
     ],
     scripts=['bin/phrydy-debug'],
-    zip_safe=False)
+    zip_safe=False,
+    package_data={'phrydy': ['py.typed']},
+)

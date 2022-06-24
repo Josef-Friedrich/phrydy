@@ -7,10 +7,80 @@ from mediafile import \
     MP4StorageStyle, \
     StorageStyle, \
     Image  # noqa: F401
-from typing import Any, Dict, Generator
+from typing import Any, Dict, Generator, List, Set, cast
 
 
 class MediaFileExtended(MediaFile):
+
+    title: str
+    artist: str
+    artists: str
+    album: str
+    genres: List[str]
+    genre: str
+    lyricist: str
+    composer: str
+    composer_sort: str
+    arranger: str
+    grouping: str
+    track: int
+    tracktotal: int
+    disc: int
+    disctotal: int
+    url: str
+    lyrics: str
+    comments: str
+    copyright: str
+    bpm: int
+    comp: bool
+    albumartist: str
+    albumartists: str
+    albumtype: str
+    label: str
+    artist_sort: str
+    albumartist_sort: str
+    asin: str
+    catalognum: str
+    barcode: int
+    isrc: str
+    disctitle: str
+    encoder: str
+    script: str
+    language: str
+    country: str
+    albumstatus: str
+    media: str
+    albumdisambig: str
+    date: int
+    year: int
+    month: int
+    day: int
+    original_date: str
+    original_year: int
+    original_month: int
+    original_day: int
+    artist_credit: str
+    albumartist_credit: str
+    art: bytes
+    images: List[Image]
+    mb_trackid: str
+    mb_releasetrackid: str
+    mb_workid: str
+    mb_albumid: str
+    mb_artistids: str
+    mb_artistid: str
+    mb_albumartistids: str
+    mb_albumartistid: str
+    mb_releasegroupid: str
+    acoustid_fingerprint: str
+    acoustid_id: str
+    rg_track_gain: float
+    rg_album_gain: float
+    rg_track_peak: float
+    rg_album_peak: float
+    r128_track_gain: float
+    r128_album_gain: float
+    initial_key: str
 
     @classmethod
     def fields(cls) -> Generator[str, None, None]:
@@ -18,7 +88,7 @@ class MediaFileExtended(MediaFile):
         metadata tags (i.e., those that are instances of
         :class:`MediaField`).
         """
-        seen = set()
+        seen: Set[str] = set()
 
         # Same fields are duplicate because they are overwritten in this
         # class.
@@ -51,13 +121,13 @@ class MediaFileExtended(MediaFile):
     #     StorageStyle('ALBUMARTISTSORT'),
     #     ASFStorageStyle('WM/AlbumArtistSortOrder'),
     # )
-    albumartist_sort = MediaField(
+    albumartist_sort = cast(str, MediaField(
         MP3StorageStyle('TSO2'),
         MP3DescStorageStyle('ALBUMARTISTSORT'),
         MP4StorageStyle('soaa'),
         StorageStyle('ALBUMARTISTSORT'),
         ASFStorageStyle('WM/AlbumArtistSortOrder'),
-    )
+    ))
     """Changed field. Uses TSO2"""
 
     # composer_sort = MediaField(
@@ -66,14 +136,14 @@ class MediaFileExtended(MediaFile):
     #     StorageStyle('COMPOSERSORT'),
     #     ASFStorageStyle('WM/Composersortorder'),
     # )
-    composer_sort = MediaField(
+    composer_sort = cast(str, MediaField(
         MP3StorageStyle('TSOC'),
         MP3DescStorageStyle('composersortorder'),
         MP4StorageStyle('soco'),
         StorageStyle('composersort'),
         StorageStyle('composersortorder'),
         ASFStorageStyle('WM/ComposerSortOrder'),
-    )
+    ))
     """Changed field. Uses MP3 description storage style composersortorder."""
 
     # mb_workid = MediaField(
@@ -82,22 +152,22 @@ class MediaFileExtended(MediaFile):
     #     StorageStyle('MUSICBRAINZ_WORKID'),
     #     ASFStorageStyle('MusicBrainz/Work Id'),
     # )
-    mb_workid = MediaField(
+    mb_workid = cast(str, MediaField(
         MP3DescStorageStyle('MusicBrainz Work Id'),
         MP4StorageStyle('----:com.apple.iTunes:MusicBrainz Work Id'),
         StorageStyle('MUSICBRAINZ_WORKID'),
         StorageStyle('musicbrainz work id'),
         ASFStorageStyle('MusicBrainz/Work Id'),
-    )
+    ))
     """Changed Field: The MusicBrainz’ Work ID"""
 
-    mb_workhierarchy_ids = MediaField(
+    mb_workhierarchy_ids: str = cast(str, MediaField(
         MP3DescStorageStyle('MusicBrainz Work Hierarchy Ids'),
         MP4StorageStyle('----:com.apple.iTunes:'
                         'MusicBrainz Work Hierarchy Ids'),
         StorageStyle('MUSICBRAINZ_WORKHIERARCHY_IDS'),
         ASFStorageStyle('MusicBrainz/Work Hierarchy Ids'),
-    )
+    ))
     """
     All IDs in the work hierarchy. This field corresponds to the field
     ``work_hierarchy``. The top level work ID appears first. As separator a
@@ -112,20 +182,20 @@ class MediaFileExtended(MediaFile):
     ``eafec51f-47c5-3c66-8c36-a524246c85f8``
     """
 
-    work = MediaField(
+    work: str = cast(str, MediaField(
         MP3DescStorageStyle('Work'),
         MP4StorageStyle('----:com.apple.iTunes:WORK'),
         StorageStyle('Work'),
         ASFStorageStyle('WM/Work'),
-    )
+    ))
     """The last work in the work hierarchy."""
 
-    work_hierarchy = MediaField(
+    work_hierarchy: str = cast(str, MediaField(
         MP3DescStorageStyle('MusicBrainz Work Hierarchy'),
         MP4StorageStyle('----:com.apple.iTunes:MusicBrainz Work Hierarchy'),
         StorageStyle('MUSICBRAINZ_WORKHIERARCHY'),
         ASFStorageStyle('MusicBrainz/Work Hierarchy'),
-    )
+    ))
     """
     The hierarchy of works: The top level work appears first. As separator is
     this string used: ``-->``
