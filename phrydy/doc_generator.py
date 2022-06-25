@@ -107,10 +107,10 @@ def print_debug(file_path: str,
     print_dict_sorted(class_fields, color, align='left')
 
 
-def merge_fields(*fields):
+def merge_fields(*fields: Any) -> FieldDocCollection:
     """Used in audiorename/args.py"""
     arguments = locals()
-    out = {}
+    out: FieldDocCollection = {}
     for fields in arguments['fields']:
         out.update(fields)
 

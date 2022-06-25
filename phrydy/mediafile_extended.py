@@ -7,7 +7,22 @@ from mediafile import \
     MP4StorageStyle, \
     StorageStyle, \
     Image  # noqa: F401
-from typing import Any, Dict, Generator, List, Set, cast
+from typing import Any, Dict, Generator, List, Set, cast, TypedDict
+
+
+class MgFile(TypedDict):
+    performer: Any
+
+    conductor: Any
+
+    TMCL: Any
+    """4.2.2 TMCL Musician credits list"""
+
+    TIPL: Any
+    """4.2.2 TIPL Involved people list"""
+
+    TPE3: Any
+    """4.2.2 TPE3 Conductor/ar_performer refinement"""
 
 
 class MediaFileExtended(MediaFile):
@@ -81,6 +96,8 @@ class MediaFileExtended(MediaFile):
     r128_track_gain: float
     r128_album_gain: float
     initial_key: str
+
+    mgfile: MgFile
 
     @classmethod
     def fields(cls) -> Generator[str, None, None]:

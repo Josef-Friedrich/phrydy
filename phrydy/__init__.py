@@ -1,22 +1,46 @@
-from . import field_docs  # noqa: F401
-from . import doc_generator  # noqa: F401
-from . import mediafile_extended  # noqa: F401
+from typing import cast
+
+from . import field_docs
+from . import doc_generator
+from . import mediafile_extended
 
 from ._version import get_versions
 
 from .mediafile_extended import \
     MediaFile, \
-    MediaFileExtended  # noqa: F401
+    MediaFileExtended
 
 from .field_docs import \
     fields, \
-    FieldDocCollection  # noqa: F401
+    FieldDocCollection
 
 from .doc_generator import \
     get_max_field_length, \
     format_fields_as_txt, \
     merge_fields, \
-    print_debug  # noqa: F401
+    print_debug
 
-__version__ = get_versions()['version']
+__version__: str = cast(str, get_versions()['version'])
 del get_versions
+
+field_docs
+
+doc_generator
+
+mediafile_extended
+
+MediaFile
+
+MediaFileExtended
+
+fields
+
+FieldDocCollection
+
+get_max_field_length
+
+format_fields_as_txt
+
+merge_fields
+
+print_debug

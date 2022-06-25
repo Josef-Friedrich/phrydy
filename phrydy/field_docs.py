@@ -1,5 +1,4 @@
-import typing
-from typing import Literal, List, Any
+from typing import Literal, List, Any, Dict, TypedDict
 from typing_extensions import NotRequired
 
 
@@ -13,7 +12,7 @@ categories = {
 }
 
 
-class FieldDoc(typing.TypedDict):
+class FieldDoc(TypedDict):
     description: str
     category: Literal['common', 'date', 'audio', 'music_brainz', 'rg', 'r128']
     data_type: NotRequired[Literal['int', 'str', 'float', 'list', 'bool',
@@ -21,7 +20,7 @@ class FieldDoc(typing.TypedDict):
     examples: NotRequired[List[Any]]
 
 
-FieldDocCollection = typing.Dict[str, FieldDoc]
+FieldDocCollection = Dict[str, FieldDoc]
 
 fields: FieldDocCollection = {
     # acoustid_fingerprint: None
