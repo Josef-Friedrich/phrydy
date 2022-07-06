@@ -3,9 +3,9 @@
 import argparse
 
 import phrydy
-from phrydy._version import get_versions
 from phrydy import MediaFileExtended
-from phrydy.doc_generator import print_debug, format_fields_as_txt
+from phrydy._version import get_versions
+from phrydy.doc_generator import format_fields_as_txt, print_debug
 
 
 def description():

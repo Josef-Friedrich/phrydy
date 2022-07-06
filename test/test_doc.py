@@ -2,12 +2,14 @@
 layer.
 """
 
+import os
 import unittest
+
+from jflib import Capturing
+
 import phrydy
 from phrydy.field_docs import FieldDoc
 from phrydy.mediafile_extended import MediaFileExtended
-import os
-from jflib import Capturing
 
 
 class TestPrintDebug(unittest.TestCase):

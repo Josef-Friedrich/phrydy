@@ -1,8 +1,7 @@
 import os
+import shutil
 import sys
 import tempfile
-import shutil
-
 
 # Test resources path.
 TEST_RESOURCES_PATH = os.path.join(os.path.dirname(__file__), 'files')

@@ -1,9 +1,8 @@
 """Test public api / interface
 """
 
-import unittest
 import os
-
+import unittest
 from test import helper
 
 import phrydy

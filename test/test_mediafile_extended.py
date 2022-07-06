@@ -1,7 +1,7 @@
 import os
-import unittest
-import tempfile
 import shutil
+import tempfile
+import unittest
 
 import phrydy
 from phrydy import MediaFileExtended

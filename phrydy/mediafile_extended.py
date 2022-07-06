@@ -1,13 +1,9 @@
-from mediafile import \
-    ASFStorageStyle, \
-    MediaField, \
-    MediaFile, \
-    MP3DescStorageStyle, \
-    MP3StorageStyle, \
-    MP4StorageStyle, \
-    StorageStyle, \
-    Image  # noqa: F401
-from typing import Any, Dict, Generator, List, Set, cast, TypedDict
+from typing import Any, Dict, Generator, List, Set, TypedDict, cast
+
+from mediafile import Image  # noqa: F401
+from mediafile import (ASFStorageStyle, MediaField, MediaFile,
+                       MP3DescStorageStyle, MP3StorageStyle, MP4StorageStyle,
+                       StorageStyle)
 
 
 class MgFile(TypedDict):

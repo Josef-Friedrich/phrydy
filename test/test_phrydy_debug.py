@@ -1,8 +1,8 @@
 """Test the command line interface using subprocess."""
 
+import os
 import subprocess
 import unittest
-import os
 
 
 class TestCli(unittest.TestCase):

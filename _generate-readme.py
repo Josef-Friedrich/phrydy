@@ -1,8 +1,9 @@
 #! /usr/bin/env python
 
 import os
-import subprocess
 import re
+import subprocess
+
 import phrydy
 
 

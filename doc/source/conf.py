@@ -1,4 +1,5 @@
 import sphinx_rtd_theme
+
 import phrydy
 
 html_theme = 'sphinx_rtd_theme'

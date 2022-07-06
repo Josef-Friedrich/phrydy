@@ -1,12 +1,12 @@
-import textwrap
 import re
+import textwrap
 import typing
-from typing import Any, Optional, Dict
+from typing import Any, Dict, Optional
 
 import ansicolor
 
+from .field_docs import FieldDoc, FieldDocCollection, fields
 from .mediafile_extended import MediaFileExtended
-from .field_docs import FieldDocCollection, FieldDoc, fields
 
 
 def remove_color(text: str) -> str:

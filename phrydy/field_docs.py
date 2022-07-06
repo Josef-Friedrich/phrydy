@@ -1,6 +1,6 @@
-from typing import Literal, List, Any, Dict, TypedDict
-from typing_extensions import NotRequired
+from typing import Any, Dict, List, Literal, TypedDict
 
+from typing_extensions import NotRequired
 
 categories = {
     'common': 'Common metadata fields',

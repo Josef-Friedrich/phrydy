@@ -2,10 +2,11 @@
 """
 
 import os
-from phrydy import MediaFileExtended
-import unittest
-import tempfile
 import shutil
+import tempfile
+import unittest
+
+from phrydy import MediaFileExtended
 
 
 def get_file(name):
