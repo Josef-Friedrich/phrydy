@@ -4,7 +4,6 @@ import argparse
 
 import phrydy
 from phrydy import MediaFileExtended
-from phrydy._version import get_versions
 from phrydy.doc_generator import format_fields_as_txt, print_debug
 
 
@@ -37,7 +36,7 @@ parser.add_argument(
     '-v',
     '--version',
     action='version',
-    version='%(prog)s {version}'.format(version=get_versions()['version'])
+    version='%(prog)s {version}'.format(version=phrydy.__version__)
 )
 
 args = parser.parse_args()
