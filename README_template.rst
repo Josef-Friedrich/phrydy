@@ -95,7 +95,7 @@ List all available fields of a media file:
 
     from phrydy import MediaFileExtended
 
-    media_file = MediaFileExtended('test/files/full.mp3')
+    media_file = MediaFileExtended('tests/files/full.mp3')
 
     for key in MediaFileExtended.readable_fields():
         value = getattr(media_file, key)

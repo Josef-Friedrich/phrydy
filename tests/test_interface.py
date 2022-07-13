@@ -3,7 +3,7 @@
 
 import os
 import unittest
-from test import helper
+from tests import helper
 
 import phrydy
 from phrydy import MediaFileExtended

@@ -12,7 +12,7 @@ class TestCli(unittest.TestCase):
         self.assertIn('usage: phrydy-debug', str(output))
 
         output = subprocess.check_output(
-            ('phrydy-debug', os.path.join('test', 'files', 'full.mp3'))
+            ('phrydy-debug', os.path.join('tests', 'files', 'full.mp3'))
         )
         output = str(output)
         self.assertIn('Raw mutagen values', output)

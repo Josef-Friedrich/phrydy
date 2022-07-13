@@ -3,7 +3,7 @@
 
 from phrydy import MediaFile
 
-media_file = MediaFile('../test/files/full.mp3')
+media_file = MediaFile('../tests/files/full.mp3')
 
 for key in MediaFile.readable_fields():
     value = getattr(media_file, key)
