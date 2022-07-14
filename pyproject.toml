@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "phrydy"
-version = "0.0.0"
+version = "3.2.0"
 description = "Template and Macros Expansion for Path names."
 authors = ["Josef Friedrich <josef@friedrich.rocks>"]
 readme = "README.rst"
