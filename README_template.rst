@@ -85,7 +85,7 @@ Basic usage:
     >>> from phrydy import MediaFileExtended
     >>> f = MediaFileExtended('Lucy.mp3')
     >>> f.title
-    u'Lucy in the Sky with Diamonds'
+    'Lucy in the Sky with Diamonds'
     >>> f.artist = 'The Beatles'
     >>> f.save()
 

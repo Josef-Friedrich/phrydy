@@ -14,9 +14,9 @@ source_suffix = '.rst'
 
 master_doc = 'index'
 
-project = u'phrydy'
-copyright = u'2016, Josef Friedrich'
-author = u'Josef Friedrich'
+project = 'phrydy'
+copyright = '2016, Josef Friedrich'
+author = 'Josef Friedrich'
 version = phrydy.__version__
 release = phrydy.__version__
 language = 'en'

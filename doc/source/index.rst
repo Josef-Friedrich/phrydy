@@ -29,7 +29,7 @@ Usage
         >>> from phrydy install MediaFile
         >>> f = MediaFile('Lucy.mp3')
         >>> f.title
-        u'Lucy in the Sky with Diamonds'
+        'Lucy in the Sky with Diamonds'
         >>> f.artist = 'The Beatles'
         >>> f.save()
 

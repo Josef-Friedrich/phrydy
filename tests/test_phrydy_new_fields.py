@@ -24,7 +24,7 @@ class TestPhrydyNewFields(unittest.TestCase):
 
     def test_new_fields(self):
 
-        value = u'ef8e0ef9-491e-42df-bff9-f13981da30a7'
+        value = 'ef8e0ef9-491e-42df-bff9-f13981da30a7'
 
         for extension in [
             'aiff',
