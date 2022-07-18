@@ -6,14 +6,14 @@ authors = ["Josef Friedrich <josef@friedrich.rocks>"]
 readme = "README.rst"
 license = "MIT"
 classifiers = [
-  "Development Status :: 5 - Production/Stable",
-  "Programming Language :: Python :: 3 :: Only",
-  "Programming Language :: Python :: 3.8",
-  "Programming Language :: Python :: 3.9",
-  "Programming Language :: Python :: 3.10",
-  "Programming Language :: Python :: 3",
-  "License :: OSI Approved :: MIT License",
-  "Topic :: Utilities",
+    "Development Status :: 5 - Production/Stable",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Topic :: Utilities",
 ]
 repository = "https://github.com/Josef-Friedrich/phrydy"
 
@@ -30,12 +30,6 @@ autopep8 = "^1.6.0"
 [build-system]
 requires = ["poetry>=1.2.0b2", "poetry-dynamic-versioning-plugin"]
 build-backend = "poetry.masonry.api"
-
-[tool.poetry-dynamic-versioning]
-enable = true
-vcs = "git"
-style = "semver"
-pattern = "(?P<base>\\d+\\.\\d+\\.\\d+)"
 
 [tool.poetry.scripts]
 phrydy-debug = "phrydy.debug:init_cli"
