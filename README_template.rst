@@ -102,14 +102,12 @@ List all available fields of a media file:
         if key != 'art' and value:
             print('{}: {}'.format(key, value))
 
-<< fields documentation table >>
+{{ func('phrydy.doc_generator.format_fields_as_rst_table') }}
 
 phrydy-debug
 ============
 
-.. code-block:: text
-
-<< cli help >>
+{{ cli('phrydy-debug --help') | literal }}
 
 Development
 ===========

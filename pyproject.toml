@@ -26,9 +26,10 @@ typing-extensions = "^4.1.1"
 [tool.poetry.dev-dependencies]
 mypy = "^0.961"
 autopep8 = "^1.6.0"
+readme-patcher = "^0.3.0"
 
 [build-system]
-requires = ["poetry>=1.2.0b2", "poetry-dynamic-versioning-plugin"]
+requires = ["poetry>=1.2.0b2"]
 build-backend = "poetry.masonry.api"
 
 [tool.poetry.scripts]
