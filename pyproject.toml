@@ -26,7 +26,7 @@ typing-extensions = "^4.1.1"
 [tool.poetry.dev-dependencies]
 mypy = "^0.961"
 autopep8 = "^1.6.0"
-readme-patcher = "^0.3.0"
+readme-patcher = "^0.5.0"
 # readme-patcher = { path = "../readme_patcher" }
 
 [build-system]
