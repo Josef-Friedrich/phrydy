@@ -1,10 +1,10 @@
 .. image:: http://img.shields.io/pypi/v/phrydy.svg
-    :target: https://pypi.python.org/pypi/phrydy
+    :target: https://pypi.org/project/phrydy
     :alt: This package on the Python Package Index
 
 .. image:: https://github.com/Josef-Friedrich/phrydy/actions/workflows/tests.yml/badge.svg
     :target: https://github.com/Josef-Friedrich/phrydy/actions/workflows/tests.yml
-    :alt: tests
+    :alt: Tests
 
 .. image:: https://readthedocs.org/projects/phrydy/badge/?version=latest
     :target: https://phrydy.readthedocs.io/en/latest/?badge=latest
