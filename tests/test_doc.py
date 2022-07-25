@@ -5,7 +5,7 @@ layer.
 import os
 import unittest
 
-from jflib import Capturing
+from stdout_stderr_capturing import Capturing
 
 import phrydy
 from phrydy.field_docs import FieldDoc
