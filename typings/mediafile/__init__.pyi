@@ -48,17 +48,15 @@ data from the tags. In turn ``MediaField`` uses a number of
 ``StorageStyle`` strategies to handle format specific logic.
 """
 __version__ = ...
-__all__ = ['UnreadableFileError', 'FileTypeError', 'MediaFile']
+__all__ = ["UnreadableFileError", "FileTypeError", "MediaFile"]
 log = ...
 TYPES = ...
 PREFERRED_IMAGE_EXTENSIONS = ...
+
 class UnreadableFileError(Exception):
-    """Mutagen is not able to extract information from the file.
-    """
-    def __init__(self, filename, msg) -> None:
-        ...
+    """Mutagen is not able to extract information from the file."""
 
-
+    def __init__(self, filename, msg) -> None: ...
 
 class FileTypeError(UnreadableFileError):
     """Reading this type of file is not supported.
@@ -66,18 +64,13 @@ class FileTypeError(UnreadableFileError):
     If passed the `mutagen_type` argument this indicates that the
     mutagen type is not supported by `Mediafile`.
     """
-    def __init__(self, filename, mutagen_type=...) -> None:
-        ...
 
-
+    def __init__(self, filename, mutagen_type=...) -> None: ...
 
 class MutagenError(UnreadableFileError):
-    """Raised when Mutagen fails unexpectedly---probably due to a bug.
-    """
-    def __init__(self, filename, mutagen_exc) -> None:
-        ...
+    """Raised when Mutagen fails unexpectedly---probably due to a bug."""
 
-
+    def __init__(self, filename, mutagen_exc) -> None: ...
 
 def mutagen_call(action, filename, func, *args, **kwargs):
     """Call a Mutagen function with appropriate error handling.
@@ -94,7 +87,9 @@ def mutagen_call(action, filename, func, *args, **kwargs):
     """
     ...
 
-def loadfile(method=..., writable=..., create=...): # -> (func: Unknown) -> ((*args: Unknown, **kwargs: Unknown) -> Unknown):
+def loadfile(
+    method=..., writable=..., create=...
+):  # -> (func: Unknown) -> ((*args: Unknown, **kwargs: Unknown) -> Unknown):
     """A decorator that works like `mutagen._util.loadfile` but with
     additional error handling.
 
@@ -104,17 +99,15 @@ def loadfile(method=..., writable=..., create=...): # -> (func: Unknown) -> ((*a
     """
     ...
 
-def image_mime_type(data): # -> str:
-    """Return the MIME type of the image data (a bytestring).
-    """
+def image_mime_type(data):  # -> str:
+    """Return the MIME type of the image data (a bytestring)."""
     ...
 
-def image_extension(data): # -> str | None:
-    ...
+def image_extension(data): ...
 
 class ImageType(enum.Enum):
-    """Indicates the kind of an `Image` stored in a file's tag.
-    """
+    """Indicates the kind of an `Image` stored in a file's tag."""
+
     other = ...
     icon = ...
     other_icon = ...
@@ -137,7 +130,6 @@ class ImageType(enum.Enum):
     artist_logo = ...
     publisher_logo = ...
 
-
 class Image:
     """Structure representing image data and metadata that can be
     stored and retrieved from tags.
@@ -149,18 +141,12 @@ class Image:
     * ``mime_type`` Read-only property that contains the mime type of
                     the binary data
     """
-    def __init__(self, data, desc=..., type=...) -> None:
-        ...
 
+    def __init__(self, data, desc=..., type=...) -> None: ...
     @property
-    def mime_type(self): # -> str | None:
-        ...
-
+    def mime_type(self): ...
     @property
-    def type_index(self): # -> Any | Literal[0]:
-        ...
-
-
+    def type_index(self): ...
 
 class StorageStyle:
     """A strategy for storing a value for a certain tag format (or set
@@ -186,8 +172,11 @@ class StorageStyle:
     MediaFile only uses StorageStyles that apply to the correct type for
     a given audio file.
     """
+
     formats = ...
-    def __init__(self, key, as_type=..., suffix=..., float_places=..., read_only=...) -> None:
+    def __init__(
+        self, key, as_type=..., suffix=..., float_places=..., read_only=...
+    ) -> None:
         """Create a basic storage strategy. Parameters:
 
         - `key`: The key on the Mutagen file object used to access the
@@ -205,46 +194,33 @@ class StorageStyle:
 
         """
         ...
-
-    def get(self, mutagen_file): # -> str | None:
-        """Get the value for the field using this style.
-        """
+    def get(self, mutagen_file):  # -> str | None:
+        """Get the value for the field using this style."""
         ...
-
-    def fetch(self, mutagen_file): # -> None:
+    def fetch(self, mutagen_file):  # -> None:
         """Retrieve the raw value of for this tag from the Mutagen file
         object.
         """
         ...
-
-    def deserialize(self, mutagen_value): # -> str:
+    def deserialize(self, mutagen_value):  # -> str:
         """Given a raw value stored on a Mutagen object, decode and
         return the represented value.
         """
         ...
-
-    def set(self, mutagen_file, value): # -> None:
-        """Assign the value for the field using this style.
-        """
+    def set(self, mutagen_file, value):  # -> None:
+        """Assign the value for the field using this style."""
         ...
-
-    def store(self, mutagen_file, value): # -> None:
-        """Store a serialized value in the Mutagen file object.
-        """
+    def store(self, mutagen_file, value):  # -> None:
+        """Store a serialized value in the Mutagen file object."""
         ...
-
     def serialize(self, value):
         """Convert the external Python value to a type that is suitable for
         storing in a Mutagen file object.
         """
         ...
-
-    def delete(self, mutagen_file): # -> None:
-        """Remove the tag from the file.
-        """
+    def delete(self, mutagen_file):  # -> None:
+        """Remove the tag from the file."""
         ...
-
-
 
 class ListStorageStyle(StorageStyle):
     """Abstract storage style that provides access to lists.
@@ -261,39 +237,29 @@ class ListStorageStyle(StorageStyle):
     `StorageStyle`) are still called with individual values. This class
     handles packing and unpacking the values into lists.
     """
-    def get(self, mutagen_file): # -> str | None:
-        """Get the first value in the field's value list.
-        """
-        ...
 
-    def get_list(self, mutagen_file): # -> list[str | Unknown]:
-        """Get a list of all values for the field using this style.
-        """
+    def get(self, mutagen_file):  # -> str | None:
+        """Get the first value in the field's value list."""
         ...
-
-    def fetch(self, mutagen_file): # -> list[Unknown]:
-        """Get the list of raw (serialized) values.
-        """
+    def get_list(self, mutagen_file):  # -> list[str | Unknown]:
+        """Get a list of all values for the field using this style."""
         ...
-
-    def set(self, mutagen_file, value): # -> None:
+    def fetch(self, mutagen_file):  # -> list[Unknown]:
+        """Get the list of raw (serialized) values."""
+        ...
+    def set(self, mutagen_file, value):  # -> None:
         """Set an individual value as the only value for the field using
         this style.
         """
         ...
-
-    def set_list(self, mutagen_file, values): # -> None:
+    def set_list(self, mutagen_file, values):  # -> None:
         """Set all values for the field using this style. `values`
         should be an iterable.
         """
         ...
-
-    def store(self, mutagen_file, values): # -> None:
-        """Set the list of all raw (serialized) values for this field.
-        """
+    def store(self, mutagen_file, values):  # -> None:
+        """Set the list of all raw (serialized) values for this field."""
         ...
-
-
 
 class SoundCheckStorageStyleMixin:
     """A mixin for storage styles that read and write iTunes SoundCheck
@@ -301,151 +267,86 @@ class SoundCheckStorageStyleMixin:
     indicates which half of the gain/peak pair---0 or 1---the field
     represents.
     """
-    def get(self, mutagen_file): # -> float | Any | None:
-        ...
 
-    def set(self, mutagen_file, value): # -> None:
-        ...
-
-
+    def get(self, mutagen_file): ...
+    def set(self, mutagen_file, value): ...
 
 class ASFStorageStyle(ListStorageStyle):
-    """A general storage style for Windows Media/ASF files.
-    """
+    """A general storage style for Windows Media/ASF files."""
+
     formats = ...
-    def deserialize(self, data): # -> None:
-        ...
-
-
+    def deserialize(self, data): ...
 
 class MP4StorageStyle(StorageStyle):
-    """A general storage style for MPEG-4 tags.
-    """
+    """A general storage style for MPEG-4 tags."""
+
     formats = ...
-    def serialize(self, value): # -> bytes:
-        ...
-
-
+    def serialize(self, value): ...
 
 class MP4TupleStorageStyle(MP4StorageStyle):
     """A style for storing values as part of a pair of numbers in an
     MPEG-4 file.
     """
-    def __init__(self, key, index=..., **kwargs) -> None:
-        ...
 
-    def deserialize(self, mutagen_value): # -> list[Any]:
-        ...
+    def __init__(self, key, index=..., **kwargs) -> None: ...
+    def deserialize(self, mutagen_value): ...
+    def get(self, mutagen_file): ...
+    def set(self, mutagen_file, value): ...
+    def delete(self, mutagen_file): ...
 
-    def get(self, mutagen_file): # -> str | None:
-        ...
-
-    def set(self, mutagen_file, value): # -> None:
-        ...
-
-    def delete(self, mutagen_file): # -> None:
-        ...
-
-
-
-class MP4ListStorageStyle(ListStorageStyle, MP4StorageStyle):
-    ...
-
+class MP4ListStorageStyle(ListStorageStyle, MP4StorageStyle): ...
 
 class MP4SoundCheckStorageStyle(SoundCheckStorageStyleMixin, MP4StorageStyle):
-    def __init__(self, key, index=..., **kwargs) -> None:
-        ...
-
-
+    def __init__(self, key, index=..., **kwargs) -> None: ...
 
 class MP4BoolStorageStyle(MP4StorageStyle):
     """A style for booleans in MPEG-4 files. (MPEG-4 has an atom type
     specifically for representing booleans.)
     """
-    def get(self, mutagen_file): # -> None:
-        ...
 
-    def get_list(self, mutagen_file):
-        ...
-
-    def set(self, mutagen_file, value): # -> None:
-        ...
-
-    def set_list(self, mutagen_file, values):
-        ...
-
-
+    def get(self, mutagen_file): ...
+    def get_list(self, mutagen_file): ...
+    def set(self, mutagen_file, value): ...
+    def set_list(self, mutagen_file, values): ...
 
 class MP4ImageStorageStyle(MP4ListStorageStyle):
-    """Store images as MPEG-4 image atoms. Values are `Image` objects.
-    """
-    def __init__(self, **kwargs) -> None:
-        ...
+    """Store images as MPEG-4 image atoms. Values are `Image` objects."""
 
-    def deserialize(self, data): # -> Image:
-        ...
-
-    def serialize(self, image): # -> MP4Cover:
-        ...
-
-
+    def __init__(self, **kwargs) -> None: ...
+    def deserialize(self, data): ...
+    def serialize(self, image): ...
 
 class MP3StorageStyle(StorageStyle):
-    """Store data in ID3 frames.
-    """
+    """Store data in ID3 frames."""
+
     formats = ...
     def __init__(self, key, id3_lang=..., **kwargs) -> None:
         """Create a new ID3 storage style. `id3_lang` is the value for
         the language field of newly created frames.
         """
         ...
-
-    def fetch(self, mutagen_file): # -> None:
-        ...
-
-    def store(self, mutagen_file, value): # -> None:
-        ...
-
-
+    def fetch(self, mutagen_file): ...
+    def store(self, mutagen_file, value): ...
 
 class MP3PeopleStorageStyle(MP3StorageStyle):
-    """Store list of people in ID3 frames.
-    """
-    def __init__(self, key, involvement=..., **kwargs) -> None:
-        ...
+    """Store list of people in ID3 frames."""
 
-    def store(self, mutagen_file, value): # -> None:
-        ...
-
-    def fetch(self, mutagen_file): # -> None:
-        ...
-
-
+    def __init__(self, key, involvement=..., **kwargs) -> None: ...
+    def store(self, mutagen_file, value): ...
+    def fetch(self, mutagen_file): ...
 
 class MP3ListStorageStyle(ListStorageStyle, MP3StorageStyle):
-    """Store lists of data in multiple ID3 frames.
-    """
-    def fetch(self, mutagen_file): # -> list[Unknown]:
-        ...
+    """Store lists of data in multiple ID3 frames."""
 
-    def store(self, mutagen_file, values): # -> None:
-        ...
-
-
+    def fetch(self, mutagen_file): ...
+    def store(self, mutagen_file, values): ...
 
 class MP3UFIDStorageStyle(MP3StorageStyle):
-    """Store string data in a UFID ID3 frame with a particular owner.
-    """
-    def __init__(self, owner, **kwargs) -> None:
-        ...
+    """Store string data in a UFID ID3 frame with a particular owner."""
 
-    def fetch(self, mutagen_file): # -> None:
-        ...
-
-    def store(self, mutagen_file, value): # -> None:
-        ...
-
-
+    def __init__(self, owner, **kwargs) -> None: ...
+    def fetch(self, mutagen_file): ...
+    def store(self, mutagen_file, value): ...
 
 class MP3DescStorageStyle(MP3StorageStyle):
     """Store data in a TXXX (or similar) ID3 frame. The frame is
@@ -455,49 +356,28 @@ class MP3DescStorageStyle(MP3StorageStyle):
     ``multispec`` specifies if frame data is ``mutagen.id3.MultiSpec``
     which means that the data is being packed in the list.
     """
-    def __init__(self, desc=..., key=..., attr=..., multispec=..., **kwargs) -> None:
-        ...
 
-    def store(self, mutagen_file, value): # -> None:
-        ...
-
-    def fetch(self, mutagen_file): # -> Any | None:
-        ...
-
-    def delete(self, mutagen_file): # -> None:
-        ...
-
-
+    def __init__(
+        self, desc=..., key=..., attr=..., multispec=..., **kwargs
+    ) -> None: ...
+    def store(self, mutagen_file, value): ...
+    def fetch(self, mutagen_file): ...
+    def delete(self, mutagen_file): ...
 
 class MP3ListDescStorageStyle(MP3DescStorageStyle, ListStorageStyle):
-    def __init__(self, desc=..., key=..., split_v23=..., **kwargs) -> None:
-        ...
-
-    def fetch(self, mutagen_file): # -> list[Unknown]:
-        ...
-
-    def store(self, mutagen_file, values): # -> None:
-        ...
-
-
+    def __init__(self, desc=..., key=..., split_v23=..., **kwargs) -> None: ...
+    def fetch(self, mutagen_file): ...
+    def store(self, mutagen_file, values): ...
 
 class MP3SlashPackStorageStyle(MP3StorageStyle):
     """Store value as part of pair that is serialized as a slash-
     separated string.
     """
-    def __init__(self, key, pack_pos=..., **kwargs) -> None:
-        ...
 
-    def get(self, mutagen_file):
-        ...
-
-    def set(self, mutagen_file, value): # -> None:
-        ...
-
-    def delete(self, mutagen_file): # -> None:
-        ...
-
-
+    def __init__(self, key, pack_pos=..., **kwargs) -> None: ...
+    def get(self, mutagen_file): ...
+    def set(self, mutagen_file, value): ...
+    def delete(self, mutagen_file): ...
 
 class MP3ImageStorageStyle(ListStorageStyle, MP3StorageStyle):
     """Converts between APIC frames and ``Image`` instances.
@@ -506,128 +386,79 @@ class MP3ImageStorageStyle(ListStorageStyle, MP3StorageStyle):
     list of ``Image``s. Similarly, the `set_list` method accepts a
     list of ``Image``s as its ``values`` argument.
     """
-    def __init__(self) -> None:
-        ...
 
-    def deserialize(self, apic_frame): # -> Image:
+    def __init__(self) -> None: ...
+    def deserialize(self, apic_frame):  # -> Image:
         """Convert APIC frame into Image."""
         ...
-
-    def fetch(self, mutagen_file):
-        ...
-
-    def store(self, mutagen_file, frames): # -> None:
-        ...
-
-    def delete(self, mutagen_file): # -> None:
-        ...
-
+    def fetch(self, mutagen_file): ...
+    def store(self, mutagen_file, frames): ...
+    def delete(self, mutagen_file): ...
     def serialize(self, image):
-        """Return an APIC frame populated with data from ``image``.
-        """
+        """Return an APIC frame populated with data from ``image``."""
         ...
-
-
 
 class MP3SoundCheckStorageStyle(SoundCheckStorageStyleMixin, MP3DescStorageStyle):
-    def __init__(self, index=..., **kwargs) -> None:
-        ...
-
-
+    def __init__(self, index=..., **kwargs) -> None: ...
 
 class ASFImageStorageStyle(ListStorageStyle):
     """Store images packed into Windows Media/ASF byte array attributes.
     Values are `Image` objects.
     """
+
     formats = ...
-    def __init__(self) -> None:
-        ...
-
-    def deserialize(self, asf_picture): # -> Image:
-        ...
-
-    def serialize(self, image): # -> ASFByteArrayAttribute:
-        ...
-
-
+    def __init__(self) -> None: ...
+    def deserialize(self, asf_picture): ...
+    def serialize(self, image): ...
 
 class VorbisImageStorageStyle(ListStorageStyle):
     """Store images in Vorbis comments. Both legacy COVERART fields and
     modern METADATA_BLOCK_PICTURE tags are supported. Data is
     base64-encoded. Values are `Image` objects.
     """
+
     formats = ...
-    def __init__(self) -> None:
+    def __init__(self) -> None: ...
+    def fetch(self, mutagen_file): ...
+    def store(self, mutagen_file, image_data): ...
+    def serialize(self, image):  # -> str:
+        """Turn a Image into a base64 encoded FLAC picture block."""
         ...
-
-    def fetch(self, mutagen_file): # -> list[Unknown]:
-        ...
-
-    def store(self, mutagen_file, image_data): # -> None:
-        ...
-
-    def serialize(self, image): # -> str:
-        """Turn a Image into a base64 encoded FLAC picture block.
-        """
-        ...
-
-
 
 class FlacImageStorageStyle(ListStorageStyle):
-    """Converts between ``mutagen.flac.Picture`` and ``Image`` instances.
-    """
+    """Converts between ``mutagen.flac.Picture`` and ``Image`` instances."""
+
     formats = ...
-    def __init__(self) -> None:
+    def __init__(self) -> None: ...
+    def fetch(self, mutagen_file): ...
+    def deserialize(self, flac_picture): ...
+    def store(self, mutagen_file, pictures):  # -> None:
+        """``pictures`` is a list of mutagen.flac.Picture instances."""
         ...
-
-    def fetch(self, mutagen_file):
+    def serialize(self, image):  # -> Picture:
+        """Turn a Image into a mutagen.flac.Picture."""
         ...
-
-    def deserialize(self, flac_picture): # -> Image:
+    def delete(self, mutagen_file):  # -> None:
+        """Remove all images from the file."""
         ...
-
-    def store(self, mutagen_file, pictures): # -> None:
-        """``pictures`` is a list of mutagen.flac.Picture instances.
-        """
-        ...
-
-    def serialize(self, image): # -> Picture:
-        """Turn a Image into a mutagen.flac.Picture.
-        """
-        ...
-
-    def delete(self, mutagen_file): # -> None:
-        """Remove all images from the file.
-        """
-        ...
-
-
 
 class APEv2ImageStorageStyle(ListStorageStyle):
-    """Store images in APEv2 tags. Values are `Image` objects.
-    """
+    """Store images in APEv2 tags. Values are `Image` objects."""
+
     formats = ...
     TAG_NAMES = ...
-    def __init__(self) -> None:
+    def __init__(self) -> None: ...
+    def fetch(self, mutagen_file): ...
+    def set_list(self, mutagen_file, values): ...
+    def delete(self, mutagen_file):  # -> None:
+        """Remove all images from the file."""
         ...
-
-    def fetch(self, mutagen_file): # -> list[Unknown]:
-        ...
-
-    def set_list(self, mutagen_file, values): # -> None:
-        ...
-
-    def delete(self, mutagen_file): # -> None:
-        """Remove all images from the file.
-        """
-        ...
-
-
 
 class MediaField:
     """A descriptor providing access to a particular (abstract) metadata
     field.
     """
+
     def __init__(self, *styles, **kwargs) -> None:
         """Creates a new MediaField.
 
@@ -641,23 +472,14 @@ class MediaField:
 
         """
         ...
-
-    def styles(self, mutagen_file): # -> Generator[Unknown, None, None]:
+    def styles(self, mutagen_file):  # -> Generator[Unknown, None, None]:
         """Yields the list of storage styles of this field that can
         handle the MediaFile's format.
         """
         ...
-
-    def __get__(self, mediafile, owner=...):
-        ...
-
-    def __set__(self, mediafile, value): # -> None:
-        ...
-
-    def __delete__(self, mediafile): # -> None:
-        ...
-
-
+    def __get__(self, mediafile, owner=...): ...
+    def __set__(self, mediafile, value): ...
+    def __delete__(self, mediafile): ...
 
 class ListMediaField(MediaField):
     """Property descriptor that retrieves a list of multiple values from
@@ -666,19 +488,14 @@ class ListMediaField(MediaField):
     Uses ``get_list`` and set_list`` methods of its ``StorageStyle``
     strategies to do the actual work.
     """
-    def __get__(self, mediafile, _): # -> list[Unknown]:
-        ...
 
-    def __set__(self, mediafile, values): # -> None:
-        ...
-
-    def single_field(self): # -> MediaField:
+    def __get__(self, mediafile, _): ...
+    def __set__(self, mediafile, values): ...
+    def single_field(self):  # -> MediaField:
         """Returns a ``MediaField`` descriptor that gets and sets the
         first item.
         """
         ...
-
-
 
 class DateField(MediaField):
     """Descriptor that handles serializing and deserializing dates
@@ -689,6 +506,7 @@ class DateField(MediaField):
     For granular access to year, month, and day, use the ``*_field``
     methods to create corresponding `DateItemField`s.
     """
+
     def __init__(self, *date_styles, **kwargs) -> None:
         """``date_styles`` is a list of ``StorageStyle``s to store and
         retrieve the whole date from. The ``year`` option is an
@@ -697,44 +515,22 @@ class DateField(MediaField):
         storage styles do not return a value.
         """
         ...
-
-    def __get__(self, mediafile, owner=...):
-        ...
-
-    def __set__(self, mediafile, date): # -> None:
-        ...
-
-    def __delete__(self, mediafile): # -> None:
-        ...
-
-    def year_field(self): # -> DateItemField:
-        ...
-
-    def month_field(self): # -> DateItemField:
-        ...
-
-    def day_field(self): # -> DateItemField:
-        ...
-
-
+    def __get__(self, mediafile, owner=...): ...
+    def __set__(self, mediafile, date): ...
+    def __delete__(self, mediafile): ...
+    def year_field(self): ...
+    def month_field(self): ...
+    def day_field(self): ...
 
 class DateItemField(MediaField):
     """Descriptor that gets and sets constituent parts of a `DateField`:
     the month, day, or year.
     """
-    def __init__(self, date_field, item_pos) -> None:
-        ...
 
-    def __get__(self, mediafile, _):
-        ...
-
-    def __set__(self, mediafile, value): # -> None:
-        ...
-
-    def __delete__(self, mediafile): # -> None:
-        ...
-
-
+    def __init__(self, date_field, item_pos) -> None: ...
+    def __get__(self, mediafile, _): ...
+    def __set__(self, mediafile, value): ...
+    def __delete__(self, mediafile): ...
 
 class CoverArtField(MediaField):
     """A descriptor that provides access to the *raw image data* for the
@@ -744,23 +540,13 @@ class CoverArtField(MediaField):
     When there are multiple images we try to pick the most likely to be a front
     cover.
     """
-    def __init__(self) -> None:
-        ...
 
-    def __get__(self, mediafile, _): # -> None:
-        ...
-
+    def __init__(self) -> None: ...
+    def __get__(self, mediafile, _): ...
     @staticmethod
-    def guess_cover_image(candidates):
-        ...
-
-    def __set__(self, mediafile, data): # -> None:
-        ...
-
-    def __delete__(self, mediafile): # -> None:
-        ...
-
-
+    def guess_cover_image(candidates): ...
+    def __set__(self, mediafile, data): ...
+    def __delete__(self, mediafile): ...
 
 class QNumberField(MediaField):
     """Access integer-represented Q number fields.
@@ -769,16 +555,10 @@ class QNumberField(MediaField):
     `fraction_bits` binary digits to the left and then rounded, yielding a
     simple integer.
     """
-    def __init__(self, fraction_bits, *args, **kwargs) -> None:
-        ...
 
-    def __get__(self, mediafile, owner=...): # -> None:
-        ...
-
-    def __set__(self, mediafile, value): # -> None:
-        ...
-
-
+    def __init__(self, fraction_bits, *args, **kwargs) -> None: ...
+    def __get__(self, mediafile, owner=...): ...
+    def __set__(self, mediafile, value): ...
 
 class ImageListField(ListMediaField):
     """Descriptor to access the list of images embedded in tags.
@@ -787,15 +567,14 @@ class ImageListField(ListMediaField):
     the tags. The setter accepts a list of `Image` instances to be
     written to the tags.
     """
-    def __init__(self) -> None:
-        ...
 
-
+    def __init__(self) -> None: ...
 
 class MediaFile:
     """Represents a multimedia file on disk and provides access to its
     metadata.
     """
+
     @loadfile()
     def __init__(self, filething, id3v23=...) -> None:
         """Constructs a new `MediaFile` reflecting the provided file.
@@ -809,7 +588,6 @@ class MediaFile:
         the older ID3v2.3 standard by specifying the `id3v23` option.
         """
         ...
-
     @property
     def filename(self):
         """The name of the file.
@@ -818,14 +596,12 @@ class MediaFile:
         or the name of the file-like object.
         """
         ...
-
     @filename.setter
-    def filename(self, val): # -> None:
+    def filename(self, val):  # -> None:
         """Silently skips setting filename.
         Workaround for `mutagen._util._openfile` setting instance's filename.
         """
         ...
-
     @property
     def path(self):
         """The path to the file.
@@ -834,37 +610,31 @@ class MediaFile:
         of a filesystem path.
         """
         ...
-
     @property
-    def filesize(self): # -> int:
-        """The size (in bytes) of the underlying file.
-        """
+    def filesize(self):  # -> int:
+        """The size (in bytes) of the underlying file."""
         ...
-
-    def save(self, **kwargs): # -> None:
+    def save(self, **kwargs):  # -> None:
         """Write the object's tags back to the file.
 
         May throw `UnreadableFileError`. Accepts keyword arguments to be
         passed to Mutagen's `save` function.
         """
         ...
-
-    def delete(self): # -> None:
+    def delete(self):  # -> None:
         """Remove the current metadata tag from the file. May
         throw `UnreadableFileError`.
         """
         ...
-
     @classmethod
-    def fields(cls): # -> Generator[str, None, None]:
+    def fields(cls):  # -> Generator[str, None, None]:
         """Get the names of all writable properties that reflect
         metadata tags (i.e., those that are instances of
         :class:`MediaField`).
         """
         ...
-
     @classmethod
-    def sorted_fields(cls): # -> Generator[str, None, None]:
+    def sorted_fields(cls):  # -> Generator[str, None, None]:
         """Get the names of all writable metadata fields, sorted in the
         order that they should be written.
 
@@ -873,16 +643,14 @@ class MediaFile:
         order.
         """
         ...
-
     @classmethod
-    def readable_fields(cls): # -> Generator[str, None, None]:
+    def readable_fields(cls):  # -> Generator[str, None, None]:
         """Get all metadata fields: the writable ones from
         :meth:`fields` and also other audio properties.
         """
         ...
-
     @classmethod
-    def add_field(cls, name, descriptor): # -> None:
+    def add_field(cls, name, descriptor):  # -> None:
         """Add a field to store custom tags.
 
         :param name: the name of the property the field is accessed
@@ -891,8 +659,7 @@ class MediaFile:
         :param descriptor: an instance of :class:`MediaField`.
         """
         ...
-
-    def update(self, dict): # -> None:
+    def update(self, dict):  # -> None:
         """Set all field values from a dictionary.
 
         For any key in `dict` that is also a field to store tags the
@@ -901,14 +668,12 @@ class MediaFile:
         corresponding property is deleted from the `MediaFile`.
         """
         ...
-
-    def as_dict(self): # -> dict[str, Any]:
+    def as_dict(self):  # -> dict[str, Any]:
         """Get a dictionary with all writable properties that reflect
         metadata tags (i.e., those that are instances of
         :class:`MediaField`).
         """
         ...
-
     title: str = ...
     artist: str = ...
     artists: str = ...
@@ -983,27 +748,23 @@ class MediaFile:
     def length(self):
         """The duration of the audio in seconds (a float)."""
         ...
-
     @property
-    def samplerate(self): # -> Literal[48000, 0]:
+    def samplerate(self):  # -> Literal[48000, 0]:
         """The audio's sample rate (an int)."""
         ...
-
     @property
-    def bitdepth(self): # -> Literal[0]:
+    def bitdepth(self):  # -> Literal[0]:
         """The number of bits per sample in the audio encoding (an int).
         Only available for certain file formats (zero where
         unavailable).
         """
         ...
-
     @property
-    def channels(self): # -> Literal[0]:
+    def channels(self):  # -> Literal[0]:
         """The number of channels in the audio (an int)."""
         ...
-
     @property
-    def bitrate(self): # -> int:
+    def bitrate(self):  # -> int:
         """The number of bits per seconds used in the audio coding (an
         int). If this is provided explicitly by the compressed file
         format, this is a precise reflection of the encoding. Otherwise,
@@ -1012,31 +773,27 @@ class MediaFile:
         in the file size.
         """
         ...
-
     @property
-    def bitrate_mode(self): # -> str:
+    def bitrate_mode(self):  # -> str:
         """The mode of the bitrate used in the audio coding
         (a string, eg. "CBR", "VBR" or "ABR").
         Only available for the MP3 file format (empty where unavailable).
         """
         ...
-
     @property
-    def encoder_info(self): # -> Literal['']:
+    def encoder_info(self):  # -> Literal['']:
         """The name and/or version of the encoder used
         (a string, eg. "LAME 3.97.0").
         Only available for some formats (empty where unavailable).
         """
         ...
-
     @property
-    def encoder_settings(self): # -> Literal['']:
+    def encoder_settings(self):  # -> Literal['']:
         """A guess of the settings used for the encoder (a string, eg. "-V2").
         Only available for the MP3 file format (empty where unavailable).
         """
         ...
-
     @property
-    def format(self): # -> str:
+    def format(self):  # -> str:
         """A string describing the file format/codec."""
         ...

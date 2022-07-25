@@ -10,9 +10,7 @@ from mutagen.aac import ProgramConfigElement
 from ._atom import Atom, AtomError
 from ._util import parse_full_atom
 
-class ASEntryError(Exception):
-    ...
-
+class ASEntryError(Exception): ...
 
 class AudioSampleEntry:
     """Parses an AudioSampleEntry atom.
@@ -30,41 +28,33 @@ class AudioSampleEntry:
 
     Can raise ASEntryError.
     """
+
     channels = ...
     sample_size = ...
     sample_rate = ...
     bitrate = ...
     codec = ...
     codec_description = ...
-    def __init__(self, atom, fileobj) -> None:
-        ...
-    
+    def __init__(self, atom, fileobj) -> None: ...
 
-
-class DescriptorError(Exception):
-    ...
-
+class DescriptorError(Exception): ...
 
 class BaseDescriptor:
     TAG = ...
     @classmethod
-    def parse(cls, fileobj): # -> Self@BaseDescriptor:
+    def parse(cls, fileobj):  # -> Self@BaseDescriptor:
         """Returns a parsed instance of the called type.
         The file position is right after the descriptor after this returns.
 
         Raises DescriptorError
         """
         ...
-    
-
 
 class ES_Descriptor(BaseDescriptor):
     TAG = ...
     def __init__(self, fileobj, length) -> None:
         """Raises DescriptorError"""
         ...
-    
-
 
 class DecoderConfigDescriptor(BaseDescriptor):
     TAG = ...
@@ -72,43 +62,34 @@ class DecoderConfigDescriptor(BaseDescriptor):
     def __init__(self, fileobj, length) -> None:
         """Raises DescriptorError"""
         ...
-    
     @property
-    def codec_param(self): # -> str:
+    def codec_param(self):  # -> str:
         """string"""
         ...
-    
     @property
-    def codec_desc(self): # -> str | None:
+    def codec_desc(self):  # -> str | None:
         """string or None"""
         ...
-    
-
 
 class DecoderSpecificInfo(BaseDescriptor):
     TAG = ...
     _TYPE_NAMES = ...
     _FREQS = ...
     @property
-    def description(self): # -> str | None:
+    def description(self):  # -> str | None:
         """string or None if unknown"""
         ...
-    
     @property
-    def sample_rate(self): # -> int:
+    def sample_rate(self):  # -> int:
         """0 means unknown"""
         ...
-    
     @property
-    def channels(self): # -> Any | Literal[0, 2, 1, 8] | None:
+    def channels(self):  # -> Any | Literal[0, 2, 1, 8] | None:
         """channel count or 0 for unknown"""
         ...
-    
     def __init__(self, fileobj, length) -> None:
         """Raises DescriptorError"""
         ...
-    
-
 
 def GASpecificConfig(r, info):
     """Reads GASpecificConfig which is needed to get the data after that
@@ -119,4 +100,3 @@ def GASpecificConfig(r, info):
     NotImplementedError if some reserved data was set.
     """
     ...
-

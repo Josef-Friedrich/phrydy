@@ -1,9 +1,15 @@
 from typing import Any, Dict, Generator, List, Set, TypedDict, cast
 
 from mediafile import Image  # noqa: F401
-from mediafile import (ASFStorageStyle, MediaField, MediaFile,
-                       MP3DescStorageStyle, MP3StorageStyle, MP4StorageStyle,
-                       StorageStyle)
+from mediafile import (
+    ASFStorageStyle,
+    MediaField,
+    MediaFile,
+    MP3DescStorageStyle,
+    MP3StorageStyle,
+    MP4StorageStyle,
+    StorageStyle,
+)
 
 
 class MgFile(TypedDict):
@@ -123,9 +129,17 @@ class MediaFileExtended(MediaFile):
         """
         for field in cls.fields():
             yield field
-        for field in ('length', 'samplerate', 'bitdepth', 'bitrate',
-                      'bitrate_mode', 'channels', 'encoder_info',
-                      'encoder_settings', 'format'):
+        for field in (
+            "length",
+            "samplerate",
+            "bitdepth",
+            "bitrate",
+            "bitrate_mode",
+            "channels",
+            "encoder_info",
+            "encoder_settings",
+            "format",
+        ):
             yield field
 
     # albumartist_sort = MediaField(
@@ -134,13 +148,16 @@ class MediaFileExtended(MediaFile):
     #     StorageStyle('ALBUMARTISTSORT'),
     #     ASFStorageStyle('WM/AlbumArtistSortOrder'),
     # )
-    albumartist_sort = cast(str, MediaField(
-        MP3StorageStyle('TSO2'),
-        MP3DescStorageStyle('ALBUMARTISTSORT'),
-        MP4StorageStyle('soaa'),
-        StorageStyle('ALBUMARTISTSORT'),
-        ASFStorageStyle('WM/AlbumArtistSortOrder'),
-    ))
+    albumartist_sort = cast(
+        str,
+        MediaField(
+            MP3StorageStyle("TSO2"),
+            MP3DescStorageStyle("ALBUMARTISTSORT"),
+            MP4StorageStyle("soaa"),
+            StorageStyle("ALBUMARTISTSORT"),
+            ASFStorageStyle("WM/AlbumArtistSortOrder"),
+        ),
+    )
     """Changed field. Uses TSO2"""
 
     # composer_sort = MediaField(
@@ -149,14 +166,17 @@ class MediaFileExtended(MediaFile):
     #     StorageStyle('COMPOSERSORT'),
     #     ASFStorageStyle('WM/Composersortorder'),
     # )
-    composer_sort = cast(str, MediaField(
-        MP3StorageStyle('TSOC'),
-        MP3DescStorageStyle('composersortorder'),
-        MP4StorageStyle('soco'),
-        StorageStyle('composersort'),
-        StorageStyle('composersortorder'),
-        ASFStorageStyle('WM/ComposerSortOrder'),
-    ))
+    composer_sort = cast(
+        str,
+        MediaField(
+            MP3StorageStyle("TSOC"),
+            MP3DescStorageStyle("composersortorder"),
+            MP4StorageStyle("soco"),
+            StorageStyle("composersort"),
+            StorageStyle("composersortorder"),
+            ASFStorageStyle("WM/ComposerSortOrder"),
+        ),
+    )
     """Changed field. Uses MP3 description storage style composersortorder."""
 
     # mb_workid = MediaField(
@@ -165,22 +185,27 @@ class MediaFileExtended(MediaFile):
     #     StorageStyle('MUSICBRAINZ_WORKID'),
     #     ASFStorageStyle('MusicBrainz/Work Id'),
     # )
-    mb_workid = cast(str, MediaField(
-        MP3DescStorageStyle('MusicBrainz Work Id'),
-        MP4StorageStyle('----:com.apple.iTunes:MusicBrainz Work Id'),
-        StorageStyle('MUSICBRAINZ_WORKID'),
-        StorageStyle('musicbrainz work id'),
-        ASFStorageStyle('MusicBrainz/Work Id'),
-    ))
+    mb_workid = cast(
+        str,
+        MediaField(
+            MP3DescStorageStyle("MusicBrainz Work Id"),
+            MP4StorageStyle("----:com.apple.iTunes:MusicBrainz Work Id"),
+            StorageStyle("MUSICBRAINZ_WORKID"),
+            StorageStyle("musicbrainz work id"),
+            ASFStorageStyle("MusicBrainz/Work Id"),
+        ),
+    )
     """Changed Field: The MusicBrainz’ Work ID"""
 
-    mb_workhierarchy_ids: str = cast(str, MediaField(
-        MP3DescStorageStyle('MusicBrainz Work Hierarchy Ids'),
-        MP4StorageStyle('----:com.apple.iTunes:'
-                        'MusicBrainz Work Hierarchy Ids'),
-        StorageStyle('MUSICBRAINZ_WORKHIERARCHY_IDS'),
-        ASFStorageStyle('MusicBrainz/Work Hierarchy Ids'),
-    ))
+    mb_workhierarchy_ids: str = cast(
+        str,
+        MediaField(
+            MP3DescStorageStyle("MusicBrainz Work Hierarchy Ids"),
+            MP4StorageStyle("----:com.apple.iTunes:" "MusicBrainz Work Hierarchy Ids"),
+            StorageStyle("MUSICBRAINZ_WORKHIERARCHY_IDS"),
+            ASFStorageStyle("MusicBrainz/Work Hierarchy Ids"),
+        ),
+    )
     """
     All IDs in the work hierarchy. This field corresponds to the field
     ``work_hierarchy``. The top level work ID appears first. As separator a
@@ -195,20 +220,26 @@ class MediaFileExtended(MediaFile):
     ``eafec51f-47c5-3c66-8c36-a524246c85f8``
     """
 
-    work: str = cast(str, MediaField(
-        MP3DescStorageStyle('Work'),
-        MP4StorageStyle('----:com.apple.iTunes:WORK'),
-        StorageStyle('Work'),
-        ASFStorageStyle('WM/Work'),
-    ))
+    work: str = cast(
+        str,
+        MediaField(
+            MP3DescStorageStyle("Work"),
+            MP4StorageStyle("----:com.apple.iTunes:WORK"),
+            StorageStyle("Work"),
+            ASFStorageStyle("WM/Work"),
+        ),
+    )
     """The last work in the work hierarchy."""
 
-    work_hierarchy: str = cast(str, MediaField(
-        MP3DescStorageStyle('MusicBrainz Work Hierarchy'),
-        MP4StorageStyle('----:com.apple.iTunes:MusicBrainz Work Hierarchy'),
-        StorageStyle('MUSICBRAINZ_WORKHIERARCHY'),
-        ASFStorageStyle('MusicBrainz/Work Hierarchy'),
-    ))
+    work_hierarchy: str = cast(
+        str,
+        MediaField(
+            MP3DescStorageStyle("MusicBrainz Work Hierarchy"),
+            MP4StorageStyle("----:com.apple.iTunes:MusicBrainz Work Hierarchy"),
+            StorageStyle("MUSICBRAINZ_WORKHIERARCHY"),
+            ASFStorageStyle("MusicBrainz/Work Hierarchy"),
+        ),
+    )
     """
     The hierarchy of works: The top level work appears first. As separator is
     this string used: ``-->``
@@ -224,11 +255,10 @@ class MediaFileExtended(MediaFile):
     """
 
     releasegroup_types = MediaField(
-        MP3DescStorageStyle('MusicBrainz Release Group Types'),
-        MP4StorageStyle('----:com.apple.iTunes:'
-                        'MusicBrainz Release Group Types'),
-        StorageStyle('MUSICBRAINZ_RELEASEGROUPTYPES'),
-        ASFStorageStyle('MusicBrainz/Release Group Types'),
+        MP3DescStorageStyle("MusicBrainz Release Group Types"),
+        MP4StorageStyle("----:com.apple.iTunes:" "MusicBrainz Release Group Types"),
+        StorageStyle("MUSICBRAINZ_RELEASEGROUPTYPES"),
+        ASFStorageStyle("MusicBrainz/Release Group Types"),
     )
     """This field collects all items in the MusicBrainz’ API related to
     type: ``type``, ``primary-type`` and``secondary-type-list``. Main usage
