@@ -7,13 +7,13 @@ import tempfile
 from phrydy import MediaFileExtended
 
 
-def get_file(name) -> str:
+def get_file(name: str) -> str:
     return os.path.join(os.path.dirname(__file__), "files", name)
 
 
-def copy_to_tmp(name) -> str:
-    orig = get_file(name)
-    tmp = os.path.join(tempfile.mkdtemp(), os.path.basename(orig))
+def copy_to_tmp(name: str) -> str:
+    orig: str = get_file(name)
+    tmp: str = os.path.join(tempfile.mkdtemp(), os.path.basename(orig))
     shutil.copyfile(orig, tmp)
     return tmp
 

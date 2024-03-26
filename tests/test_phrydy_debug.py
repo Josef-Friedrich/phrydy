@@ -5,13 +5,12 @@ import subprocess
 
 
 def test_cli() -> None:
-    output = subprocess.check_output(("phrydy-debug", "--help"))
+    output: str = subprocess.check_output(("phrydy-debug", "--help"), encoding="utf-8")
     assert "usage: phrydy-debug" in str(output)
 
     output = subprocess.check_output(
-        ("phrydy-debug", os.path.join("tests", "files", "full.mp3"))
+        ("phrydy-debug", os.path.join("tests", "files", "full.mp3")), encoding="utf-8"
     )
-    output = str(output)
     assert "Raw mutagen values" in output
     assert "COMM:iTunPGAP:eng                : 0" in output
     assert "TCMP                             : 1" in output
