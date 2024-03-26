@@ -1,7 +1,5 @@
 {{ badge.pypi }}
-
 {{ badge.github_workflow() }}
-
 {{ badge.readthedocs }}
 
 ======

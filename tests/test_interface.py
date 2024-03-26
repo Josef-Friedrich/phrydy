@@ -1,5 +1,4 @@
-"""Test public api / interface
-"""
+"""Test public api / interface"""
 
 import os
 import unittest

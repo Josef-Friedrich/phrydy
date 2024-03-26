@@ -79,6 +79,14 @@ fields: FieldDocCollection = {
         "category": "common",
         "data_type": "list",
     },
+    "albumartists_credit": {
+        "description": "albumartists_credit",
+        "category": "common",
+    },
+    "albumartists_sort": {
+        "description": "albumartists_sort",
+        "category": "common",
+    },
     # https://musicbrainz.org/doc/Disambiguation_Comment
     "albumdisambig": {
         "description": "The disambiguation album field helps to distinguish between "
@@ -98,6 +106,10 @@ fields: FieldDocCollection = {
         "category": "common",
         "data_type": "str",
         "examples": ["album/soundtrack"],
+    },
+    "albumtypes": {
+        "description": "albumtypes",
+        "category": "common",
     },
     "arranger": {
         "description": "A musician who creates arrangements.",
@@ -131,6 +143,14 @@ fields: FieldDocCollection = {
         "description": "artists",
         "category": "common",
         "examples": [["a-ha"], ["Anouk", "Remon Stotijn"]],
+    },
+    "artists_credit": {
+        "description": "artists_credit",
+        "category": "common",
+    },
+    "artists_sort": {
+        "description": "artists_sort",
+        "category": "common",
     },
     "asin": {
         "description": "Amazon Standard Identification Number",
@@ -188,6 +208,10 @@ fields: FieldDocCollection = {
         + "label code.",
         "category": "common",
         "examples": ["CDP 7 46439 2"],
+    },
+    "catalognums": {
+        "description": "catalognums",
+        "category": "common",
     },
     "channels": {
         "description": "channels",
@@ -335,6 +359,10 @@ fields: FieldDocCollection = {
         + "standard.",
         "category": "common",
         "examples": ["zxx", "eng"],
+    },
+    "languages": {
+        "description": "languages",
+        "category": "common",
     },
     "length": {
         "description": "The length of a recording in seconds.",
@@ -565,14 +593,12 @@ fields: FieldDocCollection = {
         "category": "common",
         "data_type": "int",
         "examples": [1],
-        "data_type": "int",
     },
     "tracktotal": {
         "description": "The total track number.",
         "category": "common",
         "data_type": "int",
         "examples": [12],
-        "data_type": "int",
     },
     # url                 : None
     "url": {

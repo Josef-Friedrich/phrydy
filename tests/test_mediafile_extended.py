@@ -48,7 +48,6 @@ class TestMediafileExtended(unittest.TestCase):
             "wma",
             "wv",
         ]:
-
             for field in [
                 "mb_workhierarchy_ids",
                 "mb_workid",

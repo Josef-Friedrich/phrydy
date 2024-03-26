@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "phrydy"
 version = "3.2.0"
-description = "Template and Macros Expansion for Path names."
+description = "Extended version of the mediafile library of the beets project. It is used by the Python command line tool `audiorename`."
 authors = ["Josef Friedrich <josef@friedrich.rocks>"]
 readme = "README.rst"
 license = "MIT"
@@ -11,6 +11,8 @@ classifiers = [
     "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3",
     "License :: OSI Approved :: MIT License",
     "Topic :: Utilities",
@@ -20,21 +22,18 @@ repository = "https://github.com/Josef-Friedrich/phrydy"
 [tool.poetry.dependencies]
 python = "^3.8"
 ansicolor = "^0.3.2"
-mediafile = "^0.9.0"
-typing-extensions = "^4.1.1"
+mediafile = "^0.12.0"
+typing-extensions = "^4.10.0"
 
 [tool.poetry.group.dev.dependencies]
-mypy = "^0.961"
-autopep8 = "^1.6.0"
-readme-patcher = "^0.5.0"
-stdout-stderr-capturing = "^0.2.0"
-tox = "^3.25.1"
-black = "^22.6.0"
-isort = "^5.10.1"
+readme-patcher = "^0"
+stdout-stderr-capturing = "^0"
+tox = "^4"
+ruff = "^0"
 
 [build-system]
-requires = ["poetry>=1.2.0b2"]
-build-backend = "poetry.masonry.api"
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.scripts]
 phrydy-debug = "phrydy.debug:init_cli"

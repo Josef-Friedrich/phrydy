@@ -1,8 +1,8 @@
 from typing import Any, Dict, Generator, List, Set, TypedDict, cast
 
-from mediafile import Image  # noqa: F401
 from mediafile import (
     ASFStorageStyle,
+    Image,  # noqa: F401
     MediaField,
     MediaFile,
     MP3DescStorageStyle,
@@ -28,7 +28,6 @@ class MgFile(TypedDict):
 
 
 class MediaFileExtended(MediaFile):
-
     title: str
     artist: str
     artists: str

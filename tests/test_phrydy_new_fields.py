@@ -1,5 +1,4 @@
-"""Test additional meta fields not included in beets MediaFileExtended.
-"""
+"""Test additional meta fields not included in beets MediaFileExtended."""
 
 import os
 import shutil
@@ -22,7 +21,6 @@ def copy_to_tmp(name):
 
 class TestPhrydyNewFields(unittest.TestCase):
     def test_new_fields(self):
-
         value = "ef8e0ef9-491e-42df-bff9-f13981da30a7"
 
         for extension in [
@@ -37,7 +35,6 @@ class TestPhrydyNewFields(unittest.TestCase):
             "wma",
             "wv",
         ]:
-
             for field in [
                 "mb_workhierarchy_ids",
                 "mb_workid",

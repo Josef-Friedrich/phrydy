@@ -138,6 +138,14 @@ List all available fields of a media file:
      - common
      - albumartists
      - 
+   * - albumartists_credit
+     - common
+     - albumartists_credit
+     - 
+   * - albumartists_sort
+     - common
+     - albumartists_sort
+     - 
    * - albumdisambig
      - common
      - The disambiguation album field helps to distinguish between identically named albums. The album “Weezer” for example has the disambiguation comments “Red Album” and “Green Album”.
@@ -150,6 +158,10 @@ List all available fields of a media file:
      - common
      - The MusicBrainz album type; the MusicBrainz wiki has a list of type names
      - ``album/soundtrack``
+   * - albumtypes
+     - common
+     - albumtypes
+     - 
    * - arranger
      - common
      - A musician who creates arrangements.
@@ -174,6 +186,14 @@ List all available fields of a media file:
      - common
      - artists
      - ``['a-ha']``, ``['Anouk', 'Remon Stotijn']``
+   * - artists_credit
+     - common
+     - artists_credit
+     - 
+   * - artists_sort
+     - common
+     - artists_sort
+     - 
    * - asin
      - common
      - Amazon Standard Identification Number
@@ -202,6 +222,10 @@ List all available fields of a media file:
      - common
      - This is a number assigned to the release by the label which can often be found on the spine or near the barcode. There may be more than one, especially when multiple labels are involved. This is not the ASIN — there is a relationship for that — nor the label code.
      - ``CDP 7 46439 2``
+   * - catalognums
+     - common
+     - catalognums
+     - 
    * - channels
      - audio
      - channels
@@ -298,6 +322,10 @@ List all available fields of a media file:
      - common
      - The language a release’s track list is written in. The possible values are taken from the ISO 639-3 standard.
      - ``zxx``, ``eng``
+   * - languages
+     - common
+     - languages
+     - 
    * - length
      - audio
      - The length of a recording in seconds.
@@ -468,6 +496,10 @@ phrydy-debug
 
         albumartists:            albumartists
 
+        albumartists_credit:     albumartists_credit
+
+        albumartists_sort:       albumartists_sort
+
         albumdisambig:           The disambiguation album field helps to
                                  distinguish between identically named albums. The
                                  album “Weezer” for example has the disambiguation
@@ -479,6 +511,8 @@ phrydy-debug
         albumtype:               The MusicBrainz album type; the MusicBrainz wiki
                                  has a list of type names
                                  Examples: ['album/soundtrack']
+
+        albumtypes:              albumtypes
 
         arranger:                A musician who creates arrangements.
 
@@ -496,6 +530,10 @@ phrydy-debug
 
         artists:                 artists
                                  Examples: [['a-ha'], ['Anouk', 'Remon Stotijn']]
+
+        artists_credit:          artists_credit
+
+        artists_sort:            artists_sort
 
         asin:                    Amazon Standard Identification Number
                                  Examples: ['B000002UAL']
@@ -526,6 +564,8 @@ phrydy-debug
                                  This is not the ASIN — there is a relationship
                                  for that — nor the label code.
                                  Examples: ['CDP 7 46439 2']
+
+        catalognums:             catalognums
 
         channels:                channels
                                  Examples: [1, 2]
@@ -608,6 +648,8 @@ phrydy-debug
                                  in. The possible values are taken from the ISO
                                  639-3 standard.
                                  Examples: ['zxx', 'eng']
+
+        languages:               languages
 
         length:                  The length of a recording in seconds.
                                  Examples: [674.4666666666667]
