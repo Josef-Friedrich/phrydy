@@ -1,7 +1,6 @@
 import os
 import shutil
 import tempfile
-import unittest
 
 import phrydy
 from phrydy import MediaFileExtended
@@ -18,11 +17,11 @@ def copy_to_tmp(name):
     return tmp
 
 
-class TestMediafileExtended(unittest.TestCase):
+class TestMediafileExtended:
     def test_common_fields(self):
         tmp = copy_to_tmp("full.mp3")
         media_file = MediaFileExtended(tmp)
-        self.assertEqual(media_file.title, "full")
+        assert media_file.title == "full"
 
     def test_method_readable_fields(self):
         self.maxDiff = None
@@ -31,7 +30,7 @@ class TestMediafileExtended(unittest.TestCase):
         f.sort()
         d = list(phrydy.doc_generator.fields.keys())
         d.sort()
-        self.assertEqual(f, d)
+        assert f == d
 
     def test_new_fields(self):
         value = "ef8e0ef9-491e-42df-bff9-f13981da30a7"
@@ -58,16 +57,10 @@ class TestMediafileExtended(unittest.TestCase):
                 tmp = copy_to_tmp("mb." + extension)
                 orig = MediaFileExtended(tmp)
                 setattr(orig, field, value)
-                self.assertEqual(getattr(orig, field), value)
+                assert getattr(orig, field) == value
                 orig.save()
 
                 modified = MediaFileExtended(tmp)
-                self.assertEqual(
-                    getattr(modified, field),
-                    value,
-                    msg="field: " + field + ", extension: " + extension,
+                assert getattr(modified, field) == value, (
+                    "field: " + field + ", extension: " + extension
                 )
-
-
-if __name__ == "__main__":
-    unittest.main()
