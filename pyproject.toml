@@ -21,9 +21,9 @@ repository = "https://github.com/Josef-Friedrich/phrydy"
 
 [tool.poetry.dependencies]
 python = "^3.8"
-ansicolor = "^0.3.2"
-mediafile = "^0.12.0"
-typing-extensions = "^4.10.0"
+ansicolor = "^0"
+mediafile = "^0"
+typing-extensions = "^4"
 
 [tool.poetry.group.dev.dependencies]
 readme-patcher = "^0"
