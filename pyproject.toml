@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "phrydy"
-version = "3.2.1"
+version = "3.2.2"
 description = "Extended version of the mediafile library of the beets project. It is used by the Python command line tool `audiorename`."
 authors = ["Josef Friedrich <josef@friedrich.rocks>"]
 readme = "README.rst"
@@ -20,7 +20,7 @@ classifiers = [
 repository = "https://github.com/Josef-Friedrich/phrydy"
 
 [tool.poetry.dependencies]
-python = "^3.8"
+python = "^3.8,<3.13"
 ansicolor = "^0"
 mediafile = "^0"
 typing-extensions = "^4"
