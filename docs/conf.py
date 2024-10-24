@@ -1,9 +1,6 @@
-import sphinx_rtd_theme
-
 import phrydy
 
 html_theme = "sphinx_rtd_theme"
-html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 
 extensions = [
     "sphinx.ext.autodoc",
