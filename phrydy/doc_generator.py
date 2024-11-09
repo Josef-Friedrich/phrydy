@@ -3,10 +3,12 @@ import textwrap
 import typing
 from typing import Any, Dict, Optional
 
-import ansicolor
+import termcolor
 
 from .field_docs import FieldDoc, FieldDocCollection, fields
 from .mediafile_extended import MediaFileExtended
+
+termcolor.colored("green", "green")
 
 
 def remove_color(text: str) -> str:
@@ -53,14 +55,14 @@ def print_dict_sorted(
             key = key.ljust(max_field_length, " ")
         key = key + ":"
         if color:
-            key = ansicolor.green(key)
+            key = termcolor.colored(key, "green")
             value = value
         print(key + " " + value)
 
 
 def print_section(text: str, color: bool = False) -> None:
     if color:
-        text = ansicolor.blue(text.ljust(60, " "), reverse=True)
+        text = termcolor.colored(text.ljust(60, " "), "blue")
         line = ""
     else:
         line = "\n" + "".ljust(60, "-")
@@ -141,7 +143,7 @@ def format_field_as_txt(
 
     field_name = (
         " " * INDENT
-        + ansicolor.cyan(field_prefix + field_name)
+        + termcolor.colored(field_prefix + field_name, "cyan")
         + FIELD_SUFFIX
         + " " * INDENT
     )
@@ -163,7 +165,7 @@ def format_field_as_txt(
     if "examples" in field_doc:
         output += (
             description_indent
-            + ansicolor.yellow("Examples:")
+            + termcolor.colored("Examples:", "yellow")
             + " "
             + str(field_doc["examples"])
             + "\n"
