@@ -42,7 +42,7 @@ def get_type_name(t: typing.Any) -> str:
 
 
 def print_dict_sorted(
-    dictionary: typing.Dict[str, typing.Any],
+    dictionary: dict[str, typing.Any],
     color: bool,
     align: typing.Literal["left", "right"] = "right",
 ) -> None:
@@ -81,7 +81,7 @@ def print_debug(
     # All class values
     print_section("All values provided by the class: " + MediaClass.__name__, color)
 
-    class_fields = {}
+    class_fields: dict[str, str] = {}
     for key in field_generator():
         value = getattr(fields, key)
         if key == "art" and value:
@@ -94,7 +94,7 @@ def print_debug(
     # Raw mutagen values
     print_section("Raw mutagen values", color)
 
-    mutagen_fields = {}
+    mutagen_fields: dict[str, str] = {}
     for key, value in fields.mgfile.items():
         mutagen_fields[str(key)] = str(value)
     print_dict_sorted(mutagen_fields, color, align="left")
