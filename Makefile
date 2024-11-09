@@ -3,6 +3,9 @@ test:
 
 install: update
 
+upgrade_dependency:
+	wget -O phrydy/mediafile.py https://raw.githubusercontent.com/beetbox/mediafile/refs/heads/master/mediafile.py
+
 clear_poetry_cache:
 	poetry cache clear PyPI --all --no-interaction
 	poetry cache clear _default_cache --all --no-interaction

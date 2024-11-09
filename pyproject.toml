@@ -13,6 +13,7 @@ classifiers = [
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
     "Programming Language :: Python :: 3",
     "License :: OSI Approved :: MIT License",
     "Topic :: Utilities",
@@ -20,10 +21,11 @@ classifiers = [
 repository = "https://github.com/Josef-Friedrich/phrydy"
 
 [tool.poetry.dependencies]
-python = "^3.8,<3.13"
+python = "^3.8"
 ansicolor = "^0"
-mediafile = "^0"
 typing-extensions = "^4"
+filetype = "^1.2.0"
+mutagen = "^1.46"
 
 [tool.poetry.group.dev.dependencies]
 readme-patcher = "^0"
@@ -31,6 +33,7 @@ stdout-stderr-capturing = "^0"
 tox = "^4"
 ruff = "^0"
 pytest = "^8"
+mypy = "^1"
 
 [build-system]
 requires = ["poetry-core"]

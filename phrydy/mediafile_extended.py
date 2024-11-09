@@ -1,6 +1,6 @@
 from typing import Any, Dict, Generator, List, Set, TypedDict, cast
 
-from mediafile import (
+from phrydy.mediafile import (
     ASFStorageStyle,
     Image,  # noqa: F401
     MediaField,
