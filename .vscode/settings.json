@@ -1,13 +1,4 @@
 {
-  "python.testing.pytestEnabled": true,
-  "python.testing.pytestArgs": [
-    "--capture=tee-sys",
-    "-vv",
-    "--rootdir",
-    "${workspaceFolder}/tests",
-    "-m",
-    "not (slow or gui)"
-  ],
   "files.exclude": {
     "**/__pycache__/": true,
     "**/.mypy_cache/": true,
@@ -21,5 +12,24 @@
     "**/doc/html/": true,
     "**/docs/_build/": true,
     "**/MANIFEST": true
-  }
+  },
+  "[python]": {
+    "editor.rulers": [
+      79,
+      80,
+      88
+    ],
+    "editor.defaultFormatter": "charliermarsh.ruff"
+  },
+  "python.defaultInterpreterPath": ".venv/bin/python",
+  "python.testing.pytestEnabled": true,
+  "python.testing.pytestArgs": [
+    "--capture=tee-sys",
+    "-vv",
+    "--rootdir",
+    "${workspaceFolder}/tests",
+    "-m",
+    "not (slow or gui)"
+  ],
+  "mypy.dmypyExecutable": "${workspaceFolder}/.venv/bin/dmypy"
 }
