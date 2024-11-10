@@ -3,14 +3,14 @@ import shutil
 import tempfile
 
 import phrydy
-from phrydy import MediaFileExtended
+from phrydy.mediafile_extended import MediaFileExtended
 
 
-def get_file(name):
+def get_file(name: str) -> str:
     return os.path.join(os.path.dirname(__file__), "files", name)
 
 
-def copy_to_tmp(name):
+def copy_to_tmp(name: str) -> str:
     orig = get_file(name)
     tmp = os.path.join(tempfile.mkdtemp(), os.path.basename(orig))
     shutil.copyfile(orig, tmp)
@@ -18,7 +18,7 @@ def copy_to_tmp(name):
 
 
 class TestMediafileExtended:
-    def test_common_fields(self):
+    def test_common_fields(self) -> None:
         tmp = copy_to_tmp("full.mp3")
         media_file = MediaFileExtended(tmp)
         assert media_file.title == "full"
@@ -32,7 +32,7 @@ class TestMediafileExtended:
         d.sort()
         assert f == d
 
-    def test_new_fields(self):
+    def test_new_fields(self) -> None:
         value = "ef8e0ef9-491e-42df-bff9-f13981da30a7"
 
         for extension in [

@@ -5,8 +5,8 @@ from typing import Any, Dict, Optional
 
 import termcolor
 
-from .field_docs import FieldDoc, FieldDocCollection, fields
-from .mediafile_extended import MediaFileExtended
+from phrydy.field_docs import FieldDoc, FieldDocCollection, fields
+from phrydy.mediafile_extended import MediaFileExtended
 
 termcolor.colored("green", "green")
 

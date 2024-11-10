@@ -583,9 +583,7 @@ fields: FieldDocCollection = {
     "title": {
         "description": "The title of a audio file.",
         "category": "common",
-        "examples": [
-            "32 Variations for Piano in C minor on an Original " "Theme, WoO 80"
-        ],
+        "examples": ["32 Variations for Piano in C minor on an Original Theme, WoO 80"],
         "data_type": "str",
     },
     "track": {

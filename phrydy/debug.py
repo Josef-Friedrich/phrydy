@@ -1,7 +1,8 @@
 import argparse
 
-from . import MediaFileExtended, __version__
-from .doc_generator import format_fields_as_txt, print_debug
+from phrydy import __version__
+from phrydy.doc_generator import format_fields_as_txt, print_debug
+from phrydy.mediafile_extended import MediaFileExtended
 
 
 def description() -> str:
