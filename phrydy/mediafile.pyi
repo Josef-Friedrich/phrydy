@@ -122,23 +122,51 @@ class MediaFile:
 
     title: Optional[str]
     """
-    The title of an audio file.
+    The title of the track.
     """
 
-    artist: str
-    artists: list[str]
-    album: str
-    genres: list[str]
-    genre: str
-    lyricist: str
-    composer: str
-    composer_sort: str
-    arranger: str
-    grouping: str
-    track: int
-    tracktotal: int
-    disc: int
-    disctotal: int
+    artist: Optional[str]
+    """"The track artist names, separated by the specified join phrases."""
+
+    artists: Optional[list[str]]
+    """A multi-value field containing the track artist names."""
+
+    album: Optional[str]
+    """The title of the release."""
+
+    genres: Optional[list[str]]
+    """Genres are currently supported in MusicBrainz as part of the tag system."""
+
+    genre: Optional[str]
+    """Genres are currently supported in MusicBrainz as part of the tag system."""
+
+    lyricist: Optional[str]
+    """The writer of the text or lyrics in the recording."""
+
+    composer: Optional[str]
+    """The name of the composer."""
+
+    composer_sort: Optional[str]
+    """The composer name for sorting."""
+
+    arranger: Optional[str]
+    """A musician who creates arrangements."""
+
+    grouping: Optional[str]
+    """A content group, which is a collection of media items such as a CD boxed set."""
+
+    track: Optional[int]
+    """The number of the track on the disc."""
+
+    tracktotal: Optional[int]
+    """The total number of tracks on this disc."""
+
+    disc: Optional[int]
+    """The number of the disc."""
+
+    disctotal: Optional[int]
+    """The total number of discs."""
+
     url: str
     lyrics: str
     comments: str

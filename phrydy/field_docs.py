@@ -6,6 +6,8 @@ from typing_extensions import NotRequired
 
 # https://picard-docs.musicbrainz.org/en/variables/tags_basic.html
 
+# https://age.hobba.nl/audio/tag_frame_reference.html
+
 categories = {
     "common": "Common metadata fields",
     "music_brainz": "MusicBrainz and fingerprint information",
@@ -26,23 +28,98 @@ class FieldDoc(TypedDict):
 FieldDocCollection = Dict[str, FieldDoc]
 
 fields: FieldDocCollection = {
-    # acoustid_fingerprint: None
-    # acoustid_id         : None
-    # album               : the album
-    # albumartist         : the album artist
-    # albumartist_credit  : None
-    # albumartist_sort    : None
-    # albumartists        : []
-    # albumdisambig       : None
-    # albumstatus         : None
-    # albumtype           : None
-    # arranger            : None
-    # art                 : None
-    # artist              : the artist
-    # artist_credit       : None
-    # artist_sort         : None
-    # artists             : []
-    # asin                : None
+    "title": {
+        # https://picard-docs.musicbrainz.org/en/variables/tags_basic.html#tags-provided-from-musicbrainz-data
+        "description": "The title of the track.",
+        "category": "common",
+        "examples": ["32 Variations for Piano in C minor on an Original Theme, WoO 80"],
+        "data_type": "str",
+    },
+    "artist": {
+        # https://picard-docs.musicbrainz.org/en/variables/tags_basic.html#tags-provided-from-musicbrainz-data
+        "description": "The track artist names, separated by the specified join phrases.",
+        "category": "common",
+        "data_type": "str",
+        "examples": ["The Beatles"],
+    },
+    "artists": {
+        # https://picard-docs.musicbrainz.org/en/variables/tags_basic.html#tags-provided-from-musicbrainz-data
+        "description": "A multi-value field containing the track artist names.",
+        "category": "common",
+        "examples": [["a-ha"], ["Anouk", "Remon Stotijn"]],
+    },
+    "album": {
+        # https://picard-docs.musicbrainz.org/en/variables/tags_basic.html#tags-provided-from-musicbrainz-data
+        "description": "The title of the release.",
+        "category": "common",
+        "data_type": "str",
+        "examples": ["Help!"],
+    },
+    "genres": {
+        # https://musicbrainz.org/doc/Genre
+        "description": "Genres are currently supported in MusicBrainz as part of the tag system.",
+        "category": "common",
+        "examples": [["Rock"]],
+    },
+    "genre": {
+        # https://musicbrainz.org/doc/Genre
+        "description": "Genres are currently supported in MusicBrainz as part of the tag system.",
+        "category": "common",
+        "examples": ["Rock"],
+    },
+    "lyricist": {
+        # https://id3.org/id3v2.4.0-frames
+        "description": "The writer of the text or lyrics in the recording.",
+        "data_type": "str",
+        "category": "common",
+    },
+    "composer": {
+        "description": "The name of the composer.",
+        "category": "common",
+        "data_type": "str",
+        "examples": ["Ludwig van Beethoven"],
+    },
+    "composer_sort": {
+        "description": "The composer name for sorting.",
+        "category": "common",
+        "data_type": "str",
+        "examples": ["Beethoven, Ludwig van"],
+    },
+    "arranger": {
+        "description": "A musician who creates arrangements.",
+        "category": "common",
+        "data_type": "str",
+    },
+    "grouping": {
+        # https://docs.microsoft.com/en-us/windows/win32/wmp/wm-contentgroupdescription-attribute
+        "description": "A content group, which is a collection of media items such as a CD boxed set.",
+        "category": "common",
+    },
+    "track": {
+        # https://picard-docs.musicbrainz.org/en/variables/tags_basic.html#tags-provided-from-musicbrainz-data
+        "description": "The number of the track on the disc.",
+        "category": "common",
+        "data_type": "int",
+        "examples": [1],
+    },
+    "tracktotal": {
+        # https://picard-docs.musicbrainz.org/en/variables/tags_basic.html#tags-provided-from-musicbrainz-data
+        "description": "The total number of tracks on this disc.",
+        "category": "common",
+        "data_type": "int",
+        "examples": [12],
+    },
+    "disc": {
+        "description": "The number of the disc.",
+        "category": "common",
+        "examples": [1],
+    },
+    "disctotal": {
+        "description": "The total number of discs.",
+        "category": "common",
+        "examples": [1],
+    },
+    # --------------------------------------------------
     "acoustid_fingerprint": {
         # https://picard-docs.musicbrainz.org/en/variables/tags_basic.html#tags-provided-from-musicbrainz-data
         "description": "The Acoustic Fingerprint for the track. The fingerprint is based on the audio information found in a file, and is calculated using the Chromaprint software.",
@@ -55,13 +132,6 @@ fields: FieldDocCollection = {
         "category": "music_brainz",
         "data_type": "str",
         "examples": ["86e217b7-d3ad-4493-a9f2-cf71256ace07"],
-    },
-    "album": {
-        # https://picard-docs.musicbrainz.org/en/variables/tags_basic.html#tags-provided-from-musicbrainz-data
-        "description": "The title of the release.",
-        "category": "common",
-        "data_type": "str",
-        "examples": ["Help!"],
     },
     "albumartist": {
         "description": "The artist for the entire album, which may be "
@@ -119,22 +189,10 @@ fields: FieldDocCollection = {
         "description": "albumtypes",
         "category": "common",
     },
-    "arranger": {
-        "description": "A musician who creates arrangements.",
-        "category": "common",
-        "data_type": "str",
-    },
     "art": {
         "description": "Legacy album art field.",
         "category": "common",
         "examples": [b"\xff\xd8\xff\xe0\x00"],
-    },
-    "artist": {
-        # https://picard-docs.musicbrainz.org/en/variables/tags_basic.html#tags-provided-from-musicbrainz-data
-        "description": "The track artist names, separated by the specified join phrases.",
-        "category": "common",
-        "data_type": "str",
-        "examples": ["The Beatles"],
     },
     "artist_credit": {
         "description": "The track-specific artist credit name, which may "
@@ -147,12 +205,6 @@ fields: FieldDocCollection = {
         "category": "common",
         "data_type": "str",
         "examples": ["Beatles, The", "White, Jack"],
-    },
-    "artists": {
-        # https://picard-docs.musicbrainz.org/en/variables/tags_basic.html#tags-provided-from-musicbrainz-data
-        "description": "A multi-value field containing the track artist names.",
-        "category": "common",
-        "examples": [["a-ha"], ["Anouk", "Remon Stotijn"]],
     },
     "artists_credit": {
         "description": "artists_credit",
@@ -242,18 +294,6 @@ fields: FieldDocCollection = {
         "data_type": "bool",
         "examples": [True, False],
     },
-    "composer": {
-        "description": "The name of the composer.",
-        "category": "common",
-        "data_type": "str",
-        "examples": ["Ludwig van Beethoven"],
-    },
-    "composer_sort": {
-        "description": "The composer name for sorting.",
-        "category": "common",
-        "data_type": "str",
-        "examples": ["Beethoven, Ludwig van"],
-    },
     "copyright": {
         "description": "copyright",
         "category": "common",
@@ -277,19 +317,9 @@ fields: FieldDocCollection = {
         "description": "The release day of the specific release.",
         "category": "date",
     },
-    "disc": {
-        "description": "disc",
-        "category": "common",
-        "examples": [1],
-    },
     "disctitle": {
         "description": "disctitle",
         "category": "common",
-    },
-    "disctotal": {
-        "description": "disctotal",
-        "category": "common",
-        "examples": [1],
     },
     # encoder             : iTunes v7.6.2
     # encoder_info        :
@@ -317,27 +347,6 @@ fields: FieldDocCollection = {
         "description": "e.g., “MP3” or “FLAC”",
         "category": "audio",
         "examples": ["MP3", "FLAC"],
-    },
-    # genre               : the genre
-    # genres              : ['the genre']
-    # grouping            : the grouping
-    "genre": {
-        # https://musicbrainz.org/doc/Genre
-        "description": "Genres are currently supported in MusicBrainz as part of the tag system.",
-        "category": "common",
-        "examples": ["Rock"],
-    },
-    "genres": {
-        # https://musicbrainz.org/doc/Genre
-        "description": "Genres are currently supported in MusicBrainz as part of the tag system.",
-        "category": "common",
-        "examples": [["Rock"]],
-    },
-    "grouping": {
-        # https://docs.microsoft.com/en-us/windows/win32/wmp/wm-contentgroupdescription-attribute
-        "description": "A content group, which is a collection of media items "
-        "such as a CD boxed set.",
-        "category": "common",
     },
     # images              : []
     # initial_key         : None
@@ -393,12 +402,6 @@ fields: FieldDocCollection = {
         "description": "The length of a recording in seconds.",
         "category": "audio",
         "examples": [674.4666666666667],
-    },
-    "lyricist": {
-        # https://id3.org/id3v2.4.0-frames
-        "description": "The writer of the text or lyrics in the recording.",
-        "data_type": "str",
-        "category": "common",
     },
     "lyrics": {
         # https://id3.org/id3v2.4.0-frames
@@ -601,30 +604,6 @@ fields: FieldDocCollection = {
         "category": "common",
         "examples": ["Latn"],
         "data_type": "str",
-    },
-    # title               : full
-    # track               : 2
-    # tracktotal          : 3
-    "title": {
-        # https://picard-docs.musicbrainz.org/en/variables/tags_basic.html#tags-provided-from-musicbrainz-data
-        "description": "The title of the track.",
-        "category": "common",
-        "examples": ["32 Variations for Piano in C minor on an Original Theme, WoO 80"],
-        "data_type": "str",
-    },
-    "track": {
-        # https://picard-docs.musicbrainz.org/en/variables/tags_basic.html#tags-provided-from-musicbrainz-data
-        "description": "The number of the track on the disc.",
-        "category": "common",
-        "data_type": "int",
-        "examples": [1],
-    },
-    "tracktotal": {
-        # https://picard-docs.musicbrainz.org/en/variables/tags_basic.html#tags-provided-from-musicbrainz-data
-        "description": "The total number of tracks on this disc.",
-        "category": "common",
-        "data_type": "int",
-        "examples": [12],
     },
     # url                 : None
     "url": {

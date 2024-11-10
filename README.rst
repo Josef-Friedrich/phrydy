@@ -264,7 +264,7 @@ List all available fields of a media file:
      - 
    * - disc
      - common
-     - disc
+     - The number of the disc.
      - ``1``
    * - disctitle
      - common
@@ -272,7 +272,7 @@ List all available fields of a media file:
      - 
    * - disctotal
      - common
-     - disctotal
+     - The total number of discs.
      - ``1``
    * - encoder
      - common
@@ -603,12 +603,12 @@ phrydy-debug
 
         day:                     The release day of the specific release.
 
-        disc:                    disc
+        disc:                    The number of the disc.
                                  Examples: [1]
 
         disctitle:               disctitle
 
-        disctotal:               disctotal
+        disctotal:               The total number of discs.
                                  Examples: [1]
 
         encoder:                 the name of the person or organisation that
