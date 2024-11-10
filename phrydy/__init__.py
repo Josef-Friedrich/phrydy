@@ -1,6 +1,7 @@
+from collections.abc import Generator
 from importlib import metadata
 from pathlib import Path
-from typing import Union, cast
+from typing import Any, Callable, Union
 
 from phrydy import doc_generator, field_docs, mediafile_extended
 from phrydy.doc_generator import (
@@ -10,10 +11,10 @@ from phrydy.doc_generator import (
     print_debug,
 )
 from phrydy.field_docs import FieldDocCollection, fields
-from phrydy.mediafile import DateField, Image
+from phrydy.mediafile import DateField, Image, MediaField
 from phrydy.mediafile_extended import (
-    MediaFile,
-    MediaFileExtended,
+    MediaFile,  # type: ignore
+    MediaFileExtended,  # type: ignore
     MgFile,
 )
 
@@ -40,6 +41,98 @@ print_debug
 
 
 class _MediaFile:
+    __call__: Callable[..., "_MediaFile"]
+
+    __name__: str
+
+    @property
+    def filename(self) -> str:  # type: ignore
+        """The name of the file.
+
+        This is the path if this object was opened from the filesystem,
+        or the name of the file-like object.
+        """
+        ...
+
+    @property
+    def path(self) -> str:  # type: ignore
+        """The path to the file.
+
+        This is `None` if the data comes from a file-like object instead
+        of a filesystem path.
+        """
+        ...
+
+    @property
+    def filesize(self) -> int:  # type: ignore
+        """The size (in bytes) of the underlying file."""
+
+    def save(self, **kwargs: Any) -> None:
+        """Write the object's tags back to the file.
+
+        May throw `UnreadableFileError`. Accepts keyword arguments to be
+        passed to Mutagen's `save` function.
+        """
+
+    def delete(self) -> None:
+        """Remove the current metadata tag from the file. May
+        throw `UnreadableFileError`.
+        """
+
+    @classmethod
+    def fields(cls) -> Generator[str, Any, None]:  # type: ignore
+        """Get the names of all writable properties that reflect
+        metadata tags (i.e., those that are instances of
+        :class:`MediaField`).
+        """
+        ...
+
+    @classmethod
+    def sorted_fields(cls) -> Generator[str, Any, None]:  # type: ignore
+        """Get the names of all writable metadata fields, sorted in the
+        order that they should be written.
+
+        This is a lexicographic order, except for instances of
+        :class:`DateItemField`, which are sorted in year-month-day
+        order.
+        """
+        ...
+
+    @classmethod
+    def readable_fields(cls) -> Generator[str, Any, None]:  # type: ignore
+        """Get all metadata fields: the writable ones from
+        :meth:`fields` and also other audio properties.
+        """
+        ...
+
+    @classmethod
+    def add_field(cls, name: str, descriptor: MediaField) -> None:
+        """Add a field to store custom tags.
+
+        :param name: the name of the property the field is accessed
+                     through. It must not already exist on this class.
+
+        :param descriptor: an instance of :class:`MediaField`.
+        """
+        ...
+
+    def update(self, dict: dict[str, Any]) -> None:
+        """Set all field values from a dictionary.
+
+        For any key in `dict` that is also a field to store tags the
+        method retrieves the corresponding value from `dict` and updates
+        the `MediaFile`. If a key has the value `None`, the
+        corresponding property is deleted from the `MediaFile`.
+        """
+        ...
+
+    def as_dict(self) -> dict[str, Any]:  # type: ignore
+        """Get a dictionary with all writable properties that reflect
+        metadata tags (i.e., those that are instances of
+        :class:`MediaField`).
+        """
+        ...
+
     title: str
     """
     The title of a audio file.
@@ -122,7 +215,8 @@ class _MediaFile:
     mgfile: MgFile
 
 
-class _MediaFileExtended:
+class _MediaFileExtended(_MediaFile):
+    __call__: Callable[..., "_MediaFileExtended"]
     albumartist_sort: str
     """Changed field. Uses TSO2"""
 
@@ -188,11 +282,16 @@ class _MediaFileExtended:
     """
 
 
+MediaFile: _MediaFile  # type: ignore
+
+MediaFileExtended: _MediaFileExtended  # type: ignore
+
+
 def get_media_file(filething: Union[str, Path], id3v23: bool = False) -> _MediaFile:
-    return cast(_MediaFile, MediaFile(filething, id3v23))
+    return MediaFile(filething, id3v23)
 
 
 def get_media_file_extended(
     filething: Union[str, Path], id3v23: bool = False
 ) -> _MediaFileExtended:
-    return cast(_MediaFileExtended, MediaFileExtended(filething, id3v23))
+    return MediaFileExtended(filething, id3v23)
