@@ -1,13 +1,21 @@
 from collections.abc import Generator
+from io import BufferedRandom, BufferedReader
 from pathlib import Path
-from typing import Any, Union
+from typing import Any, Optional, Union
 
 from mediafile import DateField, Image, MediaField
 
 from phrydy.mediafile_extended import MgFile
 
+FileThing = Union[
+    str,
+    Path,
+    BufferedReader,  # open(..., 'rb')
+    BufferedRandom,  # open(..., 'rb+')
+]
+
 class MediaFile:
-    def __init__(self, filething: Union[str, Path], id3v23: bool = False) -> None:
+    def __init__(self, filething: FileThing, id3v23: bool = False) -> None:
         """Constructs a new `MediaFile` reflecting the provided file.
 
         `filething` can be a path to a file (i.e., a string) or a
@@ -31,7 +39,7 @@ class MediaFile:
         ...
 
     @property
-    def path(self) -> str:  # type: ignore
+    def path(self) -> Optional[str]:  # type: ignore
         """The path to the file.
 
         This is `None` if the data comes from a file-like object instead
