@@ -1,17 +1,22 @@
 """Test on real world meta data"""
 
 import datetime
-import os
 from pathlib import Path
 
 from phrydy import MediaFileExtended
 from tests import helper
+from tests.helper import get_mediafile_extended
+
+
+class TestNoMeta:
+    mediafile = get_mediafile_extended("real-world/no_meta.mp3")
+
+    def test_title(self) -> None:
+        assert self.mediafile.title is None
 
 
 class TestBachWeihnachts:
-    mediafile = MediaFileExtended(
-        os.path.join(helper.TEST_RESOURCES_PATH, "real-world/Bach_Weihnachts.mp3")
-    )
+    mediafile = get_mediafile_extended("real-world/Bach_Weihnachts.mp3")
 
     class TestConstructor:
         path = Path(helper.TEST_RESOURCES_PATH) / "real-world" / "Bach_Weihnachts.mp3"

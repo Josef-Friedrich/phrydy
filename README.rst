@@ -112,19 +112,19 @@ List all available fields of a media file:
      - Examples
    * - acoustid_fingerprint
      - music_brainz
-     - Acoustic ID fingerprint
+     - The Acoustic Fingerprint for the track. The fingerprint is based on the audio information found in a file, and is calculated using the Chromaprint software.
      - 
    * - acoustid_id
      - music_brainz
-     - Acoustic ID
+     - The AcoustID associated with the track. The AcoustID is the identifier assigned to an audio file based on its acoustic fingerprint. Multiple fingerprints may be assigned the same AcoustID if the fingerprints are similar enough. 
      - ``86e217b7-d3ad-4493-a9f2-cf71256ace07``
    * - album
      - common
-     - album
+     - The title of the release.
      - ``Help!``
    * - albumartist
      - common
-     - The artist for the entire album, which may be different from the artists for the individual tracks
+     - The artist for the entire album, which may be different from the artists for the individual tracks.
      - ``The Beatles``
    * - albumartist_credit
      - common
@@ -132,7 +132,7 @@ List all available fields of a media file:
      - 
    * - albumartist_sort
      - common
-     - albumartist_sort
+     - The release artists sort names, separated by the specified join phrases. (e.g.: “Beatles, The”).
      - ``Beatles, The``
    * - albumartists
      - common
@@ -172,7 +172,7 @@ List all available fields of a media file:
      - ``b'\xff\xd8\xff\xe0\x00'``
    * - artist
      - common
-     - artist
+     - The track artist names, separated by the specified join phrases.
      - ``The Beatles``
    * - artist_credit
      - common
@@ -184,7 +184,7 @@ List all available fields of a media file:
      - ``Beatles, The``, ``White, Jack``
    * - artists
      - common
-     - artists
+     - A multi-value field containing the track artist names.
      - ``['a-ha']``, ``['Anouk', 'Remon Stotijn']``
    * - artists_credit
      - common
@@ -196,11 +196,11 @@ List all available fields of a media file:
      - 
    * - asin
      - common
-     - Amazon Standard Identification Number
+     - The Amazon Standard Identification Number - the number identifying the item on Amazon.
      - ``B000002UAL``
    * - barcode
      - common
-     - There are many different types of barcode, but the ones usually found on music releases are two: 1. Universal Product Code (UPC), which is the original barcode used in North America. 2. European Article Number (EAN)
+     - The barcode assigned to the release. There are many different types of barcode, but the ones usually found on music releases are two: 1. Universal Product Code (UPC), which is the original barcode used in North America. 2. European Article Number (EAN)
      - ``5028421931838``, ``036000291452``
    * - bitdepth
      - audio
@@ -292,11 +292,11 @@ List all available fields of a media file:
      - ``MP3``, ``FLAC``
    * - genre
      - common
-     - genre
+     - Genres are currently supported in MusicBrainz as part of the tag system.
      - ``Rock``
    * - genres
      - common
-     - genres
+     - Genres are currently supported in MusicBrainz as part of the tag system.
      - ``['Rock']``
    * - grouping
      - common
@@ -440,15 +440,15 @@ List all available fields of a media file:
      - ``Latn``
    * - title
      - common
-     - The title of a audio file.
+     - The title of the track.
      - ``32 Variations for Piano in C minor on an Original Theme, WoO 80``
    * - track
      - common
-     - The track number.
+     - The number of the track on the disc.
      - ``1``
    * - tracktotal
      - common
-     - The total track number.
+     - The total number of tracks on this disc.
      - ``12``
    * - url
      - common
@@ -476,22 +476,30 @@ phrydy-debug
 
     Debugging tool of the Python package “phrydy”, an easy wrapper around the “mutagen” library.
 
-        acoustid_fingerprint:    Acoustic ID fingerprint
+        acoustid_fingerprint:    The Acoustic Fingerprint for the track. The
+                                 fingerprint is based on the audio information
+                                 found in a file, and is calculated using the
+                                 Chromaprint software.
 
-        acoustid_id:             Acoustic ID
+        acoustid_id:             The AcoustID associated with the track. The
+                                 AcoustID is the identifier assigned to an audio
+                                 file based on its acoustic fingerprint. Multiple
+                                 fingerprints may be assigned the same AcoustID if
+                                 the fingerprints are similar enough.
                                  Examples: ['86e217b7-d3ad-4493-a9f2-cf71256ace07']
 
-        album:                   album
+        album:                   The title of the release.
                                  Examples: ['Help!']
 
         albumartist:             The artist for the entire album, which may be
                                  different from the artists for the individual
-                                 tracks
+                                 tracks.
                                  Examples: ['The Beatles']
 
         albumartist_credit:      albumartist_credit
 
-        albumartist_sort:        albumartist_sort
+        albumartist_sort:        The release artists sort names, separated by the
+                                 specified join phrases. (e.g.: “Beatles, The”).
                                  Examples: ['Beatles, The']
 
         albumartists:            albumartists
@@ -519,7 +527,8 @@ phrydy-debug
         art:                     Legacy album art field.
                                  Examples: [b'\xff\xd8\xff\xe0\x00']
 
-        artist:                  artist
+        artist:                  The track artist names, separated by the
+                                 specified join phrases.
                                  Examples: ['The Beatles']
 
         artist_credit:           The track-specific artist credit name, which may
@@ -528,19 +537,22 @@ phrydy-debug
         artist_sort:             The “sort name” of the track artist.
                                  Examples: ['Beatles, The', 'White, Jack']
 
-        artists:                 artists
+        artists:                 A multi-value field containing the track artist
+                                 names.
                                  Examples: [['a-ha'], ['Anouk', 'Remon Stotijn']]
 
         artists_credit:          artists_credit
 
         artists_sort:            artists_sort
 
-        asin:                    Amazon Standard Identification Number
+        asin:                    The Amazon Standard Identification Number - the
+                                 number identifying the item on Amazon.
                                  Examples: ['B000002UAL']
 
-        barcode:                 There are many different types of barcode, but
-                                 the ones usually found on music releases are two:
-                                 1. Universal Product Code (UPC), which is the
+        barcode:                 The barcode assigned to the release. There are
+                                 many different types of barcode, but the ones
+                                 usually found on music releases are two: 1.
+                                 Universal Product Code (UPC), which is the
                                  original barcode used in North America. 2.
                                  European Article Number (EAN)
                                  Examples: ['5028421931838', '036000291452']
@@ -614,10 +626,12 @@ phrydy-debug
         format:                  e.g., “MP3” or “FLAC”
                                  Examples: ['MP3', 'FLAC']
 
-        genre:                   genre
+        genre:                   Genres are currently supported in MusicBrainz as
+                                 part of the tag system.
                                  Examples: ['Rock']
 
-        genres:                  genres
+        genres:                  Genres are currently supported in MusicBrainz as
+                                 part of the tag system.
                                  Examples: [['Rock']]
 
         grouping:                A content group, which is a collection of media
@@ -753,13 +767,13 @@ phrydy-debug
                                  15924 standard.
                                  Examples: ['Latn']
 
-        title:                   The title of a audio file.
+        title:                   The title of the track.
                                  Examples: ['32 Variations for Piano in C minor on an Original Theme, WoO 80']
 
-        track:                   The track number.
+        track:                   The number of the track on the disc.
                                  Examples: [1]
 
-        tracktotal:              The total track number.
+        tracktotal:              The total number of tracks on this disc.
                                  Examples: [12]
 
         url:                     Uniform Resource Locator.

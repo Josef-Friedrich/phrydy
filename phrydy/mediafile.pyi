@@ -120,7 +120,7 @@ class MediaFile:
         """
         ...
 
-    title: str
+    title: Optional[str]
     """
     The title of an audio file.
     """

@@ -2,6 +2,10 @@ from typing import Any, Dict, List, Literal, TypedDict
 
 from typing_extensions import NotRequired
 
+# https://picard-docs.musicbrainz.org/en/about_picard/glossary.html
+
+# https://picard-docs.musicbrainz.org/en/variables/tags_basic.html
+
 categories = {
     "common": "Common metadata fields",
     "music_brainz": "MusicBrainz and fingerprint information",
@@ -40,25 +44,28 @@ fields: FieldDocCollection = {
     # artists             : []
     # asin                : None
     "acoustid_fingerprint": {
-        "description": "Acoustic ID fingerprint",
+        # https://picard-docs.musicbrainz.org/en/variables/tags_basic.html#tags-provided-from-musicbrainz-data
+        "description": "The Acoustic Fingerprint for the track. The fingerprint is based on the audio information found in a file, and is calculated using the Chromaprint software.",
         "category": "music_brainz",
         "data_type": "str",
     },
     "acoustid_id": {
-        "description": "Acoustic ID",
+        # https://picard-docs.musicbrainz.org/en/variables/tags_basic.html#tags-provided-from-musicbrainz-data
+        "description": "The AcoustID associated with the track. The AcoustID is the identifier assigned to an audio file based on its acoustic fingerprint. Multiple fingerprints may be assigned the same AcoustID if the fingerprints are similar enough. ",
         "category": "music_brainz",
         "data_type": "str",
         "examples": ["86e217b7-d3ad-4493-a9f2-cf71256ace07"],
     },
     "album": {
-        "description": "album",
+        # https://picard-docs.musicbrainz.org/en/variables/tags_basic.html#tags-provided-from-musicbrainz-data
+        "description": "The title of the release.",
         "category": "common",
         "data_type": "str",
         "examples": ["Help!"],
     },
     "albumartist": {
         "description": "The artist for the entire album, which may be "
-        + "different from the artists for the individual tracks",
+        + "different from the artists for the individual tracks.",
         "category": "common",
         "data_type": "str",
         "examples": ["The Beatles"],
@@ -68,8 +75,9 @@ fields: FieldDocCollection = {
         "category": "common",
         "data_type": "str",
     },
+    # https://picard-docs.musicbrainz.org/en/variables/tags_basic.html#tags-provided-from-musicbrainz-data
     "albumartist_sort": {
-        "description": "albumartist_sort",
+        "description": "The release artists sort names, separated by the specified join phrases. (e.g.: “Beatles, The”).",
         "category": "common",
         "data_type": "str",
         "examples": ["Beatles, The"],
@@ -122,7 +130,8 @@ fields: FieldDocCollection = {
         "examples": [b"\xff\xd8\xff\xe0\x00"],
     },
     "artist": {
-        "description": "artist",
+        # https://picard-docs.musicbrainz.org/en/variables/tags_basic.html#tags-provided-from-musicbrainz-data
+        "description": "The track artist names, separated by the specified join phrases.",
         "category": "common",
         "data_type": "str",
         "examples": ["The Beatles"],
@@ -140,7 +149,8 @@ fields: FieldDocCollection = {
         "examples": ["Beatles, The", "White, Jack"],
     },
     "artists": {
-        "description": "artists",
+        # https://picard-docs.musicbrainz.org/en/variables/tags_basic.html#tags-provided-from-musicbrainz-data
+        "description": "A multi-value field containing the track artist names.",
         "category": "common",
         "examples": [["a-ha"], ["Anouk", "Remon Stotijn"]],
     },
@@ -153,7 +163,8 @@ fields: FieldDocCollection = {
         "category": "common",
     },
     "asin": {
-        "description": "Amazon Standard Identification Number",
+        # https://picard-docs.musicbrainz.org/en/variables/tags_basic.html#tags-provided-from-musicbrainz-data
+        "description": "The Amazon Standard Identification Number - the number identifying the item on Amazon.",
         "category": "common",
         "examples": ["B000002UAL"],
     },
@@ -163,7 +174,9 @@ fields: FieldDocCollection = {
     # bitrate_mode        :
     # bpm                 : 6
     "barcode": {
-        "description": "There are many different types of barcode, but the "
+        # https://musicbrainz.org/doc/Barcode
+        # https://picard-docs.musicbrainz.org/en/variables/tags_basic.html#tags-provided-from-musicbrainz-data
+        "description": "The barcode assigned to the release. There are many different types of barcode, but the "
         "ones usually found on music releases are two: "
         "1. Universal Product Code (UPC), which is the "
         "original barcode used in North America. "
@@ -308,8 +321,18 @@ fields: FieldDocCollection = {
     # genre               : the genre
     # genres              : ['the genre']
     # grouping            : the grouping
-    "genre": {"description": "genre", "category": "common", "examples": ["Rock"]},
-    "genres": {"description": "genres", "category": "common", "examples": [["Rock"]]},
+    "genre": {
+        # https://musicbrainz.org/doc/Genre
+        "description": "Genres are currently supported in MusicBrainz as part of the tag system.",
+        "category": "common",
+        "examples": ["Rock"],
+    },
+    "genres": {
+        # https://musicbrainz.org/doc/Genre
+        "description": "Genres are currently supported in MusicBrainz as part of the tag system.",
+        "category": "common",
+        "examples": [["Rock"]],
+    },
     "grouping": {
         # https://docs.microsoft.com/en-us/windows/win32/wmp/wm-contentgroupdescription-attribute
         "description": "A content group, which is a collection of media items "
@@ -336,6 +359,7 @@ fields: FieldDocCollection = {
         "examples": ["Dbm"],
     },
     "isrc": {
+        # https://musicbrainz.org/doc/ISRC
         "description": "The International Standard Recording Code, "
         "abbreviated to ISRC, is a system of codes that "
         "identify audio and music video recordings.",
@@ -348,6 +372,7 @@ fields: FieldDocCollection = {
     # lyricist            : None
     # lyrics              : the lyrics
     "label": {
+        # https://musicbrainz.org/doc/Label
         "description": "The label which issued the release. There may be "
         + "more than one.",
         "category": "common",
@@ -581,19 +606,22 @@ fields: FieldDocCollection = {
     # track               : 2
     # tracktotal          : 3
     "title": {
-        "description": "The title of a audio file.",
+        # https://picard-docs.musicbrainz.org/en/variables/tags_basic.html#tags-provided-from-musicbrainz-data
+        "description": "The title of the track.",
         "category": "common",
         "examples": ["32 Variations for Piano in C minor on an Original Theme, WoO 80"],
         "data_type": "str",
     },
     "track": {
-        "description": "The track number.",
+        # https://picard-docs.musicbrainz.org/en/variables/tags_basic.html#tags-provided-from-musicbrainz-data
+        "description": "The number of the track on the disc.",
         "category": "common",
         "data_type": "int",
         "examples": [1],
     },
     "tracktotal": {
-        "description": "The total track number.",
+        # https://picard-docs.musicbrainz.org/en/variables/tags_basic.html#tags-provided-from-musicbrainz-data
+        "description": "The total number of tracks on this disc.",
         "category": "common",
         "data_type": "int",
         "examples": [12],

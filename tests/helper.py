@@ -3,6 +3,8 @@ import shutil
 import sys
 import tempfile
 
+from phrydy.mediafile_extended import MediaFileExtended
+
 # Test resources path.
 TEST_RESOURCES_PATH = os.path.join(os.path.dirname(__file__), "files")
 
@@ -29,3 +31,7 @@ class TempDirMixin(object):
         """Delete the temporary directory created by `create_temp_dir`."""
         if os.path.isdir(self.temp_dir):
             shutil.rmtree(self.temp_dir)
+
+
+def get_mediafile_extended(relpath: str) -> MediaFileExtended:
+    return MediaFileExtended(os.path.join(TEST_RESOURCES_PATH, relpath))
