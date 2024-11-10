@@ -49,6 +49,18 @@ class MediaFileExtended(MediaFile):
                 yield field
 
     @classmethod
+    def sorted_fields(cls):
+        """Get the names of all writable metadata fields, sorted in the
+        order that they should be written.
+
+        This is a lexicographic order, except for instances of
+        :class:`DateItemField`, which are sorted in year-month-day
+        order.
+        """
+        for property in sorted(MediaFile.fields(), key=MediaFile._field_sort_name):
+            yield property
+
+    @classmethod
     def readable_fields(cls) -> Generator[str, None, None]:
         """Get all metadata fields: the writable ones from
         :meth:`fields` and also other audio properties.

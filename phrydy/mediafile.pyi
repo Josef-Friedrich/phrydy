@@ -122,8 +122,9 @@ class MediaFile:
 
     title: str
     """
-    The title of a audio file.
+    The title of an audio file.
     """
+
     artist: str
     artists: list[str]
     album: str

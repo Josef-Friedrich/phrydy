@@ -1,5 +1,6 @@
 """Test on real world meta data"""
 
+import datetime
 import os
 from pathlib import Path
 
@@ -12,29 +13,30 @@ class TestBachWeihnachts:
         os.path.join(helper.TEST_RESOURCES_PATH, "real-world/Bach_Weihnachts.mp3")
     )
 
-    path = Path(helper.TEST_RESOURCES_PATH) / "real-world" / "Bach_Weihnachts.mp3"
+    class TestConstructor:
+        path = Path(helper.TEST_RESOURCES_PATH) / "real-world" / "Bach_Weihnachts.mp3"
 
-    def test_constructor_path(self) -> None:
-        mediafile = MediaFileExtended(self.path)
-        assert "tests/files/real-world/Bach_Weihnachts.mp3" in mediafile.filename
+        def test_constructor_path(self) -> None:
+            mediafile = MediaFileExtended(self.path)
+            assert "tests/files/real-world/Bach_Weihnachts.mp3" in mediafile.filename
 
-    def test_constructor_filelike_object_rb(self) -> None:
-        file = open(
-            self.path,
-            "rb",
-        )
-        mediafile = MediaFileExtended(file)
-        assert "tests/files/real-world/Bach_Weihnachts.mp3" in mediafile.filename
-        assert mediafile.path is None
+        def test_constructor_filelike_object_rb(self) -> None:
+            file = open(
+                self.path,
+                "rb",
+            )
+            mediafile = MediaFileExtended(file)
+            assert "tests/files/real-world/Bach_Weihnachts.mp3" in mediafile.filename
+            assert mediafile.path is None
 
-    def test_constructor_filelike_object_rb_plus(self) -> None:
-        file = open(
-            self.path,
-            "rb+",
-        )
-        mediafile = MediaFileExtended(file)
-        assert "tests/files/real-world/Bach_Weihnachts.mp3" in mediafile.filename
-        assert mediafile.path is None
+        def test_constructor_filelike_object_rb_plus(self) -> None:
+            file = open(
+                self.path,
+                "+rb",
+            )
+            mediafile = MediaFileExtended(file)
+            assert "tests/files/real-world/Bach_Weihnachts.mp3" in mediafile.filename
+            assert mediafile.path is None
 
     def test_filename(self) -> None:
         assert "tests/files/real-world/Bach_Weihnachts.mp3" in self.mediafile.filename
@@ -42,6 +44,360 @@ class TestBachWeihnachts:
     def test_path(self) -> None:
         assert self.mediafile.path is not None
         assert "tests/files/real-world/Bach_Weihnachts.mp3" in self.mediafile.path
+
+    def test_filesize(self) -> None:
+        assert self.mediafile.filesize == 93389
+
+    def test_fields(self) -> None:
+        assert list(self.mediafile.fields()) == [
+            "title",
+            "artist",
+            "artists",
+            "album",
+            "genres",
+            "genre",
+            "lyricist",
+            "composer",
+            "composer_sort",
+            "arranger",
+            "grouping",
+            "track",
+            "tracktotal",
+            "disc",
+            "disctotal",
+            "url",
+            "lyrics",
+            "comments",
+            "copyright",
+            "bpm",
+            "comp",
+            "albumartist",
+            "albumartists",
+            "albumtypes",
+            "albumtype",
+            "label",
+            "artist_sort",
+            "albumartist_sort",
+            "asin",
+            "catalognums",
+            "catalognum",
+            "barcode",
+            "isrc",
+            "disctitle",
+            "encoder",
+            "script",
+            "languages",
+            "language",
+            "country",
+            "albumstatus",
+            "media",
+            "albumdisambig",
+            "date",
+            "year",
+            "month",
+            "day",
+            "original_date",
+            "original_year",
+            "original_month",
+            "original_day",
+            "artist_credit",
+            "artists_credit",
+            "artists_sort",
+            "albumartist_credit",
+            "albumartists_credit",
+            "albumartists_sort",
+            "art",
+            "images",
+            "mb_trackid",
+            "mb_releasetrackid",
+            "mb_workid",
+            "mb_albumid",
+            "mb_artistids",
+            "mb_artistid",
+            "mb_albumartistids",
+            "mb_albumartistid",
+            "mb_releasegroupid",
+            "acoustid_fingerprint",
+            "acoustid_id",
+            "rg_track_gain",
+            "rg_album_gain",
+            "rg_track_peak",
+            "rg_album_peak",
+            "r128_track_gain",
+            "r128_album_gain",
+            "initial_key",
+            "mb_workhierarchy_ids",
+            "work",
+            "work_hierarchy",
+            "releasegroup_types",
+        ]
+
+    def test_sorted_fields(self) -> None:
+        assert list(self.mediafile.sorted_fields()) == [
+            "acoustid_fingerprint",
+            "acoustid_id",
+            "album",
+            "albumartist",
+            "albumartist_credit",
+            "albumartist_sort",
+            "albumartists",
+            "albumartists_credit",
+            "albumartists_sort",
+            "albumdisambig",
+            "albumstatus",
+            "albumtype",
+            "albumtypes",
+            "arranger",
+            "art",
+            "artist",
+            "artist_credit",
+            "artist_sort",
+            "artists",
+            "artists_credit",
+            "artists_sort",
+            "asin",
+            "barcode",
+            "bpm",
+            "catalognum",
+            "catalognums",
+            "comments",
+            "comp",
+            "composer",
+            "composer_sort",
+            "copyright",
+            "country",
+            "date",
+            "year",
+            "month",
+            "day",
+            "disc",
+            "disctitle",
+            "disctotal",
+            "encoder",
+            "genre",
+            "genres",
+            "grouping",
+            "images",
+            "initial_key",
+            "isrc",
+            "label",
+            "language",
+            "languages",
+            "lyricist",
+            "lyrics",
+            "mb_albumartistid",
+            "mb_albumartistids",
+            "mb_albumid",
+            "mb_artistid",
+            "mb_artistids",
+            "mb_releasegroupid",
+            "mb_releasetrackid",
+            "mb_trackid",
+            "mb_workid",
+            "media",
+            "original_date",
+            "original_year",
+            "original_month",
+            "original_day",
+            "r128_album_gain",
+            "r128_track_gain",
+            "rg_album_gain",
+            "rg_album_peak",
+            "rg_track_gain",
+            "rg_track_peak",
+            "script",
+            "title",
+            "track",
+            "tracktotal",
+            "url",
+        ]
+
+    def test_readable_fields(self) -> None:
+        assert list(self.mediafile.readable_fields()) == [
+            "title",
+            "artist",
+            "artists",
+            "album",
+            "genres",
+            "genre",
+            "lyricist",
+            "composer",
+            "composer_sort",
+            "arranger",
+            "grouping",
+            "track",
+            "tracktotal",
+            "disc",
+            "disctotal",
+            "url",
+            "lyrics",
+            "comments",
+            "copyright",
+            "bpm",
+            "comp",
+            "albumartist",
+            "albumartists",
+            "albumtypes",
+            "albumtype",
+            "label",
+            "artist_sort",
+            "albumartist_sort",
+            "asin",
+            "catalognums",
+            "catalognum",
+            "barcode",
+            "isrc",
+            "disctitle",
+            "encoder",
+            "script",
+            "languages",
+            "language",
+            "country",
+            "albumstatus",
+            "media",
+            "albumdisambig",
+            "date",
+            "year",
+            "month",
+            "day",
+            "original_date",
+            "original_year",
+            "original_month",
+            "original_day",
+            "artist_credit",
+            "artists_credit",
+            "artists_sort",
+            "albumartist_credit",
+            "albumartists_credit",
+            "albumartists_sort",
+            "art",
+            "images",
+            "mb_trackid",
+            "mb_releasetrackid",
+            "mb_workid",
+            "mb_albumid",
+            "mb_artistids",
+            "mb_artistid",
+            "mb_albumartistids",
+            "mb_albumartistid",
+            "mb_releasegroupid",
+            "acoustid_fingerprint",
+            "acoustid_id",
+            "rg_track_gain",
+            "rg_album_gain",
+            "rg_track_peak",
+            "rg_album_peak",
+            "r128_track_gain",
+            "r128_album_gain",
+            "initial_key",
+            "mb_workhierarchy_ids",
+            "work",
+            "work_hierarchy",
+            "releasegroup_types",
+            "length",
+            "samplerate",
+            "bitdepth",
+            "bitrate",
+            "bitrate_mode",
+            "channels",
+            "encoder_info",
+            "encoder_settings",
+            "format",
+        ]
+
+    def test_as_dict(self) -> None:
+        result = self.mediafile.as_dict()
+        del result["art"]
+        del result["images"]
+
+        assert result == {
+            "acoustid_fingerprint": None,
+            "acoustid_id": None,
+            "album": "Weihnachtsoratorium",
+            "albumartist": "Johann Sebastian Bach; Concentus Musicus Wien, Nikolaus "
+            "Harnoncourt",
+            "albumartist_credit": None,
+            "albumartist_sort": "Bach, Johann Sebastian; Concentus Musicus Wien, "
+            "Harnoncourt, Nikolaus",
+            "albumartists": None,
+            "albumartists_credit": None,
+            "albumartists_sort": None,
+            "albumdisambig": None,
+            "albumstatus": "official",
+            "albumtype": "album",
+            "albumtypes": ["album"],
+            "arranger": None,
+            "artist": "Johann Sebastian Bach",
+            "artist_credit": None,
+            "artist_sort": "Bach, Johann Sebastian",
+            "artists": ["Johann Sebastian Bach"],
+            "artists_credit": None,
+            "artists_sort": None,
+            "asin": "B000000SIC",
+            "barcode": "090317761022",
+            "bpm": 6,
+            "catalognum": "9031776102",
+            "catalognums": ["9031776102"],
+            "comments": "the comments",
+            "comp": None,
+            "composer": "Johann Sebastian Bach",
+            "composer_sort": "Bach, Johann Sebastian",
+            "copyright": None,
+            "country": "DE",
+            "date": datetime.date(1992, 10, 26),
+            "day": 26,
+            "disc": 1,
+            "disctitle": None,
+            "disctotal": 2,
+            "encoder": "iTunes v7.6.2",
+            "genre": "the genre",
+            "genres": ["the genre"],
+            "grouping": "the grouping",
+            "initial_key": None,
+            "isrc": "DEF056201641",
+            "label": "TELDEC",
+            "language": "deu",
+            "languages": ["deu"],
+            "lyricist": None,
+            "lyrics": "the lyrics",
+            "mb_albumartistid": "24f1766e-9635-4d58-a4d4-9413f9f98a4c",
+            "mb_albumartistids": [
+                "24f1766e-9635-4d58-a4d4-9413f9f98a4c",
+                "9b891046-35af-4eb0-a058-eba4c9b8d01f",
+                "98b95966-64db-4631-8b9f-8aa66f32cc98",
+            ],
+            "mb_albumid": "1b049c5f-f858-49a6-955d-18b6ac064f5b",
+            "mb_artistid": "24f1766e-9635-4d58-a4d4-9413f9f98a4c",
+            "mb_artistids": ["24f1766e-9635-4d58-a4d4-9413f9f98a4c"],
+            "mb_releasegroupid": "d9f114ac-23b7-35dc-9f89-42b4c49bfe79",
+            "mb_releasetrackid": "bcc89645-9cd4-3cbb-8b7c-1532092250ae",
+            "mb_trackid": "b7753b83-3d56-42ba-ab20-8a46a7a397b0",
+            "mb_workhierarchy_ids": None,
+            "mb_workid": "07472580-468d-3de2-bb69-8f5917c2e731",
+            "media": "CD",
+            "month": 10,
+            "original_date": datetime.date(1992, 1, 1),
+            "original_day": None,
+            "original_month": None,
+            "original_year": 1992,
+            "r128_album_gain": None,
+            "r128_track_gain": None,
+            "releasegroup_types": None,
+            "rg_album_gain": None,
+            "rg_album_peak": None,
+            "rg_track_gain": 0.0,
+            "rg_track_peak": 0.000244,
+            "script": "Latn",
+            "title": 'Weihnachts-Oratorium, BWV 248: Teil I, I. Coro "Jauchzet, '
+            'frohlocket!"',
+            "track": 1,
+            "tracktotal": 33,
+            "url": None,
+            "work": 'Weihnachts-Oratorium, BWV 248: Teil I, I. Coro "Jauchzet, '
+            'frohlocket"',
+            "work_hierarchy": None,
+            "year": 1992,
+        }
 
     def test_title(self) -> None:
         assert (
