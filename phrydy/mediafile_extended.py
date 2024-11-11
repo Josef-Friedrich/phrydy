@@ -1,4 +1,4 @@
-from typing import Any, Dict, Generator, Set, TypedDict
+from typing import Any, Dict, Generator, Set, cast
 
 from phrydy.mediafile import (
     ASFStorageStyle,
@@ -9,21 +9,6 @@ from phrydy.mediafile import (
     MP4StorageStyle,
     StorageStyle,
 )
-
-
-class MgFile(TypedDict):
-    performer: Any
-
-    conductor: Any
-
-    TMCL: Any
-    """4.2.2 TMCL Musician credits list"""
-
-    TIPL: Any
-    """4.2.2 TIPL Involved people list"""
-
-    TPE3: Any
-    """4.2.2 TPE3 Conductor/ar_performer refinement"""
 
 
 class MediaFileExtended(MediaFile):
@@ -57,7 +42,7 @@ class MediaFileExtended(MediaFile):
         :class:`DateItemField`, which are sorted in year-month-day
         order.
         """
-        for property in sorted(MediaFile.fields(), key=MediaFile._field_sort_name):
+        for property in sorted(MediaFile.fields(), key=MediaFile._field_sort_name):  # type: ignore
             yield property
 
     @classmethod
@@ -86,12 +71,15 @@ class MediaFileExtended(MediaFile):
     #     StorageStyle('ALBUMARTISTSORT'),
     #     ASFStorageStyle('WM/AlbumArtistSortOrder'),
     # )
-    albumartist_sort = MediaField(
-        MP3StorageStyle("TSO2"),
-        MP3DescStorageStyle("ALBUMARTISTSORT"),
-        MP4StorageStyle("soaa"),
-        StorageStyle("ALBUMARTISTSORT"),
-        ASFStorageStyle("WM/AlbumArtistSortOrder"),
+    albumartist_sort = cast(
+        str,
+        MediaField(
+            MP3StorageStyle("TSO2"),
+            MP3DescStorageStyle("ALBUMARTISTSORT"),
+            MP4StorageStyle("soaa"),
+            StorageStyle("ALBUMARTISTSORT"),
+            ASFStorageStyle("WM/AlbumArtistSortOrder"),
+        ),
     )
 
     """Changed field. Uses TSO2"""
@@ -102,13 +90,16 @@ class MediaFileExtended(MediaFile):
     #     StorageStyle('COMPOSERSORT'),
     #     ASFStorageStyle('WM/Composersortorder'),
     # )
-    composer_sort = MediaField(
-        MP3StorageStyle("TSOC"),
-        MP3DescStorageStyle("composersortorder"),
-        MP4StorageStyle("soco"),
-        StorageStyle("composersort"),
-        StorageStyle("composersortorder"),
-        ASFStorageStyle("WM/ComposerSortOrder"),
+    composer_sort = cast(
+        str,
+        MediaField(
+            MP3StorageStyle("TSOC"),
+            MP3DescStorageStyle("composersortorder"),
+            MP4StorageStyle("soco"),
+            StorageStyle("composersort"),
+            StorageStyle("composersortorder"),
+            ASFStorageStyle("WM/ComposerSortOrder"),
+        ),
     )
 
     """Changed field. Uses MP3 description storage style composersortorder."""
@@ -119,12 +110,15 @@ class MediaFileExtended(MediaFile):
     #     StorageStyle('MUSICBRAINZ_WORKID'),
     #     ASFStorageStyle('MusicBrainz/Work Id'),
     # )
-    mb_workid = MediaField(
-        MP3DescStorageStyle("MusicBrainz Work Id"),
-        MP4StorageStyle("----:com.apple.iTunes:MusicBrainz Work Id"),
-        StorageStyle("MUSICBRAINZ_WORKID"),
-        StorageStyle("musicbrainz work id"),
-        ASFStorageStyle("MusicBrainz/Work Id"),
+    mb_workid = cast(
+        str,
+        MediaField(
+            MP3DescStorageStyle("MusicBrainz Work Id"),
+            MP4StorageStyle("----:com.apple.iTunes:MusicBrainz Work Id"),
+            StorageStyle("MUSICBRAINZ_WORKID"),
+            StorageStyle("musicbrainz work id"),
+            ASFStorageStyle("MusicBrainz/Work Id"),
+        ),
     )
 
     """Changed Field: The MusicBrainz’ Work ID"""
