@@ -119,6 +119,86 @@ fields: FieldDocCollection = {
         "category": "common",
         "examples": [1],
     },
+    "url": {
+        "description": "Uniform Resource Locator.",
+        "category": "common",
+        "data_type": "str",
+    },
+    "lyrics": {
+        # https://id3.org/id3v2.4.0-frames
+        "description": "The lyrics of the song or a text transcription of other vocal activities.",
+        "data_type": "str",
+        "category": "common",
+    },
+    "comments": {
+        # https://picard-docs.musicbrainz.org/en/variables/tags_basic.html
+        "description": "The disambiguation comment entered to help distinguish one release from another (e.g.: Deluxe version with 2 bonus tracks).",
+        "category": "common",
+    },
+    "copyright": {
+        # https://picard-docs.musicbrainz.org/en/variables/tags_basic.html
+        "description": "The copyright message for the copyright holder of the original sound, beginning with a year and a space character.",
+        "category": "common",
+    },
+    "bpm": {
+        # https://picard-docs.musicbrainz.org/en/variables/tags_basic.html
+        "description": "The number of beats per minute of the track.",
+        "category": "common",
+    },
+    "comp": {
+        "description": "Compilation flag.",
+        "category": "common",
+        "data_type": "bool",
+        "examples": [True, False],
+    },
+    "albumartist": {
+        # https://picard-docs.musicbrainz.org/en/variables/tags_basic.html
+        "description": "The artist for the entire album, which may be different from the artists for the individual tracks. The artists primarily credited on the release, separated by the specified join phrases.",
+        "category": "common",
+        "data_type": "str",
+        "examples": ["The Beatles"],
+    },
+    "albumartists": {
+        "description": "The album artists specifed as a list.",
+        "category": "common",
+        "data_type": "list",
+        "examples": [["The Beatles"]],
+    },
+    "albumtypes": {
+        # https://musicbrainz.org/doc/Release_Group/Type
+        "description": "The MusicBrainz release group types; the MusicBrainz wiki has a list of type names.",
+        "category": "common",
+        "data_type": "list",
+        "examples": [["album", "soundtrack"]],
+    },
+    "albumtype": {
+        # https://musicbrainz.org/doc/Release_Group/Type
+        "description": "The primary MusicBrainz release group type; the MusicBrainz wiki has a list of type names.",
+        "category": "common",
+        "data_type": "str",
+        "examples": ["album/soundtrack"],
+    },
+    "label": {
+        # https://musicbrainz.org/doc/Label
+        "description": "The label which issued the release. There may be more than one.",
+        "category": "common",
+        "examples": ["Brilliant Classics", "wea"],
+    },
+    # --------------------------------------------------
+    # --------------------------------------------------
+    # --------------------------------------------------
+    # --------------------------------------------------
+    # --------------------------------------------------
+    # --------------------------------------------------
+    # --------------------------------------------------
+    # --------------------------------------------------
+    # --------------------------------------------------
+    # --------------------------------------------------
+    # --------------------------------------------------
+    # --------------------------------------------------
+    # --------------------------------------------------
+    # --------------------------------------------------
+    # --------------------------------------------------
     # --------------------------------------------------
     "acoustid_fingerprint": {
         # https://picard-docs.musicbrainz.org/en/variables/tags_basic.html#tags-provided-from-musicbrainz-data
@@ -133,13 +213,6 @@ fields: FieldDocCollection = {
         "data_type": "str",
         "examples": ["86e217b7-d3ad-4493-a9f2-cf71256ace07"],
     },
-    "albumartist": {
-        "description": "The artist for the entire album, which may be "
-        + "different from the artists for the individual tracks.",
-        "category": "common",
-        "data_type": "str",
-        "examples": ["The Beatles"],
-    },
     "albumartist_credit": {
         "description": "albumartist_credit",
         "category": "common",
@@ -151,11 +224,6 @@ fields: FieldDocCollection = {
         "category": "common",
         "data_type": "str",
         "examples": ["Beatles, The"],
-    },
-    "albumartists": {
-        "description": "albumartists",
-        "category": "common",
-        "data_type": "list",
     },
     "albumartists_credit": {
         "description": "albumartists_credit",
@@ -177,17 +245,6 @@ fields: FieldDocCollection = {
         "category": "common",
         "data_type": "str",
         "examples": ["official", "promotional", "bootleg", "pseudo-release"],
-    },
-    "albumtype": {
-        "description": "The MusicBrainz album type; the MusicBrainz wiki "
-        + "has a list of type names",
-        "category": "common",
-        "data_type": "str",
-        "examples": ["album/soundtrack"],
-    },
-    "albumtypes": {
-        "description": "albumtypes",
-        "category": "common",
     },
     "art": {
         "description": "Legacy album art field.",
@@ -220,11 +277,6 @@ fields: FieldDocCollection = {
         "category": "common",
         "examples": ["B000002UAL"],
     },
-    # barcode             : None
-    # bitdepth            : 0
-    # bitrate             : 80000
-    # bitrate_mode        :
-    # bpm                 : 6
     "barcode": {
         # https://musicbrainz.org/doc/Barcode
         # https://picard-docs.musicbrainz.org/en/variables/tags_basic.html#tags-provided-from-musicbrainz-data
@@ -252,18 +304,6 @@ fields: FieldDocCollection = {
         "category": "common",
         "examples": ["CBR"],
     },
-    "bpm": {
-        "description": "Beats per Minute",
-        "category": "common",
-    },
-    # catalognum          : None
-    # channels            : 1
-    # comments            : the comments
-    # comp                : True
-    # composer            : the composer
-    # composer_sort       : None
-    # copyright           : None
-    # country             : None
     "catalognum": {
         "description": "This is a number assigned to the release by the "
         + "label which can often be found on the spine or near "
@@ -284,30 +324,11 @@ fields: FieldDocCollection = {
         "data_type": "int",
         "examples": [1, 2],
     },
-    "comments": {
-        "description": "comments",
-        "category": "common",
-    },
-    "comp": {
-        "description": "Compilation flag",
-        "category": "common",
-        "data_type": "bool",
-        "examples": [True, False],
-    },
-    "copyright": {
-        "description": "copyright",
-        "category": "common",
-    },
     "country": {
         "description": "The country the release was issued in.",
         "category": "common",
         "examples": ["NL"],
     },
-    # date                : 2001-01-01
-    # day                 : None
-    # disc                : 4
-    # disctitle           : None
-    # disctotal           : 5
     "date": {
         "description": "The release data of the specific release.",
         "category": "date",
@@ -321,9 +342,6 @@ fields: FieldDocCollection = {
         "description": "disctitle",
         "category": "common",
     },
-    # encoder             : iTunes v7.6.2
-    # encoder_info        :
-    # encoder_settings    :
     "encoder": {
         # https://id3.org/id3v2.4.0-frames
         "description": "the name of the person or organisation that encoded the audio "
@@ -342,15 +360,11 @@ fields: FieldDocCollection = {
         "category": "common",
         "examples": ["-b 255+"],
     },
-    # format              : MP3
     "format": {
         "description": "e.g., “MP3” or “FLAC”",
         "category": "audio",
         "examples": ["MP3", "FLAC"],
     },
-    # images              : []
-    # initial_key         : None
-    # isrc                : None
     "images": {
         "description": "images",
         "category": "common",
@@ -375,18 +389,6 @@ fields: FieldDocCollection = {
         "category": "common",
         "examples": ["CAC118989003", "ITO101117740"],
     },
-    # label               : the label
-    # language            : None
-    # length              : 1.071
-    # lyricist            : None
-    # lyrics              : the lyrics
-    "label": {
-        # https://musicbrainz.org/doc/Label
-        "description": "The label which issued the release. There may be "
-        + "more than one.",
-        "category": "common",
-        "examples": ["Brilliant Classics", "wea"],
-    },
     "language": {
         "description": "The language a release’s track list is written in. "
         + "The possible values are taken from the ISO 639-3 "
@@ -403,25 +405,6 @@ fields: FieldDocCollection = {
         "category": "audio",
         "examples": [674.4666666666667],
     },
-    "lyrics": {
-        # https://id3.org/id3v2.4.0-frames
-        "description": "The lyrics of the song or a text transcription of "
-        "other vocal activities.",
-        "data_type": "str",
-        "category": "common",
-    },
-    # media               : None
-    # month               : None
-    # mb_albumartistid    : None
-    # mb_albumartistids   : []
-    # mb_albumid          : 9e873859-8aa4-4790-b985-5a953e8ef628
-    # mb_artistid         : 7cf0ea9d-86b9-4dad-ba9e-2355a64899ea
-    # mb_artistids        : ['7cf0ea9d-86b9-4dad-ba9e-2355a64899ea']
-    # mb_releasegroupid   : None
-    # mb_releasetrackid   : c29f3a57-b439-46fd-a2e2-93776b1371e0
-    # mb_trackid          : 8b882575-08a5-4452-a7a7-cbb8a1531f9e
-    # mb_workhierarchy_ids: None
-    # mb_workid           : None
     "mb_albumartistid": {
         "description": "MusicBrainz album artist ID.",
         "category": "music_brainz",
@@ -510,10 +493,6 @@ fields: FieldDocCollection = {
         "examples": [11],
         "data_type": "int",
     },
-    # original_date       : None
-    # original_day        : None
-    # original_month      : None
-    # original_year       : None
     "original_date": {
         "description": "The release date of the original version of the " "album.",
         "category": "date",
@@ -538,13 +517,6 @@ fields: FieldDocCollection = {
         "examples": [1991],
         "data_type": "int",
     },
-    # r128_album_gain     : None
-    # r128_track_gain     : None
-    # releasegroup_types  : None
-    # rg_album_gain       : None
-    # rg_album_peak       : None
-    # rg_track_gain       : 0.0
-    # rg_track_peak       : 0.000244
     "r128_album_gain": {
         # https://en.wikipedia.org/wiki/EBU_R_128
         "description": "An optional gain for album normalization. EBU R 128 is a "
@@ -589,8 +561,6 @@ fields: FieldDocCollection = {
         "category": "rg",
         "examples": [0.000244],
     },
-    # samplerate          : 44100
-    # script              : None
     "samplerate": {
         "description": "The sample rate as an integer number.",
         "category": "audio",
@@ -605,14 +575,6 @@ fields: FieldDocCollection = {
         "examples": ["Latn"],
         "data_type": "str",
     },
-    # url                 : None
-    "url": {
-        "description": "Uniform Resource Locator.",
-        "category": "common",
-        "data_type": "str",
-    },
-    # work                : None
-    # work_hierarchy      : None
     "work": {
         "description": "The Musicbrainzs’ work entity.",
         "category": "common",
@@ -632,7 +594,6 @@ fields: FieldDocCollection = {
         ],
         "data_type": "str",
     },
-    # year                : 2001
     "year": {
         "description": "The release year of the specific release.",
         "category": "date",

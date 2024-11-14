@@ -432,65 +432,184 @@ class MediaFile:
     disctotal: Optional[int]
     """The total number of discs."""
 
-    url: str
-    lyrics: str
-    comments: str
-    copyright: str
-    bpm: int
-    comp: bool
-    albumartist: str
-    albumartists: list[str]
-    albumtypes: list[str]
-    albumtype: str
-    label: str
-    artist_sort: str
-    albumartist_sort: str
-    asin: str
-    catalognums: list[str]
-    catalognum: str
-    barcode: int
-    isrc: str
-    disctitle: str
-    encoder: str
-    script: str
-    languages: list[str]
-    language: str
-    country: str
-    albumstatus: str
-    media: str
-    albumdisambig: str
+    url: Optional[str]
+    """Uniform Resource Locator."""
+
+    lyrics: Optional[str]
+    """The lyrics of the song or a text transcription of other vocal activities."""
+
+    comments: Optional[str]
+    """The disambiguation comment entered to help distinguish one release from another (e.g.: Deluxe version with 2 bonus tracks)."""
+
+    copyright: Optional[str]
+    """The copyright message for the copyright holder of the original sound, beginning with a year and a space character."""
+
+    bpm: Optional[int]
+    """"The number of beats per minute of the track."""
+
+    comp: Optional[bool]
+    """Compilation flag."""
+
+    albumartist: Optional[str]
+    """The artist for the entire album, which may be different from the artists for the individual tracks. The artists primarily credited on the release, separated by the specified join phrases."""
+
+    albumartists: Optional[list[str]]
+    """The album artists specifed as a list."""
+
+    albumtypes: Optional[list[str]]
+    """"The MusicBrainz release group types; the MusicBrainz wiki has a list of type names."""
+
+    albumtype: Optional[str]
+    """"The primary MusicBrainz release group type; the MusicBrainz wiki has a list of type names."""
+
+    label: Optional[str]
+    """The label which issued the release. There may be more than one."""
+
+    artist_sort: Optional[str]
+    """"""
+
+    albumartist_sort: Optional[str]
+    """"""
+
+    asin: Optional[str]
+    """"""
+
+    catalognums: Optional[list[str]]
+    """"""
+
+    catalognum: Optional[str]
+    """"""
+
+    barcode: Optional[str]
+    """"""
+
+    isrc: Optional[str]
+    """"""
+
+    disctitle: Optional[str]
+    """"""
+
+    encoder: Optional[str]
+    """"""
+
+    script: Optional[str]
+    """"""
+
+    languages: Optional[list[str]]
+    """"""
+
+    language: Optional[str]
+    """"""
+
+    country: Optional[str]
+    """"""
+
+    albumstatus: Optional[str]
+    """"""
+
+    media: Optional[str]
+    """"""
+
+    albumdisambig: Optional[str]
+    """"""
+
     date: DateField
+    """"""
+
     year: int
+    """"""
+
     month: int
+    """"""
+
     day: int
+    """"""
+
     original_date: DateField
+    """"""
+
     original_year: int
+    """"""
+
     original_month: int
+    """"""
+
     original_day: int
+    """"""
+
     artist_credit: str
+    """"""
+
     artists_credit: list[str]
+    """"""
+
     artists_sort: list[str]
+    """"""
+
     albumartist_credit: str
+    """"""
+
     albumartists_credit: list[str]
+    """"""
+
     art: bytes
+    """"""
+
     images: list[Image]
+    """"""
+
     mb_trackid: str
+    """"""
+
     mb_releasetrackid: str
+    """"""
+
     mb_workid: str
+    """"""
+
     mb_albumid: str
+    """"""
+
     mb_artistids: list[str]
+    """"""
+
     mb_artistid: str
+    """"""
+
     mb_albumartistids: list[str]
+    """"""
+
     mb_albumartistid: str
+    """"""
+
     mb_releasegroupid: str
+    """"""
+
     acoustid_fingerprint: str
+    """"""
+
     acoustid_id: str
+    """"""
+
     rg_track_gain: float
+    """"""
+
     rg_album_gain: float
+    """"""
+
     rg_track_peak: float
+    """"""
+
     rg_album_peak: float
+    """"""
+
     r128_track_gain: float
+    """"""
+
     r128_album_gain: float
+    """"""
+
     initial_key: str
+    """"""
 
     mgfile: MutagenFile

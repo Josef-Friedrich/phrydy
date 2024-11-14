@@ -124,7 +124,7 @@ List all available fields of a media file:
      - ``Help!``
    * - albumartist
      - common
-     - The artist for the entire album, which may be different from the artists for the individual tracks.
+     - The artist for the entire album, which may be different from the artists for the individual tracks. The artists primarily credited on the release, separated by the specified join phrases.
      - ``The Beatles``
    * - albumartist_credit
      - common
@@ -136,8 +136,8 @@ List all available fields of a media file:
      - ``Beatles, The``
    * - albumartists
      - common
-     - albumartists
-     - 
+     - The album artists specifed as a list.
+     - ``['The Beatles']``
    * - albumartists_credit
      - common
      - albumartists_credit
@@ -156,12 +156,12 @@ List all available fields of a media file:
      - ``official``, ``promotional``, ``bootleg``, ``pseudo-release``
    * - albumtype
      - common
-     - The MusicBrainz album type; the MusicBrainz wiki has a list of type names
+     - The primary MusicBrainz release group type; the MusicBrainz wiki has a list of type names.
      - ``album/soundtrack``
    * - albumtypes
      - common
-     - albumtypes
-     - 
+     - The MusicBrainz release group types; the MusicBrainz wiki has a list of type names.
+     - ``['album', 'soundtrack']``
    * - arranger
      - common
      - A musician who creates arrangements.
@@ -216,7 +216,7 @@ List all available fields of a media file:
      - ``CBR``
    * - bpm
      - common
-     - Beats per Minute
+     - The number of beats per minute of the track.
      - 
    * - catalognum
      - common
@@ -232,11 +232,11 @@ List all available fields of a media file:
      - ``1``, ``2``
    * - comments
      - common
-     - comments
+     - The disambiguation comment entered to help distinguish one release from another (e.g.: Deluxe version with 2 bonus tracks).
      - 
    * - comp
      - common
-     - Compilation flag
+     - Compilation flag.
      - ``True``, ``False``
    * - composer
      - common
@@ -248,7 +248,7 @@ List all available fields of a media file:
      - ``Beethoven, Ludwig van``
    * - copyright
      - common
-     - copyright
+     - The copyright message for the copyright holder of the original sound, beginning with a year and a space character.
      - 
    * - country
      - common
@@ -493,7 +493,8 @@ phrydy-debug
 
         albumartist:             The artist for the entire album, which may be
                                  different from the artists for the individual
-                                 tracks.
+                                 tracks. The artists primarily credited on the
+                                 release, separated by the specified join phrases.
                                  Examples: ['The Beatles']
 
         albumartist_credit:      albumartist_credit
@@ -502,7 +503,8 @@ phrydy-debug
                                  specified join phrases. (e.g.: “Beatles, The”).
                                  Examples: ['Beatles, The']
 
-        albumartists:            albumartists
+        albumartists:            The album artists specifed as a list.
+                                 Examples: [['The Beatles']]
 
         albumartists_credit:     albumartists_credit
 
@@ -516,11 +518,13 @@ phrydy-debug
         albumstatus:             The status describes how "official" a release is.
                                  Examples: ['official', 'promotional', 'bootleg', 'pseudo-release']
 
-        albumtype:               The MusicBrainz album type; the MusicBrainz wiki
-                                 has a list of type names
+        albumtype:               The primary MusicBrainz release group type; the
+                                 MusicBrainz wiki has a list of type names.
                                  Examples: ['album/soundtrack']
 
-        albumtypes:              albumtypes
+        albumtypes:              The MusicBrainz release group types; the
+                                 MusicBrainz wiki has a list of type names.
+                                 Examples: [['album', 'soundtrack']]
 
         arranger:                A musician who creates arrangements.
 
@@ -567,7 +571,7 @@ phrydy-debug
         bitrate_mode:            bitrate_mode
                                  Examples: ['CBR']
 
-        bpm:                     Beats per Minute
+        bpm:                     The number of beats per minute of the track.
 
         catalognum:              This is a number assigned to the release by the
                                  label which can often be found on the spine or
@@ -582,9 +586,11 @@ phrydy-debug
         channels:                channels
                                  Examples: [1, 2]
 
-        comments:                comments
+        comments:                The disambiguation comment entered to help
+                                 distinguish one release from another (e.g.:
+                                 Deluxe version with 2 bonus tracks).
 
-        comp:                    Compilation flag
+        comp:                    Compilation flag.
                                  Examples: [True, False]
 
         composer:                The name of the composer.
@@ -593,7 +599,9 @@ phrydy-debug
         composer_sort:           The composer name for sorting.
                                  Examples: ['Beethoven, Ludwig van']
 
-        copyright:               copyright
+        copyright:               The copyright message for the copyright holder of
+                                 the original sound, beginning with a year and a
+                                 space character.
 
         country:                 The country the release was issued in.
                                  Examples: ['NL']
