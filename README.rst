@@ -116,7 +116,7 @@ List all available fields of a media file:
      - 
    * - acoustid_id
      - music_brainz
-     - The AcoustID associated with the track. The AcoustID is the identifier assigned to an audio file based on its acoustic fingerprint. Multiple fingerprints may be assigned the same AcoustID if the fingerprints are similar enough. 
+     - The AcoustID associated with the track. The AcoustID is the identifier assigned to an audio file based on its acoustic fingerprint. Multiple fingerprints may be assigned the same AcoustID if the fingerprints are similar enough.
      - ``86e217b7-d3ad-4493-a9f2-cf71256ace07``
    * - album
      - common

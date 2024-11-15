@@ -259,7 +259,7 @@ class DateItemField(MediaField):
 
 class CoverArtField(MediaField):
     def __init__(self) -> None: ...
-    def __get__(self, mediafile, _): ...
+    def __get__(self, mediafile: MediaFile, _): ...
     @staticmethod
     def guess_cover_image(candidates): ...
     def __set__(self, mediafile: MediaFile, data) -> None: ...
@@ -572,7 +572,7 @@ class MediaFile:
     """MusicBrainz work ID."""
 
     mb_artistids: list[str]
-    """"""
+    """MusicBrainz artist IDs as a list."""
 
     mb_artistid: str
     """MusicBrainz artist ID."""
@@ -587,30 +587,30 @@ class MediaFile:
     """MusicBrainz releasegroup ID."""
 
     acoustid_fingerprint: str
-    """"""
+    """The Acoustic Fingerprint for the track. The fingerprint is based on the audio information found in a file, and is calculated using the Chromaprint software."""
 
     acoustid_id: str
-    """"""
+    """The AcoustID associated with the track. The AcoustID is the identifier assigned to an audio file based on its acoustic fingerprint. Multiple fingerprints may be assigned the same AcoustID if the fingerprints are similar enough."""
 
     rg_track_gain: float
-    """"""
+    """ReplayGain Track Gain, see https://en.wikipedia.org/wiki/ReplayGain."""
 
     rg_album_gain: float
-    """"""
+    """ReplayGain Album Gain, see https://en.wikipedia.org/wiki/ReplayGain."""
 
     rg_track_peak: float
-    """"""
+    """ReplayGain Track Peak, see https://en.wikipedia.org/wiki/ReplayGain."""
 
     rg_album_peak: float
-    """"""
+    """ReplayGain Album Peak, see https://en.wikipedia.org/wiki/ReplayGain."""
 
     r128_track_gain: float
-    """"""
+    """An optional gain for track normalization. EBU R 128 is a recommendation for loudness normalisation and maximum level of audio signals."""
 
     r128_album_gain: float
-    """"""
+    """An optional gain for album normalization. EBU R 128 is a recommendation for loudness normalisation and maximum level of audio signals."""
 
     initial_key: str
-    """"""
+    """The Initial key frame contains the musical key in which the sound starts. It is represented as a string with a maximum length of three characters. The ground keys are represented with "A","B","C","D","E", "F" and "G" and halfkeys represented with "b" and "#". Minor is represented as "m"."""
 
     mgfile: MutagenFile

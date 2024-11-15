@@ -428,22 +428,6 @@ fields: FieldDocCollection = {
         "examples": ["f714fd70-aaca-4863-9d0d-2768a53acaeb"],
         "data_type": "str",
     },
-    # --------------------------------------------------
-    # --------------------------------------------------
-    # --------------------------------------------------
-    # --------------------------------------------------
-    # --------------------------------------------------
-    # --------------------------------------------------
-    # --------------------------------------------------
-    # --------------------------------------------------
-    # --------------------------------------------------
-    # --------------------------------------------------
-    # --------------------------------------------------
-    # --------------------------------------------------
-    # --------------------------------------------------
-    # --------------------------------------------------
-    # --------------------------------------------------
-    # --------------------------------------------------
     "acoustid_fingerprint": {
         # https://picard-docs.musicbrainz.org/en/variables/tags_basic.html#tags-provided-from-musicbrainz-data
         "description": "The Acoustic Fingerprint for the track. The fingerprint is based on the audio information found in a file, and is calculated using the Chromaprint software.",
@@ -452,11 +436,61 @@ fields: FieldDocCollection = {
     },
     "acoustid_id": {
         # https://picard-docs.musicbrainz.org/en/variables/tags_basic.html#tags-provided-from-musicbrainz-data
-        "description": "The AcoustID associated with the track. The AcoustID is the identifier assigned to an audio file based on its acoustic fingerprint. Multiple fingerprints may be assigned the same AcoustID if the fingerprints are similar enough. ",
+        "description": "The AcoustID associated with the track. The AcoustID is the identifier assigned to an audio file based on its acoustic fingerprint. Multiple fingerprints may be assigned the same AcoustID if the fingerprints are similar enough.",
         "category": "music_brainz",
         "data_type": "str",
         "examples": ["86e217b7-d3ad-4493-a9f2-cf71256ace07"],
     },
+    "rg_track_gain": {
+        "description": "ReplayGain Track Gain, see https://en.wikipedia.org/wiki/ReplayGain.",
+        "category": "rg",
+        "examples": [0.0],
+    },
+    "rg_album_gain": {
+        "description": "ReplayGain Album Gain, see https://en.wikipedia.org/wiki/ReplayGain.",
+        "category": "rg",
+    },
+    "rg_track_peak": {
+        "description": "ReplayGain Track Peak, see https://en.wikipedia.org/wiki/ReplayGain.",
+        "category": "rg",
+        "examples": [0.000244],
+    },
+    "rg_album_peak": {
+        "description": "ReplayGain Album Peak, see https://en.wikipedia.org/wiki/ReplayGain.",
+        "category": "rg",
+    },
+    "r128_track_gain": {
+        # https://en.wikipedia.org/wiki/EBU_R_128
+        "description": "An optional gain for track normalization. EBU R 128 is a recommendation for loudness normalisation and maximum level of audio signals.",
+        "category": "r128",
+    },
+    "r128_album_gain": {
+        # https://en.wikipedia.org/wiki/EBU_R_128
+        "description": "An optional gain for album normalization. EBU R 128 is a recommendation for loudness normalisation and maximum level of audio signals.",
+        "category": "r128",
+    },
+    "initial_key": {
+        # https://id3.org/id3v2.4.0-frames
+        "description": 'The Initial key frame contains the musical key in which the sound starts. It is represented as a string with a maximum length of three characters. The ground keys are represented with "A","B","C","D","E", "F" and "G" and halfkeys represented with "b" and "#". Minor is represented as "m".',
+        "category": "common",
+        "examples": ["Dbm"],
+    },
+    # --------------------------------------------------
+    # --------------------------------------------------
+    # --------------------------------------------------
+    # --------------------------------------------------
+    # --------------------------------------------------
+    # --------------------------------------------------
+    # --------------------------------------------------
+    # --------------------------------------------------
+    # --------------------------------------------------
+    # --------------------------------------------------
+    # --------------------------------------------------
+    # --------------------------------------------------
+    # --------------------------------------------------
+    # --------------------------------------------------
+    # --------------------------------------------------
+    # --------------------------------------------------
     # https://picard-docs.musicbrainz.org/en/variables/tags_basic.html#tags-provided-from-musicbrainz-data
     "albumartist_sort": {
         "description": "The release artists sort names, separated by the specified join phrases. (e.g.: “Beatles, The”).",
@@ -507,17 +541,6 @@ fields: FieldDocCollection = {
         "category": "audio",
         "examples": ["MP3", "FLAC"],
     },
-    "initial_key": {
-        # https://id3.org/id3v2.4.0-frames
-        "description": "The Initial key frame contains the musical key in "
-        "which the sound starts. It is represented as a "
-        "string with a maximum length of three characters. "
-        'The ground keys are represented with "A","B","C",'
-        '"D","E", "F" and "G" and halfkeys represented with '
-        '"b" and "#". Minor is represented as "m".',
-        "category": "common",
-        "examples": ["Dbm"],
-    },
     "length": {
         "description": "The length of a recording in seconds.",
         "category": "audio",
@@ -535,20 +558,6 @@ fields: FieldDocCollection = {
         ],
         "data_type": "str",
     },
-    "r128_album_gain": {
-        # https://en.wikipedia.org/wiki/EBU_R_128
-        "description": "An optional gain for album normalization. EBU R 128 is a "
-        "recommendation for loudness normalisation and maximum level of "
-        "audio signals.",
-        "category": "r128",
-    },
-    "r128_track_gain": {
-        # https://en.wikipedia.org/wiki/EBU_R_128
-        "description": "An optional gain for track normalization. EBU R 128 is a "
-        "recommendation for loudness normalisation and maximum level of "
-        "audio signals.",
-        "category": "r128",
-    },
     "releasegroup_types": {
         "description": "This field collects all items in the MusicBrainz’ API "
         " related to type: `type`, `primary-type and "
@@ -556,28 +565,6 @@ fields: FieldDocCollection = {
         "determine in a secure manner if the release is a "
         "soundtrack.",
         "category": "music_brainz",
-    },
-    "rg_album_gain": {
-        "description": "ReplayGain Album Gain, "
-        "see https://en.wikipedia.org/wiki/ReplayGain.",
-        "category": "rg",
-    },
-    "rg_album_peak": {
-        "description": "ReplayGain Album Peak, "
-        "see https://en.wikipedia.org/wiki/ReplayGain.",
-        "category": "rg",
-    },
-    "rg_track_gain": {
-        "description": "ReplayGain Track Gain, "
-        "see https://en.wikipedia.org/wiki/ReplayGain.",
-        "category": "rg",
-        "examples": [0.0],
-    },
-    "rg_track_peak": {
-        "description": "ReplayGain Track Peak, "
-        "see https://en.wikipedia.org/wiki/ReplayGain.",
-        "category": "rg",
-        "examples": [0.000244],
     },
     "samplerate": {
         "description": "The sample rate as an integer number.",
