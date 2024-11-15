@@ -1,3 +1,4 @@
+import datetime
 import enum
 from collections.abc import Generator, Sequence
 from io import BufferedRandom, BufferedReader
@@ -505,85 +506,85 @@ class MediaFile:
     """The country the release was issued in."""
 
     albumstatus: Optional[str]
-    """"""
+    """The status describes how "official" a release is."""
 
     media: Optional[str]
-    """"""
+    """A prototypical medium is one of the physical, separate things you would get when you buy something in a record store."""
 
     albumdisambig: Optional[str]
-    """"""
+    """The disambiguation album field helps to distinguish between identically named albums. The album “Weezer” for example has the disambiguation comments “Red Album” and “Green Album”."""
 
-    date: DateField
-    """"""
+    date: Optional[datetime.date]
+    """The release date of the specific release."""
 
-    year: int
-    """"""
+    year: Optional[int]
+    """The release year of the specific release."""
 
-    month: int
-    """"""
+    month: Optional[int]
+    """The release month of the specific release."""
 
-    day: int
-    """"""
+    day: Optional[int]
+    """The release day of the specific release."""
 
-    original_date: DateField
-    """"""
+    original_date: Optional[datetime.date]
+    """The release date of the original version of the album."""
 
-    original_year: int
-    """"""
+    original_year: Optional[int]
+    """The release year of the original version of the album."""
 
-    original_month: int
-    """"""
+    original_month: Optional[int]
+    """The release month of the original version of the album."""
 
-    original_day: int
-    """"""
+    original_day: Optional[int]
+    """The release day of the original version of the album."""
 
-    artist_credit: str
-    """"""
+    artist_credit: Optional[str]
+    """The track-specific artist credit name, which may be a variation of the artist’s “canonical” name."""
 
-    artists_credit: list[str]
-    """"""
+    artists_credit: Optional[list[str]]
+    """The track-specific artists credit names, which may be a variation of the artist’s “canonical” names."""
 
-    artists_sort: list[str]
-    """"""
+    artists_sort: Optional[list[str]]
+    """The “sort name” of the track artists."""
 
-    albumartist_credit: str
-    """"""
+    albumartist_credit: Optional[str]
+    """The release-specific artist credit name, which may be a variation of the artist’s “canonical” name"""
 
-    albumartists_credit: list[str]
-    """"""
+    albumartists_credit: Optional[list[str]]
+    """The release-specific artists credit names, which may be a variation of the artist’s “canonical” names."""
 
-    art: bytes
-    """"""
+    art: Optional[bytes]
+    """Legacy album art field."""
 
-    images: list[Image]
-    """"""
+    images: Optional[list[Image]]
+    """Cover art, also known as "album art" or "album artwork", is artwork that provides a visual representation of a release."""
 
     mb_trackid: str
-    """"""
+    """MusicBrainz track ID."""
 
     mb_releasetrackid: str
-    """"""
+    """MusicBrainz release track ID."""
 
     mb_workid: str
-    """"""
+    """MusicBrainz work ID."""
 
     mb_albumid: str
-    """"""
+    """MusicBrainz work ID."""
 
     mb_artistids: list[str]
     """"""
 
     mb_artistid: str
-    """"""
+    """MusicBrainz artist ID."""
 
     mb_albumartistids: list[str]
-    """"""
+    """MusicBrainz artist IDs as a list."""
 
     mb_albumartistid: str
-    """"""
+    """MusicBrainz album artist ID."""
 
     mb_releasegroupid: str
-    """"""
+    """MusicBrainz releasegroup ID."""
 
     acoustid_fingerprint: str
     """"""

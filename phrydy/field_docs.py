@@ -260,6 +260,174 @@ fields: FieldDocCollection = {
         "data_type": "str",
         "examples": ["NL", "EN", "GB"],
     },
+    "albumstatus": {
+        "description": 'The status describes how "official" a release is.',
+        "category": "common",
+        "data_type": "str",
+        "examples": ["official", "promotional", "bootleg", "pseudo-release"],
+    },
+    "media": {
+        "description": "A prototypical medium is one of the physical, separate things you would get when you buy something in a record store.",
+        "category": "common",
+        "examples": ["CD"],
+        "data_type": "str",
+    },
+    "albumdisambig": {
+        # https://musicbrainz.org/doc/Disambiguation_Comment
+        "description": "The disambiguation album field helps to distinguish between identically named albums. The album “Weezer” for example has the disambiguation comments “Red Album” and “Green Album”.",
+        "category": "common",
+    },
+    "date": {
+        "description": "The release date of the specific release.",
+        "category": "date",
+        "examples": ["1996-01-01"],
+    },
+    "year": {
+        "description": "The release year of the specific release.",
+        "category": "date",
+        "examples": [2001],
+        "data_type": "int",
+    },
+    "month": {
+        "description": "The release month of the specific release.",
+        "category": "date",
+        "examples": [12],
+        "data_type": "int",
+    },
+    "day": {
+        "description": "The release day of the specific release.",
+        "category": "date",
+        "examples": [31],
+        "data_type": "int",
+    },
+    "original_date": {
+        "description": "The release date of the original version of the album.",
+        "category": "date",
+        "examples": ["1991-11-04"],
+        "data_type": "str",
+    },
+    "original_year": {
+        "description": "The release year of the original version of the album.",
+        "category": "date",
+        "examples": [1991],
+        "data_type": "int",
+    },
+    "original_month": {
+        "description": "The release month of the original version of the album.",
+        "category": "date",
+        "examples": [11],
+        "data_type": "int",
+    },
+    "original_day": {
+        "description": "The release day of the original version of the album.",
+        "category": "date",
+        "examples": [4],
+        "data_type": "int",
+    },
+    "artist_credit": {
+        # https://musicbrainz.org/doc/Artist_Credits
+        "description": "The track-specific artist credit name, which may be a variation of the artist’s “canonical” name.",
+        "category": "common",
+        "data_type": "str",
+    },
+    "artists_credit": {
+        # https://musicbrainz.org/doc/Artist_Credits
+        "description": "The track-specific artists credit names, which may be a variation of the artist’s “canonical” names.",
+        "category": "common",
+        "data_type": "list",
+    },
+    "artists_sort": {
+        "description": "The “sort name” of the track artists.",
+        "category": "common",
+        "data_type": "list",
+        "examples": [["Beatles, The", "White, Jack"]],
+    },
+    "albumartist_credit": {
+        # https://musicbrainz.org/doc/Artist_Credits
+        "description": "The release-specific artist credit name, which may be a variation of the artist’s “canonical” name.",
+        "category": "common",
+        "data_type": "str",
+    },
+    "albumartists_credit": {
+        # https://musicbrainz.org/doc/Artist_Credits
+        "description": "The release-specific artists credit names, which may be a variation of the artist’s “canonical” names.",
+        "category": "common",
+        "data_type": "list",
+    },
+    "art": {
+        "description": "Legacy album art field.",
+        "category": "common",
+        "examples": [b"\xff\xd8\xff\xe0\x00"],
+    },
+    "images": {
+        # https://musicbrainz.org/doc/Cover_Art
+        "description": 'Cover art, also known as "album art" or "album artwork", is artwork that provides a visual representation of a release.',
+        "category": "common",
+        "examples": [["<mediafile.Image object at 0x7f51fce26b20>"]],
+    },
+    "mb_trackid": {
+        "description": "MusicBrainz track ID.",
+        "category": "music_brainz",
+        "examples": ["c390b132-4a44-4e16-bec3-bffbbcaa19aa"],
+        "data_type": "str",
+    },
+    "mb_releasetrackid": {
+        "description": "MusicBrainz release track ID.",
+        "category": "music_brainz",
+        "examples": ["38c8c114-5e3b-484f-8af0-79c47ef9c169"],
+        "data_type": "str",
+    },
+    "mb_workid": {
+        "description": "MusicBrainz work ID.",
+        "category": "music_brainz",
+        "examples": ["508ec4b1-9549-38cd-a61e-1f0d120a6118"],
+        "data_type": "str",
+    },
+    "mb_albumid": {
+        "description": "MusicBrainz work ID.",
+        "category": "music_brainz",
+        "examples": ["fd6adc77-1489-4a13-9aa0-32951061d92b"],
+        "data_type": "str",
+    },
+    "mb_artistid": {
+        "description": "MusicBrainz artist ID.",
+        "category": "music_brainz",
+        "examples": ["1f9df192-a621-4f54-8850-2c5373b7eac9"],
+        "data_type": "str",
+    },
+    "mb_artistids": {
+        "description": "MusicBrainz artist IDs as a list.",
+        "category": "music_brainz",
+        "examples": [["1f9df192-a621-4f54-8850-2c5373b7eac9"]],
+        "data_type": "list",
+    },
+    "mb_albumartistids": {
+        "description": "MusicBrainz album artist IDs as a list.",
+        "category": "music_brainz",
+        "examples": [
+            [
+                "b972f589-fb0e-474e-b64a-803b0364fa75",
+                "dea28aa9-1086-4ffa-8739-0ccc759de1ce",
+                "d2ced2f1-6b58-47cf-ae87-5943e2ab6d99",
+            ]
+        ],
+        "data_type": "list",
+    },
+    "mb_albumartistid": {
+        "description": "MusicBrainz album artist ID.",
+        "category": "music_brainz",
+        "data_type": "str",
+        "examples": [
+            "1f9df192-a621-4f54-8850-2c5373b7eac9",
+            "b972f589-fb0e-474e-b64a-803b0364fa75",
+        ],
+    },
+    "mb_releasegroupid": {
+        "description": "MusicBrainz releasegroup ID.",
+        "category": "music_brainz",
+        "examples": ["f714fd70-aaca-4863-9d0d-2768a53acaeb"],
+        "data_type": "str",
+    },
     # --------------------------------------------------
     # --------------------------------------------------
     # --------------------------------------------------
@@ -289,53 +457,12 @@ fields: FieldDocCollection = {
         "data_type": "str",
         "examples": ["86e217b7-d3ad-4493-a9f2-cf71256ace07"],
     },
-    "albumartist_credit": {
-        "description": "albumartist_credit",
-        "category": "common",
-        "data_type": "str",
-    },
     # https://picard-docs.musicbrainz.org/en/variables/tags_basic.html#tags-provided-from-musicbrainz-data
     "albumartist_sort": {
         "description": "The release artists sort names, separated by the specified join phrases. (e.g.: “Beatles, The”).",
         "category": "common",
         "data_type": "str",
         "examples": ["Beatles, The"],
-    },
-    "albumartists_credit": {
-        "description": "albumartists_credit",
-        "category": "common",
-    },
-    # https://musicbrainz.org/doc/Disambiguation_Comment
-    "albumdisambig": {
-        "description": "The disambiguation album field helps to distinguish between "
-        "identically named albums. The album “Weezer” for example has the "
-        "disambiguation comments “Red Album” and “Green Album”.",
-        "category": "common",
-    },
-    "albumstatus": {
-        "description": 'The status describes how "official" a release is.',
-        "category": "common",
-        "data_type": "str",
-        "examples": ["official", "promotional", "bootleg", "pseudo-release"],
-    },
-    "art": {
-        "description": "Legacy album art field.",
-        "category": "common",
-        "examples": [b"\xff\xd8\xff\xe0\x00"],
-    },
-    "artist_credit": {
-        "description": "The track-specific artist credit name, which may "
-        + "be a variation of the artist’s “canonical” name",
-        "category": "common",
-        "data_type": "str",
-    },
-    "artists_credit": {
-        "description": "artists_credit",
-        "category": "common",
-    },
-    "artists_sort": {
-        "description": "artists_sort",
-        "category": "common",
     },
     "bitdepth": {
         "description": "only available for some formats",
@@ -357,15 +484,6 @@ fields: FieldDocCollection = {
         "category": "audio",
         "data_type": "int",
         "examples": [1, 2],
-    },
-    "date": {
-        "description": "The release data of the specific release.",
-        "category": "date",
-        "examples": ["1996-01-01"],
-    },
-    "day": {
-        "description": "The release day of the specific release.",
-        "category": "date",
     },
     "disctitle": {
         # https://musicbrainz.org/doc/Medium
@@ -389,11 +507,6 @@ fields: FieldDocCollection = {
         "category": "audio",
         "examples": ["MP3", "FLAC"],
     },
-    "images": {
-        "description": "images",
-        "category": "common",
-        "examples": [["<mediafile.Image object at 0x7f51fce26b20>"]],
-    },
     "initial_key": {
         # https://id3.org/id3v2.4.0-frames
         "description": "The Initial key frame contains the musical key in "
@@ -410,69 +523,6 @@ fields: FieldDocCollection = {
         "category": "audio",
         "examples": [674.4666666666667],
     },
-    "mb_albumartistid": {
-        "description": "MusicBrainz album artist ID.",
-        "category": "music_brainz",
-        "data_type": "str",
-        "examples": [
-            "1f9df192-a621-4f54-8850-2c5373b7eac9",
-            "b972f589-fb0e-474e-b64a-803b0364fa75",
-        ],
-    },
-    "mb_albumartistids": {
-        "description": "MusicBrainz album artist IDs as a list.",
-        "category": "music_brainz",
-        "examples": [
-            [
-                "b972f589-fb0e-474e-b64a-803b0364fa75",
-                "dea28aa9-1086-4ffa-8739-0ccc759de1ce",
-                "d2ced2f1-6b58-47cf-ae87-5943e2ab6d99",
-            ]
-        ],
-        "data_type": "list",
-    },
-    "mb_albumid": {
-        "description": "MusicBrainz album ID.",
-        "category": "music_brainz",
-        "examples": ["fd6adc77-1489-4a13-9aa0-32951061d92b"],
-        "data_type": "str",
-    },
-    "mb_artistid": {
-        "description": "MusicBrainz artist ID.",
-        "category": "music_brainz",
-        "examples": ["1f9df192-a621-4f54-8850-2c5373b7eac9"],
-        "data_type": "str",
-    },
-    "mb_artistids": {
-        "description": "MusicBrainz artist IDs as a list.",
-        "category": "music_brainz",
-        "examples": [["1f9df192-a621-4f54-8850-2c5373b7eac9"]],
-        "data_type": "list",
-    },
-    "mb_releasegroupid": {
-        "description": "MusicBrainz releasegroup ID.",
-        "category": "music_brainz",
-        "examples": ["f714fd70-aaca-4863-9d0d-2768a53acaeb"],
-        "data_type": "str",
-    },
-    "mb_releasetrackid": {
-        "description": "MusicBrainz release track ID.",
-        "category": "music_brainz",
-        "examples": ["38c8c114-5e3b-484f-8af0-79c47ef9c169"],
-        "data_type": "str",
-    },
-    "mb_trackid": {
-        "description": "MusicBrainz track ID.",
-        "category": "music_brainz",
-        "examples": ["c390b132-4a44-4e16-bec3-bffbbcaa19aa"],
-        "data_type": "str",
-    },
-    "mb_workid": {
-        "description": "MusicBrainz work ID.",
-        "category": "music_brainz",
-        "examples": ["508ec4b1-9549-38cd-a61e-1f0d120a6118"],
-        "data_type": "str",
-    },
     "mb_workhierarchy_ids": {
         "description": "All IDs in the work hierarchy. This field corresponds "
         "to the field `work_hierarchy`. The top level work ID "
@@ -484,43 +534,6 @@ fields: FieldDocCollection = {
             "eafec51f-47c5-3c66-8c36-a524246c85f8"
         ],
         "data_type": "str",
-    },
-    "media": {
-        "description": "A prototypical medium is one of the physical, separate things "
-        "you would get when you buy something in a record store.",
-        "category": "common",
-        "examples": ["CD"],
-        "data_type": "str",
-    },
-    "month": {
-        "description": "The release month of the specific release.",
-        "category": "date",
-        "examples": [11],
-        "data_type": "int",
-    },
-    "original_date": {
-        "description": "The release date of the original version of the " "album.",
-        "category": "date",
-        "examples": ["1991-11-04"],
-        "data_type": "str",
-    },
-    "original_day": {
-        "description": "The release day of the original version of the album.",
-        "category": "date",
-        "examples": [4],
-        "data_type": "int",
-    },
-    "original_month": {
-        "description": "The release month of the original version of the " + "album.",
-        "category": "date",
-        "examples": [11],
-        "data_type": "int",
-    },
-    "original_year": {
-        "description": "The release year of the original version of the " "album.",
-        "category": "date",
-        "examples": [1991],
-        "data_type": "int",
     },
     "r128_album_gain": {
         # https://en.wikipedia.org/wiki/EBU_R_128
@@ -590,12 +603,6 @@ fields: FieldDocCollection = {
             'Scene II. No. 2 Aria "Was hör ...'
         ],
         "data_type": "str",
-    },
-    "year": {
-        "description": "The release year of the specific release.",
-        "category": "date",
-        "examples": [2001],
-        "data_type": "int",
     },
 }
 """

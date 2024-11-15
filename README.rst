@@ -128,7 +128,7 @@ List all available fields of a media file:
      - ``The Beatles``
    * - albumartist_credit
      - common
-     - albumartist_credit
+     - The release-specific artist credit name, which may be a variation of the artist’s “canonical” name.
      - 
    * - albumartist_sort
      - common
@@ -140,7 +140,7 @@ List all available fields of a media file:
      - ``['The Beatles']``
    * - albumartists_credit
      - common
-     - albumartists_credit
+     - The release-specific artists credit names, which may be a variation of the artist’s “canonical” names.
      - 
    * - albumartists_sort
      - common
@@ -176,7 +176,7 @@ List all available fields of a media file:
      - ``The Beatles``
    * - artist_credit
      - common
-     - The track-specific artist credit name, which may be a variation of the artist’s “canonical” name
+     - The track-specific artist credit name, which may be a variation of the artist’s “canonical” name.
      - 
    * - artist_sort
      - common
@@ -188,12 +188,12 @@ List all available fields of a media file:
      - ``['a-ha']``, ``['Anouk', 'Remon Stotijn']``
    * - artists_credit
      - common
-     - artists_credit
+     - The track-specific artists credit names, which may be a variation of the artist’s “canonical” names.
      - 
    * - artists_sort
      - common
-     - artists_sort
-     - 
+     - The “sort name” of the track artists.
+     - ``['Beatles, The', 'White, Jack']``
    * - asin
      - common
      - The Amazon Standard Identification Number - the number identifying the item on Amazon.
@@ -256,12 +256,12 @@ List all available fields of a media file:
      - ``NL``, ``EN``, ``GB``
    * - date
      - date
-     - The release data of the specific release.
+     - The release date of the specific release.
      - ``1996-01-01``
    * - day
      - date
      - The release day of the specific release.
-     - 
+     - ``31``
    * - disc
      - common
      - The number of the disc.
@@ -304,7 +304,7 @@ List all available fields of a media file:
      - 
    * - images
      - common
-     - images
+     - Cover art, also known as "album art" or "album artwork", is artwork that provides a visual representation of a release.
      - ``['<mediafile.Image object at 0x7f51fce26b20>']``
    * - initial_key
      - common
@@ -348,7 +348,7 @@ List all available fields of a media file:
      - ``['b972f589-fb0e-474e-b64a-803b0364fa75', 'dea28aa9-1086-4ffa-8739-0ccc759de1ce', 'd2ced2f1-6b58-47cf-ae87-5943e2ab6d99']``
    * - mb_albumid
      - music_brainz
-     - MusicBrainz album ID.
+     - MusicBrainz work ID.
      - ``fd6adc77-1489-4a13-9aa0-32951061d92b``
    * - mb_artistid
      - music_brainz
@@ -385,7 +385,7 @@ List all available fields of a media file:
    * - month
      - date
      - The release month of the specific release.
-     - ``11``
+     - ``12``
    * - original_date
      - date
      - The release date of the original version of the album.
@@ -497,7 +497,9 @@ phrydy-debug
                                  release, separated by the specified join phrases.
                                  Examples: ['The Beatles']
 
-        albumartist_credit:      albumartist_credit
+        albumartist_credit:      The release-specific artist credit name, which
+                                 may be a variation of the artist’s “canonical”
+                                 name.
 
         albumartist_sort:        The release artists sort names, separated by the
                                  specified join phrases. (e.g.: “Beatles, The”).
@@ -506,7 +508,9 @@ phrydy-debug
         albumartists:            The album artists specifed as a list.
                                  Examples: [['The Beatles']]
 
-        albumartists_credit:     albumartists_credit
+        albumartists_credit:     The release-specific artists credit names, which
+                                 may be a variation of the artist’s “canonical”
+                                 names.
 
         albumartists_sort:       The “sort name” of the artist for the entire
                                  album.
@@ -538,7 +542,7 @@ phrydy-debug
                                  Examples: ['The Beatles']
 
         artist_credit:           The track-specific artist credit name, which may
-                                 be a variation of the artist’s “canonical” name
+                                 be a variation of the artist’s “canonical” name.
 
         artist_sort:             The “sort name” of the track artist.
                                  Examples: ['Beatles, The', 'White, Jack']
@@ -547,9 +551,12 @@ phrydy-debug
                                  names.
                                  Examples: [['a-ha'], ['Anouk', 'Remon Stotijn']]
 
-        artists_credit:          artists_credit
+        artists_credit:          The track-specific artists credit names, which
+                                 may be a variation of the artist’s “canonical”
+                                 names.
 
-        artists_sort:            artists_sort
+        artists_sort:            The “sort name” of the track artists.
+                                 Examples: [['Beatles, The', 'White, Jack']]
 
         asin:                    The Amazon Standard Identification Number - the
                                  number identifying the item on Amazon.
@@ -610,10 +617,11 @@ phrydy-debug
         country:                 The country the release was issued in.
                                  Examples: ['NL', 'EN', 'GB']
 
-        date:                    The release data of the specific release.
+        date:                    The release date of the specific release.
                                  Examples: ['1996-01-01']
 
         day:                     The release day of the specific release.
+                                 Examples: [31]
 
         disc:                    The number of the disc.
                                  Examples: [1]
@@ -655,7 +663,9 @@ phrydy-debug
         grouping:                A content group, which is a collection of media
                                  items such as a CD boxed set.
 
-        images:                  images
+        images:                  Cover art, also known as "album art" or "album
+                                 artwork", is artwork that provides a visual
+                                 representation of a release.
                                  Examples: [['<mediafile.Image object at 0x7f51fce26b20>']]
 
         initial_key:             The Initial key frame contains the musical key in
@@ -701,7 +711,7 @@ phrydy-debug
         mb_albumartistids:       MusicBrainz album artist IDs as a list.
                                  Examples: [['b972f589-fb0e-474e-b64a-803b0364fa75', 'dea28aa9-1086-4ffa-8739-0ccc759de1ce', 'd2ced2f1-6b58-47cf-ae87-5943e2ab6d99']]
 
-        mb_albumid:              MusicBrainz album ID.
+        mb_albumid:              MusicBrainz work ID.
                                  Examples: ['fd6adc77-1489-4a13-9aa0-32951061d92b']
 
         mb_artistid:             MusicBrainz artist ID.
@@ -734,7 +744,7 @@ phrydy-debug
                                  Examples: ['CD']
 
         month:                   The release month of the specific release.
-                                 Examples: [11]
+                                 Examples: [12]
 
         original_date:           The release date of the original version of the
                                  album.
