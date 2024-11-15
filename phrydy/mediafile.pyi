@@ -466,43 +466,43 @@ class MediaFile:
     """The label which issued the release. There may be more than one."""
 
     artist_sort: Optional[str]
-    """"""
+    """The “sort name” of the track artist."""
 
     albumartist_sort: Optional[str]
-    """"""
+    """The “sort name” of the artist for the entire album."""
 
     asin: Optional[str]
-    """"""
+    """The Amazon Standard Identification Number - the number identifying the item on Amazon."""
 
     catalognums: Optional[list[str]]
-    """"""
+    """Multiple numbers assigned to the release by the label which can often be found on the spine or near the barcode. There may be more than one, especially when multiple labels are involved."""
 
     catalognum: Optional[str]
-    """"""
+    """A number assigned to the release by the label which can often be found on the spine or near the barcode. There may be more than one, especially when multiple labels are involved."""
 
     barcode: Optional[str]
-    """"""
+    """The barcode assigned to the release. There are many different types of barcode, but the ones usually found on music releases are two: 1. Universal Product Code (UPC), which is the original barcode used in North America. 2. European Article Number (EAN)."""
 
     isrc: Optional[str]
-    """"""
+    """The International Standard Recording Code, abbreviated to ISRC, is a system of codes that identify audio and music video recordings."""
 
     disctitle: Optional[str]
-    """"""
+    """Mediums are always included in a release, and have a position in said release (e.g. disc 1 or disc 2). They have a format, like CD, 12" vinyl or cassette (in some cases this will be unknown), and can have an optional title (e.g. disc 2: The Early Years)."""
 
     encoder: Optional[str]
-    """"""
+    """The name of the person or organisation that encoded the audio file. This field may contain a copyright message, if the audio file also is copyrighted by the encoder."""
 
     script: Optional[str]
-    """"""
+    """The script used to write the release’s track list. The possible values are taken from the ISO 15924 standard."""
 
     languages: Optional[list[str]]
-    """"""
+    """The language a release’s track list is written in. The possible values are taken from the ISO 639-3 standard."""
 
     language: Optional[str]
-    """"""
+    """The language a release’s track list is written in. The possible values are taken from the ISO 639-3 standard."""
 
     country: Optional[str]
-    """"""
+    """The country the release was issued in."""
 
     albumstatus: Optional[str]
     """"""

@@ -144,8 +144,8 @@ List all available fields of a media file:
      - 
    * - albumartists_sort
      - common
-     - albumartists_sort
-     - 
+     - The “sort name” of the artist for the entire album.
+     - ``Beatles, The``, ``White, Jack``
    * - albumdisambig
      - common
      - The disambiguation album field helps to distinguish between identically named albums. The album “Weezer” for example has the disambiguation comments “Red Album” and “Green Album”.
@@ -200,7 +200,7 @@ List all available fields of a media file:
      - ``B000002UAL``
    * - barcode
      - common
-     - The barcode assigned to the release. There are many different types of barcode, but the ones usually found on music releases are two: 1. Universal Product Code (UPC), which is the original barcode used in North America. 2. European Article Number (EAN)
+     - The barcode assigned to the release. There are many different types of barcode, but the ones usually found on music releases are two: 1. Universal Product Code (UPC), which is the original barcode used in North America. 2. European Article Number (EAN).
      - ``5028421931838``, ``036000291452``
    * - bitdepth
      - audio
@@ -220,12 +220,12 @@ List all available fields of a media file:
      - 
    * - catalognum
      - common
-     - This is a number assigned to the release by the label which can often be found on the spine or near the barcode. There may be more than one, especially when multiple labels are involved. This is not the ASIN — there is a relationship for that — nor the label code.
+     - A number assigned to the release by the label which can often be found on the spine or near the barcode. There may be more than one, especially when multiple labels are involved.
      - ``CDP 7 46439 2``
    * - catalognums
      - common
-     - catalognums
-     - 
+     - Multiple numbers assigned to the release by the label which can often be found on the spine or near the barcode. There may be more than one, especially when multiple labels are involved.
+     - ``['CDP 7 46439 2', 'Do 247282']``
    * - channels
      - audio
      - channels
@@ -253,7 +253,7 @@ List all available fields of a media file:
    * - country
      - common
      - The country the release was issued in.
-     - ``NL``
+     - ``NL``, ``EN``, ``GB``
    * - date
      - date
      - The release data of the specific release.
@@ -268,15 +268,15 @@ List all available fields of a media file:
      - ``1``
    * - disctitle
      - common
-     - disctitle
-     - 
+     - Mediums are always included in a release, and have a position in said release (e.g. disc 1 or disc 2). They have a format, like CD, 12" vinyl or cassette (in some cases this will be unknown), and can have an optional title (e.g. disc 2: The Early Years).
+     - ``disc 2: The Early Years``
    * - disctotal
      - common
      - The total number of discs.
      - ``1``
    * - encoder
      - common
-     - the name of the person or organisation that encoded the audio file. This field may contain a copyright message, if the audio file also is copyrighted by the encoder.
+     - The name of the person or organisation that encoded the audio file. This field may contain a copyright message, if the audio file also is copyrighted by the encoder.
      - ``iTunes v7.6.2``
    * - encoder_info
      - common
@@ -324,8 +324,8 @@ List all available fields of a media file:
      - ``zxx``, ``eng``
    * - languages
      - common
-     - languages
-     - 
+     - The language a release’s track list is written in. The possible values are taken from the ISO 639-3 standard.
+     - ``['zxx', 'eng']``
    * - length
      - audio
      - The length of a recording in seconds.
@@ -508,7 +508,9 @@ phrydy-debug
 
         albumartists_credit:     albumartists_credit
 
-        albumartists_sort:       albumartists_sort
+        albumartists_sort:       The “sort name” of the artist for the entire
+                                 album.
+                                 Examples: ['Beatles, The', 'White, Jack']
 
         albumdisambig:           The disambiguation album field helps to
                                  distinguish between identically named albums. The
@@ -558,7 +560,7 @@ phrydy-debug
                                  usually found on music releases are two: 1.
                                  Universal Product Code (UPC), which is the
                                  original barcode used in North America. 2.
-                                 European Article Number (EAN)
+                                 European Article Number (EAN).
                                  Examples: ['5028421931838', '036000291452']
 
         bitdepth:                only available for some formats
@@ -573,15 +575,17 @@ phrydy-debug
 
         bpm:                     The number of beats per minute of the track.
 
-        catalognum:              This is a number assigned to the release by the
+        catalognum:              A number assigned to the release by the label
+                                 which can often be found on the spine or near the
+                                 barcode. There may be more than one, especially
+                                 when multiple labels are involved.
+                                 Examples: ['CDP 7 46439 2']
+
+        catalognums:             Multiple numbers assigned to the release by the
                                  label which can often be found on the spine or
                                  near the barcode. There may be more than one,
                                  especially when multiple labels are involved.
-                                 This is not the ASIN — there is a relationship
-                                 for that — nor the label code.
-                                 Examples: ['CDP 7 46439 2']
-
-        catalognums:             catalognums
+                                 Examples: [['CDP 7 46439 2', 'Do 247282']]
 
         channels:                channels
                                  Examples: [1, 2]
@@ -604,7 +608,7 @@ phrydy-debug
                                  space character.
 
         country:                 The country the release was issued in.
-                                 Examples: ['NL']
+                                 Examples: ['NL', 'EN', 'GB']
 
         date:                    The release data of the specific release.
                                  Examples: ['1996-01-01']
@@ -614,12 +618,18 @@ phrydy-debug
         disc:                    The number of the disc.
                                  Examples: [1]
 
-        disctitle:               disctitle
+        disctitle:               Mediums are always included in a release, and
+                                 have a position in said release (e.g. disc 1 or
+                                 disc 2). They have a format, like CD, 12" vinyl
+                                 or cassette (in some cases this will be unknown),
+                                 and can have an optional title (e.g. disc 2: The
+                                 Early Years).
+                                 Examples: ['disc 2: The Early Years']
 
         disctotal:               The total number of discs.
                                  Examples: [1]
 
-        encoder:                 the name of the person or organisation that
+        encoder:                 The name of the person or organisation that
                                  encoded the audio file. This field may contain a
                                  copyright message, if the audio file also is
                                  copyrighted by the encoder.
@@ -671,7 +681,10 @@ phrydy-debug
                                  639-3 standard.
                                  Examples: ['zxx', 'eng']
 
-        languages:               languages
+        languages:               The language a release’s track list is written
+                                 in. The possible values are taken from the ISO
+                                 639-3 standard.
+                                 Examples: [['zxx', 'eng']]
 
         length:                  The length of a recording in seconds.
                                  Examples: [674.4666666666667]

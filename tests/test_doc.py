@@ -36,9 +36,8 @@ class TestDoc:
 
     def test_field_long_title(self) -> None:
         title = phrydy.field_docs.fields["catalognum"]["description"]
-        assert len(title) > 200
-        # Words at the end of a title string
-        assert "label code" in title
+        assert len(title) > 100
+        assert "number assigned" in title
 
     def test_doc_string(self) -> None:
         assert isinstance(phrydy.format_fields_as_txt(), str)

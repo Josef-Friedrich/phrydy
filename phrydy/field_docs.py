@@ -184,6 +184,82 @@ fields: FieldDocCollection = {
         "category": "common",
         "examples": ["Brilliant Classics", "wea"],
     },
+    "artist_sort": {
+        "description": "The “sort name” of the track artist.",
+        "category": "common",
+        "data_type": "str",
+        "examples": ["Beatles, The", "White, Jack"],
+    },
+    "albumartists_sort": {
+        "description": "The “sort name” of the artist for the entire album.",
+        "category": "common",
+        "data_type": "str",
+        "examples": ["Beatles, The", "White, Jack"],
+    },
+    "asin": {
+        # https://picard-docs.musicbrainz.org/en/variables/tags_basic.html#tags-provided-from-musicbrainz-data
+        "description": "The Amazon Standard Identification Number - the number identifying the item on Amazon.",
+        "category": "common",
+        "examples": ["B000002UAL"],
+    },
+    "catalognums": {
+        # https://musicbrainz.org/doc/Release/Catalog_Number
+        "description": "Multiple numbers assigned to the release by the label which can often be found on the spine or near the barcode. There may be more than one, especially when multiple labels are involved.",
+        "category": "common",
+        "examples": [["CDP 7 46439 2", "Do 247282"]],
+    },
+    "catalognum": {
+        # https://musicbrainz.org/doc/Release/Catalog_Number
+        "description": "A number assigned to the release by the label which can often be found on the spine or near the barcode. There may be more than one, especially when multiple labels are involved.",
+        "category": "common",
+        "examples": ["CDP 7 46439 2"],
+    },
+    "barcode": {
+        # https://musicbrainz.org/doc/Barcode
+        # https://picard-docs.musicbrainz.org/en/variables/tags_basic.html#tags-provided-from-musicbrainz-data
+        "description": "The barcode assigned to the release. There are many different types of barcode, but the ones usually found on music releases are two: 1. Universal Product Code (UPC), which is the original barcode used in North America. 2. European Article Number (EAN).",
+        "category": "common",
+        "data_type": "str",
+        "examples": ["5028421931838", "036000291452"],
+    },
+    "isrc": {
+        # https://musicbrainz.org/doc/ISRC
+        "description": "The International Standard Recording Code, abbreviated to ISRC, is a system of codes that identify audio and music video recordings.",
+        "category": "common",
+        "examples": ["CAC118989003", "ITO101117740"],
+    },
+    "encoder": {
+        # https://id3.org/id3v2.4.0-frames
+        "description": "The name of the person or organisation that encoded the audio file. This field may contain a copyright message, if the audio file also is copyrighted by the encoder.",
+        "category": "common",
+        "examples": ["iTunes v7.6.2"],
+    },
+    "script": {
+        # https://musicbrainz.org/doc/Release#Script
+        "description": "The script used to write the release’s track list. The possible values are taken from the ISO 15924 standard.",
+        "category": "common",
+        "examples": ["Latn"],
+        "data_type": "str",
+    },
+    "languages": {
+        # https://musicbrainz.org/doc/Release#Language
+        "description": "The language a release’s track list is written in. The possible values are taken from the ISO 639-3 standard.",
+        "category": "common",
+        "examples": [["zxx", "eng"]],
+    },
+    "language": {
+        # https://musicbrainz.org/doc/Release#Language
+        "description": "The language a release’s track list is written in. The possible values are taken from the ISO 639-3 standard.",
+        "category": "common",
+        "examples": ["zxx", "eng"],
+    },
+    "country": {
+        # https://musicbrainz.org/doc/Release/Country
+        "description": "The country the release was issued in.",
+        "category": "common",
+        "data_type": "str",
+        "examples": ["NL", "EN", "GB"],
+    },
     # --------------------------------------------------
     # --------------------------------------------------
     # --------------------------------------------------
@@ -229,10 +305,6 @@ fields: FieldDocCollection = {
         "description": "albumartists_credit",
         "category": "common",
     },
-    "albumartists_sort": {
-        "description": "albumartists_sort",
-        "category": "common",
-    },
     # https://musicbrainz.org/doc/Disambiguation_Comment
     "albumdisambig": {
         "description": "The disambiguation album field helps to distinguish between "
@@ -257,12 +329,6 @@ fields: FieldDocCollection = {
         "category": "common",
         "data_type": "str",
     },
-    "artist_sort": {
-        "description": "The “sort name” of the track artist.",
-        "category": "common",
-        "data_type": "str",
-        "examples": ["Beatles, The", "White, Jack"],
-    },
     "artists_credit": {
         "description": "artists_credit",
         "category": "common",
@@ -270,24 +336,6 @@ fields: FieldDocCollection = {
     "artists_sort": {
         "description": "artists_sort",
         "category": "common",
-    },
-    "asin": {
-        # https://picard-docs.musicbrainz.org/en/variables/tags_basic.html#tags-provided-from-musicbrainz-data
-        "description": "The Amazon Standard Identification Number - the number identifying the item on Amazon.",
-        "category": "common",
-        "examples": ["B000002UAL"],
-    },
-    "barcode": {
-        # https://musicbrainz.org/doc/Barcode
-        # https://picard-docs.musicbrainz.org/en/variables/tags_basic.html#tags-provided-from-musicbrainz-data
-        "description": "The barcode assigned to the release. There are many different types of barcode, but the "
-        "ones usually found on music releases are two: "
-        "1. Universal Product Code (UPC), which is the "
-        "original barcode used in North America. "
-        "2. European Article Number (EAN)",
-        "category": "common",
-        "data_type": "str",
-        "examples": ["5028421931838", "036000291452"],
     },
     "bitdepth": {
         "description": "only available for some formats",
@@ -304,30 +352,11 @@ fields: FieldDocCollection = {
         "category": "common",
         "examples": ["CBR"],
     },
-    "catalognum": {
-        "description": "This is a number assigned to the release by the "
-        + "label which can often be found on the spine or near "
-        + "the barcode. There may be more than one, especially "
-        + "when multiple labels are involved. This is not the "
-        + "ASIN — there is a relationship for that — nor the "
-        + "label code.",
-        "category": "common",
-        "examples": ["CDP 7 46439 2"],
-    },
-    "catalognums": {
-        "description": "catalognums",
-        "category": "common",
-    },
     "channels": {
         "description": "channels",
         "category": "audio",
         "data_type": "int",
         "examples": [1, 2],
-    },
-    "country": {
-        "description": "The country the release was issued in.",
-        "category": "common",
-        "examples": ["NL"],
     },
     "date": {
         "description": "The release data of the specific release.",
@@ -339,16 +368,11 @@ fields: FieldDocCollection = {
         "category": "date",
     },
     "disctitle": {
-        "description": "disctitle",
+        # https://musicbrainz.org/doc/Medium
+        "description": 'Mediums are always included in a release, and have a position in said release (e.g. disc 1 or disc 2). They have a format, like CD, 12" vinyl or cassette (in some cases this will be unknown), and can have an optional title (e.g. disc 2: The Early Years).',
+        "data_type": "str",
         "category": "common",
-    },
-    "encoder": {
-        # https://id3.org/id3v2.4.0-frames
-        "description": "the name of the person or organisation that encoded the audio "
-        "file. This field may contain a copyright message, if the audio "
-        "file also is copyrighted by the encoder.",
-        "category": "common",
-        "examples": ["iTunes v7.6.2"],
+        "examples": ["disc 2: The Early Years"],
     },
     "encoder_info": {
         "description": "encoder_info",
@@ -380,25 +404,6 @@ fields: FieldDocCollection = {
         '"b" and "#". Minor is represented as "m".',
         "category": "common",
         "examples": ["Dbm"],
-    },
-    "isrc": {
-        # https://musicbrainz.org/doc/ISRC
-        "description": "The International Standard Recording Code, "
-        "abbreviated to ISRC, is a system of codes that "
-        "identify audio and music video recordings.",
-        "category": "common",
-        "examples": ["CAC118989003", "ITO101117740"],
-    },
-    "language": {
-        "description": "The language a release’s track list is written in. "
-        + "The possible values are taken from the ISO 639-3 "
-        + "standard.",
-        "category": "common",
-        "examples": ["zxx", "eng"],
-    },
-    "languages": {
-        "description": "languages",
-        "category": "common",
     },
     "length": {
         "description": "The length of a recording in seconds.",
@@ -566,14 +571,6 @@ fields: FieldDocCollection = {
         "category": "audio",
         "examples": [44100],
         "data_type": "int",
-    },
-    "script": {
-        "description": "The script used to write the release’s track list. "
-        + "The possible values are taken from the ISO 15924 "
-        + "standard.",
-        "category": "common",
-        "examples": ["Latn"],
-        "data_type": "str",
     },
     "work": {
         "description": "The Musicbrainzs’ work entity.",
