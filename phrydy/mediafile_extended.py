@@ -81,7 +81,7 @@ class MediaFileExtended(MediaFile):
             ASFStorageStyle("WM/AlbumArtistSortOrder"),
         ),
     )
-    """Changed field. Uses TSO2"""
+    """Changed field. Uses TSO2 Uses MP3s’ storage style ``TSO2``."""
 
     # composer_sort = MediaField(
     #     MP3StorageStyle('TSOC'),
@@ -100,7 +100,7 @@ class MediaFileExtended(MediaFile):
             ASFStorageStyle("WM/ComposerSortOrder"),
         ),
     )
-    """Changed field. Uses MP3 description storage style composersortorder."""
+    """Changed field. Uses MP3s’ description storage style ``composersortorder``."""
 
     # mb_workid = MediaField(
     #     MP3DescStorageStyle(u'MusicBrainz Work Id'),
@@ -118,7 +118,7 @@ class MediaFileExtended(MediaFile):
             ASFStorageStyle("MusicBrainz/Work Id"),
         ),
     )
-    """Changed Field: The MusicBrainz’ Work ID"""
+    """Changed Field: The MusicBrainz’ Work ID. Uses the additional storage style ``musicbrainz work id``."""
 
     # Additional fields
     mb_workhierarchy_ids: Optional[str] = cast(
@@ -188,7 +188,7 @@ class MediaFileExtended(MediaFile):
             ASFStorageStyle("MusicBrainz/Release Group Types"),
         ),
     )
-    """This field collects all items in the MusicBrainz’ API related to
+    """All items in the MusicBrainz’ API related to
     type: ``type``, ``primary-type`` and``secondary-type-list``. Main usage
     of this field is to determine in a secure manner if the release is a
     soundtrack.
