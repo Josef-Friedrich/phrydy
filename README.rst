@@ -27,7 +27,8 @@ version of the ``mediafile.py`` included in the ``beets`` project. Now
 ``beets`` has its own separate library called ``mediafile``. It might be
 better to use the upstream library directly.
 
-.. image: https://raw.githubusercontent.com/Josef-Friedrich/phrydy/refs/heads/main/docs/Type-hints.gif
+.. image:: /Josef-Friedrich/phrydy/refs/heads/main/docs/Type-hints.gif
+   :target: https://raw.githubusercontent.com/
 
 ``phrydy`` offeres two media file classes: ``MediaFile`` is the
 looped through and unmodified version that comes directly from the beets
