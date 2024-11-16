@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "phrydy"
-version = "4.0.0"
+version = "4.1.0"
 description = "Extended version of the mediafile library of the beets project. It is used by the Python command line tool `audiorename`."
 authors = ["Josef Friedrich <josef@friedrich.rocks>"]
 readme = "README.rst"
