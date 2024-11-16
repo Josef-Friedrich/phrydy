@@ -45,6 +45,30 @@ class TestNoMeta:
     def test_lyricist(self) -> None:
         assert self.mediafile.lyricist is None
 
+    def test_composer(self) -> None:
+        assert self.mediafile.composer == "the composer"
+
+    def test_composer_sort(self) -> None:
+        assert self.mediafile.composer_sort is None
+
+    def test_arranger(self) -> None:
+        assert self.mediafile.arranger is None
+
+    def test_grouping(self) -> None:
+        assert self.mediafile.grouping == "the grouping"
+
+    def test_track(self) -> None:
+        assert self.mediafile.track == 5
+
+    def test_tracktotal(self) -> None:
+        assert self.mediafile.tracktotal == 12
+
+    def test_disc(self) -> None:
+        assert self.mediafile.disc == 1
+
+    def test_disctotal(self) -> None:
+        assert self.mediafile.disctotal == 1
+
     def test_date(self) -> None:
         assert self.mediafile.date == datetime.date(1996, 6, 24)
 
