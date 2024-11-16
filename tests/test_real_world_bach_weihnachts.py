@@ -199,8 +199,121 @@ class TestBachWeihnachts:
     def test_albumartists_sort(self) -> None:
         assert self.mediafile.albumartists_sort is None
 
+    # Legacy album art field
     def test_art(self) -> None:
         assert self.mediafile.art is not None
 
+    # Image list
     def test_images(self) -> None:
         assert self.mediafile.images is not None
+
+    # MusicBrainz IDs.
+    def test_mb_trackid(self) -> None:
+        assert self.mediafile.mb_trackid == "b7753b83-3d56-42ba-ab20-8a46a7a397b0"
+
+    def test_mb_releasetrackid(self) -> None:
+        assert (
+            self.mediafile.mb_releasetrackid == "bcc89645-9cd4-3cbb-8b7c-1532092250ae"
+        )
+
+    def test_mb_workid(self) -> None:
+        assert self.mediafile.mb_workid == "07472580-468d-3de2-bb69-8f5917c2e731"
+
+    def test_mb_albumid(self) -> None:
+        assert self.mediafile.mb_albumid == "1b049c5f-f858-49a6-955d-18b6ac064f5b"
+
+    def test_mb_artistids(self) -> None:
+        assert self.mediafile.mb_artistids == ["24f1766e-9635-4d58-a4d4-9413f9f98a4c"]
+
+    def test_mb_artistid(self) -> None:
+        assert self.mediafile.mb_artistid == "24f1766e-9635-4d58-a4d4-9413f9f98a4c"
+
+    def test_mb_albumartistids(self) -> None:
+        assert self.mediafile.mb_albumartistids == [
+            "24f1766e-9635-4d58-a4d4-9413f9f98a4c",
+            "9b891046-35af-4eb0-a058-eba4c9b8d01f",
+            "98b95966-64db-4631-8b9f-8aa66f32cc98",
+        ]
+
+    def test_mb_albumartistid(self) -> None:
+        assert self.mediafile.mb_albumartistid == "24f1766e-9635-4d58-a4d4-9413f9f98a4c"
+
+    def test_mb_releasegroupid(self) -> None:
+        assert (
+            self.mediafile.mb_releasegroupid == "d9f114ac-23b7-35dc-9f89-42b4c49bfe79"
+        )
+
+    # Acoustid fields.
+    def test_acoustid_fingerprint(self) -> None:
+        assert self.mediafile.acoustid_fingerprint is None
+
+    def test_acoustid_id(self) -> None:
+        assert self.mediafile.acoustid_id is None
+
+    # ReplayGain fields.
+    def test_rg_track_gain(self) -> None:
+        assert self.mediafile.rg_track_gain == 0.0
+
+    def test_rg_album_gain(self) -> None:
+        assert self.mediafile.rg_album_gain is None
+
+    def test_rg_track_peak(self) -> None:
+        assert self.mediafile.rg_track_peak == 0.000244
+
+    def test_rg_album_peak(self) -> None:
+        assert self.mediafile.rg_album_peak is None
+
+    # EBU R128 fields.
+    def test_r128_track_gain(self) -> None:
+        assert self.mediafile.r128_track_gain is None
+
+    def test_r128_album_gain(self) -> None:
+        assert self.mediafile.r128_album_gain is None
+
+    def test_initial_key(self) -> None:
+        assert self.mediafile.initial_key is None
+
+    # Properties
+    def test_length(self) -> None:
+        assert self.mediafile.length == 1.0838
+
+    def test_samplerate(self) -> None:
+        assert self.mediafile.samplerate == 44100
+
+    def test_bitdepth(self) -> None:
+        assert self.mediafile.bitdepth == 0
+
+    def test_channels(self) -> None:
+        assert self.mediafile.channels == 1
+
+    def test_bitrate(self) -> None:
+        assert self.mediafile.bitrate == 80000
+
+    def test_bitrate_mode(self) -> None:
+        assert self.mediafile.bitrate_mode == ""
+
+    def test_encoder_info(self) -> None:
+        assert self.mediafile.encoder_info == ""
+
+    def test_encoder_settings(self) -> None:
+        assert self.mediafile.encoder_settings == ""
+
+    def test_format(self) -> None:
+        assert self.mediafile.format == "MP3"
+
+    # Additional fields
+
+    def test_mb_workhierarchy_ids(self) -> None:
+        assert self.mediafile.mb_workhierarchy_ids is None
+
+    def test_work(self) -> None:
+        assert (
+            self.mediafile.work
+            == 'Weihnachts-Oratorium, BWV 248: Teil I, I. Coro "Jauchzet, frohlocket"'
+        )
+
+    def test_work_hierarchy(self) -> None:
+        assert self.mediafile.work_hierarchy is None
+
+    def test_releasegroup_types(self) -> None:
+        assert self.mediafile.releasegroup_types is None

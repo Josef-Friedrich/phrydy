@@ -1,4 +1,4 @@
-from typing import Any, Dict, Generator, Set, cast
+from typing import Any, Dict, Generator, Optional, Set, cast
 
 from phrydy.mediafile import (
     ASFStorageStyle,
@@ -121,11 +121,14 @@ class MediaFileExtended(MediaFile):
     """Changed Field: The MusicBrainz’ Work ID"""
 
     # Additional fields
-    mb_workhierarchy_ids = MediaField(
-        MP3DescStorageStyle("MusicBrainz Work Hierarchy Ids"),
-        MP4StorageStyle("----:com.apple.iTunes:" "MusicBrainz Work Hierarchy Ids"),
-        StorageStyle("MUSICBRAINZ_WORKHIERARCHY_IDS"),
-        ASFStorageStyle("MusicBrainz/Work Hierarchy Ids"),
+    mb_workhierarchy_ids: Optional[str] = cast(
+        str,
+        MediaField(
+            MP3DescStorageStyle("MusicBrainz Work Hierarchy Ids"),
+            MP4StorageStyle("----:com.apple.iTunes:" "MusicBrainz Work Hierarchy Ids"),
+            StorageStyle("MUSICBRAINZ_WORKHIERARCHY_IDS"),
+            ASFStorageStyle("MusicBrainz/Work Hierarchy Ids"),
+        ),
     )
 
     """
@@ -142,19 +145,25 @@ class MediaFileExtended(MediaFile):
     ``eafec51f-47c5-3c66-8c36-a524246c85f8``
     """
 
-    work = MediaField(
-        MP3DescStorageStyle("Work"),
-        MP4StorageStyle("----:com.apple.iTunes:WORK"),
-        StorageStyle("Work"),
-        ASFStorageStyle("WM/Work"),
+    work: Optional[str] = cast(
+        str,
+        MediaField(
+            MP3DescStorageStyle("Work"),
+            MP4StorageStyle("----:com.apple.iTunes:WORK"),
+            StorageStyle("Work"),
+            ASFStorageStyle("WM/Work"),
+        ),
     )
     """The last work in the work hierarchy."""
 
-    work_hierarchy = MediaField(
-        MP3DescStorageStyle("MusicBrainz Work Hierarchy"),
-        MP4StorageStyle("----:com.apple.iTunes:MusicBrainz Work Hierarchy"),
-        StorageStyle("MUSICBRAINZ_WORKHIERARCHY"),
-        ASFStorageStyle("MusicBrainz/Work Hierarchy"),
+    work_hierarchy: Optional[str] = cast(
+        str,
+        MediaField(
+            MP3DescStorageStyle("MusicBrainz Work Hierarchy"),
+            MP4StorageStyle("----:com.apple.iTunes:MusicBrainz Work Hierarchy"),
+            StorageStyle("MUSICBRAINZ_WORKHIERARCHY"),
+            ASFStorageStyle("MusicBrainz/Work Hierarchy"),
+        ),
     )
     """
     The hierarchy of works: The top level work appears first. As separator is
@@ -170,11 +179,14 @@ class MediaFileExtended(MediaFile):
 
     """
 
-    releasegroup_types = MediaField(
-        MP3DescStorageStyle("MusicBrainz Release Group Types"),
-        MP4StorageStyle("----:com.apple.iTunes:" "MusicBrainz Release Group Types"),
-        StorageStyle("MUSICBRAINZ_RELEASEGROUPTYPES"),
-        ASFStorageStyle("MusicBrainz/Release Group Types"),
+    releasegroup_types: Optional[str] = cast(
+        str,
+        MediaField(
+            MP3DescStorageStyle("MusicBrainz Release Group Types"),
+            MP4StorageStyle("----:com.apple.iTunes:" "MusicBrainz Release Group Types"),
+            StorageStyle("MUSICBRAINZ_RELEASEGROUPTYPES"),
+            ASFStorageStyle("MusicBrainz/Release Group Types"),
+        ),
     )
     """This field collects all items in the MusicBrainz’ API related to
     type: ``type``, ``primary-type`` and``secondary-type-list``. Main usage

@@ -498,7 +498,7 @@ fields: FieldDocCollection = {
         "category": "common",
         "examples": ["Dbm"],
     },
-    # properties
+    # Properties
     "length": {
         "description": "The duration of the audio in seconds (a float).",
         "data_type": "float",

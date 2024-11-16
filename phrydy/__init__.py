@@ -16,23 +16,23 @@ from phrydy.mediafile_extended import (
 __version__: str = metadata.version("phrydy")
 
 
-field_docs
+field_docs  # type: ignore
 
-doc_generator
+doc_generator  # type: ignore
 
-mediafile_extended
+mediafile_extended  # type: ignore
 
-fields
+fields  # type: ignore
 
-FieldDocCollection
+FieldDocCollection  # type: ignore
 
-get_max_field_length
+get_max_field_length  # type: ignore
 
-format_fields_as_txt
+format_fields_as_txt  # type: ignore
 
-merge_fields
+merge_fields  # type: ignore
 
-print_debug
+print_debug  # type: ignore
 
 MediaFile  # type: ignore
 
