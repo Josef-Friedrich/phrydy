@@ -28,6 +28,7 @@ class FieldDoc(TypedDict):
 FieldDocCollection = Dict[str, FieldDoc]
 
 fields: FieldDocCollection = {
+    # Field definitions.
     "title": {
         # https://picard-docs.musicbrainz.org/en/variables/tags_basic.html#tags-provided-from-musicbrainz-data
         "description": "The title of the track.",
@@ -196,12 +197,6 @@ fields: FieldDocCollection = {
         "data_type": "str",
         "examples": ["Beatles, The"],
     },
-    "albumartists_sort": {
-        "description": "The “sort name” of the artist for the entire album.",
-        "category": "common",
-        "data_type": "str",
-        "examples": ["Beatles, The", "White, Jack"],
-    },
     "asin": {
         # https://picard-docs.musicbrainz.org/en/variables/tags_basic.html#tags-provided-from-musicbrainz-data
         "description": "The Amazon Standard Identification Number - the number identifying the item on Amazon.",
@@ -290,6 +285,7 @@ fields: FieldDocCollection = {
         "description": "The disambiguation album field helps to distinguish between identically named albums. The album “Weezer” for example has the disambiguation comments “Red Album” and “Green Album”.",
         "category": "common",
     },
+    # Release date.
     "date": {
         "description": "The release date of the specific release.",
         "category": "date",
@@ -313,6 +309,7 @@ fields: FieldDocCollection = {
         "examples": [31],
         "data_type": "int",
     },
+    # *Original* release date.
     "original_date": {
         "description": "The release date of the original version of the album.",
         "category": "date",
@@ -337,6 +334,7 @@ fields: FieldDocCollection = {
         "examples": [4],
         "data_type": "int",
     },
+    # Nonstandard metadata.
     "artist_credit": {
         # https://musicbrainz.org/doc/Artist_Credits
         "description": "The track-specific artist credit name, which may be a variation of the artist’s “canonical” name.",
@@ -367,17 +365,26 @@ fields: FieldDocCollection = {
         "category": "common",
         "data_type": "list",
     },
+    "albumartists_sort": {
+        "description": "The “sort name” of the artist for the entire album.",
+        "category": "common",
+        "data_type": "str",
+        "examples": ["Beatles, The", "White, Jack"],
+    },
+    # Legacy album art field
     "art": {
         "description": "Legacy album art field.",
         "category": "common",
         "examples": [b"\xff\xd8\xff\xe0\x00"],
     },
+    # Image list
     "images": {
         # https://musicbrainz.org/doc/Cover_Art
         "description": 'Cover art, also known as "album art" or "album artwork", is artwork that provides a visual representation of a release.',
         "category": "common",
         "examples": [["<mediafile.Image object at 0x7f51fce26b20>"]],
     },
+    # MusicBrainz IDs.
     "mb_trackid": {
         "description": "MusicBrainz track ID.",
         "category": "music_brainz",
@@ -402,17 +409,17 @@ fields: FieldDocCollection = {
         "examples": ["fd6adc77-1489-4a13-9aa0-32951061d92b"],
         "data_type": "str",
     },
-    "mb_artistid": {
-        "description": "MusicBrainz artist ID.",
-        "category": "music_brainz",
-        "examples": ["1f9df192-a621-4f54-8850-2c5373b7eac9"],
-        "data_type": "str",
-    },
     "mb_artistids": {
         "description": "MusicBrainz artist IDs as a list.",
         "category": "music_brainz",
         "examples": [["1f9df192-a621-4f54-8850-2c5373b7eac9"]],
         "data_type": "list",
+    },
+    "mb_artistid": {
+        "description": "MusicBrainz artist ID.",
+        "category": "music_brainz",
+        "examples": ["1f9df192-a621-4f54-8850-2c5373b7eac9"],
+        "data_type": "str",
     },
     "mb_albumartistids": {
         "description": "MusicBrainz album artist IDs as a list.",
@@ -441,6 +448,7 @@ fields: FieldDocCollection = {
         "examples": ["f714fd70-aaca-4863-9d0d-2768a53acaeb"],
         "data_type": "str",
     },
+    # Acoustid fields.
     "acoustid_fingerprint": {
         # https://picard-docs.musicbrainz.org/en/variables/tags_basic.html#tags-provided-from-musicbrainz-data
         "description": "The Acoustic Fingerprint for the track. The fingerprint is based on the audio information found in a file, and is calculated using the Chromaprint software.",
@@ -454,6 +462,7 @@ fields: FieldDocCollection = {
         "data_type": "str",
         "examples": ["86e217b7-d3ad-4493-a9f2-cf71256ace07"],
     },
+    # ReplayGain fields.
     "rg_track_gain": {
         "description": "ReplayGain Track Gain, see https://en.wikipedia.org/wiki/ReplayGain.",
         "category": "rg",
@@ -472,6 +481,7 @@ fields: FieldDocCollection = {
         "description": "ReplayGain Album Peak, see https://en.wikipedia.org/wiki/ReplayGain.",
         "category": "rg",
     },
+    # EBU R128 fields.
     "r128_track_gain": {
         # https://en.wikipedia.org/wiki/EBU_R_128
         "description": "An optional gain for track normalization. EBU R 128 is a recommendation for loudness normalisation and maximum level of audio signals.",
@@ -488,6 +498,7 @@ fields: FieldDocCollection = {
         "category": "common",
         "examples": ["Dbm"],
     },
+    # properties
     "length": {
         "description": "The duration of the audio in seconds (a float).",
         "data_type": "float",
@@ -536,27 +547,9 @@ fields: FieldDocCollection = {
         "category": "audio",
         "examples": ["MP3", "FLAC"],
     },
-    # --------------------------------------------------
-    # --------------------------------------------------
-    # --------------------------------------------------
-    # --------------------------------------------------
-    # --------------------------------------------------
-    # --------------------------------------------------
-    # --------------------------------------------------
-    # --------------------------------------------------
-    # --------------------------------------------------
-    # --------------------------------------------------
-    # --------------------------------------------------
-    # --------------------------------------------------
-    # --------------------------------------------------
-    # --------------------------------------------------
-    # --------------------------------------------------
-    # --------------------------------------------------
-    # https://picard-docs.musicbrainz.org/en/variables/tags_basic.html#tags-provided-from-musicbrainz-data
+    # Additional fields
     "mb_workhierarchy_ids": {
-        "description": "All IDs in the work hierarchy. This field corresponds "
-        "to the field `work_hierarchy`. The top level work ID "
-        "appears first. A slash (/) is used as separator.",
+        "description": "All IDs in the work hierarchy. This field corresponds to the field `work_hierarchy`. The top level work ID appears first. A slash (/) is used as separator.",
         "category": "music_brainz",
         "examples": [
             "e208c5f5-5d37-3dfc-ac0b-999f207c9e46 / "
@@ -564,14 +557,6 @@ fields: FieldDocCollection = {
             "eafec51f-47c5-3c66-8c36-a524246c85f8"
         ],
         "data_type": "str",
-    },
-    "releasegroup_types": {
-        "description": "This field collects all items in the MusicBrainz’ API "
-        " related to type: `type`, `primary-type and "
-        "`secondary-type-list`. Main usage of this field is to "
-        "determine in a secure manner if the release is a "
-        "soundtrack.",
-        "category": "music_brainz",
     },
     "work": {
         "description": "The Musicbrainzs’ work entity.",
@@ -591,6 +576,14 @@ fields: FieldDocCollection = {
             'Scene II. No. 2 Aria "Was hör ...'
         ],
         "data_type": "str",
+    },
+    "releasegroup_types": {
+        "description": "This field collects all items in the MusicBrainz’ API "
+        " related to type: `type`, `primary-type and "
+        "`secondary-type-list`. Main usage of this field is to "
+        "determine in a secure manner if the release is a "
+        "soundtrack.",
+        "category": "music_brainz",
     },
 }
 """

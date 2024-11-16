@@ -561,6 +561,7 @@ class MediaFile:
     """The release-specific artists credit names, which may be a variation of the artist’s “canonical” names."""
 
     albumartists_sort: Optional[list[str]]
+    """The “sort name” of the artist for the entire album."""
 
     # Legacy album art field
     art: Optional[bytes]
@@ -618,6 +619,7 @@ class MediaFile:
     rg_album_peak: Optional[float]
     """ReplayGain Album Peak, see https://en.wikipedia.org/wiki/ReplayGain."""
 
+    # EBU R128 fields.
     r128_track_gain: Optional[float]
     """An optional gain for track normalization. EBU R 128 is a recommendation for loudness normalisation and maximum level of audio signals."""
 
