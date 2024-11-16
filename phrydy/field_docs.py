@@ -190,6 +190,12 @@ fields: FieldDocCollection = {
         "data_type": "str",
         "examples": ["Beatles, The", "White, Jack"],
     },
+    "albumartist_sort": {
+        "description": "The release artists sort names, separated by the specified join phrases. (e.g.: “Beatles, The”).",
+        "category": "common",
+        "data_type": "str",
+        "examples": ["Beatles, The"],
+    },
     "albumartists_sort": {
         "description": "The “sort name” of the artist for the entire album.",
         "category": "common",
@@ -227,6 +233,13 @@ fields: FieldDocCollection = {
         "description": "The International Standard Recording Code, abbreviated to ISRC, is a system of codes that identify audio and music video recordings.",
         "category": "common",
         "examples": ["CAC118989003", "ITO101117740"],
+    },
+    "disctitle": {
+        # https://musicbrainz.org/doc/Medium
+        "description": 'Mediums are always included in a release, and have a position in said release (e.g. disc 1 or disc 2). They have a format, like CD, 12" vinyl or cassette (in some cases this will be unknown), and can have an optional title (e.g. disc 2: The Early Years).',
+        "data_type": "str",
+        "category": "common",
+        "examples": ["disc 2: The Early Years"],
     },
     "encoder": {
         # https://id3.org/id3v2.4.0-frames
@@ -475,6 +488,54 @@ fields: FieldDocCollection = {
         "category": "common",
         "examples": ["Dbm"],
     },
+    "length": {
+        "description": "The duration of the audio in seconds (a float).",
+        "data_type": "float",
+        "category": "audio",
+        "examples": [674.4666666666667],
+    },
+    "samplerate": {
+        "description": "The sample rate as an integer number.",
+        "category": "audio",
+        "examples": [44100],
+        "data_type": "int",
+    },
+    "bitdepth": {
+        "description": "The number of bits per sample in the audio encoding (an int). Only available for certain file formats (zero where unavailable).",
+        "category": "audio",
+        "examples": [16],
+    },
+    "channels": {
+        "description": "The number of channels in the audio (an int).",
+        "category": "audio",
+        "data_type": "int",
+        "examples": [1, 2],
+    },
+    "bitrate": {
+        "description": "The number of bits per seconds used in the audio coding (an int). If this is provided explicitly by the compressed file format, this is a precise reflection of the encoding. Otherwise, it is estimated from the on-disk file size. In this case, some imprecision is possible because the file header is incorporated in the file size.",
+        "category": "audio",
+        "examples": [436523, 256000],
+    },
+    "bitrate_mode": {
+        "description": 'The mode of the bitrate used in the audio coding (a string, eg. "CBR", "VBR" or "ABR"). Only available for the MP3 file format (empty where unavailable).',
+        "category": "common",
+        "examples": ["CBR"],
+    },
+    "encoder_info": {
+        "description": 'The name and/or version of the encoder used (a string, eg. "LAME 3.97.0"). Only available for some formats (empty where unavailable)',
+        "category": "common",
+        "examples": ["LAME 3.92.0+"],
+    },
+    "encoder_settings": {
+        "description": 'A guess of the settings used for the encoder (a string, eg. "-V2"). Only available for the MP3 file format (empty where unavailable).',
+        "category": "common",
+        "examples": ["-b 255+"],
+    },
+    "format": {
+        "description": "A string describing the file format/codec. e.g., “MP3” or “FLAC”",
+        "category": "audio",
+        "examples": ["MP3", "FLAC"],
+    },
     # --------------------------------------------------
     # --------------------------------------------------
     # --------------------------------------------------
@@ -492,60 +553,6 @@ fields: FieldDocCollection = {
     # --------------------------------------------------
     # --------------------------------------------------
     # https://picard-docs.musicbrainz.org/en/variables/tags_basic.html#tags-provided-from-musicbrainz-data
-    "albumartist_sort": {
-        "description": "The release artists sort names, separated by the specified join phrases. (e.g.: “Beatles, The”).",
-        "category": "common",
-        "data_type": "str",
-        "examples": ["Beatles, The"],
-    },
-    "bitdepth": {
-        "description": "only available for some formats",
-        "category": "audio",
-        "examples": [16],
-    },
-    "bitrate": {
-        "description": "in kilobits per second, with units: e.g., “192kbps”",
-        "category": "audio",
-        "examples": [436523, 256000],
-    },
-    "bitrate_mode": {
-        "description": "bitrate_mode",
-        "category": "common",
-        "examples": ["CBR"],
-    },
-    "channels": {
-        "description": "channels",
-        "category": "audio",
-        "data_type": "int",
-        "examples": [1, 2],
-    },
-    "disctitle": {
-        # https://musicbrainz.org/doc/Medium
-        "description": 'Mediums are always included in a release, and have a position in said release (e.g. disc 1 or disc 2). They have a format, like CD, 12" vinyl or cassette (in some cases this will be unknown), and can have an optional title (e.g. disc 2: The Early Years).',
-        "data_type": "str",
-        "category": "common",
-        "examples": ["disc 2: The Early Years"],
-    },
-    "encoder_info": {
-        "description": "encoder_info",
-        "category": "common",
-        "examples": ["LAME 3.92.0+"],
-    },
-    "encoder_settings": {
-        "description": "encoder_settings",
-        "category": "common",
-        "examples": ["-b 255+"],
-    },
-    "format": {
-        "description": "e.g., “MP3” or “FLAC”",
-        "category": "audio",
-        "examples": ["MP3", "FLAC"],
-    },
-    "length": {
-        "description": "The length of a recording in seconds.",
-        "category": "audio",
-        "examples": [674.4666666666667],
-    },
     "mb_workhierarchy_ids": {
         "description": "All IDs in the work hierarchy. This field corresponds "
         "to the field `work_hierarchy`. The top level work ID "
@@ -565,12 +572,6 @@ fields: FieldDocCollection = {
         "determine in a secure manner if the release is a "
         "soundtrack.",
         "category": "music_brainz",
-    },
-    "samplerate": {
-        "description": "The sample rate as an integer number.",
-        "category": "audio",
-        "examples": [44100],
-        "data_type": "int",
     },
     "work": {
         "description": "The Musicbrainzs’ work entity.",

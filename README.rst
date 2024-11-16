@@ -204,15 +204,15 @@ List all available fields of a media file:
      - ``5028421931838``, ``036000291452``
    * - bitdepth
      - audio
-     - only available for some formats
+     - The number of bits per sample in the audio encoding (an int). Only available for certain file formats (zero where unavailable).
      - ``16``
    * - bitrate
      - audio
-     - in kilobits per second, with units: e.g., “192kbps”
+     - The number of bits per seconds used in the audio coding (an int). If this is provided explicitly by the compressed file format, this is a precise reflection of the encoding. Otherwise, it is estimated from the on-disk file size. In this case, some imprecision is possible because the file header is incorporated in the file size.
      - ``436523``, ``256000``
    * - bitrate_mode
      - common
-     - bitrate_mode
+     - The mode of the bitrate used in the audio coding (a string, eg. "CBR", "VBR" or "ABR"). Only available for the MP3 file format (empty where unavailable).
      - ``CBR``
    * - bpm
      - common
@@ -228,7 +228,7 @@ List all available fields of a media file:
      - ``['CDP 7 46439 2', 'Do 247282']``
    * - channels
      - audio
-     - channels
+     - The number of channels in the audio (an int).
      - ``1``, ``2``
    * - comments
      - common
@@ -280,15 +280,15 @@ List all available fields of a media file:
      - ``iTunes v7.6.2``
    * - encoder_info
      - common
-     - encoder_info
+     - The name and/or version of the encoder used (a string, eg. "LAME 3.97.0"). Only available for some formats (empty where unavailable)
      - ``LAME 3.92.0+``
    * - encoder_settings
      - common
-     - encoder_settings
+     - A guess of the settings used for the encoder (a string, eg. "-V2"). Only available for the MP3 file format (empty where unavailable).
      - ``-b 255+``
    * - format
      - audio
-     - e.g., “MP3” or “FLAC”
+     - A string describing the file format/codec. e.g., “MP3” or “FLAC”
      - ``MP3``, ``FLAC``
    * - genre
      - common
@@ -328,7 +328,7 @@ List all available fields of a media file:
      - ``['zxx', 'eng']``
    * - length
      - audio
-     - The length of a recording in seconds.
+     - The duration of the audio in seconds (a float).
      - ``674.4666666666667``
    * - lyricist
      - common
@@ -570,14 +570,24 @@ phrydy-debug
                                  European Article Number (EAN).
                                  Examples: ['5028421931838', '036000291452']
 
-        bitdepth:                only available for some formats
+        bitdepth:                The number of bits per sample in the audio
+                                 encoding (an int). Only available for certain
+                                 file formats (zero where unavailable).
                                  Examples: [16]
 
-        bitrate:                 in kilobits per second, with units: e.g.,
-                                 “192kbps”
+        bitrate:                 The number of bits per seconds used in the audio
+                                 coding (an int). If this is provided explicitly
+                                 by the compressed file format, this is a precise
+                                 reflection of the encoding. Otherwise, it is
+                                 estimated from the on-disk file size. In this
+                                 case, some imprecision is possible because the
+                                 file header is incorporated in the file size.
                                  Examples: [436523, 256000]
 
-        bitrate_mode:            bitrate_mode
+        bitrate_mode:            The mode of the bitrate used in the audio coding
+                                 (a string, eg. "CBR", "VBR" or "ABR"). Only
+                                 available for the MP3 file format (empty where
+                                 unavailable).
                                  Examples: ['CBR']
 
         bpm:                     The number of beats per minute of the track.
@@ -594,7 +604,7 @@ phrydy-debug
                                  especially when multiple labels are involved.
                                  Examples: [['CDP 7 46439 2', 'Do 247282']]
 
-        channels:                channels
+        channels:                The number of channels in the audio (an int).
                                  Examples: [1, 2]
 
         comments:                The disambiguation comment entered to help
@@ -643,13 +653,18 @@ phrydy-debug
                                  copyrighted by the encoder.
                                  Examples: ['iTunes v7.6.2']
 
-        encoder_info:            encoder_info
+        encoder_info:            The name and/or version of the encoder used (a
+                                 string, eg. "LAME 3.97.0"). Only available for
+                                 some formats (empty where unavailable)
                                  Examples: ['LAME 3.92.0+']
 
-        encoder_settings:        encoder_settings
+        encoder_settings:        A guess of the settings used for the encoder (a
+                                 string, eg. "-V2"). Only available for the MP3
+                                 file format (empty where unavailable).
                                  Examples: ['-b 255+']
 
-        format:                  e.g., “MP3” or “FLAC”
+        format:                  A string describing the file format/codec. e.g.,
+                                 “MP3” or “FLAC”
                                  Examples: ['MP3', 'FLAC']
 
         genre:                   Genres are currently supported in MusicBrainz as
@@ -696,7 +711,7 @@ phrydy-debug
                                  639-3 standard.
                                  Examples: [['zxx', 'eng']]
 
-        length:                  The length of a recording in seconds.
+        length:                  The duration of the audio in seconds (a float).
                                  Examples: [674.4666666666667]
 
         lyricist:                The writer of the text or lyrics in the

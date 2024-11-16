@@ -3,7 +3,7 @@ import enum
 from collections.abc import Generator, Sequence
 from io import BufferedRandom, BufferedReader
 from pathlib import Path
-from typing import Any, Optional, Union
+from typing import Any, Literal, Optional, Union
 
 from _typeshed import Incomplete
 from mutagen import FileType as MutagenFile
@@ -295,6 +295,8 @@ class MediaFile:
         ...
     __name__: str
 
+    mgfile: MutagenFile
+
     @property
     def filename(self) -> str:  # type: ignore
         """The name of the file.
@@ -385,6 +387,8 @@ class MediaFile:
         :class:`MediaField`).
         """
         ...
+
+    # Field definitions.
 
     title: Optional[str]
     """
@@ -514,6 +518,7 @@ class MediaFile:
     albumdisambig: Optional[str]
     """The disambiguation album field helps to distinguish between identically named albums. The album “Weezer” for example has the disambiguation comments “Red Album” and “Green Album”."""
 
+    # Release date.
     date: Optional[datetime.date]
     """The release date of the specific release."""
 
@@ -526,6 +531,7 @@ class MediaFile:
     day: Optional[int]
     """The release day of the specific release."""
 
+    # *Original* release date.
     original_date: Optional[datetime.date]
     """The release date of the original version of the album."""
 
@@ -538,6 +544,7 @@ class MediaFile:
     original_day: Optional[int]
     """The release day of the original version of the album."""
 
+    # Nonstandard metadata.
     artist_credit: Optional[str]
     """The track-specific artist credit name, which may be a variation of the artist’s “canonical” name."""
 
@@ -553,64 +560,122 @@ class MediaFile:
     albumartists_credit: Optional[list[str]]
     """The release-specific artists credit names, which may be a variation of the artist’s “canonical” names."""
 
+    albumartists_sort: Optional[list[str]]
+
+    # Legacy album art field
     art: Optional[bytes]
     """Legacy album art field."""
 
+    # Image list
     images: Optional[list[Image]]
     """Cover art, also known as "album art" or "album artwork", is artwork that provides a visual representation of a release."""
 
-    mb_trackid: str
+    # MusicBrainz IDs.
+    mb_trackid: Optional[str]
     """MusicBrainz track ID."""
 
-    mb_releasetrackid: str
+    mb_releasetrackid: Optional[str]
     """MusicBrainz release track ID."""
 
-    mb_workid: str
+    mb_workid: Optional[str]
     """MusicBrainz work ID."""
 
-    mb_albumid: str
+    mb_albumid: Optional[str]
     """MusicBrainz work ID."""
 
-    mb_artistids: list[str]
+    mb_artistids: Optional[list[str]]
     """MusicBrainz artist IDs as a list."""
 
-    mb_artistid: str
+    mb_artistid: Optional[str]
     """MusicBrainz artist ID."""
 
-    mb_albumartistids: list[str]
+    mb_albumartistids: Optional[list[str]]
     """MusicBrainz artist IDs as a list."""
 
-    mb_albumartistid: str
+    mb_albumartistid: Optional[str]
     """MusicBrainz album artist ID."""
 
-    mb_releasegroupid: str
+    mb_releasegroupid: Optional[str]
     """MusicBrainz releasegroup ID."""
 
-    acoustid_fingerprint: str
+    # Acoustid fields.
+    acoustid_fingerprint: Optional[str]
     """The Acoustic Fingerprint for the track. The fingerprint is based on the audio information found in a file, and is calculated using the Chromaprint software."""
 
-    acoustid_id: str
+    acoustid_id: Optional[str]
     """The AcoustID associated with the track. The AcoustID is the identifier assigned to an audio file based on its acoustic fingerprint. Multiple fingerprints may be assigned the same AcoustID if the fingerprints are similar enough."""
 
-    rg_track_gain: float
+    # ReplayGain fields.
+    rg_track_gain: Optional[float]
     """ReplayGain Track Gain, see https://en.wikipedia.org/wiki/ReplayGain."""
 
-    rg_album_gain: float
+    rg_album_gain: Optional[float]
     """ReplayGain Album Gain, see https://en.wikipedia.org/wiki/ReplayGain."""
 
-    rg_track_peak: float
+    rg_track_peak: Optional[float]
     """ReplayGain Track Peak, see https://en.wikipedia.org/wiki/ReplayGain."""
 
-    rg_album_peak: float
+    rg_album_peak: Optional[float]
     """ReplayGain Album Peak, see https://en.wikipedia.org/wiki/ReplayGain."""
 
-    r128_track_gain: float
+    r128_track_gain: Optional[float]
     """An optional gain for track normalization. EBU R 128 is a recommendation for loudness normalisation and maximum level of audio signals."""
 
-    r128_album_gain: float
+    r128_album_gain: Optional[float]
     """An optional gain for album normalization. EBU R 128 is a recommendation for loudness normalisation and maximum level of audio signals."""
 
-    initial_key: str
+    initial_key: Optional[str]
     """The Initial key frame contains the musical key in which the sound starts. It is represented as a string with a maximum length of three characters. The ground keys are represented with "A","B","C","D","E", "F" and "G" and halfkeys represented with "b" and "#". Minor is represented as "m"."""
 
-    mgfile: MutagenFile
+    @property
+    def length(self) -> float:
+        """The duration of the audio in seconds (a float)."""
+
+    @property
+    def samplerate(self) -> int:
+        """The audio's sample rate (an int)."""
+
+    @property
+    def bitdepth(self) -> int:
+        """The number of bits per sample in the audio encoding (an int).
+        Only available for certain file formats (zero where
+        unavailable).
+        """
+
+    @property
+    def channels(self) -> int:
+        """The number of channels in the audio (an int)."""
+
+    @property
+    def bitrate(self) -> int:
+        """The number of bits per seconds used in the audio coding (an
+        int). If this is provided explicitly by the compressed file
+        format, this is a precise reflection of the encoding. Otherwise,
+        it is estimated from the on-disk file size. In this case, some
+        imprecision is possible because the file header is incorporated
+        in the file size.
+        """
+
+    @property
+    def bitrate_mode(self) -> Literal["CBR", "VBR", "ABR", ""]:
+        """The mode of the bitrate used in the audio coding
+        (a string, eg. "CBR", "VBR" or "ABR").
+        Only available for the MP3 file format (empty where unavailable).
+        """
+
+    @property
+    def encoder_info(self) -> str:
+        """The name and/or version of the encoder used
+        (a string, eg. "LAME 3.97.0").
+        Only available for some formats (empty where unavailable).
+        """
+
+    @property
+    def encoder_settings(self) -> str:
+        """A guess of the settings used for the encoder (a string, eg. "-V2").
+        Only available for the MP3 file format (empty where unavailable).
+        """
+
+    @property
+    def format(self) -> str:
+        """A string describing the file format/codec."""
