@@ -587,7 +587,7 @@ dev = [
 [package.metadata]
 requires-dist = [
     { name = "filetype", specifier = ">=1.2.0,<2" },
-    { name = "mutagen", specifier = ">=1.46,<2" },
+    { name = "mutagen", specifier = ">=1.47,<2" },
     { name = "termcolor", specifier = ">=2.5,<3" },
     { name = "typing-extensions", specifier = ">=4,<5" },
 ]
