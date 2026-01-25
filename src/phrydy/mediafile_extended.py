@@ -125,7 +125,7 @@ class MediaFileExtended(MediaFile):
         str,
         MediaField(
             MP3DescStorageStyle("MusicBrainz Work Hierarchy Ids"),
-            MP4StorageStyle("----:com.apple.iTunes:" "MusicBrainz Work Hierarchy Ids"),
+            MP4StorageStyle("----:com.apple.iTunes:MusicBrainz Work Hierarchy Ids"),
             StorageStyle("MUSICBRAINZ_WORKHIERARCHY_IDS"),
             ASFStorageStyle("MusicBrainz/Work Hierarchy Ids"),
         ),
@@ -183,7 +183,7 @@ class MediaFileExtended(MediaFile):
         str,
         MediaField(
             MP3DescStorageStyle("MusicBrainz Release Group Types"),
-            MP4StorageStyle("----:com.apple.iTunes:" "MusicBrainz Release Group Types"),
+            MP4StorageStyle("----:com.apple.iTunes:MusicBrainz Release Group Types"),
             StorageStyle("MUSICBRAINZ_RELEASEGROUPTYPES"),
             ASFStorageStyle("MusicBrainz/Release Group Types"),
         ),

@@ -561,9 +561,7 @@ fields: FieldDocCollection = {
     "work": {
         "description": "The Musicbrainzs’ work entity.",
         "category": "common",
-        "examples": [
-            "32 Variations for Piano in C minor on an Original " "Theme, WoO 80"
-        ],
+        "examples": ["32 Variations for Piano in C minor on an Original Theme, WoO 80"],
         "data_type": "str",
     },
     "work_hierarchy": {

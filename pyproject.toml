@@ -1,10 +1,11 @@
-[tool.poetry]
+[project]
 name = "phrydy"
 version = "4.1.0"
 description = "Extended version of the mediafile library of the beets project. It is used by the Python command line tool `audiorename`."
-authors = ["Josef Friedrich <josef@friedrich.rocks>"]
+authors = [{ name = "Josef Friedrich", email = "josef@friedrich.rocks" }]
+requires-python = ">=3.9,<4"
 readme = "README.rst"
-license = "MIT"
+license = { text = "MIT" }
 classifiers = [
     "Development Status :: 5 - Production/Stable",
     "Programming Language :: Python :: 3 :: Only",
@@ -17,26 +18,28 @@ classifiers = [
     "License :: OSI Approved :: MIT License",
     "Topic :: Utilities",
 ]
-repository = "https://github.com/Josef-Friedrich/phrydy"
+dependencies = [
+    "typing-extensions>=4,<5",
+    "termcolor>=2.5,<3",
+    "filetype>=1.2.0,<2",
+    "mutagen>=1.47,<2",
+]
 
-[tool.poetry.dependencies]
-python = "^3.9"
-typing-extensions = "^4"
-termcolor = "^2.5"
-filetype = "^1.2.0"
-mutagen = "^1.46"
+[project.urls]
+Repository = "https://github.com/Josef-Friedrich/phrydy"
 
-[tool.poetry.group.dev.dependencies]
-readme-patcher = "^0"
-stdout-stderr-capturing = "^0"
-tox = "^4"
-ruff = "^0"
-pytest = "^8"
-mypy = "^1"
+[project.scripts]
+phrydy-debug = "phrydy.debug:init_cli"
+
+[dependency-groups]
+dev = [
+    "readme-patcher>=0,<1",
+    "stdout-stderr-capturing>=0,<1",
+    "ruff>=0,<1",
+    "pytest>=8,<9",
+    "mypy>=1,<2",
+]
 
 [build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
-
-[tool.poetry.scripts]
-phrydy-debug = "phrydy.debug:init_cli"
+requires = ["uv_build>=0.8.10,<0.9.0"]
+build-backend = "uv_build"

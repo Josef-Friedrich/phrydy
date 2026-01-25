@@ -19,9 +19,6 @@ phrydy.field_docs module
 
 .. automodule:: phrydy.field_docs
 
-.. autodata:: phrydy.field_docs.fields
-    :annotation: = metadata description
-
 phrydy.mediafile_extended module
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 

@@ -2018,7 +2018,7 @@ class MediaFile(object):
 
     country = MediaField(
         MP3DescStorageStyle("MusicBrainz Album Release Country"),
-        MP4StorageStyle("----:com.apple.iTunes:MusicBrainz " "Album Release Country"),
+        MP4StorageStyle("----:com.apple.iTunes:MusicBrainz Album Release Country"),
         StorageStyle("RELEASECOUNTRY"),
         ASFStorageStyle("MusicBrainz/Album Release Country"),
     )
